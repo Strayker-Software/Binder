@@ -1,19 +1,14 @@
-# Patern Repository (Name here!)
+# Binder
 
-My patern repository for all my projects!
-(Description here!)
+When Coronavirus stopped schools, my teachers are sending me a lot of different tasks to do in home. This app will help me in organisation.
 
-# Genesis
+# Usage of Binder
 
-(History here!)
-
-# Usage of (Name here!)
-
-(Dscription of usage!)
+Just download the newest version from [Release]([https://github.com/StraykerPL/Binder/releases](https://github.com/StraykerPL/Binder/releases) page.
 
 # TODO
 
-[List](Link here!) of what I would like to be done in [Name here!] and it's repository!
+[List](Link here!) of what I would like to be done in Binder and it's repository!
 
 # Contact
 

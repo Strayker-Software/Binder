@@ -1,4 +1,4 @@
-# (Name here!) Docs
+# Binder Docs
 
 Here is main documentation for (Name here!).
 To find your language check names of folders to find your lang's symbol.

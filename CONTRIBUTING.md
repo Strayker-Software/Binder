@@ -1,6 +1,7 @@
-# Contribution info for (Name here!)
+# Contribution info for Binder
 
 There are some ways to contribute to project:
+
 - read issues labeled "help-wanted" and try to solve problem from it,
 - read TODO.md in "docs" folder and create code for given point of development,
 - try to image something and submit an issue about it, maybe your idea will be helpful,

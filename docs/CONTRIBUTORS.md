@@ -1,4 +1,4 @@
-# (Name here!) contributors list
+# Binder contributors list
 
 Here are all awesome people that helps me in this project!
 
@@ -12,4 +12,3 @@ Example:
 Strayker 21.10.2019 Daniel Nowak Poland https://github.com/StraykerPL
 
 # List:
-
