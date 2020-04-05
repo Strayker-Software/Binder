@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binder.UnitTests", "Binder.UnitTests\Binder.UnitTests.csproj", "{EE1D4F43-A8F9-47A6-88F8-EFB52469A928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binder", "Binder\Binder.csproj", "{0C088974-FC63-48CF-94A7-90A707579141}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE1D4F43-A8F9-47A6-88F8-EFB52469A928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1D4F43-A8F9-47A6-88F8-EFB52469A928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE1D4F43-A8F9-47A6-88F8-EFB52469A928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE1D4F43-A8F9-47A6-88F8-EFB52469A928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C088974-FC63-48CF-94A7-90A707579141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C088974-FC63-48CF-94A7-90A707579141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C088974-FC63-48CF-94A7-90A707579141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C088974-FC63-48CF-94A7-90A707579141}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37ACEC8B-7389-4A72-AEE7-ECC8B5F1FA01}
+	EndGlobalSection
+EndGlobal
