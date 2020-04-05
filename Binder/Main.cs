@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Xml;
+using System.IO;
+using System.Text;
 
 namespace Binder
 {
@@ -55,13 +58,54 @@ namespace Binder
         }
 
         private void Main_Load(object sender, EventArgs e)
-        {
-
+        { // TODO: Need optimalisation!
+            var strgm = new StorageManager
+            {
+                StoragePath = "Data.xml"
+            };
+            var data = strgm.LoadFromStorage();
+            var doc = new XmlDocument();
+            doc.LoadXml(data);
+            var root = doc.DocumentElement;
+            if(root.ChildNodes.Count != 0)
+            {
+                for (int i = 0; i < root.ChildNodes.Count; i++)
+                {
+                    var tskXml = root.ChildNodes.Item(i);
+                    Task.Name = tskXml.Attributes.GetNamedItem("Name").Value;
+                    Task.Date = Convert.ToDateTime(tskXml.Attributes.GetNamedItem("Date").Value);
+                    if (tskXml.Attributes.GetNamedItem("Today").Value == "0") Task.IfToday = CheckState.Unchecked;
+                    else Task.IfToday = CheckState.Checked;
+                    Task.AddTask(Tab);
+                }
+            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
+        { // TODO: Need optimalisation!
+            var writer = File.OpenWrite("Data.xml");
+            writer.Close(); // Cleans file,
+            //var strgm = new StorageManager();
+            var doc = new XmlDocument();
+            doc.LoadXml("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
+            var root = doc.DocumentElement;
+            foreach (DataGridViewRow item in Tab.Rows)
+            {
+                if(item.Cells[0].Value != null)
+                {
+                    var tskXml = doc.CreateElement("Task");
+                    tskXml.SetAttribute("Name", (string)item.Cells[0].Value);
+                    tskXml.SetAttribute("Date", Convert.ToString(item.Cells[1].Value));
+                    if ((CheckState)item.Cells[2].Value == CheckState.Checked)
+                        tskXml.SetAttribute("Today", "1");
+                    else tskXml.SetAttribute("Today", "0");
+                    root.AppendChild(tskXml);
+                }
+            }
+            //string data = "a";
+            doc.Save("Data.xml");
+            //strgm.StoragePath = "Data.xml";
+           // strgm.SaveToStorage(data);
         }
     }
 }
