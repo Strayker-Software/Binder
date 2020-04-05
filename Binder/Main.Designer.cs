@@ -51,10 +51,11 @@
             this.Deadline,
             this.Today});
             this.Tab.Location = new System.Drawing.Point(12, 12);
+            this.Tab.MultiSelect = false;
             this.Tab.Name = "Tab";
+            this.Tab.ReadOnly = true;
             this.Tab.Size = new System.Drawing.Size(776, 395);
             this.Tab.TabIndex = 0;
-            this.Tab.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.Tab_RowEnter);
             // 
             // TaskName
             // 
@@ -117,6 +118,8 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Binder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Tab)).EndInit();
             this.ResumeLayout(false);
 
