@@ -17,3 +17,4 @@ H:\Daniel\Repozytoria\Binder\Binder.UnitTests\bin\Debug\Microsoft.VisualStudio.T
 H:\Daniel\Repozytoria\Binder\Binder.UnitTests\obj\Debug\Binder.UnitTests.csproj.CopyComplete
 H:\Daniel\Repozytoria\Binder\Binder.UnitTests\obj\Debug\Binder.UnitTests.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTests\obj\Debug\Binder.UnitTests.pdb
+H:\Daniel\Repozytoria\Binder\Binder.UnitTests\obj\Debug\Binder.UnitTests.csproj.CoreCompileInputs.cache

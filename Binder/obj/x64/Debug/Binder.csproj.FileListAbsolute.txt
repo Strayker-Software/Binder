@@ -1,0 +1,14 @@
+H:\Daniel\Repozytoria\Binder\Binder\bin\x64\Debug\Binder.exe.config
+H:\Daniel\Repozytoria\Binder\Binder\bin\x64\Debug\Binder.exe.manifest
+H:\Daniel\Repozytoria\Binder\Binder\bin\x64\Debug\Binder.application
+H:\Daniel\Repozytoria\Binder\Binder\bin\x64\Debug\Binder.exe
+H:\Daniel\Repozytoria\Binder\Binder\bin\x64\Debug\Binder.pdb
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.Main.resources
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.TaskForm.resources
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.Properties.Resources.resources
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.csproj.GenerateResource.cache
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.csproj.CoreCompileInputs.cache
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.exe.manifest
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.application
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.exe
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.pdb

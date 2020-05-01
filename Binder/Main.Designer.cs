@@ -35,7 +35,11 @@
             this.AddTask = new System.Windows.Forms.Button();
             this.DeleteTask = new System.Windows.Forms.Button();
             this.EditTask = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.Tab)).BeginInit();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tab
@@ -50,32 +54,37 @@
             this.TaskName,
             this.Deadline,
             this.Today});
+            this.Tab.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Tab.Location = new System.Drawing.Point(12, 12);
             this.Tab.MultiSelect = false;
             this.Tab.Name = "Tab";
             this.Tab.ReadOnly = true;
-            this.Tab.Size = new System.Drawing.Size(776, 395);
+            this.Tab.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Tab.Size = new System.Drawing.Size(776, 430);
             this.Tab.TabIndex = 0;
             // 
             // TaskName
             // 
             this.TaskName.HeaderText = "Task Name";
             this.TaskName.Name = "TaskName";
+            this.TaskName.ReadOnly = true;
             // 
             // Deadline
             // 
             this.Deadline.HeaderText = "Dead line";
             this.Deadline.Name = "Deadline";
+            this.Deadline.ReadOnly = true;
             // 
             // Today
             // 
             this.Today.HeaderText = "Today?";
             this.Today.Name = "Today";
+            this.Today.ReadOnly = true;
             // 
             // AddTask
             // 
             this.AddTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddTask.Location = new System.Drawing.Point(12, 415);
+            this.AddTask.Location = new System.Drawing.Point(12, 448);
             this.AddTask.Name = "AddTask";
             this.AddTask.Size = new System.Drawing.Size(102, 23);
             this.AddTask.TabIndex = 1;
@@ -86,7 +95,7 @@
             // DeleteTask
             // 
             this.DeleteTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteTask.Location = new System.Drawing.Point(228, 415);
+            this.DeleteTask.Location = new System.Drawing.Point(228, 448);
             this.DeleteTask.Name = "DeleteTask";
             this.DeleteTask.Size = new System.Drawing.Size(102, 23);
             this.DeleteTask.TabIndex = 2;
@@ -97,7 +106,7 @@
             // EditTask
             // 
             this.EditTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditTask.Location = new System.Drawing.Point(120, 415);
+            this.EditTask.Location = new System.Drawing.Point(120, 448);
             this.EditTask.Name = "EditTask";
             this.EditTask.Size = new System.Drawing.Size(102, 23);
             this.EditTask.TabIndex = 3;
@@ -105,11 +114,41 @@
             this.EditTask.UseVisualStyleBackColor = true;
             this.EditTask.Click += new System.EventHandler(this.EditTask_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SaveButton.Location = new System.Drawing.Point(336, 448);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(102, 23);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip.Location = new System.Drawing.Point(0, 474);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip.TabIndex = 5;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(64, 17);
+            this.toolStripStatusLabel1.Text = "Data saved";
+            this.toolStripStatusLabel1.Visible = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 496);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.EditTask);
             this.Controls.Add(this.DeleteTask);
             this.Controls.Add(this.AddTask);
@@ -121,7 +160,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Tab)).EndInit();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -133,6 +175,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Today;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

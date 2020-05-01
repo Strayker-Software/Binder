@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Windows.Forms;
 
 namespace Binder.UnitTests
 {
@@ -11,11 +12,13 @@ namespace Binder.UnitTests
         public void Storage_SetAndGetDatabasePath_NewPathInObject()
         {
             // Prepare:
+#pragma warning disable IDE0017 // Simplify object init,
             var strgm = new StorageManager();
+#pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = "Data.txt";
+            strgm.StoragePath = "Data.xml";
             // Verify:
-            Assert.AreEqual("Data.txt", strgm.StoragePath);
+            Assert.AreEqual("Data.xml", strgm.StoragePath);
         }
 
         [TestMethod]
@@ -23,7 +26,9 @@ namespace Binder.UnitTests
         public void Storage_DataControl_StoragePathIsNotNull()
         {
             // Prepare:
+#pragma warning disable IDE0017 // Simplify object init,
             var strgm = new StorageManager();
+#pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StoragePath = null;
         }
@@ -33,7 +38,9 @@ namespace Binder.UnitTests
         public void Storage_DataControl_StoragePathIsNotEmpty()
         {
             // Prepare:
+#pragma warning disable IDE0017 // Simplify object init,
             var strgm = new StorageManager();
+#pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StoragePath = "";
         }
@@ -43,9 +50,52 @@ namespace Binder.UnitTests
         public void Storage_DataControl_DatabaseFileDoesntExist()
         {
             // Prepare:
+#pragma warning disable IDE0017 // Simplify object init,
             var strgm = new StorageManager();
+#pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = "file.txt"; // Fake file
+            strgm.StoragePath = "file.txt"; // Fake file,
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Rise exception when table argument is null.")]
+        public void Storage_DataControl_TableArgIsNotNull()
+        {
+            // Prepare and execute:
+#pragma warning disable IDE0059 // Unneeded value assigment,
+            var strgm = new StorageManager
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Tab = null
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Rise exception when table don't have columns.")]
+        public void Storage_DataControl_TableHaveNotColumnsSet()
+        {
+            // Prepare:
+            var tab = new DataGridView();
+            // Execute:
+#pragma warning disable IDE0059 // Unneeded value assigment,
+            var strgm = new StorageManager
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Tab = tab
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Rise exception when task argument is null.")]
+        public void Storage_DataControl_TaskArgIsNotNull()
+        {
+            // Prepare and execute:
+#pragma warning disable IDE0059 // Unneeded value assigment,
+            var strgm = new StorageManager
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Task = null
+            };
         }
 
         [TestMethod]
@@ -55,19 +105,23 @@ namespace Binder.UnitTests
                 WARINING!
                 This test has file system dependency
                 and doesn't follow TDD rules.
-                I will work over the test and it's test objects
-                to satisfy TDD rules in future development.
             */
 
             // Prepare:
-            var strgm = new StorageManager();
-            strgm.StoragePath = "Data.txt";
+            var frm = new Main();
+            var strgm = new StorageManager
+            {
+                StoragePath = "Data.xml",
+                Tab = frm.Tab
+            };
+            var row = new DataGridViewRow();
+            row.CreateCells(strgm.Tab);
+            row.SetValues("abc", DateTime.Now, CheckState.Checked);
+            strgm.Tab.Rows.Add(row);
             // Execute:
-            strgm.SaveToStorage("abc");
+            strgm.SaveToStorage();
             // Verify:
-            var reader = new StreamReader("Data.txt");
-            var readData = reader.ReadToEnd();
-            Assert.AreEqual("abc", readData);
+            Assert.AreEqual(row, strgm.Tab.Rows[0]);
         }
 
         [TestMethod]
@@ -77,18 +131,35 @@ namespace Binder.UnitTests
                 WARINING!
                 This test has file system dependency
                 and doesn't follow TDD rules.
-                I will work over the test and it's test objects
-                to satisfy TDD rules in future development.
             */
 
             // Prepare:
-            var strgm = new StorageManager();
-            strgm.StoragePath = "Data.txt";
-            strgm.SaveToStorage("abc");
+            var frm = new Main();
+            var strgm = new StorageManager
+            {
+                StoragePath = "Data.xml",
+                Tab = frm.Tab
+            };
+            var tsk1 = new Task
+            {
+                Name = "abc",
+                Date = DateTime.Now,
+                IfToday = CheckState.Checked
+            };
+            tsk1.AddTask(frm.Tab);
+            strgm.SaveToStorage();
+            strgm.Tab.Rows.Clear();
             // Execute:
-            var data = strgm.LoadFromStorage();
+            strgm.LoadFromStorage();
             // Verify:
-            Assert.AreEqual("abc", data);
+            var nrow = strgm.Tab.Rows[0];
+            var tsk2 = new Task()
+            {
+                Name = (string)nrow.Cells[0].Value,
+                Date = (DateTime)nrow.Cells[1].Value,
+                IfToday = (CheckState)nrow.Cells[2].Value
+            };
+            Assert.IsTrue(tsk1.Equals(tsk2));
         }
     }
 }

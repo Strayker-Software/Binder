@@ -17,6 +17,13 @@ namespace Binder
 
         private void Add_Click(object sender, EventArgs e)
         {
+            if (NameTextBox.Text == null || NameTextBox.Text == "")
+            {
+                MessageBox.Show("Add the name to the task!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
             Task.Name = NameTextBox.Text;
             Task.Date = DateTimePicker.Value;
             Task.IfToday = IfTodayBox.CheckState;

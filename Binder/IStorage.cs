@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Windows.Forms;
 
 namespace Binder
 {
@@ -10,7 +9,17 @@ namespace Binder
             get;
             set;
         }
-        void SaveToStorage(string Data);
-        string LoadFromStorage();
+        DataGridView Tab
+        {
+            get;
+            set;
+        }
+        ITask Task
+        {
+            get;
+            set;
+        }
+        void SaveToStorage();
+        void LoadFromStorage();
     }
 }

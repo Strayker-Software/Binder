@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Binder
 {
-    public class Task : ITask
+    public class Task : ITask, IEquatable<Task>
     {
         private string name;
         private DateTime date;
@@ -58,6 +58,16 @@ namespace Binder
             tab.Rows[taskid].Cells[0].Value = Name;
             tab.Rows[taskid].Cells[1].Value = Date;
             tab.Rows[taskid].Cells[2].Value = IfToday;
+        }
+
+        public bool Equals(Task other)
+        {
+            bool same;
+
+            if (Name == other.Name || Date == other.Date || IfToday == other.IfToday) same = true;
+            else same = false;
+
+            return same;
         }
     }
 }

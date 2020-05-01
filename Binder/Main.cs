@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Xml;
 using System.IO;
-using System.Text;
+using System.Windows.Forms;
 
 namespace Binder
 {
     public partial class Main : Form
     {
         private readonly ITask Task;
+        private readonly IStorage Strgm;
 
         public Main()
         {
             InitializeComponent();
             Task = new Task();
+            Strgm = new StorageManager();
         }
 
         /// <summary>
@@ -23,7 +23,11 @@ namespace Binder
         {
             var frm = new TaskForm(Task, false); // ITask argument, no edit mode,
             frm.ShowDialog();
-            if(frm.DialogResult == DialogResult.OK) Task.AddTask(Tab);
+            if(frm.DialogResult == DialogResult.OK)
+            {
+                Task.AddTask(Tab);
+                statusStrip.Items[0].Visible = false;
+            }
         }
 
         /// <summary>
@@ -36,10 +40,11 @@ namespace Binder
                 var row = Tab.SelectedRows;
                 Tab.Rows.Remove(row[0]);
                 Tab.Refresh();
+                statusStrip.Items[0].Visible = false;
             }
             else
             {
-                MessageBox.Show("Please select only one full row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -49,63 +54,119 @@ namespace Binder
         private void EditTask_Click(object sender, EventArgs e)
         {
             var row = Tab.SelectedRows;
-            Task.Name = (string)row[0].Cells[0].Value;
-            Task.Date = (DateTime)row[0].Cells[1].Value;
-            Task.IfToday = (CheckState)row[0].Cells[2].Value;
-            var frm = new TaskForm(Task, true); // ITask argument, edit mode,
-            frm.ShowDialog();
-            if(frm.DialogResult == DialogResult.OK) Task.EditTask(Tab, row[0].Index);
+
+            if (Tab.AreAllCellsSelected(false) == false && Tab.SelectedRows.Count != 0)
+            {
+                Task.Name = (string)row[0].Cells[0].Value;
+                Task.Date = (DateTime)row[0].Cells[1].Value;
+                Task.IfToday = (CheckState)row[0].Cells[2].Value;
+
+                var frm = new TaskForm(Task, true); // ITask argument, edit mode,
+                frm.ShowDialog();
+                if (frm.DialogResult == DialogResult.OK)
+                {
+                    Task.EditTask(Tab, row[0].Index);
+                    statusStrip.Items[0].Visible = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
+        /// <summary>
+        /// Exectued on main form's start.
+        /// </summary>
         private void Main_Load(object sender, EventArgs e)
-        { // TODO: Need optimalisation!
-            var strgm = new StorageManager
+        {
+            try
             {
-                StoragePath = "Data.xml"
-            };
-            var data = strgm.LoadFromStorage();
-            var doc = new XmlDocument();
-            doc.LoadXml(data);
-            var root = doc.DocumentElement;
-            if(root.ChildNodes.Count != 0)
+                Strgm.StoragePath = "Data.xml";
+                Strgm.Tab = Tab;
+                Strgm.LoadFromStorage();
+            }
+            catch (Exception a)
             {
-                for (int i = 0; i < root.ChildNodes.Count; i++)
+                if(a.GetType() == typeof(FileNotFoundException))
                 {
-                    var tskXml = root.ChildNodes.Item(i);
-                    Task.Name = tskXml.Attributes.GetNamedItem("Name").Value;
-                    Task.Date = Convert.ToDateTime(tskXml.Attributes.GetNamedItem("Date").Value);
-                    if (tskXml.Attributes.GetNamedItem("Today").Value == "0") Task.IfToday = CheckState.Unchecked;
-                    else Task.IfToday = CheckState.Checked;
-                    Task.AddTask(Tab);
+                    MessageBox.Show("Error 2: Database not found. Check if database exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(2);
+                }
+                else if(a.GetType() == typeof(ArgumentException))
+                {
+                    MessageBox.Show("Error 1: Wrong database path was given. If you didn't change any database settings in code or in app, contact Strayker Software at https://straykersoftware.pl and send error code on support page!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    MessageBox.Show("Error 0: There is unrecognised error in Binder! Contact Strayker Software at https://straykersoftware.pl for support!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(0);
                 }
             }
         }
 
+        /// <summary>
+        /// Executed on main form's closing.
+        /// </summary>
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        { // TODO: Need optimalisation!
-            var writer = File.OpenWrite("Data.xml");
-            writer.Close(); // Cleans file,
-            //var strgm = new StorageManager();
-            var doc = new XmlDocument();
-            doc.LoadXml("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
-            var root = doc.DocumentElement;
-            foreach (DataGridViewRow item in Tab.Rows)
+        {
+            try
             {
-                if(item.Cells[0].Value != null)
+                Strgm.StoragePath = "Data.xml";
+                Strgm.Tab = Tab;
+                Strgm.SaveToStorage();
+            }
+            catch (Exception a)
+            {
+                if (a.GetType() == typeof(FileNotFoundException))
                 {
-                    var tskXml = doc.CreateElement("Task");
-                    tskXml.SetAttribute("Name", (string)item.Cells[0].Value);
-                    tskXml.SetAttribute("Date", Convert.ToString(item.Cells[1].Value));
-                    if ((CheckState)item.Cells[2].Value == CheckState.Checked)
-                        tskXml.SetAttribute("Today", "1");
-                    else tskXml.SetAttribute("Today", "0");
-                    root.AppendChild(tskXml);
+                    MessageBox.Show("Error 2: Database file not found. Check if database file exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(2);
+                }
+                else if (a.GetType() == typeof(ArgumentException))
+                {
+                    MessageBox.Show("Error 1: Wrong database path was given. If you didn't change any database settings in code or in app, contact Strayker Software at https://straykersoftware.pl and send error code on support page!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    MessageBox.Show("Error 0: There is unrecognised error in Binder! Contact Strayker Software at https://straykersoftware.pl for support!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(0);
                 }
             }
-            //string data = "a";
-            doc.Save("Data.xml");
-            //strgm.StoragePath = "Data.xml";
-           // strgm.SaveToStorage(data);
+        }
+
+        /// <summary>
+        /// Saves data to database by button.
+        /// </summary>
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Strgm.StoragePath = "Data.xml";
+                Strgm.Tab = Tab;
+                Strgm.SaveToStorage();
+                statusStrip.Items[0].Visible = true;
+            }
+            catch (Exception a)
+            {
+                if (a.GetType() == typeof(FileNotFoundException))
+                {
+                    MessageBox.Show("Error 2: Database file not found. Check if database file exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(2);
+                }
+                else if (a.GetType() == typeof(ArgumentException))
+                {
+                    MessageBox.Show("Error 1: Wrong database path was given. If you didn't change any database settings in code or in app, contact Strayker Software at https://straykersoftware.pl and send error code on support page!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    MessageBox.Show("Error 0: There is unrecognised error in Binder! Contact Strayker Software at https://straykersoftware.pl for support!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(0);
+                }
+            }
         }
     }
 }
