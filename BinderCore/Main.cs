@@ -52,7 +52,7 @@ namespace Binder
             }
         }
 
-        private void GridCreate()
+        public void GridCreate()
         {
             /*
             After migration of Binder to .NET Core 3.1 DataGridView component broke down.

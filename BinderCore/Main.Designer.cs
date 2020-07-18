@@ -304,7 +304,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Today;
         private System.Windows.Forms.TabControl TabController;
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
+        private new System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NewTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;

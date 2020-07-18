@@ -13,11 +13,11 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "0.1.0",
     "restore": {
-      "projectUniqueName": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\BinderCore.csproj",
+      "projectUniqueName": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj",
       "projectName": "Binder",
-      "projectPath": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\BinderCore.csproj",
+      "projectPath": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj",
       "packagesPath": "C:\\Users\\Strayker\\.nuget\\packages\\",
       "outputPath": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\obj\\",
       "projectStyle": "PackageReference",
