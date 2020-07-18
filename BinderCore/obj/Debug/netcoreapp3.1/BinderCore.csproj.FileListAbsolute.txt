@@ -1,0 +1,16 @@
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.exe
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.deps.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.runtimeconfig.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.runtimeconfig.dev.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.dll
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\Debug\netcoreapp3.1\BinderCore.pdb
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.csprojAssemblyReference.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\Binder.Main.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\Binder.TaskForm.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.csproj.GenerateResource.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.AssemblyInfoInputs.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.AssemblyInfo.cs
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.csproj.CoreCompileInputs.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.dll
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.pdb
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Debug\netcoreapp3.1\BinderCore.genruntimeconfig.cache

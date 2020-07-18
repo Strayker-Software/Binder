@@ -13,12 +13,12 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManager();
+            var strgm = new StorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = "Data.xml";
+            strgm.StorageAccess = "Data.xml";
             // Verify:
-            Assert.AreEqual("Data.xml", strgm.StoragePath);
+            Assert.AreEqual("Data.xml", strgm.StorageAccess);
         }
 
         [TestMethod]
@@ -27,10 +27,10 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManager();
+            var strgm = new StorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = null;
+            strgm.StorageAccess = null;
         }
 
         [TestMethod]
@@ -39,10 +39,10 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManager();
+            var strgm = new StorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = "";
+            strgm.StorageAccess = "";
         }
 
         [TestMethod]
@@ -51,10 +51,10 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManager();
+            var strgm = new StorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StoragePath = "file.txt"; // Fake file,
+            strgm.StorageAccess = "file.txt"; // Fake file,
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace Binder.UnitTests
         {
             // Prepare and execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManager
+            var strgm = new StorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Tab = null
@@ -78,7 +78,7 @@ namespace Binder.UnitTests
             var tab = new DataGridView();
             // Execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManager
+            var strgm = new StorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Tab = tab
@@ -91,7 +91,7 @@ namespace Binder.UnitTests
         {
             // Prepare and execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManager
+            var strgm = new StorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Task = null
@@ -109,10 +109,10 @@ namespace Binder.UnitTests
 
             // Prepare:
             var frm = new Main();
-            var strgm = new StorageManager
+            var strgm = new StorageManagerXML
             {
-                StoragePath = "Data.xml",
-                Tab = frm.Tab
+                StorageAccess = "Data.xml",
+                Tab = frm.Tab1
             };
             var row = new DataGridViewRow();
             row.CreateCells(strgm.Tab);
@@ -135,10 +135,10 @@ namespace Binder.UnitTests
 
             // Prepare:
             var frm = new Main();
-            var strgm = new StorageManager
+            var strgm = new StorageManagerXML
             {
-                StoragePath = "Data.xml",
-                Tab = frm.Tab
+                StorageAccess = "Data.xml",
+                Tab = frm.Tab1
             };
             var tsk1 = new Task
             {
@@ -146,7 +146,7 @@ namespace Binder.UnitTests
                 Date = DateTime.Now,
                 IfToday = CheckState.Checked
             };
-            tsk1.AddTask(frm.Tab);
+            tsk1.AddTask(frm.Tab1);
             strgm.SaveToStorage();
             strgm.Tab.Rows.Clear();
             // Execute:

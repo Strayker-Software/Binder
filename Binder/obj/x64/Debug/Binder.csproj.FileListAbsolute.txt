@@ -12,3 +12,4 @@ H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.exe.manifest
 H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.application
 H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.exe
 H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.pdb
+H:\Daniel\Repozytoria\Binder\Binder\obj\x64\Debug\Binder.csprojAssemblyReference.cache

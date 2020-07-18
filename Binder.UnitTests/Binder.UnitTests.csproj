@@ -66,12 +66,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Binder\Binder.csproj">
-      <Project>{0c088974-fc63-48cf-94a7-90a707579141}</Project>
-      <Name>Binder</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Data.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

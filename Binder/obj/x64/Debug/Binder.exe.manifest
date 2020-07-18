@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Binder.exe" size="20480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Binder.exe" size="31232">
       <assemblyIdentity name="Binder" version="0.1.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5Wul+M1IBZDGbNG3VPPOwIedYcsniQEY/jIKoeKvE74=</dsig:DigestValue>
+        <dsig:DigestValue>hdMyzJRQsiBtDm4vMf2Es4ReG+ZjkDQTuSF9xeVvWXE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -60,6 +60,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>+CM46OnHRrXZXNLMx7+U3V3iubiYL//d8hGOR13lDhU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="binder-icon.ico" size="1075">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>JNisUUV3YKTn3rRLm3je3WFpi+04roSPXpyidVPADtg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Data.xml" size="64" writeableType="applicationData">

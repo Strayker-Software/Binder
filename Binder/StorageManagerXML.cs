@@ -5,21 +5,21 @@ using System.Xml;
 
 namespace Binder
 {
-    public class StorageManager : IStorage
+    public class StorageManagerXML : IStorage
     {
         private string storagePath;
         private DataGridView tab;
         private ITask task = new Task();
 
-        public string StoragePath
+        public object StorageAccess
         {
             get { return storagePath; }
             set
             {
-                if (value == null || value == "") throw new ArgumentException("Value can't be null or empty string.");
+                if (value == null || (string)value == "" || value.GetType() != typeof(string)) throw new ArgumentException("Value can't be null, have to be string but not empty.");
                 else if (!File.Exists(Environment.CurrentDirectory + "\\" + value)) throw new FileNotFoundException("Given file doesn't exist.");
 
-                storagePath = value;
+                storagePath = (string)value;
             }
         }
 
@@ -46,7 +46,7 @@ namespace Binder
 
         public void LoadFromStorage()
         {
-            var reader = new StreamReader(Environment.CurrentDirectory + "\\" + StoragePath);
+            var reader = new StreamReader(Environment.CurrentDirectory + "\\" + StorageAccess);
             var data = reader.ReadToEnd();
             reader.Close();
 
