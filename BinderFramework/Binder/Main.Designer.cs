@@ -32,10 +32,10 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Page1 = new System.Windows.Forms.TabPage();
-            this.Tab1 = new System.Windows.Forms.DataGridView();
+            this.DataTab = new System.Windows.Forms.DataGridView();
             this.TaskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Deadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Today = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Today = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabController = new System.Windows.Forms.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,17 +46,17 @@
             this.SaveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DevLabel = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             this.Page1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Tab1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataTab)).BeginInit();
             this.TabController.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,9 +65,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 474);
+            this.statusStrip.Location = new System.Drawing.Point(0, 549);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip.Size = new System.Drawing.Size(934, 22);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip1";
@@ -81,53 +81,47 @@
             // 
             // Page1
             // 
-            this.Page1.Controls.Add(this.Tab1);
+            this.Page1.BackColor = System.Drawing.Color.White;
+            this.Page1.Controls.Add(this.DataTab);
             this.Page1.Location = new System.Drawing.Point(4, 22);
             this.Page1.Name = "Page1";
             this.Page1.Padding = new System.Windows.Forms.Padding(3);
-            this.Page1.Size = new System.Drawing.Size(768, 418);
+            this.Page1.Size = new System.Drawing.Size(902, 493);
             this.Page1.TabIndex = 0;
             this.Page1.Text = "Page1";
-            this.Page1.UseVisualStyleBackColor = true;
             // 
-            // Tab1
+            // DataTab
             // 
-            this.Tab1.AllowUserToOrderColumns = true;
-            this.Tab1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DataTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Tab1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Tab1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Tab1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataTab.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataTab.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataTab.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TaskName,
             this.Deadline,
             this.Today});
-            this.Tab1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.Tab1.Location = new System.Drawing.Point(6, 6);
-            this.Tab1.MultiSelect = false;
-            this.Tab1.Name = "Tab1";
-            this.Tab1.ReadOnly = true;
-            this.Tab1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Tab1.Size = new System.Drawing.Size(756, 406);
-            this.Tab1.TabIndex = 0;
+            this.DataTab.Location = new System.Drawing.Point(6, 6);
+            this.DataTab.MultiSelect = false;
+            this.DataTab.Name = "DataTab";
+            this.DataTab.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataTab.Size = new System.Drawing.Size(890, 481);
+            this.DataTab.TabIndex = 0;
             // 
             // TaskName
             // 
             this.TaskName.HeaderText = "Task Name";
             this.TaskName.Name = "TaskName";
-            this.TaskName.ReadOnly = true;
             // 
             // Deadline
             // 
-            this.Deadline.HeaderText = "Dead line";
+            this.Deadline.HeaderText = "Deadline";
             this.Deadline.Name = "Deadline";
-            this.Deadline.ReadOnly = true;
             // 
             // Today
             // 
             this.Today.HeaderText = "Today?";
             this.Today.Name = "Today";
-            this.Today.ReadOnly = true;
             // 
             // TabController
             // 
@@ -135,11 +129,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabController.Controls.Add(this.Page1);
-            this.TabController.Location = new System.Drawing.Point(13, 27);
+            this.TabController.Location = new System.Drawing.Point(12, 27);
             this.TabController.Name = "TabController";
             this.TabController.SelectedIndex = 0;
-            this.TabController.Size = new System.Drawing.Size(776, 444);
+            this.TabController.Size = new System.Drawing.Size(910, 519);
             this.TabController.TabIndex = 7;
+            this.TabController.DoubleClick += new System.EventHandler(this.TabController_DoubleClick);
             // 
             // menuStrip1
             // 
@@ -149,7 +144,7 @@
             this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(934, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -221,29 +216,6 @@
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // HelpToolStripMenuItem
-            // 
-            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SettingsToolStripMenuItem,
-            this.AboutAppToolStripMenuItem});
-            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.HelpToolStripMenuItem.Text = "Help";
-            // 
-            // SettingsToolStripMenuItem
-            // 
-            this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SettingsToolStripMenuItem.Text = "Settings";
-            this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
-            // 
-            // AboutAppToolStripMenuItem
-            // 
-            this.AboutAppToolStripMenuItem.Name = "AboutAppToolStripMenuItem";
-            this.AboutAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AboutAppToolStripMenuItem.Text = "About App";
-            this.AboutAppToolStripMenuItem.Click += new System.EventHandler(this.AboutAppToolStripMenuItem_Click);
-            // 
             // dataToolStripMenuItem
             // 
             this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -258,7 +230,7 @@
             // 
             this.AddTaskToolStripMenuItem.Name = "AddTaskToolStripMenuItem";
             this.AddTaskToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.AddTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AddTaskToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.AddTaskToolStripMenuItem.Text = "Add Task";
             this.AddTaskToolStripMenuItem.Click += new System.EventHandler(this.AddTaskToolStripMenuItem_Click);
             // 
@@ -266,7 +238,7 @@
             // 
             this.EditTaskToolStripMenuItem.Name = "EditTaskToolStripMenuItem";
             this.EditTaskToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.EditTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EditTaskToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.EditTaskToolStripMenuItem.Text = "Edit Task";
             this.EditTaskToolStripMenuItem.Click += new System.EventHandler(this.EditTaskToolStripMenuItem_Click);
             // 
@@ -274,14 +246,38 @@
             // 
             this.DeleteTaskToolStripMenuItem.Name = "DeleteTaskToolStripMenuItem";
             this.DeleteTaskToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.DeleteTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteTaskToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.DeleteTaskToolStripMenuItem.Text = "Delete Task";
             this.DeleteTaskToolStripMenuItem.Click += new System.EventHandler(this.DeleteTaskToolStripMenuItem_Click);
             // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SettingsToolStripMenuItem,
+            this.AboutAppToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.HelpToolStripMenuItem.Text = "Help";
+            // 
+            // SettingsToolStripMenuItem
+            // 
+            this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.SettingsToolStripMenuItem.Text = "Settings";
+            this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
+            // 
+            // AboutAppToolStripMenuItem
+            // 
+            this.AboutAppToolStripMenuItem.Name = "AboutAppToolStripMenuItem";
+            this.AboutAppToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.AboutAppToolStripMenuItem.Text = "About App";
+            this.AboutAppToolStripMenuItem.Click += new System.EventHandler(this.AboutAppToolStripMenuItem_Click);
+            // 
             // DevLabel
             // 
+            this.DevLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DevLabel.AutoSize = true;
-            this.DevLabel.Location = new System.Drawing.Point(440, 483);
+            this.DevLabel.Location = new System.Drawing.Point(574, 558);
             this.DevLabel.Name = "DevLabel";
             this.DevLabel.Size = new System.Drawing.Size(360, 13);
             this.DevLabel.TabIndex = 9;
@@ -292,7 +288,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 496);
+            this.ClientSize = new System.Drawing.Size(934, 571);
             this.Controls.Add(this.DevLabel);
             this.Controls.Add(this.TabController);
             this.Controls.Add(this.statusStrip);
@@ -306,7 +302,7 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.Page1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Tab1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataTab)).EndInit();
             this.TabController.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -319,10 +315,6 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.TabPage Page1;
-        public System.Windows.Forms.DataGridView Tab1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Today;
         private System.Windows.Forms.TabControl TabController;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
@@ -341,6 +333,10 @@
         private System.Windows.Forms.ToolStripMenuItem EditTaskToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteTaskToolStripMenuItem;
         private System.Windows.Forms.Label DevLabel;
+        private System.Windows.Forms.DataGridView DataTab;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Today;
     }
 }
 

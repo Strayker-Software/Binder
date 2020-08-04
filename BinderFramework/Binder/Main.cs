@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace Binder
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.LoadFromStorage();
             }
             catch (Exception a)
@@ -58,7 +59,7 @@ namespace Binder
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.SaveToStorage();
             }
             catch (Exception a)
@@ -86,7 +87,22 @@ namespace Binder
         /// </summary>
         private void NewTabToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var dialog = new TextMessageBox();
+            dialog.ShowDialog();
 
+            var frm = new Main();
+            var tab = frm.DataTab;
+            tab.Width = 188;
+            tab.Height = 88;
+
+            var pg = new TabPage
+            {
+                Name = dialog.Input.Text,
+                Text = dialog.Input.Text
+            };
+            pg.BackColor = Color.White;
+            pg.Controls.Add(tab);
+            TabController.TabPages.Add(pg);
         }
 
         /// <summary>
@@ -105,7 +121,7 @@ namespace Binder
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.SaveToStorage();
                 statusStrip.Items[0].Visible = true;
             }
@@ -154,7 +170,7 @@ namespace Binder
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
-                Task.AddTask(Tab1);
+                Task.AddTask(DataTab);
                 statusStrip.Items[0].Visible = false;
             }
         }
@@ -164,9 +180,9 @@ namespace Binder
         /// </summary>
         private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var row = Tab1.SelectedRows;
+            var row = DataTab.SelectedRows;
 
-            if (Tab1.AreAllCellsSelected(false) == false && Tab1.SelectedRows.Count != 0)
+            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
             {
                 Task.Name = (string)row[0].Cells[0].Value;
                 Task.Date = (DateTime)row[0].Cells[1].Value;
@@ -176,7 +192,7 @@ namespace Binder
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
                 {
-                    Task.EditTask(Tab1, row[0].Index);
+                    Task.EditTask(DataTab, row[0].Index);
                     statusStrip.Items[0].Visible = false;
                 }
             }
@@ -191,11 +207,11 @@ namespace Binder
         /// </summary>
         private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tab1.AreAllCellsSelected(false) == false && Tab1.SelectedRows.Count != 0)
+            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
             {
-                var row = Tab1.SelectedRows;
-                Tab1.Rows.Remove(row[0]);
-                Tab1.Refresh();
+                var row = DataTab.SelectedRows;
+                DataTab.Rows.Remove(row[0]);
+                DataTab.Refresh();
                 statusStrip.Items[0].Visible = false;
             }
             else
@@ -218,6 +234,15 @@ namespace Binder
         private void AboutAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TabController_DoubleClick(object sender, EventArgs e)
+        {
+            var dialog = new TextMessageBox();
+            dialog.ShowDialog();
+            var tab = this.TabController.SelectedTab;
+            tab.Name = dialog.Input.Text;
+            tab.Text = dialog.Input.Text;
         }
     }
 }

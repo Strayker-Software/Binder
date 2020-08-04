@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace Binder
         public Main()
         {
             InitializeComponent();
+            AddColumns(DataTab);
             Task = new Task();
             Strgm = new StorageManagerXML();
 #if DEBUG
@@ -20,16 +22,43 @@ namespace Binder
         }
 
         /// <summary>
+        /// Adds default columns to DataGridView. Workover for .NET Core Designer bug.
+        /// </summary>
+        /// <param name="tab">DataGridView object to add columns to.</param>
+        private void AddColumns(DataGridView tab)
+        {
+            // TaskName
+            TaskName = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Task Name",
+                Name = "TaskName"
+            };
+            // Deadline
+            Deadline = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Deadline",
+                Name = "Deadline"
+            };
+            // Today
+            Today = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Today?",
+                Name = "Today"
+            };
+
+            tab.Columns.AddRange(TaskName, Deadline, Today);
+        }
+
+        /// <summary>
         /// Exectued on main form's start.
         /// </summary>
         private void Main_Load(object sender, EventArgs e)
         {
-            GridCreate(); // Description in method's code,
-
+            /*
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.LoadFromStorage();
             }
             catch (Exception a)
@@ -50,36 +79,7 @@ namespace Binder
                     Environment.Exit(0);
                 }
             }
-        }
-
-        public void GridCreate()
-        {
-            /*
-            After migration of Binder to .NET Core 3.1 DataGridView component broke down.
-            The Designer crushed every time I tried to write down these lines of code,
-            so I pushed them here and everything is working now.
-            Maybe it's problem with DataGridView support in .NET Core.
-             */
-
-            TaskName = new DataGridViewTextBoxColumn();
-            Deadline = new DataGridViewTextBoxColumn();
-            Today = new DataGridViewCheckBoxColumn();
-            // TaskName
-            TaskName.HeaderText = "Task Name";
-            TaskName.Name = "TaskName";
-            TaskName.ReadOnly = true;
-            // Deadline
-            Deadline.HeaderText = "Dead line";
-            Deadline.Name = "Deadline";
-            Deadline.ReadOnly = true;
-            // Today
-            Today.HeaderText = "Today?";
-            Today.Name = "Today";
-            Today.ReadOnly = true;
-
-            Tab1.Columns.Add(TaskName);
-            Tab1.Columns.Add(Deadline);
-            Tab1.Columns.Add(Today);
+            */
         }
 
         /// <summary>
@@ -87,10 +87,11 @@ namespace Binder
         /// </summary>
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /*
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.SaveToStorage();
             }
             catch (Exception a)
@@ -111,22 +112,62 @@ namespace Binder
                     Environment.Exit(0);
                 }
             }
+            */
         }
 
         /// <summary>
         /// Creates new tab with separate table.
         /// </summary>
         private void NewTabToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        { // TODO: Add database creation!
+            var dialog = new TextMessageBox("Please write name of new data tab here:");
+            dialog.ShowDialog();
 
+            if(dialog.DialogResult == DialogResult.OK)
+            {
+                if(dialog.Input.Text != "" && dialog.Input.Text != null)
+                {
+                    foreach(TabPage x in TabController.TabPages)
+                    {
+                        if(dialog.Input.Text == x.Name)
+                        {
+                            MessageBox.Show("Tab with this name already exist.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    var frm = new Main();
+                    var tab = frm.DataTab;
+                    // Size values, I don't know why this values are working :/
+                    tab.Width = 184;
+                    tab.Height = 84;
+
+                    var pg = new TabPage
+                    {
+                        Name = dialog.Input.Text,
+                        Text = dialog.Input.Text
+                    };
+                    pg.BackColor = Color.White;
+                    pg.Controls.Add(tab);
+                    TabController.TabPages.Add(pg);
+                }
+                else
+                {
+                    MessageBox.Show("You have to write name for new tab!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         /// <summary>
         /// Deletes active tab and data.
         /// </summary>
         private void DeleteTabToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {// TODO: Add database removement!
+            var tab = TabController.SelectedTab;
 
+            TabController.TabPages.Remove(tab);
+
+            tab.Dispose();
         }
 
         /// <summary>
@@ -137,7 +178,7 @@ namespace Binder
             try
             {
                 Strgm.StorageAccess = "Data.xml";
-                Strgm.Tab = Tab1;
+                Strgm.Tab = DataTab;
                 Strgm.SaveToStorage();
                 statusStrip.Items[0].Visible = true;
             }
@@ -186,7 +227,7 @@ namespace Binder
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
-                Task.AddTask(Tab1);
+                Task.AddTask(DataTab);
                 statusStrip.Items[0].Visible = false;
             }
         }
@@ -196,9 +237,9 @@ namespace Binder
         /// </summary>
         private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var row = Tab1.SelectedRows;
+            var row = DataTab.SelectedRows;
 
-            if (Tab1.AreAllCellsSelected(false) == false && Tab1.SelectedRows.Count != 0)
+            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
             {
                 Task.Name = (string)row[0].Cells[0].Value;
                 Task.Date = (DateTime)row[0].Cells[1].Value;
@@ -208,7 +249,7 @@ namespace Binder
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
                 {
-                    Task.EditTask(Tab1, row[0].Index);
+                    Task.EditTask(DataTab, row[0].Index);
                     statusStrip.Items[0].Visible = false;
                 }
             }
@@ -223,11 +264,11 @@ namespace Binder
         /// </summary>
         private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tab1.AreAllCellsSelected(false) == false && Tab1.SelectedRows.Count != 0)
+            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
             {
-                var row = Tab1.SelectedRows;
-                Tab1.Rows.Remove(row[0]);
-                Tab1.Refresh();
+                var row = DataTab.SelectedRows;
+                DataTab.Rows.Remove(row[0]);
+                DataTab.Refresh();
                 statusStrip.Items[0].Visible = false;
             }
             else
@@ -250,6 +291,25 @@ namespace Binder
         private void AboutAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        /// <summary>
+        /// Handles name change of existing tab.
+        /// </summary>
+        private void TabController_DoubleClick(object sender, EventArgs e)
+        {
+            var dialog = new TextMessageBox("Please write new name for this tab:");
+            dialog.ShowDialog();
+            
+            if(dialog.DialogResult == DialogResult.OK)
+            {
+                if(dialog.Input.Text != "" && dialog.Input.Text != null)
+                {
+                    var tab = TabController.SelectedTab;
+                    tab.Name = dialog.Input.Text;
+                    tab.Text = dialog.Input.Text;
+                }
+            }
         }
     }
 }

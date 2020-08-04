@@ -19,11 +19,11 @@ namespace Binder.UnitTests
             };
             var frm = new Main();
             frm.GridCreate();
-            var rows = frm.Tab1.Rows.Count;
+            var rows = frm.Tab.Rows.Count;
             // Execute:
-            tsk.AddTask(frm.Tab1);
+            tsk.AddTask(frm.Tab);
             // Verify:
-            Assert.AreEqual(rows + 1, frm.Tab1.Rows.Count);
+            Assert.AreEqual(rows + 1, frm.Tab.Rows.Count);
         }
 
         [TestMethod]
@@ -33,12 +33,12 @@ namespace Binder.UnitTests
             var frm = new Main();
             frm.GridCreate();
             var tsk = new Task();
-            tsk.AddTask(frm.Tab1);
-            var rows = frm.Tab1.Rows.Count;
+            tsk.AddTask(frm.Tab);
+            var rows = frm.Tab.Rows.Count;
             // Execute:
-            tsk.DeleteTask(frm.Tab1, 0);
+            tsk.DeleteTask(frm.Tab, 0);
             // Verify:
-            Assert.AreEqual(rows - 1, frm.Tab1.Rows.Count);
+            Assert.AreEqual(rows - 1, frm.Tab.Rows.Count);
         }
 
         [TestMethod]
@@ -48,12 +48,12 @@ namespace Binder.UnitTests
             var frm = new Main();
             frm.GridCreate();
             var tsk = new Task();
-            tsk.AddTask(frm.Tab1);
+            tsk.AddTask(frm.Tab);
             tsk.Name = "Name";
             // Execute:
-            tsk.EditTask(frm.Tab1, 0);
+            tsk.EditTask(frm.Tab, 0);
             // Verify:
-            Assert.AreEqual("Name", frm.Tab1.Rows[0].Cells[0].Value);
+            Assert.AreEqual("Name", frm.Tab.Rows[0].Cells[0].Value);
         }
 
         [TestMethod]
@@ -64,12 +64,12 @@ namespace Binder.UnitTests
             frm.GridCreate();
             var tsk = new Task();
             var time = DateTime.Now;
-            tsk.AddTask(frm.Tab1);
+            tsk.AddTask(frm.Tab);
             tsk.Date = time;
             // Execute:
-            tsk.EditTask(frm.Tab1, 0);
+            tsk.EditTask(frm.Tab, 0);
             // Verify:
-            Assert.AreEqual(time, frm.Tab1.Rows[0].Cells[1].Value);
+            Assert.AreEqual(time, frm.Tab.Rows[0].Cells[1].Value);
         }
 
         [TestMethod]
@@ -80,12 +80,12 @@ namespace Binder.UnitTests
             frm.GridCreate();
             var tsk = new Task();
             var today = CheckState.Checked;
-            tsk.AddTask(frm.Tab1);
+            tsk.AddTask(frm.Tab);
             tsk.IfToday = today;
             // Execute:
-            tsk.EditTask(frm.Tab1, 0);
+            tsk.EditTask(frm.Tab, 0);
             // Verify:
-            Assert.AreEqual(today, frm.Tab1.Rows[0].Cells[2].Value);
+            Assert.AreEqual(today, frm.Tab.Rows[0].Cells[2].Value);
         }
 
         [TestMethod]
@@ -98,20 +98,20 @@ namespace Binder.UnitTests
 
             var dat = DateTime.Now;
             var row = new DataGridViewRow(); // Fake row,
-            row.CreateCells(frm.Tab1);
+            row.CreateCells(frm.Tab);
             row.Cells[0].Value = "Name";
             row.Cells[1].Value = dat;
             row.Cells[2].Value = CheckState.Checked;
-            frm.Tab1.Rows.Add(row);
+            frm.Tab.Rows.Add(row);
 
-            tsk.AddTask(frm.Tab1);
+            tsk.AddTask(frm.Tab);
             tsk.Name = "Name";
             tsk.Date = dat;
             tsk.IfToday = CheckState.Checked;
             // Execute:
-            tsk.EditTask(frm.Tab1, 0);
+            tsk.EditTask(frm.Tab, 0);
             // Verify:
-            Assert.AreEqual(row, frm.Tab1.Rows[0]);
+            Assert.AreEqual(row, frm.Tab.Rows[0]);
         }
 
         [TestMethod]

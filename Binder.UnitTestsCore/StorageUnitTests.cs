@@ -113,7 +113,7 @@ namespace Binder.UnitTests
             var strgm = new StorageManagerXML
             {
                 StorageAccess = "Data.xml",
-                Tab = frm.Tab1
+                Tab = frm.Tab
             };
             var row = new DataGridViewRow();
             row.CreateCells(strgm.Tab);
@@ -140,7 +140,7 @@ namespace Binder.UnitTests
             var strgm = new StorageManagerXML
             {
                 StorageAccess = "Data.xml",
-                Tab = frm.Tab1
+                Tab = frm.Tab
             };
             var tsk1 = new Task
             {
@@ -148,7 +148,7 @@ namespace Binder.UnitTests
                 Date = DateTime.Now,
                 IfToday = CheckState.Checked
             };
-            tsk1.AddTask(frm.Tab1);
+            tsk1.AddTask(frm.Tab);
             strgm.SaveToStorage();
             strgm.Tab.Rows.Clear();
             // Execute:
