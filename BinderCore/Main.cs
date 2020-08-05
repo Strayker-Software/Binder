@@ -13,7 +13,7 @@ namespace Binder
         public Main()
         {
             InitializeComponent();
-            AddColumns(DataTab);
+            SetDGV(DataTab);
             Task = new Task();
             Strgm = new StorageManagerXML();
 #if DEBUG
@@ -22,11 +22,14 @@ namespace Binder
         }
 
         /// <summary>
-        /// Adds default columns to DataGridView. Workover for .NET Core Designer bug.
+        /// Set default settings for DataGridView. Workover for .NET Core Designer bugs.
         /// </summary>
         /// <param name="tab">DataGridView object to add columns to.</param>
-        private void AddColumns(DataGridView tab)
+        public void SetDGV(DataGridView tab)
         {
+            // Set DataGridView properties:
+            tab.ReadOnly = true;
+
             // TaskName
             TaskName = new DataGridViewTextBoxColumn
             {
@@ -227,7 +230,8 @@ namespace Binder
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
-                Task.AddTask(DataTab);
+                var tabpage = TabController.SelectedTab;
+                Task.AddTask((DataGridView)tabpage.Controls[0]);
                 statusStrip.Items[0].Visible = false;
             }
         }
@@ -237,19 +241,20 @@ namespace Binder
         /// </summary>
         private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var row = DataTab.SelectedRows;
+            var tab = (DataGridView)TabController.SelectedTab.Controls[0];
+            var row = tab.SelectedRows[0];
 
-            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
+            if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
             {
-                Task.Name = (string)row[0].Cells[0].Value;
-                Task.Date = (DateTime)row[0].Cells[1].Value;
-                Task.IfToday = (CheckState)row[0].Cells[2].Value;
+                Task.Name = (string)row.Cells[0].Value;
+                Task.Date = (DateTime)row.Cells[1].Value;
+                Task.IfToday = (CheckState)row.Cells[2].Value;
 
                 var frm = new TaskForm(Task, true); // ITask argument, edit mode,
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
                 {
-                    Task.EditTask(DataTab, row[0].Index);
+                    Task.EditTask(tab, row.Index);
                     statusStrip.Items[0].Visible = false;
                 }
             }
@@ -264,11 +269,13 @@ namespace Binder
         /// </summary>
         private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DataTab.AreAllCellsSelected(false) == false && DataTab.SelectedRows.Count != 0)
+            var tab = (DataGridView)TabController.SelectedTab.Controls[0];
+            var row = tab.SelectedRows;
+
+            if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
             {
-                var row = DataTab.SelectedRows;
-                DataTab.Rows.Remove(row[0]);
-                DataTab.Refresh();
+                tab.Rows.Remove(row[0]);
+                tab.Refresh();
                 statusStrip.Items[0].Visible = false;
             }
             else

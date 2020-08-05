@@ -300,7 +300,6 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.TabPage Page1;
-        private System.Windows.Forms.TabControl TabController;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NewTabToolStripMenuItem;
@@ -322,6 +321,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
         private System.Windows.Forms.DataGridViewTextBoxColumn Today;
+        public System.Windows.Forms.TabControl TabController;
     }
 }
 

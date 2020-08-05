@@ -109,11 +109,12 @@ namespace Binder.UnitTests
 
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var strgm = new StorageManagerXML
             {
                 StorageAccess = "Data.xml",
-                Tab = frm.Tab
+                Tab = (DataGridView)tabpage.Controls[0]
             };
             var row = new DataGridViewRow();
             row.CreateCells(strgm.Tab);
@@ -136,11 +137,12 @@ namespace Binder.UnitTests
 
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var strgm = new StorageManagerXML
             {
                 StorageAccess = "Data.xml",
-                Tab = frm.Tab
+                Tab = (DataGridView)tabpage.Controls[0]
             };
             var tsk1 = new Task
             {
@@ -148,7 +150,7 @@ namespace Binder.UnitTests
                 Date = DateTime.Now,
                 IfToday = CheckState.Checked
             };
-            tsk1.AddTask(frm.Tab);
+            tsk1.AddTask((DataGridView)tabpage.Controls[0]);
             strgm.SaveToStorage();
             strgm.Tab.Rows.Clear();
             // Execute:

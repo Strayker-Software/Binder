@@ -18,12 +18,14 @@ namespace Binder.UnitTests
                 IfToday = CheckState.Checked
             };
             var frm = new Main();
-            frm.GridCreate();
-            var rows = frm.Tab.Rows.Count;
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
+            var rows = tab.Rows.Count;
             // Execute:
-            tsk.AddTask(frm.Tab);
+            tsk.AddTask(tab);
             // Verify:
-            Assert.AreEqual(rows + 1, frm.Tab.Rows.Count);
+            Assert.AreEqual(rows + 1, tab.Rows.Count);
         }
 
         [TestMethod]
@@ -31,14 +33,16 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
             var tsk = new Task();
-            tsk.AddTask(frm.Tab);
-            var rows = frm.Tab.Rows.Count;
+            tsk.AddTask(tab);
+            var rows = tab.Rows.Count;
             // Execute:
-            tsk.DeleteTask(frm.Tab, 0);
+            tsk.DeleteTask(tab, 0);
             // Verify:
-            Assert.AreEqual(rows - 1, frm.Tab.Rows.Count);
+            Assert.AreEqual(rows - 1, tab.Rows.Count);
         }
 
         [TestMethod]
@@ -46,14 +50,16 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
             var tsk = new Task();
-            tsk.AddTask(frm.Tab);
+            tsk.AddTask(tab);
             tsk.Name = "Name";
             // Execute:
-            tsk.EditTask(frm.Tab, 0);
+            tsk.EditTask(tab, 0);
             // Verify:
-            Assert.AreEqual("Name", frm.Tab.Rows[0].Cells[0].Value);
+            Assert.AreEqual("Name", tab.Rows[0].Cells[0].Value);
         }
 
         [TestMethod]
@@ -61,15 +67,17 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
             var tsk = new Task();
             var time = DateTime.Now;
-            tsk.AddTask(frm.Tab);
+            tsk.AddTask(tab);
             tsk.Date = time;
             // Execute:
-            tsk.EditTask(frm.Tab, 0);
+            tsk.EditTask(tab, 0);
             // Verify:
-            Assert.AreEqual(time, frm.Tab.Rows[0].Cells[1].Value);
+            Assert.AreEqual(time, tab.Rows[0].Cells[1].Value);
         }
 
         [TestMethod]
@@ -77,15 +85,17 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
             var tsk = new Task();
             var today = CheckState.Checked;
-            tsk.AddTask(frm.Tab);
+            tsk.AddTask(tab);
             tsk.IfToday = today;
             // Execute:
-            tsk.EditTask(frm.Tab, 0);
+            tsk.EditTask(tab, 0);
             // Verify:
-            Assert.AreEqual(today, frm.Tab.Rows[0].Cells[2].Value);
+            Assert.AreEqual(today, tab.Rows[0].Cells[2].Value);
         }
 
         [TestMethod]
@@ -93,25 +103,27 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            frm.GridCreate();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tab = (DataGridView)tabpage.Controls[0];
+            frm.SetDGV(tab);
             var tsk = new Task();
 
             var dat = DateTime.Now;
             var row = new DataGridViewRow(); // Fake row,
-            row.CreateCells(frm.Tab);
+            row.CreateCells(tab);
             row.Cells[0].Value = "Name";
             row.Cells[1].Value = dat;
             row.Cells[2].Value = CheckState.Checked;
-            frm.Tab.Rows.Add(row);
+            tab.Rows.Add(row);
 
-            tsk.AddTask(frm.Tab);
+            tsk.AddTask(tab);
             tsk.Name = "Name";
             tsk.Date = dat;
             tsk.IfToday = CheckState.Checked;
             // Execute:
-            tsk.EditTask(frm.Tab, 0);
+            tsk.EditTask(tab, 0);
             // Verify:
-            Assert.AreEqual(row, frm.Tab.Rows[0]);
+            Assert.AreEqual(row, tab.Rows[0]);
         }
 
         [TestMethod]
