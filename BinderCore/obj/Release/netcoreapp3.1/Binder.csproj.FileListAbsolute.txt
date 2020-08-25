@@ -15,3 +15,4 @@ H:\Daniel\Repozytoria\Binder\BinderCore\obj\Release\netcoreapp3.1\Binder.csproj.
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\Release\netcoreapp3.1\Binder.dll
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\Release\netcoreapp3.1\Binder.pdb
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\Release\netcoreapp3.1\Binder.genruntimeconfig.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\Release\netcoreapp3.1\Binder.TextMessageBox.resources

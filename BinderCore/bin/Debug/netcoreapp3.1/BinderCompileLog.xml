@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Binder</name>
+    </assembly>
+    <members>
+        <member name="T:Binder.DatabaseException">
+            <summary>
+            Exception class for database errors.
+            </summary>
+        </member>
+        <member name="M:Binder.DatabaseException.#ctor">
+            <summary>
+            Constructor for DatabaseException.
+            </summary>
+        </member>
+        <member name="M:Binder.DatabaseException.#ctor(System.String)">
+            <summary>
+            Constructor overload for message support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+        </member>
+        <member name="M:Binder.DatabaseException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor overload for message and inner exception support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="M:Binder.DatabaseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor overload for serialization info and streaming context.
+            </summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="T:Binder.DatabasePathException">
+            <summary>
+            Exception class for database paths errors.
+            </summary>
+        </member>
+        <member name="M:Binder.DatabasePathException.#ctor">
+            <summary>
+            Constructor for DatabasePathException.
+            </summary>
+        </member>
+        <member name="M:Binder.DatabasePathException.#ctor(System.String)">
+            <summary>
+            Constructor overload for message support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+        </member>
+        <member name="M:Binder.DatabasePathException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor overload for message and inner exception support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="M:Binder.DatabasePathException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor overload for serialization info and streaming context.
+            </summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="T:Binder.UnrecognisedErrorException">
+            <summary>
+            Exception class for unrecognised errors.
+            </summary>
+        </member>
+        <member name="M:Binder.UnrecognisedErrorException.#ctor">
+            <summary>
+            Constructor for UnrecognisedErrorException.
+            </summary>
+        </member>
+        <member name="M:Binder.UnrecognisedErrorException.#ctor(System.String)">
+            <summary>
+            Constructor overload for message support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+        </member>
+        <member name="M:Binder.UnrecognisedErrorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor overload for message and inner exception support.
+            </summary>
+            <param name="message">Message to be send back to calling instruction.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="M:Binder.UnrecognisedErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor overload for serialization info and streaming context.
+            </summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="M:Binder.Program.Main">
+            <summary>
+            Main entry point for application.
+            </summary>
+        </member>
+        <member name="T:Binder.Properties.Resources">
+            <summary>
+              Klasa zasobu wymagająca zdefiniowania typu do wyszukiwania zlokalizowanych ciągów itd.
+            </summary>
+        </member>
+        <member name="P:Binder.Properties.Resources.ResourceManager">
+            <summary>
+            Zwraca buforowane wystąpienie ResourceManager używane przez tę klasę.
+            </summary>
+        </member>
+        <member name="P:Binder.Properties.Resources.Culture">
+            <summary>
+              Przesłania właściwość CurrentUICulture bieżącego wątku dla wszystkich
+              przypadków przeszukiwania zasobów za pomocą tej klasy zasobów wymagającej zdefiniowania typu.
+            </summary>
+        </member>
+        <member name="T:Binder.DataGridViewStorageManagerXML">
+            <summary>
+            Storage manager for DataGridView control in XML file.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewStorageManagerXML.StorageAccess">
+            <summary>
+            Path to XML file for data.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewStorageManagerXML.Tab">
+            <summary>
+            DataGridView control for data presentation.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewStorageManagerXML.Task">
+            <summary>
+            ITask object to operate on data in manager.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewStorageManagerXML.LoadFromStorage">
+            <summary>
+            Performs load operation, takes data from given storage and sets them to given Tab.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewStorageManagerXML.SaveToStorage">
+            <summary>
+            Performs save operation, takes data from given Tab and save it to given storage file.
+            </summary>
+        </member>
+        <member name="T:Binder.IStorage">
+            <summary>
+            Interface for creation of new storage managment classes.
+            </summary>
+        </member>
+        <member name="P:Binder.IStorage.StorageAccess">
+            <summary>
+            Object responsible for accessing data area.
+            </summary>
+        </member>
+        <member name="P:Binder.IStorage.Tab">
+            <summary>
+            Table with data for manager.
+            </summary>
+        </member>
+        <member name="P:Binder.IStorage.Task">
+            <summary>
+            ITask inherited class for task support in manager.
+            </summary>
+        </member>
+        <member name="M:Binder.IStorage.SaveToStorage">
+            <summary>
+            Method to perform save operation.
+            </summary>
+        </member>
+        <member name="M:Binder.IStorage.LoadFromStorage">
+            <summary>
+            Method to perform load operation.
+            </summary>
+        </member>
+        <member name="T:Binder.ITask">
+            <summary>
+            Interface for creation of new task classes.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Name">
+            <summary>
+            Value for naming task.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Date">
+            <summary>
+            Value for task's deadline.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.IfToday">
+            <summary>
+            Value indicating, if task is for today.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Destination">
+            <summary>
+            Object to perform adding, editing and deleting of tasks.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.TaskId">
+            <summary>
+            ID integer for task identification.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.AddTask">
+            <summary>
+            Add given data to destination object.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.DeleteTask">
+            <summary>
+            Delete task given by ID from destination.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.EditTask">
+            <summary>
+            Edit task given by ID with provided data.
+            </summary>
+        </member>
+        <member name="T:Binder.DataGridViewTask">
+            <summary>
+            Task class for DataGridView access.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewTask.Name">
+            <summary>
+            Name of task.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewTask.Date">
+            <summary>
+            Date of deadline for the task.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewTask.IfToday">
+            <summary>
+            CheckState value determining if task is for today.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewTask.Destination">
+            <summary>
+            DataGridView object to operate on.
+            </summary>
+        </member>
+        <member name="P:Binder.DataGridViewTask.TaskId">
+            <summary>
+            Task ID integer for deleting and editing task.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewTask.AddTask">
+            <summary>
+            Add task to DataGridView.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewTask.DeleteTask">
+            <summary>
+            Delete task from DataGridView.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewTask.EditTask">
+            <summary>
+            Edit given task in DataGridView.
+            </summary>
+        </member>
+        <member name="M:Binder.DataGridViewTask.Equals(Binder.DataGridViewTask)">
+            <summary>
+            Check if given task objects are the same.
+            </summary>
+            <param name="other">Second DataGridViewTask object to check.</param>
+            <returns>Returns true if tasks are the same, false if are different.</returns>
+        </member>
+        <member name="T:Binder.Main">
+            <summary>
+            First part of Main class.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.#ctor">
+            <summary>
+            Main class constructor.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.SetDGV(System.Windows.Forms.DataGridView)">
+            <summary>
+            Set default settings for DataGridView. Workover for .NET Core Designer bugs.
+            </summary>
+            <param name="tab">DataGridView object to add columns to.</param>
+        </member>
+        <member name="M:Binder.Main.Main_Load(System.Object,System.EventArgs)">
+            <summary>
+            Exectued on main form's start.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.Main_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Executed on main form's closing.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.NewTabToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Creates new tab with separate table.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.DeleteTabToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes active tab and data.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.SaveToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save current tab data to database.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.SaveAllToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves all tabs to databases respectively.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.ExitToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Exits the program.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.AddTaskToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens form to get data and adds data to grid.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.EditTaskToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens form to edit the selected row.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.DeleteTaskToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes selected row from grid.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.SettingsToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Shows up settings screen.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.AboutAppToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Shows about app window.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.TabController_DoubleClick(System.Object,System.EventArgs)">
+            <summary>
+            Handles name change of existing tab.
+            </summary>
+        </member>
+        <member name="F:Binder.Main.components">
+            <summary>
+            Wymagana zmienna projektanta.
+            </summary>
+        </member>
+        <member name="M:Binder.Main.Dispose(System.Boolean)">
+            <summary>
+            Wyczyść wszystkie używane zasoby.
+            </summary>
+            <param name="disposing">prawda, jeżeli zarządzane zasoby powinny zostać zlikwidowane; Fałsz w przeciwnym wypadku.</param>
+        </member>
+        <member name="M:Binder.Main.InitializeComponent">
+            <summary>
+            Metoda wymagana do obsługi projektanta — nie należy modyfikować
+            jej zawartości w edytorze kodu.
+            </summary>
+        </member>
+        <member name="F:Binder.Main.TabController">
+            <summary>
+            For debugging purpous.
+            </summary>
+        </member>
+        <member name="T:Binder.TaskForm">
+            <summary>
+            Windows Form for getting task data from user.
+            </summary>
+        </member>
+        <member name="M:Binder.TaskForm.#ctor(Binder.ITask,System.Boolean)">
+            <summary>
+            Task form constructor.
+            </summary>
+            <param name="Task">ITask object to save data to.</param>
+            <param name="IfEdit">Indicates edit mode for form.</param>
+        </member>
+        <member name="F:Binder.TaskForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Binder.TaskForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Binder.TaskForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Binder.TextMessageBox">
+            <summary>
+            Windows Form for getting single input string from user.
+            </summary>
+        </member>
+        <member name="M:Binder.TextMessageBox.#ctor(System.String)">
+            <summary>
+            Constructor for TextMessageBox.
+            </summary>
+            <param name="info">String with information, what app wants from user.</param>
+        </member>
+        <member name="F:Binder.TextMessageBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Binder.TextMessageBox.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Binder.TextMessageBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Binder.TextMessageBox.Input">
+            <summary>
+            Access to input data from other classes.
+            </summary>
+        </member>
+    </members>
+</doc>

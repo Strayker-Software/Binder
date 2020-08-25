@@ -1,0 +1,26 @@
+[
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "UnitTest - Rework under tabs system",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "Main Project - Add more comments to methods",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "UnitTest - Add more unit tests for new methods",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  }
+]

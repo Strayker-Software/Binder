@@ -13,7 +13,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManagerXML();
+            var strgm = new DataGridViewStorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StorageAccess = "Data.xml";
@@ -27,7 +27,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManagerXML();
+            var strgm = new DataGridViewStorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StorageAccess = null;
@@ -39,7 +39,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManagerXML();
+            var strgm = new DataGridViewStorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StorageAccess = "";
@@ -51,7 +51,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
 #pragma warning disable IDE0017 // Simplify object init,
-            var strgm = new StorageManagerXML();
+            var strgm = new DataGridViewStorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
             strgm.StorageAccess = "file.txt"; // Fake file,
@@ -63,7 +63,7 @@ namespace Binder.UnitTests
         {
             // Prepare and execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManagerXML
+            var strgm = new DataGridViewStorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Tab = null
@@ -78,7 +78,7 @@ namespace Binder.UnitTests
             var tab = new DataGridView();
             // Execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManagerXML
+            var strgm = new DataGridViewStorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Tab = tab
@@ -91,7 +91,7 @@ namespace Binder.UnitTests
         {
             // Prepare and execute:
 #pragma warning disable IDE0059 // Unneeded value assigment,
-            var strgm = new StorageManagerXML
+            var strgm = new DataGridViewStorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
                 Task = null
@@ -111,7 +111,7 @@ namespace Binder.UnitTests
             var frm = new Main();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
-            var strgm = new StorageManagerXML
+            var strgm = new DataGridViewStorageManagerXML
             {
                 StorageAccess = "Data.xml",
                 Tab = (DataGridView)tabpage.Controls[0]
@@ -139,12 +139,12 @@ namespace Binder.UnitTests
             var frm = new Main();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
-            var strgm = new StorageManagerXML
+            var strgm = new DataGridViewStorageManagerXML
             {
                 StorageAccess = "Data.xml",
                 Tab = (DataGridView)tabpage.Controls[0]
             };
-            var tsk1 = new Task
+            var tsk1 = new DataGridViewTask
             {
                 Name = "abc",
                 Date = DateTime.Now,
@@ -157,7 +157,7 @@ namespace Binder.UnitTests
             strgm.LoadFromStorage();
             // Verify:
             var nrow = strgm.Tab.Rows[0];
-            var tsk2 = new Task()
+            var tsk2 = new DataGridViewTask()
             {
                 Name = (string)nrow.Cells[0].Value,
                 Date = (DateTime)nrow.Cells[1].Value,

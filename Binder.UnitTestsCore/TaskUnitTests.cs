@@ -11,7 +11,7 @@ namespace Binder.UnitTests
         public void Task_AddTaskToTable_NewTaskInTable()
         {
             // Prepare:
-            var tsk = new Task
+            var tsk = new DataGridViewTask
             {
                 Name = "Task",
                 Date = DateTime.Now,
@@ -36,7 +36,7 @@ namespace Binder.UnitTests
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new Task();
+            var tsk = new DataGridViewTask();
             tsk.AddTask(tab);
             var rows = tab.Rows.Count;
             // Execute:
@@ -53,7 +53,7 @@ namespace Binder.UnitTests
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new Task();
+            var tsk = new DataGridViewTask();
             tsk.AddTask(tab);
             tsk.Name = "Name";
             // Execute:
@@ -70,7 +70,7 @@ namespace Binder.UnitTests
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new Task();
+            var tsk = new DataGridViewTask();
             var time = DateTime.Now;
             tsk.AddTask(tab);
             tsk.Date = time;
@@ -88,7 +88,7 @@ namespace Binder.UnitTests
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new Task();
+            var tsk = new DataGridViewTask();
             var today = CheckState.Checked;
             tsk.AddTask(tab);
             tsk.IfToday = today;
@@ -106,7 +106,7 @@ namespace Binder.UnitTests
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new Task();
+            var tsk = new DataGridViewTask();
 
             var dat = DateTime.Now;
             var row = new DataGridViewRow(); // Fake row,
@@ -132,7 +132,7 @@ namespace Binder.UnitTests
         {
             // Prepare and Execute:
 #pragma warning disable IDE0059 // Not needed value assigment,
-            var tsk = new Task
+            var tsk = new DataGridViewTask
 #pragma warning restore IDE0059 // Not needed value assigment,
             {
                 Name = null
@@ -145,7 +145,7 @@ namespace Binder.UnitTests
         {
             // Prepare and Execute:
 #pragma warning disable IDE0059 // Not needed value assigment,
-            var tsk = new Task
+            var tsk = new DataGridViewTask
 #pragma warning restore IDE0059 // Not needed value assigment,
             {
                 Name = ""
@@ -158,7 +158,7 @@ namespace Binder.UnitTests
         {
             // Prepare and Execute:
 #pragma warning disable IDE0059 // Not needed value assigment,
-            var tsk = new Task
+            var tsk = new DataGridViewTask
 #pragma warning restore IDE0059 // Not needed value assigment,
             {
                 Date = new DateTime()
@@ -171,7 +171,7 @@ namespace Binder.UnitTests
         {
             // Prepare and Execute:
 #pragma warning disable IDE0059 // Not needed value assigment,
-            var tsk = new Task
+            var tsk = new DataGridViewTask
 #pragma warning restore IDE0059 // Not needed value assigment,
             {
                 IfToday = CheckState.Indeterminate
@@ -183,7 +183,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var str = "Name";
-            var tsk = new Task
+            var tsk = new DataGridViewTask
             {
                 Name = str
             };
@@ -198,7 +198,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var dat = DateTime.Now;
-            var tsk = new Task
+            var tsk = new DataGridViewTask
             {
                 Date = dat
             };
@@ -213,7 +213,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var today = CheckState.Checked;
-            var tsk = new Task
+            var tsk = new DataGridViewTask
             {
                 IfToday = today
             };
