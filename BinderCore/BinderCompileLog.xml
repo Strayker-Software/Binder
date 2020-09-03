@@ -175,51 +175,6 @@
             Method to perform load operation.
             </summary>
         </member>
-        <member name="T:Binder.ITask">
-            <summary>
-            Interface for creation of new task classes.
-            </summary>
-        </member>
-        <member name="P:Binder.ITask.Name">
-            <summary>
-            Value for naming task.
-            </summary>
-        </member>
-        <member name="P:Binder.ITask.Date">
-            <summary>
-            Value for task's deadline.
-            </summary>
-        </member>
-        <member name="P:Binder.ITask.IfToday">
-            <summary>
-            Value indicating, if task is for today.
-            </summary>
-        </member>
-        <member name="P:Binder.ITask.Destination">
-            <summary>
-            Object to perform adding, editing and deleting of tasks.
-            </summary>
-        </member>
-        <member name="P:Binder.ITask.TaskId">
-            <summary>
-            ID integer for task identification.
-            </summary>
-        </member>
-        <member name="M:Binder.ITask.AddTask">
-            <summary>
-            Add given data to destination object.
-            </summary>
-        </member>
-        <member name="M:Binder.ITask.DeleteTask">
-            <summary>
-            Delete task given by ID from destination.
-            </summary>
-        </member>
-        <member name="M:Binder.ITask.EditTask">
-            <summary>
-            Edit task given by ID with provided data.
-            </summary>
-        </member>
         <member name="T:Binder.DataGridViewTask">
             <summary>
             Task class for DataGridView access.
@@ -271,6 +226,51 @@
             </summary>
             <param name="other">Second DataGridViewTask object to check.</param>
             <returns>Returns true if tasks are the same, false if are different.</returns>
+        </member>
+        <member name="T:Binder.ITask">
+            <summary>
+            Interface for creation of new task classes.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Name">
+            <summary>
+            Value for naming task.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Date">
+            <summary>
+            Value for task's deadline.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.IfToday">
+            <summary>
+            Value indicating, if task is for today.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.Destination">
+            <summary>
+            Object to perform adding, editing and deleting of tasks.
+            </summary>
+        </member>
+        <member name="P:Binder.ITask.TaskId">
+            <summary>
+            ID integer for task identification.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.AddTask">
+            <summary>
+            Add given data to destination object.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.DeleteTask">
+            <summary>
+            Delete task given by ID from destination.
+            </summary>
+        </member>
+        <member name="M:Binder.ITask.EditTask">
+            <summary>
+            Edit task given by ID with provided data.
+            </summary>
         </member>
         <member name="T:Binder.Main">
             <summary>

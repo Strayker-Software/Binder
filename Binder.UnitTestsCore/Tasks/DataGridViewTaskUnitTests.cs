@@ -2,30 +2,40 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
 
+/* For copying to new methods:
+ // Prepare:
+
+ // Execute:
+
+ // Verify:
+ // Prepare and Execute:
+ */
+
 namespace Binder.UnitTests
 {
     [TestClass]
-    public class TaskUnitTests
+    public class DataGridViewTaskUnitTests
     {
         [TestMethod]
         public void Task_AddTaskToTable_NewTaskInTable()
         {
             // Prepare:
+            var frm = new Main();
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
+            frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var tsk = new DataGridViewTask
             {
                 Name = "Task",
                 Date = DateTime.Now,
-                IfToday = CheckState.Checked
-            };
-            var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
-            var tab = (DataGridView)tabpage.Controls[0];
-            frm.SetDGV(tab);
+                IfToday = CheckState.Checked,
+                Destination = (DataGridView)tabpage.Controls[0]
+            }; // No need in setting TaskID,
+            var tab = (DataGridView)tsk.Destination;
             var rows = tab.Rows.Count;
             // Execute:
-            tsk.AddTask(tab);
+            tsk.AddTask();
             // Verify:
-            Assert.AreEqual(rows + 1, tab.Rows.Count);
+            Assert.AreEqual(2, rows + 1);
         }
 
         [TestMethod]
@@ -33,14 +43,18 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new DataGridViewTask();
-            tsk.AddTask(tab);
+            var tsk = new DataGridViewTask
+            {
+                Destination = tab,
+                TaskId = 0
+            };
+            tsk.AddTask();
             var rows = tab.Rows.Count;
             // Execute:
-            tsk.DeleteTask(tab, 0);
+            tsk.DeleteTask();
             // Verify:
             Assert.AreEqual(rows - 1, tab.Rows.Count);
         }
@@ -50,14 +64,18 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
-            var tsk = new DataGridViewTask();
-            tsk.AddTask(tab);
-            tsk.Name = "Name";
+            var tsk = new DataGridViewTask
+            {
+                Destination = tab,
+                Name = "Name",
+                TaskId = 0
+            };
+            tsk.AddTask();
             // Execute:
-            tsk.EditTask(tab, 0);
+            tsk.EditTask();
             // Verify:
             Assert.AreEqual("Name", tab.Rows[0].Cells[0].Value);
         }
@@ -67,15 +85,17 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
             var tsk = new DataGridViewTask();
             var time = DateTime.Now;
-            tsk.AddTask(tab);
+            tsk.Destination = tab;
+            tsk.AddTask();
             tsk.Date = time;
+            tsk.TaskId = 0;
             // Execute:
-            tsk.EditTask(tab, 0);
+            tsk.EditTask();
             // Verify:
             Assert.AreEqual(time, tab.Rows[0].Cells[1].Value);
         }
@@ -85,15 +105,17 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
             var tsk = new DataGridViewTask();
             var today = CheckState.Checked;
-            tsk.AddTask(tab);
+            tsk.Destination = tab;
+            tsk.AddTask();
             tsk.IfToday = today;
+            tsk.TaskId = 0;
             // Execute:
-            tsk.EditTask(tab, 0);
+            tsk.EditTask();
             // Verify:
             Assert.AreEqual(today, tab.Rows[0].Cells[2].Value);
         }
@@ -103,7 +125,7 @@ namespace Binder.UnitTests
         {
             // Prepare:
             var frm = new Main();
-            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
+            var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
             var tsk = new DataGridViewTask();
@@ -116,12 +138,14 @@ namespace Binder.UnitTests
             row.Cells[2].Value = CheckState.Checked;
             tab.Rows.Add(row);
 
-            tsk.AddTask(tab);
+            tsk.Destination = tab;
+            tsk.AddTask();
             tsk.Name = "Name";
             tsk.Date = dat;
             tsk.IfToday = CheckState.Checked;
+            tsk.TaskId = 0;
             // Execute:
-            tsk.EditTask(tab, 0);
+            tsk.EditTask();
             // Verify:
             Assert.AreEqual(row, tab.Rows[0]);
         }
@@ -221,6 +245,90 @@ namespace Binder.UnitTests
             var result = tsk.IfToday;
             // Verify:
             Assert.AreEqual(today, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Rise exception when given object is not DataGridView object.")]
+        public void Task_TaskClass_NewDestinationNotDataGridViewObject()
+        {
+            // Prepare and Execute:
+            var x = 10;
+#pragma warning disable IDE0059 // Unneeded value assigment
+            var task = new DataGridViewTask
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Destination = x
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException), "Rise exception when given data is null.")]
+        public void Task_TaskClass_NewDestinationMustNotBeNull()
+        {
+            // Prepare and Execute:
+#pragma warning disable IDE0059 // Unneeded value assigment
+            var task = new DataGridViewTask
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Destination = null
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Rise exception when given DataGridView object doesn't have three columns.")]
+        public void Task_TaskClass_NewDestinationTableMustHaveThreeColumns()
+        { // TODO: Why not working? :(
+            // Prepare:
+            var task = new DataGridViewTask();
+            var tab = new DataGridView();
+            tab.Columns.Add("Name", "Name");
+            tab.Columns.Add("Deadline", "Deadline");
+            // Execute:
+            task.Destination = tab;
+        }
+
+        [TestMethod]
+        public void Task_TaskClass_EqualityMethodReturnsTrue()
+        {
+            // Prepare:
+
+            // Execute:
+
+            // Verify:
+
+        }
+
+        [TestMethod]
+        public void Task_TaskClass_EqualityMethodReturnsFalse()
+        {
+            // Prepare:
+
+            // Execute:
+
+            // Verify:
+
+        }
+
+        [TestMethod]
+        public void Task_TaskClass_TaskIDMustBeAtLeastZero()
+        {
+            // Prepare:
+
+            // Execute:
+
+            // Verify:
+
+        }
+
+        [TestMethod]
+        public void Task_TaskClass_TaskIDMustBeInTheDestination()
+        {
+            // Prepare:
+
+            // Execute:
+
+            // Verify:
+
         }
     }
 }

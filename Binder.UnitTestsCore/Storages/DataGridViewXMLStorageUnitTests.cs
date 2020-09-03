@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Binder.UnitTests
 {
     [TestClass]
-    public class StorageUnitTests
+    public class DataGridViewXMLStorageUnitTests
     {
         [TestMethod]
         public void Storage_SetAndGetDatabasePath_NewPathInObject()
@@ -16,9 +16,9 @@ namespace Binder.UnitTests
             var strgm = new DataGridViewStorageManagerXML();
 #pragma warning restore IDE0017 // Simplify object init,
             // Execute:
-            strgm.StorageAccess = "Data.xml";
+            strgm.StorageAccess = "databases\\Page1.xml";
             // Verify:
-            Assert.AreEqual("Data.xml", strgm.StorageAccess);
+            Assert.AreEqual("databases\\Page1.xml", strgm.StorageAccess);
         }
 
         [TestMethod]
@@ -113,17 +113,18 @@ namespace Binder.UnitTests
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var strgm = new DataGridViewStorageManagerXML
             {
-                StorageAccess = "Data.xml",
+                StorageAccess = "databases\\Page1.xml",
                 Tab = (DataGridView)tabpage.Controls[0]
             };
             var row = new DataGridViewRow();
-            row.CreateCells(strgm.Tab);
+            row.CreateCells((DataGridView)strgm.Tab);
             row.SetValues("abc", DateTime.Now, CheckState.Checked);
-            strgm.Tab.Rows.Add(row);
+            var tmp = (DataGridView)strgm.Tab;
+            tmp.Rows.Add(row);
             // Execute:
             strgm.SaveToStorage();
             // Verify:
-            Assert.AreEqual(row, strgm.Tab.Rows[0]);
+            Assert.AreEqual(row, tmp.Rows[0]);
         }
 
         [TestMethod]
@@ -139,31 +140,29 @@ namespace Binder.UnitTests
             var frm = new Main();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
-            var strgm = new DataGridViewStorageManagerXML
-            {
-                StorageAccess = "Data.xml",
-                Tab = (DataGridView)tabpage.Controls[0]
-            };
-            var tsk1 = new DataGridViewTask
+            var tsk = new DataGridViewTask
             {
                 Name = "abc",
                 Date = DateTime.Now,
-                IfToday = CheckState.Checked
+                IfToday = CheckState.Checked,
+                Destination = (DataGridView)tabpage.Controls[0],
+                TaskId = 0
             };
-            tsk1.AddTask((DataGridView)tabpage.Controls[0]);
+            var strgm = new DataGridViewStorageManagerXML
+            {
+                StorageAccess = "databases\\Page1.xml",
+                Tab = (DataGridView)tabpage.Controls[0],
+                Task = tsk
+            };
+            tsk.AddTask();
             strgm.SaveToStorage();
-            strgm.Tab.Rows.Clear();
+            tsk.DeleteTask();
+            var tskFake = new DataGridViewTask();
+            strgm.Task = tskFake;
             // Execute:
             strgm.LoadFromStorage();
             // Verify:
-            var nrow = strgm.Tab.Rows[0];
-            var tsk2 = new DataGridViewTask()
-            {
-                Name = (string)nrow.Cells[0].Value,
-                Date = (DateTime)nrow.Cells[1].Value,
-                IfToday = (CheckState)nrow.Cells[2].Value
-            };
-            Assert.IsTrue(tsk1.Equals(tsk2));
+            Assert.IsTrue(tsk.Equals(tskFake));
         }
     }
 }

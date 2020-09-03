@@ -5,7 +5,7 @@
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],
-    "Status": 0
+    "Status": 2
   },
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",

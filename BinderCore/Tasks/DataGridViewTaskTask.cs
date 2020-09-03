@@ -61,6 +61,9 @@ namespace Binder
             get { return tab; }
             set
             {
+                if (value.GetType() != typeof(DataGridView)) throw new ArgumentException("Value has to be of type DataGridView.");
+                else if (value == null) throw new NullReferenceException("Value can't be null.");
+
                 tab = (DataGridView)value;
             }
         }
@@ -75,7 +78,6 @@ namespace Binder
                 taskid = value;
             }
         }
-
         /// <summary>
         /// Add task to DataGridView.
         /// </summary>

@@ -38,10 +38,10 @@ namespace Binder
             set
             {
                 if (value == null) throw new ArgumentException("Value can't be null.");
-                else if(value.GetType() != typeof(DataGridView)) throw new ArgumentException("This class requier value of type DataGridView.");
+                else if(value.GetType() != typeof(DataGridView)) throw new ArgumentException("This field requier value of type DataGridView.");
 
                 var data = (DataGridView)value;
-                if(data.Columns.Count == 0) throw new ArgumentException("DataGridView must contain at least one column.");
+                if(data.Columns.Count < 3) throw new ArgumentException("DataGridView must contain at least three columns.");
 
                 tab = (DataGridView)value;
             }
