@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder", "BinderCore\Binder.csproj", "{4F81590A-A194-4EE1-ADB0-476D377F0CE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.UnitTestsCore", "Binder.UnitTestsCore\Binder.UnitTestsCore.csproj", "{5634D9E2-707F-462A-ADA9-26CBA88B4A43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.UnitTests", "Binder.UnitTestsCore\Binder.UnitTests.csproj", "{5634D9E2-707F-462A-ADA9-26CBA88B4A43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

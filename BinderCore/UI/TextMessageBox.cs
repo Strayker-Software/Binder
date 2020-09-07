@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Binder
+namespace Binder.UI
 {
     /// <summary>
     /// Windows Form for getting single input string from user.
     /// </summary>
     public partial class TextMessageBox : Form
     {
-        private readonly string Info;
+        private readonly IFormManager Frm;
 
         /// <summary>
         /// Constructor for TextMessageBox.
@@ -17,12 +17,13 @@ namespace Binder
         public TextMessageBox(string info)
         {
             InitializeComponent();
-            Info = info;
+            Frm = new TextMessageBoxManager(this, info);
         }
 
         private void TextMessageBox_Load(object sender, EventArgs e)
         {
-            InfoLabel.Text = Info;
+            var frm = (TextMessageBoxManager)Frm;
+            frm.LoadForm();
         }
     }
 }

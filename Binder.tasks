@@ -17,7 +17,7 @@
   },
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",
-    "Name": "UnitTest - Add more unit tests for new methods",
+    "Name": "UnitTest - Add units tests for all left UI classes",
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],

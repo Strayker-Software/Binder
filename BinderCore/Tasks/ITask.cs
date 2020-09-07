@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Binder
+namespace Binder.Tasks
 {
     /// <summary>
     /// Interface for creation of new task classes.

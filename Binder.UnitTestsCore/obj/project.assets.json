@@ -5667,9 +5667,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\Binder.UnitTestsCore.csproj",
-      "projectName": "Binder.UnitTestsCore",
-      "projectPath": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\Binder.UnitTestsCore.csproj",
+      "projectUniqueName": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\Binder.UnitTests.csproj",
+      "projectName": "Binder.UnitTests",
+      "projectPath": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\Binder.UnitTests.csproj",
       "packagesPath": "C:\\Users\\Strayker\\.nuget\\packages\\",
       "outputPath": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\obj\\",
       "projectStyle": "PackageReference",

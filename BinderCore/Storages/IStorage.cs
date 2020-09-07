@@ -1,4 +1,6 @@
-﻿namespace Binder
+﻿using Binder.Tasks;
+
+namespace Binder.Storages
 {
     /// <summary>
     /// Interface for creation of new storage managment classes.

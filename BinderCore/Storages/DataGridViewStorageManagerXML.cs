@@ -2,8 +2,9 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using Binder.Tasks;
 
-namespace Binder
+namespace Binder.Storages
 {
     /// <summary>
     /// Storage manager for DataGridView control in XML file.
@@ -12,7 +13,15 @@ namespace Binder
     {
         private string storagePath;
         private DataGridView tab;
-        private ITask task = new DataGridViewTask();
+        private ITask task;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataGridViewStorageManagerXML()
+        {
+            Task = new DataGridViewTask();
+        }
 
         /// <summary>
         /// Path to XML file for data.
@@ -81,7 +90,7 @@ namespace Binder
                     Task.Date = Convert.ToDateTime(tskXml.Attributes.GetNamedItem("Date").Value);
                     if (tskXml.Attributes.GetNamedItem("Today").Value == "0") Task.IfToday = CheckState.Unchecked;
                     else Task.IfToday = CheckState.Checked;
-                    Task.Destination = tab;
+                    Task.Destination = Tab;
                     Task.AddTask();
                 }
             }
@@ -96,7 +105,8 @@ namespace Binder
             doc.LoadXml("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
             var root = doc.DocumentElement;
 
-            foreach (DataGridViewRow item in tab.Rows)
+            var dgv = (DataGridView)Tab;
+            foreach (DataGridViewRow item in dgv.Rows)
             {
                 if (item.Cells[0].Value != null)
                 {
@@ -108,7 +118,7 @@ namespace Binder
                     root.AppendChild(tskXml);
                 }
             }
-            doc.Save(storagePath);
+            doc.Save((string)StorageAccess);
         }
     }
 }

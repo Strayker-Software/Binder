@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Binder
+namespace Binder.Tasks
 {
     /// <summary>
     /// Task class for DataGridView access.
@@ -27,6 +27,7 @@ namespace Binder
                 name = value;
             }
         }
+
         /// <summary>
         /// Date of deadline for the task.
         /// </summary>
@@ -40,6 +41,7 @@ namespace Binder
                 date = value;
             }
         }
+
         /// <summary>
         /// CheckState value determining if task is for today.
         /// </summary>
@@ -53,6 +55,7 @@ namespace Binder
                 ifToday = value;
             }
         }
+
         /// <summary>
         /// DataGridView object to operate on.
         /// </summary>
@@ -61,12 +64,16 @@ namespace Binder
             get { return tab; }
             set
             {
-                if (value.GetType() != typeof(DataGridView)) throw new ArgumentException("Value has to be of type DataGridView.");
+                if (value.GetType() != typeof(DataGridView)) throw new ArgumentException("Value have to be of type DataGridView.");
                 else if (value == null) throw new NullReferenceException("Value can't be null.");
+
+                var tmp = (DataGridView)value;
+                if (tmp.Columns.Count < 3) throw new ArgumentException("DataGridView object have to control at least three columns.");
 
                 tab = (DataGridView)value;
             }
         }
+
         /// <summary>
         /// Task ID integer for deleting and editing task.
         /// </summary>
@@ -75,35 +82,45 @@ namespace Binder
             get { return taskid; }
             set
             {
+                if (value < 0) throw new ArgumentOutOfRangeException("Value can't be lower than zero.");
+                else if(tab.Rows.Count < value) throw new IndexOutOfRangeException("Value have to point to task in destination.");
+
                 taskid = value;
             }
         }
+
         /// <summary>
         /// Add task to DataGridView.
         /// </summary>
         public void AddTask()
         {
+            var dgv = (DataGridView)Destination;
             var row = new DataGridViewRow();
-            row.CreateCells(tab);
+            row.CreateCells(dgv);
             row.SetValues(Name, Date, IfToday);
-            tab.Rows.Add(row);
+            dgv.Rows.Add(row);
         }
+
         /// <summary>
         /// Delete task from DataGridView.
         /// </summary>
         public void DeleteTask()
         {
-            tab.Rows.RemoveAt(taskid);
+            var dgv = (DataGridView)Destination;
+            dgv.Rows.RemoveAt(TaskId);
         }
+
         /// <summary>
         /// Edit given task in DataGridView.
         /// </summary>
         public void EditTask()
         {
-            tab.Rows[taskid].Cells[0].Value = Name;
-            tab.Rows[taskid].Cells[1].Value = Date;
-            tab.Rows[taskid].Cells[2].Value = IfToday;
+            var dgv = (DataGridView)Destination;
+            dgv.Rows[TaskId].Cells[0].Value = Name;
+            dgv.Rows[TaskId].Cells[1].Value = Date;
+            dgv.Rows[TaskId].Cells[2].Value = IfToday;
         }
+
         /// <summary>
         /// Check if given task objects are the same.
         /// </summary>
@@ -113,7 +130,7 @@ namespace Binder
         {
             bool same;
 
-            if (Name == other.Name || Date == other.Date || IfToday == other.IfToday) same = true;
+            if (Name == other.Name && Date == other.Date && IfToday == other.IfToday && Destination == other.Destination && TaskId == other.TaskId) same = true;
             else same = false;
 
             return same;

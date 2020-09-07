@@ -2,8 +2,20 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using Binder.Storages;
+using Binder.UI;
+using Binder.Tasks;
 
-namespace Binder.UnitTests
+/* For copying to new methods:
+ // Prepare:
+
+ // Execute:
+
+ // Verify:
+ // Prepare and Execute:
+ */
+
+namespace Binder.UnitTests.Storages
 {
     [TestClass]
     public class DataGridViewXMLStorageUnitTests
@@ -108,7 +120,7 @@ namespace Binder.UnitTests
             */
 
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var strgm = new DataGridViewStorageManagerXML
@@ -137,7 +149,7 @@ namespace Binder.UnitTests
             */
 
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var tsk = new DataGridViewTask
@@ -158,9 +170,15 @@ namespace Binder.UnitTests
             strgm.SaveToStorage();
             tsk.DeleteTask();
             var tskFake = new DataGridViewTask();
-            strgm.Task = tskFake;
             // Execute:
             strgm.LoadFromStorage();
+            var tab = (DataGridView)tabpage.Controls[0];
+            tab.Refresh();
+            tskFake.Name = (string)tab.Rows[0].Cells[0].Value;
+            tskFake.Date = (DateTime)tab.Rows[0].Cells[1].Value;
+            tskFake.IfToday = (CheckState)tab.Rows[0].Cells[2].Value;
+            tskFake.Destination = (DataGridView)tabpage.Controls[0];
+            tskFake.TaskId = 0;
             // Verify:
             Assert.IsTrue(tsk.Equals(tskFake));
         }

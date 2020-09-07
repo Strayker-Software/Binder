@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Binder
+namespace Binder.Exceptions
 { // TODO: Make every exception in separate file!
     /// <summary>
     /// Exception class for database errors.
@@ -11,18 +11,18 @@ namespace Binder
         /// <summary>
         /// Constructor for DatabaseException.
         /// </summary>
-        public DatabaseException() { }
+        public DatabaseException() { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
-        public DatabaseException(string message) : base(message) { }
+        public DatabaseException(string message) : base(message) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message and inner exception support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
         /// <param name="inner">Inner exception.</param>
-        public DatabaseException(string message, Exception inner) : base(message, inner) { }
+        public DatabaseException(string message, Exception inner) : base(message, inner) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for serialization info and streaming context.
         /// </summary>
@@ -30,7 +30,7 @@ namespace Binder
         /// <param name="context">Streaming context.</param>
         protected DatabaseException(
           System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { throw new NotImplementedException("This class has 'work in progress' status."); }
     }
 
     /// <summary>
@@ -42,18 +42,18 @@ namespace Binder
         /// <summary>
         /// Constructor for DatabasePathException.
         /// </summary>
-        public DatabasePathException() { }
+        public DatabasePathException() { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
-        public DatabasePathException(string message) : base(message) { }
+        public DatabasePathException(string message) : base(message) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message and inner exception support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
         /// <param name="inner">Inner exception.</param>
-        public DatabasePathException(string message, Exception inner) : base(message, inner) { }
+        public DatabasePathException(string message, Exception inner) : base(message, inner) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for serialization info and streaming context.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Binder
         /// <param name="context">Streaming context.</param>
         protected DatabasePathException(
           System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { throw new NotImplementedException("This class has 'work in progress' status."); }
     }
 
     /// <summary>
@@ -73,18 +73,18 @@ namespace Binder
         /// <summary>
         /// Constructor for UnrecognisedErrorException.
         /// </summary>
-        public UnrecognisedErrorException() { }
+        public UnrecognisedErrorException() { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
-        public UnrecognisedErrorException(string message) : base(message) { }
+        public UnrecognisedErrorException(string message) : base(message) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for message and inner exception support.
         /// </summary>
         /// <param name="message">Message to be send back to calling instruction.</param>
         /// <param name="inner">Inner exception.</param>
-        public UnrecognisedErrorException(string message, Exception inner) : base(message, inner) { }
+        public UnrecognisedErrorException(string message, Exception inner) : base(message, inner) { throw new NotImplementedException("This class has 'work in progress' status."); }
         /// <summary>
         /// Constructor overload for serialization info and streaming context.
         /// </summary>
@@ -92,6 +92,6 @@ namespace Binder
         /// <param name="context">Streaming context.</param>
         protected UnrecognisedErrorException(
           System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { throw new NotImplementedException("This class has 'work in progress' status."); }
     }
 }

@@ -1,9 +1,9 @@
-﻿namespace Binder
+﻿namespace Binder.UI
 {
     /// <summary>
     /// First part of Main class.
     /// </summary>
-    partial class Main
+    partial class DataGridViewMain
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -31,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridViewMain));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Page1 = new System.Windows.Forms.TabPage();
@@ -274,7 +274,7 @@
             this.DevLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DevLabel.Visible = false;
             // 
-            // Main
+            // DataGridViewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,7 +285,7 @@
             this.Controls.Add(this.Menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Main";
+            this.Name = "DataGridViewMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Binder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
@@ -303,7 +303,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.TabPage Page1;
         private System.Windows.Forms.MenuStrip Menu;
@@ -327,14 +326,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Today;
-#if DEBUG
+
         /// <summary>
-        /// For debugging purpous.
+        /// For access across the app.
         /// </summary>
+        public System.Windows.Forms.StatusStrip statusStrip;
         public System.Windows.Forms.TabControl TabController;
-#else
-        private System.Windows.Forms.TabControl TabController;
-#endif
     }
 }
 

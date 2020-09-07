@@ -1,4 +1,4 @@
-﻿namespace Binder
+﻿namespace Binder.UI
 {
     partial class TaskForm
     {
@@ -115,8 +115,17 @@
 
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.DateTimePicker DateTimePicker;
-        private System.Windows.Forms.CheckBox IfTodayBox;
+        /// <summary>
+        /// Task data - name.
+        /// </summary>
+        public System.Windows.Forms.TextBox NameTextBox;
+        /// <summary>
+        /// Task data - Date and time.
+        /// </summary>
+        public System.Windows.Forms.DateTimePicker DateTimePicker;
+        /// <summary>
+        /// Task data - If today to do.
+        /// </summary>
+        public System.Windows.Forms.CheckBox IfTodayBox;
     }
 }

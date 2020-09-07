@@ -1,4 +1,4 @@
-﻿namespace Binder
+﻿namespace Binder.UI
 {
     partial class TextMessageBox
     {
@@ -104,7 +104,10 @@
 
         private System.Windows.Forms.Button AcceptB;
         private System.Windows.Forms.Button CancelB;
-        private System.Windows.Forms.Label InfoLabel;
+        /// <summary>
+        /// Access for message data to inform user.
+        /// </summary>
+        public System.Windows.Forms.Label InfoLabel;
         /// <summary>
         /// Access to input data from other classes.
         /// </summary>

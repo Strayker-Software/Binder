@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using Binder.Tasks;
+using Binder.UI;
 
 /* For copying to new methods:
  // Prepare:
@@ -11,7 +13,7 @@ using System.Windows.Forms;
  // Prepare and Execute:
  */
 
-namespace Binder.UnitTests
+namespace Binder.UnitTests.Tasks
 {
     [TestClass]
     public class DataGridViewTaskUnitTests
@@ -20,7 +22,7 @@ namespace Binder.UnitTests
         public void Task_AddTaskToTable_NewTaskInTable()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             frm.SetDGV((DataGridView)tabpage.Controls[0]);
             var tsk = new DataGridViewTask
@@ -42,7 +44,7 @@ namespace Binder.UnitTests
         public void Task_DeleteTaskFromTable_OneLessTaskInTable()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
@@ -63,7 +65,7 @@ namespace Binder.UnitTests
         public void Task_EditTaskInTable_NewNameOfTask()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
@@ -84,7 +86,7 @@ namespace Binder.UnitTests
         public void Task_EditTaskInTable_NewDateOfTask()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
@@ -104,7 +106,7 @@ namespace Binder.UnitTests
         public void Task_EditTaskInTable_NewIfTodayOfTask()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
@@ -124,7 +126,7 @@ namespace Binder.UnitTests
         public void Task_EditTaskInTable_AllNewData()
         {
             // Prepare:
-            var frm = new Main();
+            var frm = new DataGridViewMain();
             var tabpage = frm.TabController.TabPages[0]; // Assuming only one page with one table for the test,
             var tab = (DataGridView)tabpage.Controls[0];
             frm.SetDGV(tab);
@@ -266,7 +268,7 @@ namespace Binder.UnitTests
         public void Task_TaskClass_NewDestinationMustNotBeNull()
         {
             // Prepare and Execute:
-#pragma warning disable IDE0059 // Unneeded value assigment
+#pragma warning disable IDE0059 // Unneeded value assigment,
             var task = new DataGridViewTask
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
@@ -277,7 +279,7 @@ namespace Binder.UnitTests
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Rise exception when given DataGridView object doesn't have three columns.")]
         public void Task_TaskClass_NewDestinationTableMustHaveThreeColumns()
-        { // TODO: Why not working? :(
+        {
             // Prepare:
             var task = new DataGridViewTask();
             var tab = new DataGridView();
@@ -288,47 +290,68 @@ namespace Binder.UnitTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "Rise exception when task ID is lower than zero.")]
+        public void Task_TaskClass_TaskIDMustBeAtLeastOne()
+        {
+            // Prepare and Execute:
+#pragma warning disable IDE0059 // Unneeded value assigment,
+            var tsk = new DataGridViewTask
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                TaskId = -1
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException), "Rise exception when task ID points to null task.")]
+        public void Task_TaskClass_TaskIDMustBeInTheDestination()
+        {
+            // Prepare and Execute:
+            var frm = new DataGridViewMain();
+            var tab = (DataGridView)frm.TabController.TabPages[0].Controls[0];
+#pragma warning disable IDE0059 // Unneeded value assigment,
+            var tsk = new DataGridViewTask
+#pragma warning restore IDE0059 // Unneeded value assigment,
+            {
+                Destination = tab,
+                TaskId = 2
+            };
+        }
+
+        [TestMethod]
         public void Task_TaskClass_EqualityMethodReturnsTrue()
         {
             // Prepare:
-
+            var tsk = new DataGridViewTask
+            {
+                Name = "Name"
+            };
+            var tsk1 = new DataGridViewTask
+            {
+                Name = "Name"
+            };
             // Execute:
-
+            var result = tsk.Equals(tsk1);
             // Verify:
-
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void Task_TaskClass_EqualityMethodReturnsFalse()
         {
             // Prepare:
-
+            var tsk = new DataGridViewTask
+            {
+                Name = "Name"
+            };
+            var tsk1 = new DataGridViewTask
+            {
+                Name = "OK"
+            };
             // Execute:
-
+            var result = tsk.Equals(tsk1);
             // Verify:
-
-        }
-
-        [TestMethod]
-        public void Task_TaskClass_TaskIDMustBeAtLeastZero()
-        {
-            // Prepare:
-
-            // Execute:
-
-            // Verify:
-
-        }
-
-        [TestMethod]
-        public void Task_TaskClass_TaskIDMustBeInTheDestination()
-        {
-            // Prepare:
-
-            // Execute:
-
-            // Verify:
-
+            Assert.IsFalse(result);
         }
     }
 }
