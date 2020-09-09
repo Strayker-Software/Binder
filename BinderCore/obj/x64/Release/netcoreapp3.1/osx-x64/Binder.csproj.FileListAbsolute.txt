@@ -1,0 +1,17 @@
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder.deps.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder.runtimeconfig.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder.runtimeconfig.dev.json
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder.dll
+H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Release\netcoreapp3.1\osx-x64\Binder.pdb
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.Properties.Resources.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.UI.DataGridViewMain.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.UI.TaskForm.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.UI.TextMessageBox.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.csproj.GenerateResource.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.AssemblyInfoInputs.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.AssemblyInfo.cs
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.csproj.CoreCompileInputs.cache
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.dll
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.pdb
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Release\netcoreapp3.1\osx-x64\Binder.genruntimeconfig.cache

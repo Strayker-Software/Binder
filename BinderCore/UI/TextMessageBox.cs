@@ -25,5 +25,10 @@ namespace Binder.UI
             var frm = (TextMessageBoxManager)Frm;
             frm.LoadForm();
         }
+
+        private void AcceptB_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

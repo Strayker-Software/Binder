@@ -1,6 +1,6 @@
 ﻿using Binder.Storages;
 using Binder.Tasks;
-using System;
+using System.Windows.Forms;
 
 namespace Binder.UI
 {
@@ -12,7 +12,7 @@ namespace Binder.UI
         /// <summary>
         /// String data to display info about dialog box to user.
         /// </summary>
-        public string Message { get; set; }
+        public string Message { get; }
         /// <summary>
         /// ITask object to control data in class.
         /// </summary>
@@ -21,8 +21,22 @@ namespace Binder.UI
         /// IStorage object to control storage area in class.
         /// </summary>
         public IStorage Strgm { get; set; }
-
-        private readonly TextMessageBox Frm;
+        /// <summary>
+        /// String data provided by user.
+        /// </summary>
+        public string InputData
+        {
+            get { return Input; }
+            set
+            {
+                Input = value;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TextMessageBox Form { get; }
+        private string Input;
 
         /// <summary>
         /// Constructor for TextMessageBoxManager class.
@@ -32,22 +46,35 @@ namespace Binder.UI
         public TextMessageBoxManager(TextMessageBox form, string message)
         {
             Message = message;
-            Frm = form;
+            Form = form;
         }
 
         /// <summary>
-        /// Method to handle close form logic. Not used in this class.
+        /// Method to handle close form logic.
         /// </summary>
-        /// <returns>Throws NotSupportedException</returns>
-        public bool CloseForm() { throw new NotSupportedException(); }
+        /// <returns></returns>
+        public bool CloseForm()
+        {
+            InputData = Form.Input.Text;
+
+            return true;
+        }
 
         /// <summary>
         /// Method to load info string to label.
         /// </summary>
         public bool LoadForm()
         {
-            Frm.InfoLabel.Text = Message;
+            Form.InfoLabel.Text = Message;
             return true;
+        }
+
+        /// <summary>
+        /// Method called to handle accepting the form.
+        /// </summary>
+        public void OKButtonPressed()
+        {
+            Form.DialogResult = DialogResult.OK;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using Binder.Tasks;
+using Binder.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /* For copying to new methods:
@@ -16,13 +17,37 @@ namespace Binder.UnitTests.UI
 {
     [TestClass]
     public class TaskFormUnitTests
-    { // TODO: Finish for TaskFormManager class!
+    {
+        [TestMethod]
+        public void TaskFormClass_FieldTest_FormArgSetProperly()
+        {
+            // Prepare:
+            var tsk = new DataGridViewTask();
+            var frm = new TaskForm(tsk, false);
+            // Execute:
+            var frmMgr = new TaskFormManager(frm, tsk, false);
+            // Verify:
+            Assert.AreEqual(frm, frmMgr.Form);
+        }
+
+        [TestMethod]
+        public void TaskFormClass_FieldTest_TaskArgSetProperly()
+        {
+            // Prepare:
+            var tsk = new DataGridViewTask();
+            var frm = new TaskForm(tsk, false);
+            // Execute:
+            var frmMgr = new TaskFormManager(frm, tsk, false);
+            // Verify:
+            Assert.AreEqual(tsk, frmMgr.Task);
+        }
+
         [TestMethod]
         public void TaskFormClass_FormState_FormLoadedProperly()
         {
             // Prepare:
             var tsk = new DataGridViewTask();
-            var frmMgr = new Binder.UI.TaskFormManager(new TaskForm(tsk, false), tsk, false);
+            var frmMgr = new TaskFormManager(new TaskForm(tsk, false), tsk, false);
             // Execute:
             var result = frmMgr.LoadForm();
             // Verify:
@@ -30,22 +55,47 @@ namespace Binder.UnitTests.UI
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NotSupportedException), "Rise excpetion because this method is not useful in this manager.")]
+        public void TaskFormClass_FormState_FormCloseThrowsException()
+        {
+            // Prepare:
+            var tsk = new DataGridViewTask();
+            var frmMgr = new TaskFormManager(new TaskForm(tsk, false), tsk, false);
+            // Execute:
+#pragma warning disable IDE0059 // Useless value assigment,
+            var result = frmMgr.CloseForm();
+#pragma warning restore IDE0059 // Useless value assigment,
+        }
+
+        [TestMethod]
         public void TaskFormClass_DataManage_InputSavedProperly()
         {
             // Prepare:
+            var time = DateTime.Now;
+            // Changed task object:
             var tskStart = new DataGridViewTask()
             {
                 Name = "Task",
-                Date = DateTime.Now,
+                Date = time,
                 IfToday = CheckState.Checked
             };
-            var frmMgr = new Binder.UI.TaskFormManager(new TaskForm(tskStart, false), tskStart, false);
+            // Unchanged task object:
+            var tskTest = new DataGridViewTask()
+            {
+                Name = "Task",
+                Date = time,
+                IfToday = CheckState.Checked
+            };
+            var frmMgr = new TaskFormManager(new TaskForm(tskStart, false), tskStart, false);
             frmMgr.LoadForm();
-            frmMgr.OKButtonPressed();
+            // Filling out data containers:
+            frmMgr.Form.NameTextBox.Text = "Task";
+            frmMgr.Form.DateTimePicker.Value = time;
+            frmMgr.Form.IfTodayBox.Checked = true;
             // Execute:
-            //var result = 
+            frmMgr.OKButtonPressed();
             // Verify:
-            Assert.AreEqual("Test", result);
+            Assert.IsTrue(tskStart.Equals(tskTest));
         }
 
         [TestMethod]
@@ -53,25 +103,13 @@ namespace Binder.UnitTests.UI
         {
             // Prepare:
             var tsk = new DataGridViewTask();
-            var frmMgr = new Binder.UI.TaskFormManager(new TaskForm(tsk, false), tsk, false);
+            var frmMgr = new TaskFormManager(new TaskForm(tsk, false), tsk, false);
             frmMgr.LoadForm();
+            frmMgr.Form.NameTextBox.Text = "Task";
             // Execute:
-            //var result = 
+            var result = frmMgr.OKButtonPressed();
             // Verify:
-            //Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void TaskFormClass_DialogResult_DialogReturnedCancel()
-        {
-            // Prepare:
-            var tsk = new DataGridViewTask();
-            var frmMgr = new Binder.UI.TaskFormManager(new TaskForm(tsk, false), tsk, false);
-            frmMgr.LoadForm();
-            // Execute:
-            //var result = 
-            // Verify:
-            //Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
     }
 }

@@ -21,6 +21,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>false</SignAssembly>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

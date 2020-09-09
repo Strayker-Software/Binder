@@ -1,5 +1,6 @@
 ﻿using Binder.Storages;
 using Binder.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace Binder.UI
@@ -17,15 +18,18 @@ namespace Binder.UI
         /// IStorage object for loading and saving data to storage area.
         /// </summary>
         public IStorage Strgm { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TaskForm Form { get; }
         private readonly bool IfEdit;
-        private readonly TaskForm Frm;
 
         /// <summary>
         /// Constructor for TaskFormManager class.
         /// </summary>
         public TaskFormManager(TaskForm form, ITask task, bool editMode)
         {
-            Frm = form;
+            Form = form;
             Task = task;
             IfEdit = editMode;
             // There's no need in setting IStorage object, this form will not use it,
@@ -35,10 +39,7 @@ namespace Binder.UI
         /// Closes dialog and returns to calling instruction.
         /// </summary>
         /// <returns>Always true.</returns>
-        public bool CloseForm()
-        {
-            return true;
-        }
+        public bool CloseForm() => throw new NotSupportedException("This form manager is not using this method.");
 
         /// <summary>
         /// Prepares text label for user.
@@ -47,9 +48,9 @@ namespace Binder.UI
         {
             if (IfEdit)
             {
-                Frm.NameTextBox.Text = Task.Name;
-                Frm.DateTimePicker.Value = Task.Date;
-                Frm.IfTodayBox.CheckState = Task.IfToday;
+                Form.NameTextBox.Text = Task.Name;
+                Form.DateTimePicker.Value = Task.Date;
+                Form.IfTodayBox.CheckState = Task.IfToday;
             }
 
             return true;
@@ -58,19 +59,21 @@ namespace Binder.UI
         /// <summary>
         /// Method to handle data travel out of form.
         /// </summary>
-        public void OKButtonPressed()
+        public bool OKButtonPressed()
         {
-            if (Frm.NameTextBox.Text == null || Frm.NameTextBox.Text == "")
+            if (Form.NameTextBox.Text == null || Form.NameTextBox.Text == "")
             {
                 MessageBox.Show("Add the name to the task!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Frm.DialogResult = DialogResult.Cancel;
-                return;
+                Form.DialogResult = DialogResult.Cancel;
+                return false;
             }
 
-            Task.Name = Frm.NameTextBox.Text;
-            Task.Date = Frm.DateTimePicker.Value;
-            Task.IfToday = Frm.IfTodayBox.CheckState;
-            Frm.Close();
+            Task.Name = Form.NameTextBox.Text;
+            Task.Date = Form.DateTimePicker.Value;
+            Task.IfToday = Form.IfTodayBox.CheckState;
+            Form.Close();
+
+            return true;
         }
     }
 }

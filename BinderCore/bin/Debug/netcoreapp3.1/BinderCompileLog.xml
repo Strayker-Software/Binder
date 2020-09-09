@@ -380,6 +380,11 @@
             For access across the app.
             </summary>
         </member>
+        <member name="F:Binder.UI.DataGridViewMain.TabController">
+            <summary>
+            For access across the app.
+            </summary>
+        </member>
         <member name="T:Binder.UI.DataGridViewMainFormManager">
             <summary>
             IFormManager class to prepare Main form for user.
@@ -541,6 +546,11 @@
             IStorage object for loading and saving data to storage area.
             </summary>
         </member>
+        <member name="P:Binder.UI.TaskFormManager.Form">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Binder.UI.TaskFormManager.#ctor(Binder.UI.TaskForm,Binder.Tasks.ITask,System.Boolean)">
             <summary>
             Constructor for TaskFormManager class.
@@ -620,6 +630,16 @@
             IStorage object to control storage area in class.
             </summary>
         </member>
+        <member name="P:Binder.UI.TextMessageBoxManager.InputData">
+            <summary>
+            String data provided by user.
+            </summary>
+        </member>
+        <member name="P:Binder.UI.TextMessageBoxManager.Form">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Binder.UI.TextMessageBoxManager.#ctor(Binder.UI.TextMessageBox,System.String)">
             <summary>
             Constructor for TextMessageBoxManager class.
@@ -629,13 +649,18 @@
         </member>
         <member name="M:Binder.UI.TextMessageBoxManager.CloseForm">
             <summary>
-            Method to handle close form logic. Not used in this class.
+            Method to handle close form logic.
             </summary>
-            <returns>Throws NotSupportedException</returns>
+            <returns></returns>
         </member>
         <member name="M:Binder.UI.TextMessageBoxManager.LoadForm">
             <summary>
             Method to load info string to label.
+            </summary>
+        </member>
+        <member name="M:Binder.UI.TextMessageBoxManager.OKButtonPressed">
+            <summary>
+            Method called to handle accepting the form.
             </summary>
         </member>
     </members>

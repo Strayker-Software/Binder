@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Binder.UI;
 
 namespace Binder
 {
@@ -9,12 +10,12 @@ namespace Binder
         /// Main entry point for application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI.DataGridViewMain());
+            Application.Run(new DataGridViewMain());
         }
     }
 }

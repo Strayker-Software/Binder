@@ -331,6 +331,9 @@
         /// For access across the app.
         /// </summary>
         public System.Windows.Forms.StatusStrip statusStrip;
+        /// <summary>
+        /// For access across the app.
+        /// </summary>
         public System.Windows.Forms.TabControl TabController;
     }
 }
