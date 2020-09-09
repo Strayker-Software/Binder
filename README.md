@@ -1,14 +1,14 @@
 # Binder
 
-When Coronavirus stopped schools, my teachers are sending me a lot of different tasks to do in home. This app will help me in organisation.
+.NET Core Windows Forms app for TODO task managment. To create task are needed only three parts of data: task description, deadline date with hour and if task should be done today. Simple interface can display many tabpages with tables.
 
 # Usage of Binder
 
-Just download the newest version from [Release]([https://github.com/StraykerPL/Binder/releases](https://github.com/StraykerPL/Binder/releases) page.
+Just download the newest version from [Release](https://github.com/StraykerPL/Binder/releases) page.
 
 # TODO
 
-[List](Link here!) of what I would like to be done in Binder and it's repository!
+[List](https://github.com/StraykerPL/Binder/blob/master/docs/TODO.md) of what I would like to be done in Binder and it's repository!
 
 # Contact
 
