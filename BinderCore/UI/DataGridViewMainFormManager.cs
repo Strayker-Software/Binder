@@ -310,7 +310,6 @@ namespace Binder.UI
                 Task.Date = (DateTime)row.Cells[1].Value;
                 Task.IfToday = (CheckState)row.Cells[2].Value;
 
-#if !DEBUG
                 var frm = new TaskForm(Task, true); // ITask argument, edit mode,
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
@@ -320,12 +319,6 @@ namespace Binder.UI
                     Task.EditTask();
                     Form.statusStrip.Items[0].Visible = false;
                 }
-#else
-                Task.Destination = tab;
-                Task.TaskId = row.Index;
-                Task.EditTask();
-                Form.statusStrip.Items[0].Visible = false;
-#endif
             }
             else
             {

@@ -1,5 +1,4 @@
-﻿#define TEST
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Binder.Tasks;
 using Binder.UI;

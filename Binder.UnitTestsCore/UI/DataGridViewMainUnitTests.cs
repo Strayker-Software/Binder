@@ -1,5 +1,4 @@
-﻿#define TEST
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Binder.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -99,7 +98,7 @@ namespace Binder.UnitTests.UI
 
         [TestMethod]
         public void MainClass_MenuBar_EditedTaskInGridView()
-        {
+        { // WARNING: This test shows dialog box to tester, need to change it!
             // Prepare:
             var frmMgr = new Binder.UI.DataGridViewMainFormManager(new Binder.UI.DataGridViewMain());
             var tsk = new DataGridViewTask

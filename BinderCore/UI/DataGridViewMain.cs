@@ -157,11 +157,14 @@ namespace Binder.UI
         /// </summary>
         private void AddTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frm = new TaskForm(new DataGridViewTask(), false); // ITask argument, no edit mode,
+            // TODO: Change logic to fit form manager!
+            var tsk = new DataGridViewTask();
+            var frm = new TaskForm(tsk, false); // ITask argument, no edit mode,
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
                 var mgr = (DataGridViewMainFormManager)formManager;
+                mgr.Task = tsk;
                 mgr.AddTask();
             }
         }
@@ -189,7 +192,7 @@ namespace Binder.UI
         /// </summary>
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         { // TODO: Add settings window!
-            
+            MessageBox.Show("This window will be added in next versions of Binder! Work in progress.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -197,7 +200,7 @@ namespace Binder.UI
         /// </summary>
         private void AboutAppToolStripMenuItem_Click(object sender, EventArgs e)
         { // TODO: Add library with this window!
-
+            MessageBox.Show("This window will be added in next versions of Binder! Work in progress.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         /// <summary>

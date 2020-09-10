@@ -1,5 +1,4 @@
-﻿#define TEST
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Binder.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
