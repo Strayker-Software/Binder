@@ -221,5 +221,21 @@ namespace Binder.UI
                 }
             }
         }
+
+        /// <summary>
+        /// Handles keyboard shortcut to switch tabpages.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridViewMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Switch tabpage shortcut: CTRL + TAB
+            if(e.Control && e.KeyCode == Keys.Tab)
+            {
+                var index = TabController.TabPages.IndexOf(TabController.SelectedTab);
+                if(TabController.TabPages[index + 1] != null) TabController.SelectedTab = TabController.TabPages[index + 1];
+                else TabController.SelectedTab = TabController.TabPages[0];
+            }
+        }
     }
 }

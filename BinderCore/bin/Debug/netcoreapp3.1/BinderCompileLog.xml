@@ -358,6 +358,13 @@
             Handles name change of existing tab.
             </summary>
         </member>
+        <member name="M:Binder.UI.DataGridViewMain.DataGridViewMain_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Handles keyboard shortcut to switch tabpages.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="F:Binder.UI.DataGridViewMain.components">
             <summary>
             Wymagana zmienna projektanta.
