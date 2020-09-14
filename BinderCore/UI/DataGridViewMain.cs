@@ -47,6 +47,7 @@ namespace Binder.UI
             tab.EditMode = DataGridViewEditMode.EditProgrammatically;
             tab.Location = new Point(7, 7);
             tab.Margin = new Padding(4, 3, 4, 3);
+            tab.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // TaskName
             TaskName = new DataGridViewTextBoxColumn
