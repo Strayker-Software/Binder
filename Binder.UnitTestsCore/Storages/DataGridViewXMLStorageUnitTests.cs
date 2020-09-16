@@ -78,7 +78,7 @@ namespace Binder.UnitTests.Storages
             var strgm = new DataGridViewStorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
-                Tab = null
+                DataDisplay = null
             };
         }
 
@@ -93,7 +93,7 @@ namespace Binder.UnitTests.Storages
             var strgm = new DataGridViewStorageManagerXML
 #pragma warning restore IDE0059 // Unneeded value assigment,
             {
-                Tab = tab
+                DataDisplay = tab
             };
         }
 
@@ -126,12 +126,12 @@ namespace Binder.UnitTests.Storages
             var strgm = new DataGridViewStorageManagerXML
             {
                 StorageAccess = "databases\\Page1.xml",
-                Tab = (DataGridView)tabpage.Controls[0]
+                DataDisplay = (DataGridView)tabpage.Controls[0]
             };
             var row = new DataGridViewRow();
-            row.CreateCells((DataGridView)strgm.Tab);
+            row.CreateCells((DataGridView)strgm.DataDisplay);
             row.SetValues("abc", DateTime.Now, CheckState.Checked);
-            var tmp = (DataGridView)strgm.Tab;
+            var tmp = (DataGridView)strgm.DataDisplay;
             tmp.Rows.Add(row);
             // Execute:
             strgm.SaveToStorage();
@@ -163,7 +163,7 @@ namespace Binder.UnitTests.Storages
             var strgm = new DataGridViewStorageManagerXML
             {
                 StorageAccess = "databases\\Page1.xml",
-                Tab = (DataGridView)tabpage.Controls[0],
+                DataDisplay = (DataGridView)tabpage.Controls[0],
                 Task = tsk
             };
             tsk.AddTask();

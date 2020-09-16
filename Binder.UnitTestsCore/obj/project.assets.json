@@ -1635,7 +1635,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Binder/0.1.0": {
+      "Binder/0.1.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
@@ -5644,7 +5644,7 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Binder/0.1.0": {
+    "Binder/0.1.1": {
       "type": "project",
       "path": "../BinderCore/Binder.csproj",
       "msbuildProject": "../BinderCore/Binder.csproj"
@@ -5652,7 +5652,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Binder >= 0.1.0",
+      "Binder >= 0.1.1",
       "MSTest.TestAdapter >= 2.1.0",
       "MSTest.TestFramework >= 2.1.0",
       "Microsoft.NET.Test.Sdk >= 16.5.0",

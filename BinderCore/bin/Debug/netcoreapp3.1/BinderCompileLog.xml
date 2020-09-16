@@ -130,7 +130,7 @@
             Path to XML file for data.
             </summary>
         </member>
-        <member name="P:Binder.Storages.DataGridViewStorageManagerXML.Tab">
+        <member name="P:Binder.Storages.DataGridViewStorageManagerXML.DataDisplay">
             <summary>
             DataGridView control for data presentation.
             </summary>
@@ -160,7 +160,7 @@
             Object responsible for accessing data area.
             </summary>
         </member>
-        <member name="P:Binder.Storages.IStorage.Tab">
+        <member name="P:Binder.Storages.IStorage.DataDisplay">
             <summary>
             Table with data for manager.
             </summary>

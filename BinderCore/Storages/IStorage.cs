@@ -18,7 +18,7 @@ namespace Binder.Storages
         /// <summary>
         /// Table with data for manager.
         /// </summary>
-        object Tab
+        object DataDisplay
         {
             get;
             set;

@@ -16,6 +16,7 @@ namespace Binder.Tasks
             get;
             set;
         }
+
         /// <summary>
         /// Value for task's deadline.
         /// </summary>
@@ -24,6 +25,7 @@ namespace Binder.Tasks
             get;
             set;
         }
+
         /// <summary>
         /// Value indicating, if task is for today.
         /// </summary>
@@ -32,6 +34,7 @@ namespace Binder.Tasks
             get;
             set;
         }
+
         /// <summary>
         /// Object to perform adding, editing and deleting of tasks.
         /// </summary>
@@ -40,6 +43,7 @@ namespace Binder.Tasks
             get;
             set;
         }
+
         /// <summary>
         /// ID integer for task identification.
         /// </summary>
@@ -48,14 +52,17 @@ namespace Binder.Tasks
             get;
             set;
         }
+
         /// <summary>
         /// Add given data to destination object.
         /// </summary>
         void AddTask();
+
         /// <summary>
         /// Delete task given by ID from destination.
         /// </summary>
         void DeleteTask();
+
         /// <summary>
         /// Edit task given by ID with provided data.
         /// </summary>

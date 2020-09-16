@@ -55,6 +55,7 @@ namespace Binder.UI
         /// <returns></returns>
         public bool CloseForm()
         {
+            // Return input data to user:
             InputData = Form.Input.Text;
 
             return true;
@@ -65,6 +66,7 @@ namespace Binder.UI
         /// </summary>
         public bool LoadForm()
         {
+            // Set message to form's label:
             Form.InfoLabel.Text = Message;
             return true;
         }
@@ -74,6 +76,7 @@ namespace Binder.UI
         /// </summary>
         public void OKButtonPressed()
         {
+            // Return the dialog:
             Form.DialogResult = DialogResult.OK;
         }
     }

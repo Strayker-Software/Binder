@@ -46,8 +46,10 @@ namespace Binder.UI
         /// </summary>
         public bool LoadForm()
         {
+            // Check if dialog is in edit mode:
             if (IfEdit)
             {
+                // Load data for edition:
                 Form.NameTextBox.Text = Task.Name;
                 Form.DateTimePicker.Value = Task.Date;
                 Form.IfTodayBox.CheckState = Task.IfToday;
@@ -61,6 +63,7 @@ namespace Binder.UI
         /// </summary>
         public bool OKButtonPressed()
         {
+            // Check of correction of task name:
             if (Form.NameTextBox.Text == null || Form.NameTextBox.Text == "")
             {
                 MessageBox.Show("Add the name to the task!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -68,6 +71,7 @@ namespace Binder.UI
                 return false;
             }
 
+            // Set data to Task object to return them:
             Task.Name = Form.NameTextBox.Text;
             Task.Date = Form.DateTimePicker.Value;
             Task.IfToday = Form.IfTodayBox.CheckState;

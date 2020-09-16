@@ -41,7 +41,7 @@ namespace Binder.Storages
         /// <summary>
         /// DataGridView control for data presentation.
         /// </summary>
-        public object Tab
+        public object DataDisplay
         {
             get { return tab; }
             set
@@ -73,16 +73,20 @@ namespace Binder.Storages
         /// </summary>
         public void LoadFromStorage()
         {
+            // Reads all data from file,
             var reader = new StreamReader(Environment.CurrentDirectory + "\\" + StorageAccess);
             var data = reader.ReadToEnd();
             reader.Close();
 
+            // Pass data to XML class,
             var doc = new XmlDocument();
             doc.LoadXml(data);
             var root = doc.DocumentElement;
 
+            // Are there any tasks to load?
             if (root.ChildNodes.Count != 0)
             {
+                // For each task in file, prepare data and add to destination:
                 for (int i = 0; i < root.ChildNodes.Count; i++)
                 {
                     var tskXml = root.ChildNodes.Item(i);
@@ -90,7 +94,7 @@ namespace Binder.Storages
                     Task.Date = Convert.ToDateTime(tskXml.Attributes.GetNamedItem("Date").Value);
                     if (tskXml.Attributes.GetNamedItem("Today").Value == "0") Task.IfToday = CheckState.Unchecked;
                     else Task.IfToday = CheckState.Checked;
-                    Task.Destination = Tab;
+                    Task.Destination = DataDisplay;
                     Task.AddTask();
                 }
             }
@@ -101,11 +105,13 @@ namespace Binder.Storages
         /// </summary>
         public void SaveToStorage()
         {
+            // Create new XML storage file class,
             var doc = new XmlDocument();
             doc.LoadXml("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
             var root = doc.DocumentElement;
 
-            var dgv = (DataGridView)Tab;
+            // For each row in table perform addition to XML file object and save to real file:
+            var dgv = (DataGridView)DataDisplay;
             foreach (DataGridViewRow item in dgv.Rows)
             {
                 if (item.Cells[0].Value != null)

@@ -13,7 +13,7 @@ namespace Binder.UI
     /// IFormManager class to prepare Main form for user.
     /// </summary>
     public class DataGridViewMainFormManager : IFormManager
-    {
+    { // TODO: Need unit tests of fields in this class!
         /// <summary>
         /// ITask object for loading and saving tasks.
         /// </summary>
@@ -50,11 +50,11 @@ namespace Binder.UI
                 try
                 {
                     Strgm.StorageAccess = "databases\\" + item.Name + ".xml";
-                    Strgm.Tab = (DataGridView)item.Controls[0];
+                    Strgm.DataDisplay = (DataGridView)item.Controls[0];
                     Strgm.SaveToStorage();
                 }
                 catch (Exception a)
-                {
+                { // Exception handling - work ing progress on the better solution!
                     if (a.GetType() == typeof(FileNotFoundException))
                     {
                         MessageBox.Show("Error 2 for " + item.Name + ": Database file not found. Check if database file exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,12 +89,12 @@ namespace Binder.UI
             }
             list.Sort();
 
-            // For each tab, create table in app's window:
-
             // Workover for Designer-made Page1 tab,
             Form.TabController.TabPages[0].Name = list[0];
             Form.TabController.TabPages[0].Text = list[0];
             list.RemoveAt(0);
+
+            // For each tab, create table in app's window:
             foreach (string b in list)
             {
                 var tab = new DataGridView();
@@ -118,7 +118,7 @@ namespace Binder.UI
                 try
                 {
                     Strgm.StorageAccess = "databases\\" + c.Name + ".xml";
-                    Strgm.Tab = (DataGridView)c.Controls[0];
+                    Strgm.DataDisplay = (DataGridView)c.Controls[0];
                     Strgm.LoadFromStorage();
                 }
                 catch (Exception a)
@@ -149,6 +149,7 @@ namespace Binder.UI
         /// </summary>
         public bool AddTabPage(string name)
         {
+            // Check if TabPage with given name exists in controller:
             foreach (TabPage x in Form.TabController.TabPages)
             {
                 if (name == x.Name)
@@ -158,12 +159,14 @@ namespace Binder.UI
                 }
             }
 
+            // No TabPage with this name, but there can be file named like this:
             if (File.Exists("databases\\" + name + ".xml"))
             {
                 MessageBox.Show("Can't create the database file: database already exists!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // Prepare DataGridView and TabPage objects and add them to UI:
             var tab = new DataGridView();
             Form.SetDGV(tab);
             // Size values, I don't know why this values are working :/
@@ -178,6 +181,7 @@ namespace Binder.UI
             pg.Controls.Add(tab);
             Form.TabController.TabPages.Add(pg);
 
+            // Create database file and update settings file:
             var stream = File.CreateText("databases\\" + name + ".xml");
             stream.Write("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
             stream.Close();
@@ -192,8 +196,10 @@ namespace Binder.UI
         /// </summary>
         public bool DeleteTabPage()
         {
+            // Check if Binder can delete the selected TabPage:
             if (Form.TabController.TabPages.Count > 1)
             {
+                // Delete this TabPage:
                 var tab = Form.TabController.SelectedTab;
                 File.Delete("databases\\" + tab.Name + ".xml");
                 Settings.Default.Pages.Remove(tab.Name);
@@ -215,8 +221,9 @@ namespace Binder.UI
         {
             try
             {
+                // Just set needed data for storage manager and perform saving:
                 Strgm.StorageAccess = "databases\\" + Form.TabController.SelectedTab.Name + ".xml";
-                Strgm.Tab = (DataGridView)Form.TabController.SelectedTab.Controls[0];
+                Strgm.DataDisplay = (DataGridView)Form.TabController.SelectedTab.Controls[0];
                 Strgm.SaveToStorage();
                 Form.statusStrip.Items[0].Text = "Data from " + Form.TabController.SelectedTab.Text + " saved!";
                 Form.statusStrip.Items[0].Visible = true;
@@ -254,7 +261,7 @@ namespace Binder.UI
                 try
                 {
                     Strgm.StorageAccess = "databases\\" + item.Name + ".xml";
-                    Strgm.Tab = (DataGridView)item.Controls[0];
+                    Strgm.DataDisplay = (DataGridView)item.Controls[0];
                     Strgm.SaveToStorage();
                 }
                 catch (Exception a)
@@ -276,6 +283,7 @@ namespace Binder.UI
                     }
                 }
             }
+            // Inform user:
             Form.statusStrip.Items[0].Text = "All data saved!";
             Form.statusStrip.Items[0].Visible = true;
 
@@ -287,6 +295,7 @@ namespace Binder.UI
         /// </summary>
         public bool AddTask()
         {
+            // Set selected TabPage with DataGridView for Task object and ask for data input:
             var tabpage = Form.TabController.SelectedTab;
             Task.Destination = (DataGridView)tabpage.Controls[0];
             Task.AddTask();
@@ -300,20 +309,26 @@ namespace Binder.UI
         /// </summary>
         public bool EditTask()
         {
+            // Save to var DataGridView object we want to operate on:
             var tab = (DataGridView)Form.TabController.SelectedTab.Controls[0];
 
+            // Control the selection of data in DGV:
             if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
             {
+                // Get first row form selected rows collection, there should be only one element in the collection:
                 var row = tab.SelectedRows[0];
 
+                // Set data for Task object:
                 Task.Name = (string)row.Cells[0].Value;
                 Task.Date = (DateTime)row.Cells[1].Value;
                 Task.IfToday = (CheckState)row.Cells[2].Value;
 
+                // Get new data from user:
                 var frm = new TaskForm(Task, true); // ITask argument, edit mode,
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
                 {
+                    // Perform data update:
                     Task.Destination = tab;
                     Task.TaskId = row.Index;
                     Task.EditTask();
@@ -334,11 +349,16 @@ namespace Binder.UI
         /// </summary>
         public bool DeleteTask()
         {
+            // Save to var DataGridView object we want to operate on:
             var tab = (DataGridView)Form.TabController.SelectedTab.Controls[0];
+            // Get all selected rows (should be there only one element):
             var row = tab.SelectedRows;
 
+            // Control the selection of data in DGV:
             if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
             {
+                // Perform remove operation:
+                // TODO: Why not using ITask.DeleteTask() ?
                 tab.Rows.Remove(row[0]);
                 tab.Refresh();
                 Form.statusStrip.Items[0].Visible = false;
@@ -357,13 +377,18 @@ namespace Binder.UI
         /// </summary>
         public bool RenameTabPage(string name)
         {
+            // Save to var the selected TabPage,
             var tab = Form.TabController.SelectedTab;
+            // Change name of database file:
+            // TODO: Get this stuff to storage manager class!
             if (File.Exists("databases//" + tab.Name + ".xml")) File.Move("databases//" + tab.Name + ".xml", "databases//" + name + ".xml");
             else
             {
                 MessageBox.Show("Can't find the database file to change the name!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            // Update the settings file:
             Settings.Default.Pages.Remove(tab.Name);
             Settings.Default.Pages.Add(name);
             Settings.Default.Save();
