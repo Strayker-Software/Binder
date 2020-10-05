@@ -290,7 +290,6 @@
             this.Text = "Binder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridViewMain_KeyDown);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.Page1.ResumeLayout(false);

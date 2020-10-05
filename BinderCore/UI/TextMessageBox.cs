@@ -6,7 +6,7 @@ namespace Binder.UI
     /// <summary>
     /// Windows Form for getting single input string from user.
     /// </summary>
-    public partial class TextMessageBox : Form
+    public partial class TextMessageBox : Form, IDialog
     {
         private readonly IFormManager Frm;
 

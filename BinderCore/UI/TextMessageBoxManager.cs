@@ -13,14 +13,22 @@ namespace Binder.UI
         /// String data to display info about dialog box to user.
         /// </summary>
         public string Message { get; }
+
         /// <summary>
         /// ITask object to control data in class.
         /// </summary>
         public ITask Task { get; set; }
+
         /// <summary>
         /// IStorage object to control storage area in class.
         /// </summary>
         public IStorage Strgm { get; set; }
+
+        /// <summary>
+        /// IDialog object to call external dialog form.
+        /// </summary>
+        public IDialog DataDialog { get; set; }
+
         /// <summary>
         /// String data provided by user.
         /// </summary>
@@ -32,10 +40,12 @@ namespace Binder.UI
                 Input = value;
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
         public TextMessageBox Form { get; }
+
         private string Input;
 
         /// <summary>

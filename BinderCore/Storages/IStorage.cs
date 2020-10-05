@@ -39,5 +39,12 @@ namespace Binder.Storages
         /// Method to perform load operation.
         /// </summary>
         void LoadFromStorage();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldName"></param>
+        /// <param name="newName"></param>
+        /// <returns></returns>
+        bool ChangeStorageName(string oldName, string newName);
     }
 }

@@ -89,6 +89,9 @@ namespace Binder.UI
             if(dialog == DialogResult.Yes)
             {
                 if (formManager.CloseForm() == false) e.Cancel = true;
+
+                // Close all Binder's forms:
+                Environment.Exit(0);
             }
             else
             {
@@ -150,7 +153,7 @@ namespace Binder.UI
         /// </summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Close();
         }
 
         /// <summary>
@@ -158,8 +161,10 @@ namespace Binder.UI
         /// </summary>
         private void AddTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: Change logic to fit form manager!
-            var tsk = new DataGridViewTask();
+            var tsk = new DataGridViewTask
+            {
+                Destination = (DataGridView)TabController.SelectedTab.Controls[0]
+            };
             var frm = new TaskForm(tsk, false); // ITask argument, no edit mode,
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
@@ -175,8 +180,29 @@ namespace Binder.UI
         /// </summary>
         private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var mgr = (DataGridViewMainFormManager)formManager;
-            mgr.EditTask();
+            var dgv = (DataGridView)TabController.SelectedTab.Controls[0];
+            // Set data for Task object:
+            var tsk = new DataGridViewTask
+            {
+                Name = (string)dgv.SelectedRows[0].Cells[0].Value,
+                Date = (DateTime)dgv.SelectedRows[0].Cells[1].Value,
+                IfToday = (CheckState)dgv.SelectedRows[0].Cells[2].Value,
+                Destination = dgv,
+                TaskId = dgv.SelectedRows[0].Index
+            };
+            var frm = new TaskForm(tsk, true); // ITask argument, edit mode,
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK && dgv.AreAllCellsSelected(false) == false && dgv.SelectedRows.Count != 0)
+            {
+                var mgr = (DataGridViewMainFormManager)formManager;
+                mgr.Task = tsk;
+                mgr.EditTask();
+            }
+            else
+            {
+                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         /// <summary>
@@ -184,8 +210,31 @@ namespace Binder.UI
         /// </summary>
         private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var mgr = (DataGridViewMainFormManager)formManager;
-            mgr.DeleteTask();
+            var dgv = (DataGridView)TabController.SelectedTab.Controls[0];
+            var result = MessageBox.Show("Are you sure to delete this task?", "Binder", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes && dgv.AreAllCellsSelected(false) == false && dgv.SelectedRows.Count != 0)
+            {
+                var tsk = new DataGridViewTask
+                {
+                    Name = (string)dgv.SelectedRows[0].Cells[0].Value,
+                    Date = (DateTime)dgv.SelectedRows[0].Cells[1].Value,
+                    IfToday = (CheckState)dgv.SelectedRows[0].Cells[2].Value,
+                    Destination = dgv,
+                    TaskId = dgv.SelectedRows[0].Index
+                };
+                var mgr = (DataGridViewMainFormManager)formManager;
+                mgr.Task = tsk;
+                mgr.DeleteTask();
+            }
+            else if(result == DialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         /// <summary>
@@ -209,32 +258,17 @@ namespace Binder.UI
         /// </summary>
         private void TabController_DoubleClick(object sender, EventArgs e)
         {
-            var dialog = new TextMessageBox("Please write new name for this tab:");
+            formManager.DataDialog = new TextMessageBox("Please write new name for this tab:");
+            var dialog = (TextMessageBox)formManager.DataDialog;
             dialog.ShowDialog();
 
-            if (dialog.DialogResult == DialogResult.OK)
+            if (formManager.DataDialog.DialogResult == DialogResult.OK)
             {
                 if (dialog.Input.Text != "" && dialog.Input.Text != null)
                 {
                     var mgr = (DataGridViewMainFormManager)formManager;
                     mgr.RenameTabPage(dialog.Input.Text);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Handles keyboard shortcut to switch tabpages.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataGridViewMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Switch tabpage shortcut: CTRL + TAB
-            if(e.Control && e.KeyCode == Keys.Tab)
-            {
-                var index = TabController.TabPages.IndexOf(TabController.SelectedTab);
-                if(TabController.TabPages[index + 1] != null) TabController.SelectedTab = TabController.TabPages[index + 1];
-                else TabController.SelectedTab = TabController.TabPages[0];
             }
         }
     }

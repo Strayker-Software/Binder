@@ -95,3 +95,5 @@ H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder.UnitTests.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder.UnitTests.pdb
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder.UnitTests.genruntimeconfig.cache
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder.UnitTests.Mock.TaskFormMock.resources
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\Debug\netcoreapp3.1\Binder.UnitTests.csproj.GenerateResource.cache

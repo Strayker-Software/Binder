@@ -126,5 +126,18 @@ namespace Binder.Storages
             }
             doc.Save((string)StorageAccess);
         }
+
+        /// <summary>
+        /// Method to handle storage file name change.
+        /// </summary>
+        /// <param name="oldName">Old path to storage file with extension.</param>
+        /// <param name="newName">New path to storage file with extension.</param>
+        /// <returns>True, if everything went correct, throws exceptions if there are errors.</returns>
+        public bool ChangeStorageName(string oldName, string newName)
+        {
+            if(File.Exists(oldName)) File.Move(oldName, newName);
+
+            return true;
+        }
     }
 }

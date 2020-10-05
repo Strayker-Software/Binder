@@ -150,6 +150,14 @@
             Performs save operation, takes data from given Tab and save it to given storage file.
             </summary>
         </member>
+        <member name="M:Binder.Storages.DataGridViewStorageManagerXML.ChangeStorageName(System.String,System.String)">
+            <summary>
+            Method to handle storage file name change.
+            </summary>
+            <param name="oldName">Old path to storage file with extension.</param>
+            <param name="newName">New path to storage file with extension.</param>
+            <returns>True, if everything went correct, throws exceptions if there are errors.</returns>
+        </member>
         <member name="T:Binder.Storages.IStorage">
             <summary>
             Interface for creation of new storage managment classes.
@@ -179,6 +187,14 @@
             <summary>
             Method to perform load operation.
             </summary>
+        </member>
+        <member name="M:Binder.Storages.IStorage.ChangeStorageName(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="oldName"></param>
+            <param name="newName"></param>
+            <returns></returns>
         </member>
         <member name="T:Binder.Tasks.DataGridViewTask">
             <summary>
@@ -358,13 +374,6 @@
             Handles name change of existing tab.
             </summary>
         </member>
-        <member name="M:Binder.UI.DataGridViewMain.DataGridViewMain_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
-            <summary>
-            Handles keyboard shortcut to switch tabpages.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="F:Binder.UI.DataGridViewMain.components">
             <summary>
             Wymagana zmienna projektanta.
@@ -412,6 +421,11 @@
             Main form object to operate on.
             </summary>
         </member>
+        <member name="P:Binder.UI.DataGridViewMainFormManager.DataDialog">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Binder.UI.DataGridViewMainFormManager.#ctor(Binder.UI.DataGridViewMain)">
             <summary>
             Constructor for DataGridViewMainFormManager class.
@@ -456,7 +470,7 @@
         </member>
         <member name="M:Binder.UI.DataGridViewMainFormManager.EditTask">
             <summary>
-            Method for asking user for new data of existing task and changing it in the table.
+            Method for changing data in Task's destination.
             </summary>
         </member>
         <member name="M:Binder.UI.DataGridViewMainFormManager.DeleteTask">
@@ -467,6 +481,21 @@
         <member name="M:Binder.UI.DataGridViewMainFormManager.RenameTabPage(System.String)">
             <summary>
             Method to rename the double-clicked TabPage.
+            </summary>
+        </member>
+        <member name="T:Binder.UI.IDialog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Binder.UI.IDialog.DialogResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Binder.UI.IDialog.ShowDialog">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Binder.UI.IFormManager">
@@ -482,6 +511,11 @@
         <member name="P:Binder.UI.IFormManager.Strgm">
             <summary>
             IStorage object to control storage area in inherited classes.
+            </summary>
+        </member>
+        <member name="P:Binder.UI.IFormManager.DataDialog">
+            <summary>
+            IDialog object to access externeal forms for user input.
             </summary>
         </member>
         <member name="M:Binder.UI.IFormManager.LoadForm">
@@ -553,6 +587,11 @@
             IStorage object for loading and saving data to storage area.
             </summary>
         </member>
+        <member name="P:Binder.UI.TaskFormManager.DataDialog">
+            <summary>
+            IDialog object to call external dialog form.
+            </summary>
+        </member>
         <member name="P:Binder.UI.TaskFormManager.Form">
             <summary>
             
@@ -565,9 +604,8 @@
         </member>
         <member name="M:Binder.UI.TaskFormManager.CloseForm">
             <summary>
-            Closes dialog and returns to calling instruction.
+            Closes dialog and returns to calling instruction. Not used in this class.
             </summary>
-            <returns>Always true.</returns>
         </member>
         <member name="M:Binder.UI.TaskFormManager.LoadForm">
             <summary>
@@ -635,6 +673,11 @@
         <member name="P:Binder.UI.TextMessageBoxManager.Strgm">
             <summary>
             IStorage object to control storage area in class.
+            </summary>
+        </member>
+        <member name="P:Binder.UI.TextMessageBoxManager.DataDialog">
+            <summary>
+            IDialog object to call external dialog form.
             </summary>
         </member>
         <member name="P:Binder.UI.TextMessageBoxManager.InputData">

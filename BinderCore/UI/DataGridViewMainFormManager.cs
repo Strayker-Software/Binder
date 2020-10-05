@@ -13,19 +13,51 @@ namespace Binder.UI
     /// IFormManager class to prepare Main form for user.
     /// </summary>
     public class DataGridViewMainFormManager : IFormManager
-    { // TODO: Need unit tests of fields in this class!
+    {
+        private ITask tsk;
+        private IStorage storage;
+        private IDialog dialog;
+
         /// <summary>
         /// ITask object for loading and saving tasks.
         /// </summary>
-        public ITask Task { get; set; }
+        public ITask Task
+        {
+            get { return tsk; }
+            set
+            {
+                tsk = value ?? throw new ArgumentException("Value can't be null.");
+            }
+        }
+
         /// <summary>
         /// IStorage object for loading and saving data to storage area.
         /// </summary>
-        public IStorage Strgm { get; set; }
+        public IStorage Strgm
+        {
+            get { return storage; }
+            set
+            {
+                storage = value ?? throw new ArgumentException("Value can't be null.");
+            }
+        }
+
         /// <summary>
         /// Main form object to operate on.
         /// </summary>
-        public DataGridViewMain Form { get; set; }
+        public DataGridViewMain Form { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IDialog DataDialog
+        {
+            get { return dialog; }
+            set
+            {
+                dialog = value ?? throw new ArgumentException("Value can't be null.");
+            }
+        }
 
         /// <summary>
         /// Constructor for DataGridViewMainFormManager class.
@@ -35,7 +67,7 @@ namespace Binder.UI
         {
             Task = new DataGridViewTask();
             Strgm = new DataGridViewStorageManagerXML();
-            Form = form;
+            Form = form ?? throw new ArgumentException("Value can't be null.");
         }
 
         /// <summary>
@@ -295,9 +327,7 @@ namespace Binder.UI
         /// </summary>
         public bool AddTask()
         {
-            // Set selected TabPage with DataGridView for Task object and ask for data input:
-            var tabpage = Form.TabController.SelectedTab;
-            Task.Destination = (DataGridView)tabpage.Controls[0];
+            // Perform addition operation:
             Task.AddTask();
             Form.statusStrip.Items[0].Visible = false;
 
@@ -305,41 +335,13 @@ namespace Binder.UI
         }
 
         /// <summary>
-        /// Method for asking user for new data of existing task and changing it in the table.
+        /// Method for changing data in Task's destination.
         /// </summary>
         public bool EditTask()
         {
-            // Save to var DataGridView object we want to operate on:
-            var tab = (DataGridView)Form.TabController.SelectedTab.Controls[0];
-
-            // Control the selection of data in DGV:
-            if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
-            {
-                // Get first row form selected rows collection, there should be only one element in the collection:
-                var row = tab.SelectedRows[0];
-
-                // Set data for Task object:
-                Task.Name = (string)row.Cells[0].Value;
-                Task.Date = (DateTime)row.Cells[1].Value;
-                Task.IfToday = (CheckState)row.Cells[2].Value;
-
-                // Get new data from user:
-                var frm = new TaskForm(Task, true); // ITask argument, edit mode,
-                frm.ShowDialog();
-                if (frm.DialogResult == DialogResult.OK)
-                {
-                    // Perform data update:
-                    Task.Destination = tab;
-                    Task.TaskId = row.Index;
-                    Task.EditTask();
-                    Form.statusStrip.Items[0].Visible = false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
+            // Perform data update:
+            Task.EditTask();
+            Form.statusStrip.Items[0].Visible = false;
 
             return true;
         }
@@ -349,25 +351,9 @@ namespace Binder.UI
         /// </summary>
         public bool DeleteTask()
         {
-            // Save to var DataGridView object we want to operate on:
-            var tab = (DataGridView)Form.TabController.SelectedTab.Controls[0];
-            // Get all selected rows (should be there only one element):
-            var row = tab.SelectedRows;
-
-            // Control the selection of data in DGV:
-            if (tab.AreAllCellsSelected(false) == false && tab.SelectedRows.Count != 0)
-            {
-                // Perform remove operation:
-                // TODO: Why not using ITask.DeleteTask() ?
-                tab.Rows.Remove(row[0]);
-                tab.Refresh();
-                Form.statusStrip.Items[0].Visible = false;
-            }
-            else
-            {
-                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
+            // Perform remove operation:
+            Task.DeleteTask();
+            Form.statusStrip.Items[0].Visible = false;
 
             return true;
         }
@@ -380,9 +366,7 @@ namespace Binder.UI
             // Save to var the selected TabPage,
             var tab = Form.TabController.SelectedTab;
             // Change name of database file:
-            // TODO: Get this stuff to storage manager class!
-            if (File.Exists("databases//" + tab.Name + ".xml")) File.Move("databases//" + tab.Name + ".xml", "databases//" + name + ".xml");
-            else
+            if (Strgm.ChangeStorageName("databases//" + tab.Name + ".xml", "databases//" + name + ".xml") != true)
             {
                 MessageBox.Show("Can't find the database file to change the name!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

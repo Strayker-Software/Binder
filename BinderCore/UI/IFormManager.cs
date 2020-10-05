@@ -27,6 +27,15 @@ namespace Binder.UI
         }
 
         /// <summary>
+        /// IDialog object to access externeal forms for user input.
+        /// </summary>
+        IDialog DataDialog
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Method for form loading logic.
         /// </summary>
         bool LoadForm();

@@ -99,6 +99,7 @@ namespace Binder.Tasks
             row.CreateCells(dgv);
             row.SetValues(Name, Date, IfToday);
             dgv.Rows.Add(row);
+            dgv.Refresh();
         }
 
         /// <summary>
@@ -108,6 +109,7 @@ namespace Binder.Tasks
         {
             var dgv = (DataGridView)Destination;
             dgv.Rows.RemoveAt(TaskId);
+            dgv.Refresh();
         }
 
         /// <summary>
@@ -119,6 +121,7 @@ namespace Binder.Tasks
             dgv.Rows[TaskId].Cells[0].Value = Name;
             dgv.Rows[TaskId].Cells[1].Value = Date;
             dgv.Rows[TaskId].Cells[2].Value = IfToday;
+            dgv.Refresh();
         }
 
         /// <summary>

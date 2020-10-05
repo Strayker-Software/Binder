@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Binder.Storages;
 using Binder.Tasks;
 using Binder.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,6 +43,35 @@ namespace Binder.UnitTests.UI
         }
 
         [TestMethod]
+        public void TaskFormClass_FieldTest_DialogArgSetProperly()
+        {
+            // Prepare:
+            var tsk = new DataGridViewTask();
+            var frm = new TaskForm(tsk, false);
+#pragma warning disable IDE0017 // Simplify object initialisation,
+            var frmMgr = new TaskFormManager(frm, tsk, false);
+#pragma warning restore IDE0017 // Simplify object initialisation,
+            // Execute:
+            frmMgr.DataDialog = frm;
+            // Verify:
+            Assert.AreEqual(frm, frmMgr.DataDialog);
+        }
+
+        [TestMethod]
+        public void TaskFormClass_FieldTest_StorageArgSetProperly()
+        {
+            // Prepare:
+            var tsk = new DataGridViewTask();
+            var frm = new TaskForm(tsk, false);
+            var frmMgr = new TaskFormManager(frm, tsk, false);
+            // Execute:
+            var strgmgr = new DataGridViewStorageManagerXML();
+            frmMgr.Strgm = strgmgr;
+            // Verify:
+            Assert.AreEqual(strgmgr, frmMgr.Strgm);
+        }
+
+        [TestMethod]
         public void TaskFormClass_FormState_FormLoadedProperly()
         {
             // Prepare:
@@ -51,6 +81,38 @@ namespace Binder.UnitTests.UI
             var result = frmMgr.LoadForm();
             // Verify:
             Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TaskFormClass_FormState_LoadDataProperly()
+        {
+            // Prepare:
+            var frmMain = new DataGridViewMain();
+            var tsk = new DataGridViewTask()
+            {
+                Name = "Task",
+                Date = DateTime.Now,
+                IfToday = CheckState.Checked,
+                Destination = (DataGridView)frmMain.TabController.TabPages[0].Controls[0],
+                TaskId = 0
+            };
+            var frm = new TaskForm(tsk, true);
+            var frmMgr = new TaskFormManager(frm, tsk, true); // To force data load,
+            // Execute:
+            frmMgr.LoadForm();
+            var tskAfterLoad = new DataGridViewTask()
+            {
+                Name = frm.NameTextBox.Text,
+                Date = frm.DateTimePicker.Value,
+                Destination = (DataGridView)frmMain.TabController.TabPages[0].Controls[0],
+                TaskId = 0
+            };
+            if(frm.IfTodayBox.Checked)
+            {
+                tskAfterLoad.IfToday = CheckState.Checked;
+            }
+            // Verify:
+            Assert.IsTrue(tsk.Equals(tskAfterLoad));
         }
 
         [TestMethod]

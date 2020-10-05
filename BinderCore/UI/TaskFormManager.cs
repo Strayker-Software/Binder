@@ -14,14 +14,22 @@ namespace Binder.UI
         /// ITask object for loading and saving tasks.
         /// </summary>
         public ITask Task { get; set; }
+
         /// <summary>
         /// IStorage object for loading and saving data to storage area.
         /// </summary>
         public IStorage Strgm { get; set; }
+
+        /// <summary>
+        /// IDialog object to call external dialog form.
+        /// </summary>
+        public IDialog DataDialog { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public TaskForm Form { get; }
+
         private readonly bool IfEdit;
 
         /// <summary>
@@ -36,9 +44,8 @@ namespace Binder.UI
         }
 
         /// <summary>
-        /// Closes dialog and returns to calling instruction.
+        /// Closes dialog and returns to calling instruction. Not used in this class.
         /// </summary>
-        /// <returns>Always true.</returns>
         public bool CloseForm() => throw new NotSupportedException("This form manager is not using this method.");
 
         /// <summary>

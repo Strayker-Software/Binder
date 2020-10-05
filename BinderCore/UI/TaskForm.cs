@@ -7,7 +7,7 @@ namespace Binder.UI
     /// <summary>
     /// Windows Form for getting task data from user.
     /// </summary>
-    public partial class TaskForm : Form
+    public partial class TaskForm : Form, IDialog
     {
         private readonly IFormManager manager;
 
