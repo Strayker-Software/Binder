@@ -17,30 +17,6 @@ namespace Binder.UnitTests.UI
     public class TextMessageBoxUnitTests
     {
         [TestMethod]
-        public void TextMessageBoxClass_FieldTest_MessageSetProperly()
-        {
-            // Prepare:
-            var frmMgr = new TextMessageBoxManager(new TextMessageBox("This is TextMessageBox"), "This is TextMessageBox");
-            // Execute:
-            frmMgr.LoadForm();
-            // Verify:
-            Assert.AreEqual("This is TextMessageBox", frmMgr.Message);
-        }
-
-        [TestMethod]
-        public void TextMessageBoxClass_FieldTest_InputSetProperly()
-        {
-            // Prepare:
-            var frmMgr = new TextMessageBoxManager(new TextMessageBox("This is TextMessageBox"), "This is TextMessageBox");
-            frmMgr.Form.Input.Text = "Test";
-            frmMgr.LoadForm();
-            // Execute:
-            frmMgr.CloseForm();
-            // Verify:
-            Assert.AreEqual("Test", frmMgr.InputData);
-        }
-
-        [TestMethod]
         public void TextMessageBoxClass_FormState_FormLoadedProperly()
         {
             // Prepare:
