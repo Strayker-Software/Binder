@@ -6,7 +6,8 @@
 
 # Usage of Binder
 
-Just download the newest version from [Release](https://github.com/StraykerPL/Binder/releases) page. For detailed info look into user's documentation.
+Make sure you have installed .NET Core at least 3.1.
+Than just download the newest version from [Release](https://github.com/StraykerPL/Binder/releases) page. For detailed info look into user's documentation.
 
 # TODO
 
@@ -14,6 +15,6 @@ Just download the newest version from [Release](https://github.com/StraykerPL/Bi
 
 # Contact
 
-[My website is here!](https://straykersoftware.pl)
+[Strayker Software website](https://straykersoftware.pl)
 
-If you have any suggestions for Strayex or you want to ask me for something, go to official [Strayex Discord Server!](https://discord.gg/ytdkCVD)
+If you have any suggestions or you want to ask me for something, go to official [Strayker Software Discord Server!](https://discord.gg/ytdkCVD)
