@@ -1,4 +1,5 @@
-﻿using Binder.Storages;
+﻿using Binder.Exceptions;
+using Binder.Storages;
 using Binder.Tasks;
 
 namespace Binder.UI
@@ -30,6 +31,15 @@ namespace Binder.UI
         /// IDialog object to access externeal forms for user input.
         /// </summary>
         IDialog DataDialog
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// IExceptionHandler object to redirect exceptions for Binder.
+        /// </summary>
+        IExceptionHandler ExceptionHandler
         {
             get;
             set;

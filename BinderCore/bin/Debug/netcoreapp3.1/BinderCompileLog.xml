@@ -4,36 +4,6 @@
         <name>Binder</name>
     </assembly>
     <members>
-        <member name="T:Binder.Exceptions.DatabaseException">
-            <summary>
-            Exception class for database errors.
-            </summary>
-        </member>
-        <member name="M:Binder.Exceptions.DatabaseException.#ctor">
-            <summary>
-            Constructor for DatabaseException.
-            </summary>
-        </member>
-        <member name="M:Binder.Exceptions.DatabaseException.#ctor(System.String)">
-            <summary>
-            Constructor overload for message support.
-            </summary>
-            <param name="message">Message to be send back to calling instruction.</param>
-        </member>
-        <member name="M:Binder.Exceptions.DatabaseException.#ctor(System.String,System.Exception)">
-            <summary>
-            Constructor overload for message and inner exception support.
-            </summary>
-            <param name="message">Message to be send back to calling instruction.</param>
-            <param name="inner">Inner exception.</param>
-        </member>
-        <member name="M:Binder.Exceptions.DatabaseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Constructor overload for serialization info and streaming context.
-            </summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
-        </member>
         <member name="T:Binder.Exceptions.DatabasePathException">
             <summary>
             Exception class for database paths errors.
@@ -64,35 +34,81 @@
             <param name="info">Serialization information.</param>
             <param name="context">Streaming context.</param>
         </member>
-        <member name="T:Binder.Exceptions.UnrecognisedErrorException">
+        <member name="T:Binder.Exceptions.IExceptionHandler">
             <summary>
-            Exception class for unrecognised errors.
+            Interface for Binder's custom exception system.
             </summary>
         </member>
-        <member name="M:Binder.Exceptions.UnrecognisedErrorException.#ctor">
+        <member name="M:Binder.Exceptions.IExceptionHandler.RedirectException">
             <summary>
-            Constructor for UnrecognisedErrorException.
+            Method that recognises provided exception and handles it for app.
             </summary>
         </member>
-        <member name="M:Binder.Exceptions.UnrecognisedErrorException.#ctor(System.String)">
+        <member name="P:Binder.Exceptions.IExceptionHandler.ErrorCode">
             <summary>
-            Constructor overload for message support.
+            Error code for exception. Usefull for user to search for help.
             </summary>
-            <param name="message">Message to be send back to calling instruction.</param>
         </member>
-        <member name="M:Binder.Exceptions.UnrecognisedErrorException.#ctor(System.String,System.Exception)">
+        <member name="P:Binder.Exceptions.IExceptionHandler.Message">
             <summary>
-            Constructor overload for message and inner exception support.
+            String passed back to user as return message from app.
             </summary>
-            <param name="message">Message to be send back to calling instruction.</param>
-            <param name="inner">Inner exception.</param>
         </member>
-        <member name="M:Binder.Exceptions.UnrecognisedErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="T:Binder.Exceptions.StandardExceptionHandler">
             <summary>
-            Constructor overload for serialization info and streaming context.
+            Exception handling class for error data management.
             </summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
+        </member>
+        <member name="P:Binder.Exceptions.StandardExceptionHandler.ErrorCode">
+            <summary>
+            Code for given error, points to error's description in Binder's errors' list.
+            </summary>
+        </member>
+        <member name="P:Binder.Exceptions.StandardExceptionHandler.Message">
+            <summary>
+            Message for user to understand given error.
+            </summary>
+        </member>
+        <member name="M:Binder.Exceptions.StandardExceptionHandler.#ctor(System.Exception)">
+            <summary>
+            Constructor for StandardExceptionHandler.
+            </summary>
+            <param name="x">Exception to handle and redirect.</param>
+        </member>
+        <member name="M:Binder.Exceptions.StandardExceptionHandler.RedirectException">
+            <summary>
+            Redirects loaded exception to show user importand data to get help quicker.
+            </summary>
+        </member>
+        <member name="T:Binder.Exceptions.UnrecognisedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Binder.Exceptions.UnrecognisedException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Binder.Exceptions.UnrecognisedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Binder.Exceptions.UnrecognisedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Binder.Exceptions.UnrecognisedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
         </member>
         <member name="M:Binder.Program.Main">
             <summary>
@@ -426,6 +442,11 @@
             
             </summary>
         </member>
+        <member name="P:Binder.UI.DataGridViewMainFormManager.ExceptionHandler">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Binder.UI.DataGridViewMainFormManager.#ctor(Binder.UI.DataGridViewMain)">
             <summary>
             Constructor for DataGridViewMainFormManager class.
@@ -518,6 +539,11 @@
             IDialog object to access externeal forms for user input.
             </summary>
         </member>
+        <member name="P:Binder.UI.IFormManager.ExceptionHandler">
+            <summary>
+            IExceptionHandler object to redirect exceptions for Binder.
+            </summary>
+        </member>
         <member name="M:Binder.UI.IFormManager.LoadForm">
             <summary>
             Method for form loading logic.
@@ -593,6 +619,11 @@
             </summary>
         </member>
         <member name="P:Binder.UI.TaskFormManager.Form">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Binder.UI.TaskFormManager.ExceptionHandler">
             <summary>
             
             </summary>
@@ -683,6 +714,11 @@
         <member name="P:Binder.UI.TextMessageBoxManager.InputData">
             <summary>
             String data provided by user.
+            </summary>
+        </member>
+        <member name="P:Binder.UI.TextMessageBoxManager.ExceptionHandler">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Binder.UI.TextMessageBoxManager.Form">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Binder.Exceptions;
 using Binder.Properties;
 using Binder.Storages;
 using Binder.Tasks;
@@ -17,6 +18,7 @@ namespace Binder.UI
         private ITask tsk;
         private IStorage storage;
         private IDialog dialog;
+        private IExceptionHandler handler;
 
         /// <summary>
         /// ITask object for loading and saving tasks.
@@ -60,6 +62,18 @@ namespace Binder.UI
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public IExceptionHandler ExceptionHandler
+        {
+            get { return handler; }
+            set
+            {
+                handler = value;
+            }
+        }
+
+        /// <summary>
         /// Constructor for DataGridViewMainFormManager class.
         /// </summary>
         /// <param name="form">Main form object to operate on.</param>
@@ -86,22 +100,9 @@ namespace Binder.UI
                     Strgm.SaveToStorage();
                 }
                 catch (Exception a)
-                { // Exception handling - work ing progress on the better solution!
-                    if (a.GetType() == typeof(FileNotFoundException))
-                    {
-                        MessageBox.Show("Error 2 for " + item.Name + ": Database file not found. Check if database file exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                    else if (a.GetType() == typeof(ArgumentException))
-                    {
-                        MessageBox.Show("Error 1 for " + item.Name + ": Wrong database path was given. If you didn't change any database settings in code or in app, contact Strayker Software at https://straykersoftware.pl and send error code on support page!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error -1 for " + item.Name + ": There is unrecognised error in Binder! Contact Strayker Software at https://straykersoftware.pl for support!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                {
+                    ExceptionHandler = new StandardExceptionHandler(a);
+                    ExceptionHandler.RedirectException();
                 }
             }
 
@@ -154,22 +155,9 @@ namespace Binder.UI
                     Strgm.LoadFromStorage();
                 }
                 catch (Exception a)
-                { // TODO: Create custom Exception system!
-                    if (a.GetType() == typeof(FileNotFoundException))
-                    {
-                        MessageBox.Show("Error 2: Database not found. Check if database exists in app's path and try again.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Environment.Exit(2);
-                    }
-                    else if (a.GetType() == typeof(ArgumentException))
-                    {
-                        MessageBox.Show("Error 1: Wrong database path was given. If you didn't change any database settings in code or in app, contact Strayker Software at https://straykersoftware.pl and send error code on support page!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Environment.Exit(1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error -1: There is unrecognised error in Binder! Contact Strayker Software at https://straykersoftware.pl for support!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Environment.Exit(-1);
-                    }
+                {
+                    ExceptionHandler = new StandardExceptionHandler(a);
+                    ExceptionHandler.RedirectException();
                 }
             }
 

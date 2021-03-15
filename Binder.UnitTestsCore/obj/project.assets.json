@@ -5686,11 +5686,13 @@
         "netcoreapp3.1"
       ],
       "sources": {
+        "A:\\Strayker Software\\nugetpackages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
             "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj": {
               "projectPath": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj"
@@ -5706,6 +5708,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MSTest.TestAdapter": {
             "target": "Package",
@@ -5742,7 +5745,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }

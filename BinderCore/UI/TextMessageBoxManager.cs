@@ -1,4 +1,5 @@
-﻿using Binder.Storages;
+﻿using Binder.Exceptions;
+using Binder.Storages;
 using Binder.Tasks;
 using System.Windows.Forms;
 
@@ -9,6 +10,8 @@ namespace Binder.UI
     /// </summary>
     public class TextMessageBoxManager : IFormManager
     {
+        private IExceptionHandler handler;
+
         /// <summary>
         /// String data to display info about dialog box to user.
         /// </summary>
@@ -38,6 +41,18 @@ namespace Binder.UI
             set
             {
                 Input = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IExceptionHandler ExceptionHandler
+        {
+            get { return handler; }
+            set
+            {
+                handler = value;
             }
         }
 
