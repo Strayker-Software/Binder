@@ -1,15 +1,20 @@
-﻿using System;
-using System.Drawing;
+﻿#if DEBUG
 using System.IO;
+#endif
+using System;
 using System.Windows.Forms;
+using Binder.Controllers;
+using Binder.Task;
 using Binder.Properties;
-using Binder.Tasks;
+using Binder.Properties.Languages;
+using Binder.UI.MessageBoxes;
 
 namespace Binder.UI
 {
-    public partial class DataGridViewMain : Form
+    public partial class DataGridViewMain : Form, IForm
     {
-        private readonly IFormManager formManager;
+        private readonly IMessageBoxFactory messageBoxFactory = new MessageBoxFactory();
+        private IController controller;
 
         /// <summary>
         /// Main class constructor.
@@ -17,8 +22,6 @@ namespace Binder.UI
         public DataGridViewMain()
         {
             InitializeComponent();
-            SetDGV(DataTab);
-            formManager = new DataGridViewMainFormManager(this);
 #if DEBUG
             DevLabel.Text = "Binder v" + Application.ProductVersion + " - Strayker Software Development Build - Use only for dev operations";
             DevLabel.Visible = true;
@@ -31,245 +34,304 @@ namespace Binder.UI
             stream.Write("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
             stream.Close();
 #endif
+
+            // Set localisation texts:
+            Text = ResourceMainForm.FormTitle;
+
+            ManagerToolStripMenuItem.Text = ResourceMainForm.CategoryManagerMenuText;
+            DataToolStripMenuItem.Text = ResourceMainForm.DataManagerMenuText;
+            HelpToolStripMenuItem.Text = ResourceMainForm.MiscMenuText;
+
+            NewTabToolStripMenuItem.Text = ResourceMainForm.NewCategoryOptionText;
+            DeleteTabToolStripMenuItem.Text = ResourceMainForm.DeleteCategoryOptionText;
+            ShowHideCompletedTaskListMenuItem.Text = ResourceMainForm.ShowHideCompleteTaskListText;
+            SaveToolStripMenuItem.Text = ResourceMainForm.SaveOptionText;
+            SaveAllToolStripMenuItem.Text = ResourceMainForm.SaveAllOptionText;
+            ExitToolStripMenuItem.Text = ResourceMainForm.ExitOptionText;
+
+            AddTaskToolStripMenuItem.Text = ResourceMainForm.AddTaskOptionText;
+            EditTaskToolStripMenuItem.Text = ResourceMainForm.EditTaskOptionText;
+            DeleteTaskToolStripMenuItem.Text = ResourceMainForm.DeleteTaskOptionText;
+
+            SettingsToolStripMenuItem.Text = ResourceMainForm.SettingsOptionText;
+            AboutAppToolStripMenuItem.Text = ResourceMainForm.AboutAppOptionText;
         }
 
-        /// <summary>
-        /// Set default settings for DataGridView. Workover for .NET Core Designer bugs.
-        /// </summary>
-        /// <param name="tab">DataGridView object to add columns to.</param>
-        public void SetDGV(DataGridView tab)
+        public void SetController(IController controller)
         {
-            // Set DataGridView properties:
-            tab.ReadOnly = true;
-            tab.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tab.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            tab.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tab.EditMode = DataGridViewEditMode.EditProgrammatically;
-            tab.Location = new Point(7, 7);
-            tab.Margin = new Padding(4, 3, 4, 3);
-            tab.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // TaskName
-            TaskName = new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Task Name",
-                Name = "TaskName"
-            };
-            // Deadline
-            Deadline = new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Deadline",
-                Name = "Deadline"
-            };
-            // Today
-            Today = new DataGridViewCheckBoxColumn
-            {
-                HeaderText = "Today?",
-                Name = "Today"
-            };
-
-            tab.Columns.AddRange(TaskName, Deadline, Today);
+            this.controller = controller;
         }
 
-        /// <summary>
-        /// Exectued on main form's start.
-        /// </summary>
-        private void Main_Load(object sender, EventArgs e)
-        {
-            formManager.LoadForm();
-        }
-
-        /// <summary>
-        /// Executed on main form's closing.
-        /// </summary>
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Ask if user really want to exit:
-            var dialog = MessageBox.Show("Are you sure you want to exit Binder? All task tables will be saved.", "Binder", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(dialog == DialogResult.Yes)
-            {
-                if (formManager.CloseForm() == false) e.Cancel = true;
-
-                // Close all Binder's forms:
-                Environment.Exit(0);
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-
-        /// <summary>
-        /// Creates new tab with separate table.
-        /// </summary>
         private void NewTabToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new TextMessageBox("Please write name of new data tab here:");
-            dialog.ShowDialog();
+            controller.AddCategory();
+        }
 
-            if (dialog.DialogResult == DialogResult.OK)
+        private void DeleteTabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.DeleteCategory();
+        }
+
+        private void ShowHideCompletedTaskListMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ShowHideCompletedTaskListMenuItem.Checked) controller.ShowCompletedTaskList();
+            else controller.HideCompletedTaskList();
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //controller.SaveCategory();
+        }
+
+        private void SaveAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //controller.SaveAll();
+        }
+
+        private void TabController_DoubleClick(object sender, EventArgs e)
+        {
+            controller.RenameCategory();
+        }
+
+        private void AboutAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.ShowAboutWindow();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.ShowSettings();
+        }
+
+        private void AddTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.AddTask();
+        }
+
+        private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
             {
-                if (dialog.Input.Text != "" && dialog.Input.Text != null)
-                {
-                    var mgr = (DataGridViewMainFormManager)formManager;
-                    mgr.AddTabPage(dialog.Input.Text);
-                }
-                else
-                {
-                    MessageBox.Show("You have to write name for new tab!", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                controller.EditTask();
+            }
+            catch (NullReferenceException)
+            {
+                messageBoxFactory.ShowMessageBox(
+                    EMessageBox.Standard,
+                    Resources.NoRowSelectedErrorMessage,
+                    Settings.Default.AppName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Deletes active tab and data.
-        /// </summary>
-        private void DeleteTabToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var mgr = (DataGridViewMainFormManager)formManager;
-            mgr.DeleteTabPage();
+            controller.DeleteTask();
         }
 
-        /// <summary>
-        /// Save current tab data to database.
-        /// </summary>
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mgr = (DataGridViewMainFormManager)formManager;
-            mgr.SaveTabPage();
-        }
-
-        /// <summary>
-        /// Saves all tabs to databases respectively.
-        /// </summary>
-        private void SaveAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mgr = (DataGridViewMainFormManager)formManager;
-            mgr.SaveAllTabPages();
-        }
-
-        /// <summary>
-        /// Exits the program.
-        /// </summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        /// <summary>
-        /// Opens form to get data and adds data to grid.
-        /// </summary>
-        private void AddTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DataGridViewMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var tsk = new DataGridViewTask
+            var result = messageBoxFactory.ShowMessageBox(
+                EMessageBox.Standard,
+                Resources.ConfirmProgramExit,
+                Settings.Default.AppName,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+                controller.CloseApp();
+            else e.Cancel = true;
+        }
+
+        private void SetDGV(DataGridView tab)
+        {
+            tab.ColumnCount = 4;
+            tab.Columns[0].HeaderText = ResourceMainForm.NameColumnText;
+            tab.Columns[1].HeaderText = ResourceMainForm.DescriptionColumnText;
+            tab.Columns[2].HeaderText = ResourceMainForm.StartDateColumnText;
+            tab.Columns[3].HeaderText = ResourceMainForm.EndDateColumnText;
+            tab.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tab.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tab.MultiSelect = false;
+            tab.ReadOnly = true;
+            tab.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tab.AutoResizeColumns();
+            tab.AllowUserToAddRows = false;
+            tab.AllowUserToDeleteRows = false;
+            tab.AllowUserToOrderColumns = false;
+            tab.ShowCellToolTips = false;
+        }
+
+        public void ClearDisplay()
+        {
+            var display = TabController.TabPages;
+            display.Clear();
+        }
+
+        public void AddCategoryToDisplay(ICategory category)
+        {
+            // Prepare DataGridView for data:
+            var dgv = new DataGridView();
+            SetDGV(dgv);
+
+            // Prepare TabPage and add DataGridView to it:
+            var page = new TabPage
             {
-                Destination = (DataGridView)TabController.SelectedTab.Controls[0]
+                Text = category.Name
             };
-            var frm = new TaskForm(tsk, false); // ITask argument, no edit mode,
-            frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK)
+            dgv.Width = 200; // Why 200 px is more than 600? .NET Core bug? I have to check it...
+            page.Controls.Add(dgv);
+            TabController.TabPages.Add(page);
+
+            // Add tasks for DataGridView:
+            foreach (ITask task in category.Tasks)
             {
-                var mgr = (DataGridViewMainFormManager)formManager;
-                mgr.Task = tsk;
-                mgr.AddTask();
+                AddTaskToDisplay(task);
             }
         }
 
-        /// <summary>
-        /// Opens form to edit the selected row.
-        /// </summary>
-        private void EditTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        public void RenameCategoryInDisplay(ICategory category, string newName)
         {
-            var dgv = (DataGridView)TabController.SelectedTab.Controls[0];
-            // Set data for Task object:
-            var tsk = new DataGridViewTask
-            {
-                Name = (string)dgv.SelectedRows[0].Cells[0].Value,
-                Date = (DateTime)dgv.SelectedRows[0].Cells[1].Value,
-                IfToday = (CheckState)dgv.SelectedRows[0].Cells[2].Value,
-                Destination = dgv,
-                TaskId = dgv.SelectedRows[0].Index
-            };
-            var frm = new TaskForm(tsk, true); // ITask argument, edit mode,
-            frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK && dgv.AreAllCellsSelected(false) == false && dgv.SelectedRows.Count != 0)
-            {
-                var mgr = (DataGridViewMainFormManager)formManager;
-                mgr.Task = tsk;
-                mgr.EditTask();
-            }
-            else
-            {
-                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-        }
+            // Check if name is not null or empty:
+            if (newName == string.Empty || newName == null)
+                throw new ArgumentException("Value can't be null or empty.");
+            // TODO: Move all exception info to dedicated resx file.
 
-        /// <summary>
-        /// Deletes selected row from grid.
-        /// </summary>
-        private void DeleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var dgv = (DataGridView)TabController.SelectedTab.Controls[0];
-            var result = MessageBox.Show("Are you sure to delete this task?", "Binder", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes && dgv.AreAllCellsSelected(false) == false && dgv.SelectedRows.Count != 0)
+            // Search for given category in display and change it's name:
+            foreach (TabPage page in TabController.TabPages)
             {
-                var tsk = new DataGridViewTask
+                if(page.Text == category.Name)
                 {
-                    Name = (string)dgv.SelectedRows[0].Cells[0].Value,
-                    Date = (DateTime)dgv.SelectedRows[0].Cells[1].Value,
-                    IfToday = (CheckState)dgv.SelectedRows[0].Cells[2].Value,
-                    Destination = dgv,
-                    TaskId = dgv.SelectedRows[0].Index
-                };
-                var mgr = (DataGridViewMainFormManager)formManager;
-                mgr.Task = tsk;
-                mgr.DeleteTask();
-            }
-            else if(result == DialogResult.No)
-            {
-                return;
-            }
-            else
-            {
-                MessageBox.Show("Please select correct row.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                    page.Text = newName;
+                    return;
+                }    
             }
         }
 
-        /// <summary>
-        /// Shows up settings screen.
-        /// </summary>
-        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        { // TODO: Add settings window!
-            MessageBox.Show("This window will be added in next versions of Binder! Work in progress.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        /// <summary>
-        /// Shows about app window.
-        /// </summary>
-        private void AboutAppToolStripMenuItem_Click(object sender, EventArgs e)
-        { // TODO: Add library with this window!
-            MessageBox.Show("This window will be added in next versions of Binder! Work in progress.", "Binder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        
-        /// <summary>
-        /// Handles name change of existing tab.
-        /// </summary>
-        private void TabController_DoubleClick(object sender, EventArgs e)
+        public void DeleteCategoryFromDisplay(ICategory category)
         {
-            formManager.DataDialog = new TextMessageBox("Please write new name for this tab:");
-            var dialog = (TextMessageBox)formManager.DataDialog;
-            dialog.ShowDialog();
-
-            if (formManager.DataDialog.DialogResult == DialogResult.OK)
+            foreach (TabPage page in TabController.TabPages)
             {
-                if (dialog.Input.Text != "" && dialog.Input.Text != null)
+                if (page.Text == category.Name)
                 {
-                    var mgr = (DataGridViewMainFormManager)formManager;
-                    mgr.RenameTabPage(dialog.Input.Text);
+                    TabController.TabPages.Remove(page);
+                    return;
                 }
             }
+        }
+
+        public void AddTaskToDisplay(ITask task)
+        {
+            // Add completed task to correct list, but don't add it to main list:
+            if (task.Complete && ShowHideCompletedTaskListMenuItem.Checked)
+            {
+                foreach (TabPage category in TabController.TabPages)
+                {
+                    if (category.Text == Resources.CompletedTaskListText)
+                    {
+                        var tab = (DataGridView)category.Controls[0];
+                        var row = new DataGridViewRow();
+                        row.CreateCells(tab);
+                        if (task.EndDate == DateTime.MinValue)
+                            row.SetValues(task.Name, task.Description, task.StartDate, ResourceMainForm.NoDeadlineDisplayText);
+                        else row.SetValues(task.Name, task.Description, task.StartDate, task.EndDate);
+                        tab.Rows.Add(row);
+                        return;
+                    }
+                }
+            }
+            else if (task.Complete) return;
+
+            // Search for the right category:
+            foreach (TabPage category in TabController.TabPages)
+            {
+                if(category.Text == task.Category)
+                {
+                    var tab = (DataGridView)category.Controls[0];
+                    var row = new DataGridViewRow();
+                    row.CreateCells(tab);
+                    if(task.EndDate == DateTime.MinValue)
+                        row.SetValues(task.Name, task.Description, task.StartDate, ResourceMainForm.NoDeadlineDisplayText);
+                    else row.SetValues(task.Name, task.Description, task.StartDate, task.EndDate);
+                    tab.Rows.Add(row);
+                    return;
+                }
+            }
+        }
+
+        public void EditTaskInDisplay(ITask newTask, ITask oldTask)
+        {
+            // Delete old task from display:
+            DeleteTaskFromDisplay(oldTask);
+
+            // Add new task to display:
+            AddTaskToDisplay(newTask);
+        }
+
+        public void DeleteTaskFromDisplay(ITask task)
+        {
+            var tabpage = TabController.SelectedTab;
+            var tab = (DataGridView)tabpage.Controls[0];
+
+            // Search by name:
+            foreach (DataGridViewRow item in tab.Rows)
+            {
+                if((string)item.Cells[0].Value == task.Name)
+                    tab.Rows.Remove(item);
+            }
+        }
+
+        public void SetCurrentTaskSelected(ITask task)
+        {
+            var index = TabController.TabPages.IndexOfKey(task.Category);
+            var tab = (DataGridView)TabController.TabPages[index].Controls[0];
+
+            // Search by name:
+            foreach (DataGridViewRow item in tab.Rows)
+            {
+                if ((string)item.Cells[0].Value == task.Name)
+                    item.Selected = true;
+            }
+        }
+
+        public void SetCurrentCategorySelected(ICategory category)
+        {
+            var index = TabController.TabPages.IndexOfKey(category.Name);
+            var cat = TabController.TabPages[index];
+
+            cat.Select();
+            cat.Focus();
+        }
+
+        public string GetCurrentSelectedTaskName()
+        { // WARNING: This method takes currently selected task from active tabpage!
+            var page = TabController.SelectedTab;
+
+            if (page != null)
+            {
+                var tab = (DataGridView)page.Controls[0];
+                var row = tab.SelectedRows[0];
+
+                if (row.Cells.Count != 0)
+                    return (string)row.Cells[0].Value;
+                else return null;
+            }
+            else return null;
+        }
+
+        public string GetCurrentSelectedCategoryName()
+        { // WARNING: This method takes currently selected task from active tabpage!
+            var page = TabController.SelectedTab;
+
+            if (page != null)
+                return page.Text;
+            else return null;
         }
     }
 }

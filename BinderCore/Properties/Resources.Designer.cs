@@ -59,5 +59,149 @@ namespace Binder.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Category with this name already exists..
+        /// </summary>
+        internal static string CategoryAlreadyExistsErrorMessage {
+            get {
+                return ResourceManager.GetString("CategoryAlreadyExistsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Please provide name for new category:.
+        /// </summary>
+        internal static string CategoryNameInputDialogText {
+            get {
+                return ResourceManager.GetString("CategoryNameInputDialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Completed.
+        /// </summary>
+        internal static string CompletedTaskListText {
+            get {
+                return ResourceManager.GetString("CompletedTaskListText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undo..
+        /// </summary>
+        internal static string ConfirmCategoryDeleteMessage {
+            get {
+                return ResourceManager.GetString("ConfirmCategoryDeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to exit Binder?.
+        /// </summary>
+        internal static string ConfirmProgramExit {
+            get {
+                return ResourceManager.GetString("ConfirmProgramExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undo..
+        /// </summary>
+        internal static string ConfirmTaskDeleteMessage {
+            get {
+                return ResourceManager.GetString("ConfirmTaskDeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Default.
+        /// </summary>
+        internal static string DefaultTaskCategoryName {
+            get {
+                return ResourceManager.GetString("DefaultTaskCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu This category can&apos;t be deleted..
+        /// </summary>
+        internal static string DeleteSpecialListErrorText {
+            get {
+                return ResourceManager.GetString("DeleteSpecialListErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nothing was changed. Edition aborted..
+        /// </summary>
+        internal static string EditedTaskStillTheSameErrorMessage {
+            get {
+                return ResourceManager.GetString("EditedTaskStillTheSameErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu No data provided..
+        /// </summary>
+        internal static string NoDataProvidedErrorText {
+            get {
+                return ResourceManager.GetString("NoDataProvidedErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Please select a row..
+        /// </summary>
+        internal static string NoRowSelectedErrorMessage {
+            get {
+                return ResourceManager.GetString("NoRowSelectedErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Please provide new name for selected category:.
+        /// </summary>
+        internal static string RenameCategoryDialogText {
+            get {
+                return ResourceManager.GetString("RenameCategoryDialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu This category can&apos;t be renamed..
+        /// </summary>
+        internal static string RenameSpecialListErrorText {
+            get {
+                return ResourceManager.GetString("RenameSpecialListErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu This task already exists in {0} category..
+        /// </summary>
+        internal static string TaskAlreadyExistsErrorMessage {
+            get {
+                return ResourceManager.GetString("TaskAlreadyExistsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Unknown exception: {0}.
+        /// </summary>
+        internal static string UnknownExceptionMessage {
+            get {
+                return ResourceManager.GetString("UnknownExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu This function is not enabled in current version of Binder. Work in progress..
+        /// </summary>
+        internal static string WorkInProgressMessage {
+            get {
+                return ResourceManager.GetString("WorkInProgressMessage", resourceCulture);
+            }
+        }
     }
 }

@@ -8,12 +8,12 @@
     <AssemblyName>Binder</AssemblyName>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <StartupObject>Binder.Program</StartupObject>
-    <Version>0.1.1</Version>
-    <NeutralLanguage>en-GB</NeutralLanguage>
+    <Version>0.2.0</Version>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Daniel Strayker Nowak</Authors>
     <Company>Strayker Software</Company>
     <Description>Simple WinForms-based binder for task managment.</Description>
-    <Copyright>Copyright © 2020 Daniel Strayker Nowak and Strayker Software Contributors</Copyright>
+    <Copyright>Copyright © 2020-2021 Daniel Strayker Nowak and Strayker Software Contributors</Copyright>
     <PackageProjectUrl>https://straykersoftware.pl</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StraykerPL/Binder</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
@@ -22,6 +22,8 @@
     <SignAssembly>false</SignAssembly>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
     <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,34 +42,55 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Remove="Task\DataGridViewCategory.cs" />
+    <Compile Remove="Task\DataGridViewTask.cs" />
+    <Compile Remove="UI\ITasksCategory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Languages\ResourceInputDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
+      <DependentUpon>ResourceInputDialog.resx</DependentUpon>
     </Compile>
-    <Compile Update="UI\DataGridViewMain.cs">
-      <SubType>Form</SubType>
+    <Compile Update="Properties\Languages\ResourceMainForm.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceMainForm.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Languages\ResourceTaskForm.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceTaskForm.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="UI\Dialogs\TaskForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\Dialogs\TaskForm.Designer.cs">
-      <DependentUpon>TaskForm.cs</DependentUpon>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Languages\ResourceInputDialog.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceInputDialog.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Languages\ResourceTaskForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceTaskForm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Languages\ResourceMainForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceMainForm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UI\Dialogs\TaskForm.resx">
-      <DependentUpon>TaskForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 

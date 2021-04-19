@@ -117,4 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CategoryAlreadyExistsErrorMessage" xml:space="preserve">
+    <value>Category with this name already exists.</value>
+  </data>
+  <data name="CategoryNameInputDialogText" xml:space="preserve">
+    <value>Please provide name for new category:</value>
+  </data>
+  <data name="CompletedTaskListText" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="ConfirmCategoryDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete selected category? This operation can't be undo.</value>
+  </data>
+  <data name="ConfirmProgramExit" xml:space="preserve">
+    <value>Are you sure you want to exit Binder?</value>
+  </data>
+  <data name="ConfirmTaskDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete selected task on current category? This operation can't be undo.</value>
+  </data>
+  <data name="DefaultTaskCategoryName" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DeleteSpecialListErrorText" xml:space="preserve">
+    <value>This category can't be deleted.</value>
+  </data>
+  <data name="EditedTaskStillTheSameErrorMessage" xml:space="preserve">
+    <value>Nothing was changed. Edition aborted.</value>
+  </data>
+  <data name="NoDataProvidedErrorText" xml:space="preserve">
+    <value>No data provided.</value>
+  </data>
+  <data name="NoRowSelectedErrorMessage" xml:space="preserve">
+    <value>Please select a row.</value>
+  </data>
+  <data name="RenameCategoryDialogText" xml:space="preserve">
+    <value>Please provide new name for selected category:</value>
+  </data>
+  <data name="RenameSpecialListErrorText" xml:space="preserve">
+    <value>This category can't be renamed.</value>
+  </data>
+  <data name="TaskAlreadyExistsErrorMessage" xml:space="preserve">
+    <value>This task already exists in {0} category.</value>
+  </data>
+  <data name="UnknownExceptionMessage" xml:space="preserve">
+    <value>Unknown exception: {0}</value>
+  </data>
+  <data name="WorkInProgressMessage" xml:space="preserve">
+    <value>This function is not enabled in current version of Binder. Work in progress.</value>
+  </data>
 </root>
