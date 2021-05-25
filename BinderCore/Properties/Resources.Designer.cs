@@ -115,6 +115,15 @@ namespace Binder.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Binder v{0}  - Strayker Software Development Build - Use only for dev operations.
+        /// </summary>
+        internal static string DebugBuildMessage {
+            get {
+                return ResourceManager.GetString("DebugBuildMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Default.
         /// </summary>
         internal static string DefaultTaskCategoryName {

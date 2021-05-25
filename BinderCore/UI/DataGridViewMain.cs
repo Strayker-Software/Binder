@@ -23,15 +23,15 @@ namespace Binder.UI
         {
             InitializeComponent();
 #if DEBUG
-            DevLabel.Text = "Binder v" + Application.ProductVersion + " - Strayker Software Development Build - Use only for dev operations";
+            DevLabel.Text = string.Format(Resources.DebugBuildMessage, Application.ProductVersion);
             DevLabel.Visible = true;
             Settings.Default.Reset();
-            foreach (string x in Directory.GetFiles("databases\\"))
+            foreach (string x in Directory.GetFiles(Settings.Default.DefaultDirectory))
             {
                 File.Delete(x);
             }
-            var stream = File.CreateText("databases\\Page1.xml");
-            stream.Write("<?xml version='1.0' encoding='utf-8'?>\n<Storage>\n</Storage>");
+            var stream = File.CreateText(Settings.Default.DefaultCategoryFileDirectory);
+            stream.Write(Settings.Default.DefaultXMLStorageSetting);
             stream.Close();
 #endif
 

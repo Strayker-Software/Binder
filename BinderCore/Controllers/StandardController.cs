@@ -13,22 +13,60 @@ namespace Binder.Controllers
 {
     public class StandardController : IController
     {
-        private readonly IStorage storage;
-        private readonly IForm form;
+        // Factories:
         private readonly ICategoryFactory categoryFactory = new CategoryFactory();
         private readonly IDialogFactory dialogFactory = new DialogFactory();
         private readonly IMessageBoxFactory messageBoxFactory = new MessageBoxFactory();
 
-        public IList<ICategory> Categories { get; private set; }
+        private IList<ICategory> categoriesList;
+        private IDialog dataInput;
+        private IForm activeForm;
+        private IStorage activeStorage;
 
-        public IDialog DataInputDialog { get; private set; }
+        public IList<ICategory> Categories
+        {
+            get { return categoriesList; }
+            private set
+            {
+                categoriesList = value;
+            }
+        }
+
+        public IDialog DataInputDialog
+        {
+            get { return dataInput; }
+            private set
+            {
+                dataInput = value;
+            }
+        }
+
+        public IForm ActiveForm
+        {
+            get { return activeForm; }
+            private set
+            {
+                activeForm = value;
+            }
+        }
+
+        public IStorage ActiveStorage
+        {
+            get { return activeStorage; }
+            private set
+            {
+                activeStorage = value;
+            }
+        }
 
         public StandardController(IForm form, IStorage storage)
         {
-            this.storage = storage;
-            this.form = form;
+            ActiveStorage = storage;
+            ActiveForm = form;
             Categories = new List<ICategory>();
-            form.SetController(this);
+            DataInputDialog = dialogFactory.GetDialog(EDialog.StringInput);
+
+            ActiveForm.SetController(this);
         }
 
         public ITask QueryTask(string taskName)
@@ -57,7 +95,7 @@ namespace Binder.Controllers
         }
 
         public void AddCategory()
-        {
+        { // TODO: Rewrite for unit testing.
             // Ask user for category data:
             DataInputDialog = dialogFactory.GetDialog(EDialog.StringInput, Resources.CategoryNameInputDialogText);
             DataInputDialog.AskUser();
@@ -85,7 +123,7 @@ namespace Binder.Controllers
                 Categories.Add(addedCategory);
                 Settings.Default.Categories.Add(addedCategory.Name);
                 Settings.Default.Save();
-                form.AddCategoryToDisplay(addedCategory);
+                ActiveForm.AddCategoryToDisplay(addedCategory);
                 // TODO: Prepare storage access for new categories!
             }
             else
@@ -105,17 +143,17 @@ namespace Binder.Controllers
         public void ShowCompletedTaskList()
         {
             var result = QueryCategory(Resources.CompletedTaskListText);
-            form.AddCategoryToDisplay(result);
+            ActiveForm.AddCategoryToDisplay(result);
         }
 
         public void HideCompletedTaskList()
         {
             var result = QueryCategory(Resources.CompletedTaskListText);
-            form.DeleteCategoryFromDisplay(result);
+            ActiveForm.DeleteCategoryFromDisplay(result);
         }
 
         public void AddTask()
-        {
+        { // TODO: Rewrite for unit testing.
             // Ask user for category data:
             DataInputDialog = dialogFactory.GetDialog(EDialog.StandardTask);
             DataInputDialog.AskUser();
@@ -158,7 +196,7 @@ namespace Binder.Controllers
                     }
                 }
 
-                form.AddTaskToDisplay(tsk);
+                ActiveForm.AddTaskToDisplay(tsk);
             }
             else
             {
@@ -176,12 +214,12 @@ namespace Binder.Controllers
 
         public void ChangeSelectedCategory(ICategory selectedCategory)
         {
-            form.SetCurrentCategorySelected(selectedCategory);
+            ActiveForm.SetCurrentCategorySelected(selectedCategory);
         }
 
         public void ChangeSelectedTask(ITask selectedTask)
         {
-            form.SetCurrentTaskSelected(selectedTask);
+            ActiveForm.SetCurrentTaskSelected(selectedTask);
         }
 
         public void CloseApp()
@@ -191,7 +229,7 @@ namespace Binder.Controllers
             // Close all app's windows:
             foreach (Form appForm in Application.OpenForms)
             {
-                if (appForm == (Form)form) continue;
+                if (appForm == (Form)ActiveForm) continue;
 
                 appForm.Close();
             }
@@ -200,9 +238,10 @@ namespace Binder.Controllers
         }
 
         public void DeleteCategory()
-        {
-            var categoryName = form.GetCurrentSelectedCategoryName();
+        { // TODO: Rewrite for unit testing.
+            var categoryName = ActiveForm.GetCurrentSelectedCategoryName();
             var selectedCategory = QueryCategory(categoryName);
+
             // Check if user tries to delete special categories (default and complete):
             if (selectedCategory.Name == Resources.CompletedTaskListText || selectedCategory.Name == Resources.DefaultTaskCategoryName)
             {
@@ -226,7 +265,7 @@ namespace Binder.Controllers
             if (result == DialogResult.Yes)
             {
                 // Remove selected category from display, settings and memory:
-                form.DeleteCategoryFromDisplay(selectedCategory);
+                ActiveForm.DeleteCategoryFromDisplay(selectedCategory);
                 Settings.Default.Categories.Remove(selectedCategory.Name);
                 Settings.Default.Save();
                 Categories.Remove(selectedCategory);
@@ -235,8 +274,8 @@ namespace Binder.Controllers
         }
 
         public void DeleteTask()
-        {
-            var selectedTaskName = form.GetCurrentSelectedTaskName();
+        { // TODO: Rewrite for unit testing.
+            var selectedTaskName = ActiveForm.GetCurrentSelectedTaskName();
 
             if(selectedTaskName == null)
             {
@@ -261,7 +300,7 @@ namespace Binder.Controllers
             {
                 // Remove selected task from display and memory:
                 var selectedTask = QueryTask(selectedTaskName);
-                form.DeleteTaskFromDisplay(selectedTask);
+                ActiveForm.DeleteTaskFromDisplay(selectedTask);
                 foreach (var category in Categories)
                 {
                     // Look for category of task:
@@ -275,8 +314,8 @@ namespace Binder.Controllers
         }
 
         public void EditTask()
-        {
-            var oldTaskName = form.GetCurrentSelectedTaskName();
+        { // TODO: Rewrite for unit testing.
+            var oldTaskName = ActiveForm.GetCurrentSelectedTaskName();
 
             if(oldTaskName == null)
             {
@@ -300,7 +339,6 @@ namespace Binder.Controllers
                 var newTask = (ITask)DataInputDialog.ReturnValue;
 
                 // Is new task and old task the same:
-                // TODO: Add accurate equals method to task class for this equality check.
                 if(selectedTask.Equals(newTask))
                 {
                     messageBoxFactory.ShowMessageBox(
@@ -326,7 +364,7 @@ namespace Binder.Controllers
                 else category = QueryCategory(newTask.Category);
                 category.Tasks.Add(newTask);
 
-                form.EditTaskInDisplay(newTask, selectedTask);
+                ActiveForm.EditTaskInDisplay(newTask, selectedTask);
             }
             else
             {
@@ -344,38 +382,39 @@ namespace Binder.Controllers
 
         public void LoadApp()
         {
-            form.ClearDisplay();
-
-            // Create all categories in tab controller:
+            ActiveForm.ClearDisplay();
             var obj = categoryFactory.GetCategory(ECategory.Standard);
-            foreach (string item in Settings.Default.Categories)
-            {
-                obj.Name = item;
-                obj.Tasks = new List<ITask>();
-
-                // TODO: Storage should load tasks to this list.
-
-                Categories.Add(obj);
-                form.AddCategoryToDisplay(obj);
-            }
 
             // Add extra tab for default task list:
-            obj = categoryFactory.GetCategory(ECategory.Standard);
             obj.Name = Resources.DefaultTaskCategoryName;
             obj.Tasks = new List<ITask>();
             Categories.Add(obj);
-            form.AddCategoryToDisplay(obj);
+            ActiveForm.AddCategoryToDisplay(obj);
 
             // Add extra tab for completed task list, but don't show it to user:
             obj = categoryFactory.GetCategory(ECategory.Standard);
             obj.Name = Resources.CompletedTaskListText;
             obj.Tasks = new List<ITask>();
             Categories.Add(obj);
+
+            // Create all categories to tab controller:
+            foreach (string item in Settings.Default.Categories)
+            {
+                obj = categoryFactory.GetCategory(ECategory.Standard);
+                obj.Name = item;
+                obj.Tasks = new List<ITask>();
+
+                // TODO: Storage should load tasks to this list.
+
+                Categories.Add(obj);
+                ActiveForm.AddCategoryToDisplay(obj);
+            }
         }
 
         public void RenameCategory()
-        {
-            var selectedCategoryName = form.GetCurrentSelectedCategoryName();
+        { // TODO: Rewrite for unit testing.
+            var selectedCategoryName = ActiveForm.GetCurrentSelectedCategoryName();
+
             // Check if user tries to change name of special categories:
             if (selectedCategoryName == Resources.CompletedTaskListText || selectedCategoryName == Resources.DefaultTaskCategoryName)
             {
@@ -407,7 +446,7 @@ namespace Binder.Controllers
                         Settings.Default.Categories.Add(newCategoryName);
                         Settings.Default.Save();
 
-                        form.RenameCategoryInDisplay(categoryToBeRenamed, newCategoryName);
+                        ActiveForm.RenameCategoryInDisplay(categoryToBeRenamed, newCategoryName);
                         category.Name = newCategoryName;
                         break;
                     }
@@ -425,11 +464,6 @@ namespace Binder.Controllers
 
             var dialog = (Form)DataInputDialog;
             dialog.Dispose();
-        }
-
-        public void SaveAll()
-        {
-            throw new NotImplementedException();
         }
 
         public void ShowSettings()
@@ -453,6 +487,11 @@ namespace Binder.Controllers
         }
 
         public void SaveCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveAll()
         {
             throw new NotImplementedException();
         }

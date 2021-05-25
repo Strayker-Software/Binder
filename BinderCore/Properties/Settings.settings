@@ -24,5 +24,14 @@
     <Setting Name="ShowExitConfirmation" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DefaultDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">databases\\</Value>
+    </Setting>
+    <Setting Name="DefaultCategoryFileDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">databases\\Page1.xml</Value>
+    </Setting>
+    <Setting Name="DefaultXMLStorageSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version='1.0' encoding='utf-8'?&gt;\n&lt;Storage&gt;\n&lt;/Storage&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

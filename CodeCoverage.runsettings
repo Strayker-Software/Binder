@@ -35,6 +35,7 @@ Included items must then not match any entries in the exclude list to remain inc
 							<Exclude>
 								<ModulePath>.*CPPUnitTestFramework.*</ModulePath>
 								<ModulePath>.*binder.unittests.dll</ModulePath>
+								<ModulePath>.*moq.dll</ModulePath>
 							</Exclude>
 						</ModulePaths>
 
@@ -48,6 +49,9 @@ Included items must then not match any entries in the exclude list to remain inc
 								<Function>.*::__GetTestMethodInfo.*</Function>
 								<Function>^Microsoft::VisualStudio::CppCodeCoverageFramework::.*</Function>
 								<Function>^Microsoft::VisualStudio::CppUnitTestFramework::.*</Function>
+								<Function>^Binder.UI\..*</Function>
+								<Function>^Binder.UI.Dialog\..*</Function>
+								<Function>^Binder.UI.MessageBoxes\..*</Function>
 							</Exclude>
 						</Functions>
 

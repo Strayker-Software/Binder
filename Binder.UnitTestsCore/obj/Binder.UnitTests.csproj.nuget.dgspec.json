@@ -14,11 +14,13 @@
         "outputPath": "H:\\Daniel\\Repozytoria\\Binder\\Binder.UnitTestsCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "A:\\Microsoft\\Xamarin\\NuGet\\",
+          "A:\\Visual Studio Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Strayker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -52,19 +54,25 @@
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[2.2.3, )"
             },
             "MSTest.TestFramework": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[2.2.3, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.5.0, )"
+              "version": "[16.9.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
             },
             "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[1.2.0, )"
+              "version": "[3.0.3, )"
             }
           },
           "imports": [
@@ -80,17 +88,14 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WindowsForms": {
-              "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
     "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj": {
-      "version": "0.1.1",
+      "version": "0.2.0",
       "restore": {
         "projectUniqueName": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\Binder.csproj",
         "projectName": "Binder",
@@ -99,11 +104,13 @@
         "outputPath": "H:\\Daniel\\Repozytoria\\Binder\\BinderCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "A:\\Microsoft\\Xamarin\\NuGet\\",
+          "A:\\Visual Studio Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Strayker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -148,7 +155,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

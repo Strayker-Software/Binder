@@ -18,6 +18,16 @@ namespace Binder.Controllers
             get;
         }
 
+        IForm ActiveForm
+        {
+            get;
+        }
+
+        IStorage ActiveStorage
+        {
+            get;
+        }
+
         ITask QueryTask(string taskName);
 
         ICategory QueryCategory(string categoryName);

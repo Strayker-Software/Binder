@@ -135,6 +135,9 @@
   <data name="ConfirmTaskDeleteMessage" xml:space="preserve">
     <value>Are you sure you want to delete selected task on current category? This operation can't be undo.</value>
   </data>
+  <data name="DebugBuildMessage" xml:space="preserve">
+    <value>Binder v{0}  - Strayker Software Development Build - Use only for dev operations</value>
+  </data>
   <data name="DefaultTaskCategoryName" xml:space="preserve">
     <value>Default</value>
   </data>

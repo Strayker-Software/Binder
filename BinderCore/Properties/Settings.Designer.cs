@@ -101,5 +101,41 @@ namespace Binder.Properties {
                 this["ShowExitConfirmation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("databases\\\\")]
+        public string DefaultDirectory {
+            get {
+                return ((string)(this["DefaultDirectory"]));
+            }
+            set {
+                this["DefaultDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("databases\\\\Page1.xml")]
+        public string DefaultCategoryFileDirectory {
+            get {
+                return ((string)(this["DefaultCategoryFileDirectory"]));
+            }
+            set {
+                this["DefaultCategoryFileDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\'1.0\' encoding=\'utf-8\'?>\\n<Storage>\\n</Storage>")]
+        public string DefaultXMLStorageSetting {
+            get {
+                return ((string)(this["DefaultXMLStorageSetting"]));
+            }
+            set {
+                this["DefaultXMLStorageSetting"] = value;
+            }
+        }
     }
 }

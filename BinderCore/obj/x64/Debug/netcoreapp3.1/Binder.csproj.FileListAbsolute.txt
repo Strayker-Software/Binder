@@ -4,6 +4,13 @@ H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Debug\netcoreapp3.1\Binder.runti
 H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Debug\netcoreapp3.1\Binder.runtimeconfig.dev.json
 H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Debug\netcoreapp3.1\Binder.dll
 H:\Daniel\Repozytoria\Binder\BinderCore\bin\x64\Debug\netcoreapp3.1\Binder.pdb
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceInputDialog.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceMainForm.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceTaskForm.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Resources.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.DataGridViewMain.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.Dialog.StandardTaskForm.resources
+H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.Dialog.StringInputDialog.resources
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.csproj.GenerateResource.cache
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.AssemblyInfoInputs.cache
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.AssemblyInfo.cs
@@ -11,11 +18,4 @@ H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.cspro
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.dll
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.pdb
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.genruntimeconfig.cache
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.DataGridViewMain.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.Dialog.StringInputDialog.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.UI.Dialog.StandardTaskForm.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceInputDialog.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceTaskForm.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Languages.ResourceMainForm.resources
-H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.Properties.Resources.resources
 H:\Daniel\Repozytoria\Binder\BinderCore\obj\x64\Debug\netcoreapp3.1\Binder.csprojAssemblyReference.cache
