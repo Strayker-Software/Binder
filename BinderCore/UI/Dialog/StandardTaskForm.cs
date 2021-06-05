@@ -94,7 +94,7 @@ namespace Binder.UI.Dialog
         // User accepted form:
         private void DialogAcceptButton_Click(object sender, EventArgs e)
         {
-            if (NameTextBox.Text == string.Empty)
+            if (string.IsNullOrEmpty(NameTextBox.Text))
             {
                 ReturnValue = null;
                 return;

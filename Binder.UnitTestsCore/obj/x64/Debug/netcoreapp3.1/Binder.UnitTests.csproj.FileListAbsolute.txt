@@ -1,10 +1,15 @@
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\CoverletSourceRootsMapping
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\testhost.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.deps.json
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.runtimeconfig.json
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.runtimeconfig.dev.json
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.exe
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\testhost.exe
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.AdapterUtilities.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.UnitTests.deps.json
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.UnitTests.runtimeconfig.json
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Binder.UnitTests.runtimeconfig.dev.json
@@ -13,13 +18,11 @@ H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Bi
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Castle.Core.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.CoreUtilities.dll
-H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.CommunicationUtilities.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.CrossPlatEngine.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.Utilities.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.Common.dll
-H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\testhost.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Moq.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
@@ -100,6 +103,3 @@ H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\x64\Debug\netcoreapp3.1\Bi
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\x64\Debug\netcoreapp3.1\Binder.UnitTests.dll
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\x64\Debug\netcoreapp3.1\Binder.UnitTests.pdb
 H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\obj\x64\Debug\netcoreapp3.1\Binder.UnitTests.genruntimeconfig.cache
-H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\CoverletSourceRootsMapping
-H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\testhost.exe
-H:\Daniel\Repozytoria\Binder\Binder.UnitTestsCore\bin\x64\Debug\netcoreapp3.1\Microsoft.TestPlatform.AdapterUtilities.dll

@@ -137,5 +137,17 @@ namespace Binder.Properties {
                 this["DefaultXMLStorageSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<task Name=\"\" Description=\"\" StartDate=\"\" EndDate=\"\" Complete=\"\" Category=\"\" />")]
+        public string XMLTaskFormat {
+            get {
+                return ((string)(this["XMLTaskFormat"]));
+            }
+            set {
+                this["XMLTaskFormat"] = value;
+            }
+        }
     }
 }

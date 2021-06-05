@@ -22,6 +22,7 @@ namespace Binder.UI
         public DataGridViewMain()
         {
             InitializeComponent();
+            // TODO: Move this instructions to IDE.
 #if DEBUG
             DevLabel.Text = string.Format(Resources.DebugBuildMessage, Application.ProductVersion);
             DevLabel.Visible = true;
@@ -201,6 +202,7 @@ namespace Binder.UI
             // Check if name is not null or empty:
             if (newName == string.Empty || newName == null)
                 throw new ArgumentException("Value can't be null or empty.");
+
             // TODO: Move all exception info to dedicated resx file.
 
             // Search for given category in display and change it's name:

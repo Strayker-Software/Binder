@@ -4,6 +4,175 @@
         <name>Binder</name>
     </assembly>
     <members>
+        <member name="T:Binder.Data.IDataConverter">
+            <summary>
+            Interface for data converting classes.
+            </summary>
+        </member>
+        <member name="P:Binder.Data.IDataConverter.Separator">
+            <summary>
+            Separator character, for string data to convert.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ITask,System.String)">
+            <summary>
+            Converts given data in string object to provided ITask object.
+            </summary>
+            <param name="dest">ITask object to fill with data.</param>
+            <param name="data">String object with data to be converted.</param>
+            <returns>ITask object filled with data from argument. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ITask,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Converts given data in IList-compatible list of string objects to provided ITask object.
+            </summary>
+            <param name="dest">Type of data to convert to.</param>
+            <param name="data">IList object with string objects in it.</param>
+            <returns>IList object filled with ITask objects from argument, filled in with data. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ITask)">
+            <summary>
+            Converts given data in ITask-compatible object to string.
+            </summary>
+            <param name="data">Data in ITask-compatible object.</param>
+            <returns>String object with converted data. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(System.Collections.Generic.IList{Binder.Task.ITask})">
+            <summary>
+            Converts given data in ITask-compatible objects' list to strings' list.
+            </summary>
+            <param name="data">Data in ITask-compatible objects' list, IList-compatible.</param>
+            <returns>IList-compatible default list with converted data strings in it. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ICategory,System.String)">
+            <summary>
+            Converts given data in string object to ICategory-compatible object.
+            </summary>
+            <param name="dest">ICategory-compatible object to fill with data.</param>
+            <param name="data">String object with data.</param>
+            <returns>ICategory-compatible object filled with converted data. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ICategory,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Converts given data in IList-compatible list of strings to IList-compatible list of ICategory-compatible objects.
+            </summary>
+            <param name="dest">ICategory-compatible object to fill with data.</param>
+            <param name="data">IList-compatible objects' list of string. Null if error.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ICategory)">
+            <summary>
+            Converts ICategory-compatible object to string object.
+            </summary>
+            <param name="data">ICategory-compatible object with data.</param>
+            <returns>String object with data in it. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.IDataConverter.ToObject(System.Collections.Generic.IList{Binder.Task.ICategory})">
+            <summary>
+            Converts given data in IList-compatible list of ICategory-compatible objects to IList-compatible list of string objects.
+            </summary>
+            <param name="data">IList-compatible list of ICategory-compatible objects with data.</param>
+            <returns>IList-compatible list of string objects with data. Null if error.</returns>
+        </member>
+        <member name="T:Binder.Data.Storage.IStorage">
+            <summary>
+            Interface for creation of new storage managment classes.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.String)">
+            <summary>
+            Method to perform save operation on single data string.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Method to perform save operation on many data strings.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.LoadFromStorage">
+            <summary>
+            Method to perform load operation. All data from storage will be loaded.
+            </summary>
+            <returns>One-dimensional array, containing all data from selected storage.</returns>
+        </member>
+        <member name="T:Binder.Data.XMLDataConverter">
+            <summary>
+            Data convertion class for XML. This class assumes, that XML input data order is like in ITask interface.
+            </summary>
+        </member>
+        <member name="P:Binder.Data.XMLDataConverter.Separator">
+            <summary>
+            IDataConverter-inherited property. This class is not using it.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.CheckXMLFormat(System.String)">
+            <summary>
+            Checks if given data string is valid XML string.
+            </summary>
+            <param name="data">XML string object to check.</param>
+            <returns>XmlDocument object with loaded string from argument. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ITask,System.String)">
+            <summary>
+            Converts XML data from string object to ITask-compatible object, provided in argument.
+            </summary>
+            <param name="dest">ITask-compatible object to fill data with.</param>
+            <param name="data">String object with XML data.</param>
+            <returns>ITask-compatible object from argument, filled in with converted XML data. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ITask,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Converts IList-compatible list of XML strings to IList-conpatible list of ITask-compatible objects.
+            This methods uses standard generic list.
+            </summary>
+            <param name="dest">ITask-compatible object to fill with data.</param>
+            <param name="data">XML string object with data in it.</param>
+            <returns>Standard generic list of ITask objects, with filled data in. If there was an error, list will have null objects in.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ITask)">
+            <summary>
+            Converts ITask-compatible object to XML string.
+            </summary>
+            <param name="data">ITask-compatible object with data.</param>
+            <returns>XML string object, ordered with ITask sequence of data. Null if error.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(System.Collections.Generic.IList{Binder.Task.ITask})">
+            <summary>
+            Converts IList-compatible list of ITask-compatible objects to IList-compatible list of strings.
+            </summary>
+            <param name="data">IList-compatible list of ITask-compatible objects.</param>
+            <returns>Standard generic list of string objects, with filled data in. If there was an error, list will have null objects in.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ICategory,System.String)">
+            <summary>
+            Converts XML data string to ICategory-compatible object. Do not use this method.
+            </summary>
+            <param name="dest">ICategory-compatible object to fill data with.</param>
+            <param name="data">XML string object with data.</param>
+            <returns>ICategory-compatible object provided in argument, filled with data.  If there was an error, list will have null objects in.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ICategory,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Converts IList-compatible list of XML data strings to IList-compatible list of ICategory-compatible objects. Do not use this method.
+            </summary>
+            <param name="dest">IList-compatible list of ICategory-compatible objects to fill data with.</param>
+            <param name="data">IList-compatible list of XML data strings with data.</param>
+            <returns>Standard generic list of ICategory-compatible objects, with filled data in. If there was an error, list will have null objects in.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ICategory)">
+            <summary>
+            Converts ICategory-compatilbe object to XML data string object.
+            </summary>
+            <param name="data">ICategory-compatilbe object with data.</param>
+            <returns>XML string object with data.</returns>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(System.Collections.Generic.IList{Binder.Task.ICategory})">
+            <summary>
+            Converts IList-compatible list of ICategory-compatilbe objects to IList-compatible list of XML data string objects.
+            </summary>
+            <param name="data">IList-compatible list of ICategory-compatilbe objects with data.</param>
+            <returns>IList-compatible list of string objects. If there was an error, list will have null objects in.</returns>
+        </member>
         <member name="M:Binder.Program.Main">
             <summary>
             Main entry point for application.
@@ -381,46 +550,6 @@
         <member name="P:Binder.Properties.Resources.WorkInProgressMessage">
             <summary>
             Wyszukuje zlokalizowany ciąg podobny do ciągu This function is not enabled in current version of Binder. Work in progress..
-            </summary>
-        </member>
-        <member name="T:Binder.Storage.IStorage">
-            <summary>
-            Interface for creation of new storage managment classes.
-            </summary>
-        </member>
-        <member name="M:Binder.Storage.IStorage.SaveToStorage(Binder.Task.ITask)">
-            <summary>
-            Method to perform save operation.
-            </summary>
-        </member>
-        <member name="M:Binder.Storage.IStorage.LoadFromStorage">
-            <summary>
-            Method to perform load operation.
-            </summary>
-        </member>
-        <member name="T:Binder.Storage.XMLStorageManager">
-            <summary>
-            Storage manager for DataGridView control in XML file.
-            </summary>
-        </member>
-        <member name="M:Binder.Storage.XMLStorageManager.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Binder.Storage.XMLStorageManager.Location">
-            <summary>
-            Path to XML file for data.
-            </summary>
-        </member>
-        <member name="M:Binder.Storage.XMLStorageManager.SaveToStorage(Binder.Task.ITask)">
-            <summary>
-            Performs save operation, takes data from given Tab and save it to given storage file.
-            </summary>
-        </member>
-        <member name="M:Binder.Storage.XMLStorageManager.LoadFromStorage">
-            <summary>
-            Performs load operation, takes data from given storage and sets them to given Tab.
             </summary>
         </member>
         <member name="T:Binder.Task.ITask">

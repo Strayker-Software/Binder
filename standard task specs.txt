@@ -1,0 +1,19 @@
+Name = can't be empty, can't be null
+Description = can't be null
+StartDate = can't be set older than 00:00:00 01.01.1970,
+EndDate = can't be set older than 00:00:00 01.01.1970, MinValue = no deadline,
+Complete = true/false,
+Category = name of category this task belongs to, can't be empty, can't be null
+
+If category is not set, interpret as default category's task.
+If complete is true, interpret as ended task.
+
+If category is set and complete is false, add to given category.
+If category is not set and complete is false, add to Default category.
+If category is set and complete is true, add to Completed category.
+If category is not set and complete is true, add to Completed category.
+
+If task is not edited and no deadline is unchecked, start and end dates will be set from form.
+If task is not edited and no deadline is checked, start date will be set from form, end date stays unset.
+If task is edited and no deadline is unchecked, start and end dates will be set from form.
+If task is edited and no deadline is checked, start date will be set from form, end date stays unset.

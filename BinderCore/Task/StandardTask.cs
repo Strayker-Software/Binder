@@ -68,7 +68,7 @@ namespace Binder.Task
             set
             {
                 category = value ?? throw new NullReferenceException("Value can't be null.");
-                if (value == string.Empty) throw new ArgumentException("Value can't be empty string");
+                if (value == string.Empty) throw new ArgumentException("Value can't be empty string.");
             }
         }
 

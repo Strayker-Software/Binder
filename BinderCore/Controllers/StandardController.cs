@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Binder.Properties;
-using Binder.Storage;
+using Binder.Data.Storage;
 using Binder.Task;
 using Binder.Task.Factories;
 using Binder.UI;
@@ -95,7 +95,7 @@ namespace Binder.Controllers
         }
 
         public void AddCategory()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             // Ask user for category data:
             DataInputDialog = dialogFactory.GetDialog(EDialog.StringInput, Resources.CategoryNameInputDialogText);
             DataInputDialog.AskUser();
@@ -124,6 +124,7 @@ namespace Binder.Controllers
                 Settings.Default.Categories.Add(addedCategory.Name);
                 Settings.Default.Save();
                 ActiveForm.AddCategoryToDisplay(addedCategory);
+
                 // TODO: Prepare storage access for new categories!
             }
             else
@@ -153,7 +154,7 @@ namespace Binder.Controllers
         }
 
         public void AddTask()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             // Ask user for category data:
             DataInputDialog = dialogFactory.GetDialog(EDialog.StandardTask);
             DataInputDialog.AskUser();
@@ -238,7 +239,7 @@ namespace Binder.Controllers
         }
 
         public void DeleteCategory()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             var categoryName = ActiveForm.GetCurrentSelectedCategoryName();
             var selectedCategory = QueryCategory(categoryName);
 
@@ -269,12 +270,13 @@ namespace Binder.Controllers
                 Settings.Default.Categories.Remove(selectedCategory.Name);
                 Settings.Default.Save();
                 Categories.Remove(selectedCategory);
+
                 // TODO: Remove category from storage!
             }
         }
 
         public void DeleteTask()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             var selectedTaskName = ActiveForm.GetCurrentSelectedTaskName();
 
             if(selectedTaskName == null)
@@ -314,7 +316,7 @@ namespace Binder.Controllers
         }
 
         public void EditTask()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             var oldTaskName = ActiveForm.GetCurrentSelectedTaskName();
 
             if(oldTaskName == null)
@@ -412,7 +414,7 @@ namespace Binder.Controllers
         }
 
         public void RenameCategory()
-        { // TODO: Rewrite for unit testing.
+        { // TODO: Untestable, rewrite for unit testing.
             var selectedCategoryName = ActiveForm.GetCurrentSelectedCategoryName();
 
             // Check if user tries to change name of special categories:
