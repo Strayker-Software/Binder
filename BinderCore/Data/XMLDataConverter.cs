@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using Binder.Properties;
 using Binder.Task;
+using Binder.Task.Factories;
 
 namespace Binder.Data
 {
@@ -18,6 +19,21 @@ namespace Binder.Data
         {
             get => throw new NotImplementedException("This class is not using it.");
             set => throw new NotImplementedException("This class is not using it.");
+        }
+
+        /// <summary>
+        /// Checks if given <see cref="string"/> data is <see cref="XmlDeclaration"/> data.
+        /// </summary>
+        /// <param name="data"><see cref="string"/> object with data to check.</param>
+        /// <returns><see cref="true"/> if given data is declaration, <see cref="false"/> if not.</returns>
+        private bool CheckIfXmlDeclaration(string data)
+        {
+            var obj = new XmlDocument();
+            var declar = obj.CreateXmlDeclaration("1.0", "utf-8", "yes");
+
+            if (declar.OuterXml == data)
+                return true;
+            else return false;
         }
 
         /// <summary>
@@ -47,10 +63,17 @@ namespace Binder.Data
         /// </summary>
         /// <param name="dest">ITask-compatible object to fill data with.</param>
         /// <param name="data">String object with XML data.</param>
-        /// <returns>ITask-compatible object from argument, filled in with converted XML data. Null if error.</returns>
+        /// <returns>ITask-compatible object from argument, filled in with converted XML data. Null if error, or ITask object provided with declaration in Name.</returns>
         public ITask ToObject(ITask dest, string data)
         {
-            if (CheckXMLFormat(data) == null) return default;
+            if(CheckIfXmlDeclaration(data))
+            {
+                dest.Name = Settings.Default.DefaultXMLStorageSetting;
+                return dest;
+            }
+
+            if (CheckXMLFormat(data) == null)
+                return null;
 
             var xml = new XmlDocument();
             xml.LoadXml(data);
@@ -80,13 +103,13 @@ namespace Binder.Data
         /// <param name="dest">ITask-compatible object to fill with data.</param>
         /// <param name="data">XML string object with data in it.</param>
         /// <returns>Standard generic list of ITask objects, with filled data in. If there was an error, list will have null objects in.</returns>
-        public IList<ITask> ToObject(ITask dest, IList<string> data)
+        public IList<ITask> ToObject(ITaskFactory factory, IList<string> data)
         {
             var list = new List<ITask>();
 
             foreach (var task in data)
             {
-                var obj = ToObject(dest, task);
+                var obj = ToObject(factory.GetTask(ETask.Standard), task);
                 list.Add(obj);
             }
 

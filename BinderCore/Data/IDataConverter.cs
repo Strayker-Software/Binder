@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Binder.Task;
+using Binder.Task.Factories;
 
 namespace Binder.Data
 {
@@ -31,7 +32,7 @@ namespace Binder.Data
         /// <param name="dest">Type of data to convert to.</param>
         /// <param name="data">IList object with string objects in it.</param>
         /// <returns>IList object filled with ITask objects from argument, filled in with data. Null if error.</returns>
-        IList<ITask> ToObject(ITask dest, IList<string> data);
+        IList<ITask> ToObject(ITaskFactory factory, IList<string> data);
 
         /// <summary>
         /// Converts given data in ITask-compatible object to string.
