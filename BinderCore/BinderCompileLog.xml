@@ -22,7 +22,7 @@
             <param name="data">String object with data to be converted.</param>
             <returns>ITask object filled with data from argument. Null if error.</returns>
         </member>
-        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.ITask,System.Collections.Generic.IList{System.String})">
+        <member name="M:Binder.Data.IDataConverter.ToObject(Binder.Task.Factories.ITaskFactory,System.Collections.Generic.IList{System.String})">
             <summary>
             Converts given data in IList-compatible list of string objects to provided ITask object.
             </summary>
@@ -74,26 +74,170 @@
             <param name="data">IList-compatible list of ICategory-compatible objects with data.</param>
             <returns>IList-compatible list of string objects with data. Null if error.</returns>
         </member>
+        <member name="T:Binder.Data.Storage.Files.FileStorageManager">
+            <summary>
+            Class for data access in file system. Only local files for now.
+            </summary>
+        </member>
+        <member name="P:Binder.Data.Storage.Files.FileStorageManager.Location">
+            <summary>
+            Directory to file with data. Can't be null or empty.
+            </summary>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.#ctor(Binder.Data.Storage.Files.IFileSystemAccess,System.String)">
+            <summary>
+            Constructor for making sure, that <see cref="T:Binder.Data.Storage.Files.FileStorageManager"/> always has location set.
+            </summary>
+            <param name="access"><see cref="T:Binder.Data.Storage.Files.IFileSystemAccess"/> object, providing access to user's file system.</param>
+            <param name="path"><see cref="T:System.String"/> object with full path to file with extencion.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.LoadFromStorage(System.Int32)">
+            <summary>
+            Loads single data string from storage memory, load is performed at specified line in index.
+            </summary>
+            <param name="index">Line in storage file, specifies which line to load. Between 0 and data count.</param>
+            <returns><see langword="String" /> object with requested data. <see cref="!:null"/> if error.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.LoadFromStorage">
+            <summary>
+            Loads all data from storage memory and returns it.
+            </summary>
+            <returns><see cref="!:List&lt;string&gt;"/> object with all data from storage. <see cref="!:null"/> if nothing to load</returns>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.SaveToStorage(System.Int32,System.String)">
+            <summary>
+            Saves given data at the specified index. Data is moved in memory respectively.
+            </summary>
+            <param name="index"><see cref="T:System.Int32"/> with destination, where in the memory should be located data.</param>
+            <param name="data"><see cref="T:System.String"/> with data to save.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+            <remarks>Warning: Can overload existing data at given index.</remarks>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.SaveToStorage(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Saves all given data to storage memory.
+            </summary>
+            <param name="data"><see cref="!:IList&lt;string&gt;"/> object filled with <see cref="T:System.String"/> objects.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.RefreshStorage(Binder.Data.Storage.StorageRefreshMode)">
+            <summary>
+            Reload data from storage to memory and from memory to storage, depending on argument.
+            </summary>
+            <inheritdoc/>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <member name="T:Binder.Data.Storage.Files.IFileSystemAccess">
+            <summary>
+            Interface for abstraction layers to file system libraries.
+            </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.IFileSystemAccess.Delete(System.String)">
+            <summary>
+            Deletes file under given full path.
+            </summary>
+            <param name="path"><see cref="T:System.String"/> object with path, file and extencion.</param>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.IFileSystemAccess.Exists(System.String)">
+            <summary>
+            Checks if given full path exists.
+            </summary>
+            <param name="path"><see cref="T:System.String"/> object with path, file and extencion.</param>
+            <returns><see cref="!:true"/> if path exists, <see cref="!:false"/> if not.</returns>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.IFileSystemAccess.GetFileStreamWriter(System.String)">
+            <summary>
+            Factory method for creating <see cref="T:System.IO.StreamWriter"/> objects.
+            </summary>
+            <param name="path"><see cref="T:System.String"/> object with path for stream.</param>
+            <returns><see cref="T:System.IO.StreamWriter"/> object set on given path.</returns>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.IFileSystemAccess.GetFileStreamReader(System.String)">
+            <summary>
+            Factory method for creating <see cref="T:System.IO.StreamReader"/> objects.
+            </summary>
+            <param name="path"><see cref="T:System.String"/> object with path for stream.</param>
+            <returns><see cref="T:System.IO.StreamReader"/> object set on given path.</returns>
+        </member>
+        <member name="T:Binder.Data.Storage.Files.StandardFileSystemAccess">
+            <summary>
+            Class for access file system. It's only abstraction layer on <see cref="N:System.IO"/> library.
+            </summary>
+            <remarks>No need in unit test-covering of this class. It's only abstraction for dependency separation.</remarks>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.StandardFileSystemAccess.Delete(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.StandardFileSystemAccess.Exists(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.StandardFileSystemAccess.GetFileStreamReader(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Binder.Data.Storage.Files.StandardFileSystemAccess.GetFileStreamWriter(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Binder.Data.Storage.StorageRefreshMode">
+            <summary>
+            Enumeration for setting refresh mode of storage.
+            </summary>
+        </member>
+        <member name="F:Binder.Data.Storage.StorageRefreshMode.Save">
+            <summary>
+            Saving mode - memory to storage.
+            </summary>
+        </member>
+        <member name="F:Binder.Data.Storage.StorageRefreshMode.Load">
+            <summary>
+            Loading mode - storage to memory.
+            </summary>
+        </member>
         <member name="T:Binder.Data.Storage.IStorage">
             <summary>
             Interface for creation of new storage managment classes.
             </summary>
         </member>
-        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.String)">
+        <member name="P:Binder.Data.Storage.IStorage.Location">
             <summary>
-            Method to perform save operation on single data string.
+            Location property for storage access.
             </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.Int32,System.String)">
+            <summary>
+            Saves given string to storage, at given index.
+            </summary>
+            <param name="index">Integer for index of data array in storage.</param>
+            <param name="data">String object with data to save.</param>
         </member>
         <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.Collections.Generic.IList{System.String})">
             <summary>
             Method to perform save operation on many data strings.
             </summary>
         </member>
+        <member name="M:Binder.Data.Storage.IStorage.LoadFromStorage(System.Int32)">
+            <summary>
+            Loads data from given index to string object.
+            </summary>
+            <param name="index">Integer for index of data array in storage.</param>
+            <returns><see cref="T:System.String"/> object with loaded data.</returns>
+        </member>
         <member name="M:Binder.Data.Storage.IStorage.LoadFromStorage">
             <summary>
             Method to perform load operation. All data from storage will be loaded.
             </summary>
-            <returns>One-dimensional array, containing all data from selected storage.</returns>
+            <returns><see cref="!:IList&lt;string&gt;"/>, containing all data from selected storage.</returns>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.RefreshStorage(Binder.Data.Storage.StorageRefreshMode)">
+            <summary>
+            Method to reload data from or to storage.
+            </summary>
+            <param name="mode"><see cref="T:Binder.Data.Storage.StorageRefreshMode"/> option, specifying operation to perform.</param>
         </member>
         <member name="T:Binder.Data.XMLDataConverter">
             <summary>
@@ -104,6 +248,13 @@
             <summary>
             IDataConverter-inherited property. This class is not using it.
             </summary>
+        </member>
+        <member name="M:Binder.Data.XMLDataConverter.CheckIfXmlDeclaration(System.String)">
+            <summary>
+            Checks if given <see cref="T:System.String"/> data is <see cref="T:System.Xml.XmlDeclaration"/> data.
+            </summary>
+            <param name="data"><see cref="T:System.String"/> object with data to check.</param>
+            <returns><see cref="!:true"/> if given data is declaration, <see cref="!:false"/> if not.</returns>
         </member>
         <member name="M:Binder.Data.XMLDataConverter.CheckXMLFormat(System.String)">
             <summary>
@@ -118,9 +269,9 @@
             </summary>
             <param name="dest">ITask-compatible object to fill data with.</param>
             <param name="data">String object with XML data.</param>
-            <returns>ITask-compatible object from argument, filled in with converted XML data. Null if error.</returns>
+            <returns>ITask-compatible object from argument, filled in with converted XML data. Null if error, or ITask object provided with declaration in Name.</returns>
         </member>
-        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.ITask,System.Collections.Generic.IList{System.String})">
+        <member name="M:Binder.Data.XMLDataConverter.ToObject(Binder.Task.Factories.ITaskFactory,System.Collections.Generic.IList{System.String})">
             <summary>
             Converts IList-compatible list of XML strings to IList-conpatible list of ITask-compatible objects.
             This methods uses standard generic list.

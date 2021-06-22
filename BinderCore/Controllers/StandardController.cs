@@ -8,12 +8,14 @@ using Binder.Task.Factories;
 using Binder.UI;
 using Binder.UI.Dialog;
 using Binder.UI.MessageBoxes;
+using Binder.Data;
 
 namespace Binder.Controllers
 {
     public class StandardController : IController
     {
         // Factories:
+        private readonly ITaskFactory taskFactory = new TaskFactory();
         private readonly ICategoryFactory categoryFactory = new CategoryFactory();
         private readonly IDialogFactory dialogFactory = new DialogFactory();
         private readonly IMessageBoxFactory messageBoxFactory = new MessageBoxFactory();
@@ -22,6 +24,7 @@ namespace Binder.Controllers
         private IDialog dataInput;
         private IForm activeForm;
         private IStorage activeStorage;
+        private IDataConverter dataConverter;
 
         public IList<ICategory> Categories
         {
@@ -59,12 +62,13 @@ namespace Binder.Controllers
             }
         }
 
-        public StandardController(IForm form, IStorage storage)
+        public StandardController(IForm form, IStorage storage, IDataConverter converter)
         {
             ActiveStorage = storage;
             ActiveForm = form;
             Categories = new List<ICategory>();
             DataInputDialog = dialogFactory.GetDialog(EDialog.StringInput);
+            dataConverter = converter;
 
             ActiveForm.SetController(this);
         }
@@ -124,8 +128,6 @@ namespace Binder.Controllers
                 Settings.Default.Categories.Add(addedCategory.Name);
                 Settings.Default.Save();
                 ActiveForm.AddCategoryToDisplay(addedCategory);
-
-                // TODO: Prepare storage access for new categories!
             }
             else
             {
@@ -225,8 +227,6 @@ namespace Binder.Controllers
 
         public void CloseApp()
         {
-            // TODO: Save data from all categories to storage.
-
             // Close all app's windows:
             foreach (Form appForm in Application.OpenForms)
             {
@@ -270,8 +270,6 @@ namespace Binder.Controllers
                 Settings.Default.Categories.Remove(selectedCategory.Name);
                 Settings.Default.Save();
                 Categories.Remove(selectedCategory);
-
-                // TODO: Remove category from storage!
             }
         }
 
@@ -391,7 +389,6 @@ namespace Binder.Controllers
             obj.Name = Resources.DefaultTaskCategoryName;
             obj.Tasks = new List<ITask>();
             Categories.Add(obj);
-            ActiveForm.AddCategoryToDisplay(obj);
 
             // Add extra tab for completed task list, but don't show it to user:
             obj = categoryFactory.GetCategory(ECategory.Standard);
@@ -405,11 +402,41 @@ namespace Binder.Controllers
                 obj = categoryFactory.GetCategory(ECategory.Standard);
                 obj.Name = item;
                 obj.Tasks = new List<ITask>();
-
-                // TODO: Storage should load tasks to this list.
-
                 Categories.Add(obj);
-                ActiveForm.AddCategoryToDisplay(obj);
+            }
+
+            // Load data from storage and convert it to ITask objects:
+            ActiveStorage.RefreshStorage(StorageRefreshMode.Load); // Load strings from storage,
+            var strings = (List<string>)ActiveStorage.LoadFromStorage();
+            var data = (List<ITask>)dataConverter.ToObject(taskFactory, strings);
+
+            // No data to load, loading complete.
+            if (data == null)
+                return;
+
+            // For each loaded task add correct tasks to categories:
+            foreach (ITask task in data)
+            {
+                if (task == null)
+                    continue;
+
+                if (task.Name == Settings.Default.DefaultXMLStorageSetting)
+                    continue;
+
+                var category = QueryCategory(task.Category);
+
+                if (category.Name == task.Category)
+                    category.Tasks.Add(task);
+            }
+
+            // Show categories to user:
+            // TODO: Add refresh display method to IForm.
+            foreach (ICategory category in Categories)
+            {
+                if (category.Name == Resources.CompletedTaskListText)
+                    continue;
+
+                ActiveForm.AddCategoryToDisplay(category);
             }
         }
 

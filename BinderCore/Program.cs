@@ -2,6 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Binder.Controllers;
+using Binder.Data;
+using Binder.Data.Storage.Files;
+using Binder.Properties;
 using Binder.UI;
 using Binder.UI.MessageBoxes;
 
@@ -23,7 +26,9 @@ namespace Binder
             // Configure main logic:
             var factory = new MessageBoxFactory();
             var mainForm = new DataGridViewMain();
-            var controller = new StandardController(mainForm, null);
+            var storage = new FileStorageManager(new StandardFileSystemAccess(), Settings.Default.DefaultCategoryFileDirectory);
+            var converter = new XMLDataConverter();
+            var controller = new StandardController(mainForm, storage, converter);
 
 #if !DEBUG
             try

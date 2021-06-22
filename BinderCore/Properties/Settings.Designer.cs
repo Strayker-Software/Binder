@@ -104,7 +104,7 @@ namespace Binder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("databases\\\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("databases\\")]
         public string DefaultDirectory {
             get {
                 return ((string)(this["DefaultDirectory"]));
@@ -116,7 +116,7 @@ namespace Binder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("databases\\\\Page1.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("databases\\database.xml")]
         public string DefaultCategoryFileDirectory {
             get {
                 return ((string)(this["DefaultCategoryFileDirectory"]));
@@ -128,7 +128,7 @@ namespace Binder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\'1.0\' encoding=\'utf-8\'?>\\n<Storage>\\n</Storage>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>")]
         public string DefaultXMLStorageSetting {
             get {
                 return ((string)(this["DefaultXMLStorageSetting"]));

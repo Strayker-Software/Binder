@@ -23,18 +23,18 @@ namespace Binder.UI
         {
             InitializeComponent();
             // TODO: Move this instructions to IDE.
-#if DEBUG
-            DevLabel.Text = string.Format(Resources.DebugBuildMessage, Application.ProductVersion);
-            DevLabel.Visible = true;
-            Settings.Default.Reset();
-            foreach (string x in Directory.GetFiles(Settings.Default.DefaultDirectory))
-            {
-                File.Delete(x);
-            }
-            var stream = File.CreateText(Settings.Default.DefaultCategoryFileDirectory);
-            stream.Write(Settings.Default.DefaultXMLStorageSetting);
-            stream.Close();
-#endif
+//#if DEBUG
+            //DevLabel.Text = string.Format(Resources.DebugBuildMessage, Application.ProductVersion);
+            //DevLabel.Visible = true;
+            //Settings.Default.Reset();
+            //foreach (string x in Directory.GetFiles(Settings.Default.DefaultDirectory))
+            //{
+            //    File.Delete(x);
+            //}
+            //var stream = File.CreateText(Settings.Default.DefaultCategoryFileDirectory);
+            //stream.Write(Settings.Default.DefaultXMLStorageSetting);
+            //stream.Close();
+//#endif
 
             // Set localisation texts:
             Text = ResourceMainForm.FormTitle;
