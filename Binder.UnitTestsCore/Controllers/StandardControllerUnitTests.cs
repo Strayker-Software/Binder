@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Binder.Controllers;
+using Binder.Data;
 using Binder.Data.Storage;
 using Binder.Task;
 using Binder.UI;
@@ -27,7 +28,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Fields_CategoriesFieldSetProperly()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Verify:
             Assert.IsTrue(obj.Categories != null);
         }
@@ -36,7 +37,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Fields_StorageFieldSetProperly()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Verify:
             Assert.IsTrue(obj.ActiveStorage != null);
         }
@@ -45,7 +46,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Fields_FormFieldSetProperly()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Verify:
             Assert.IsTrue(obj.ActiveForm != null);
         }
@@ -54,7 +55,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Fields_DataInputDialogSetProperly()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Verify:
             Assert.IsTrue(obj.DataInputDialog != null);
         }
@@ -66,7 +67,7 @@ namespace Binder.UnitTests.Controllers
             var nameTask = "Task";
             var nameCategory = "Category";
             var list = new List<ITask>();
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var mockTask = new Mock<ITask>();
             var mockCategory = new Mock<ICategory>();
             mockTask.Setup(x => x.Name).Returns(nameTask);
@@ -86,7 +87,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var name = "Category";
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var mock = new Mock<ICategory>();
             mock.Setup(x => x.Name).Returns(name);
             obj.Categories.Add(mock.Object);
@@ -102,7 +103,8 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Methods_LoadMethodSetsCompletedTasksCategoryProperly(int checkIndex, string categoryName)
         {
             // Prepare:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var storageMock = new Mock<IStorage>();
+            var obj = new StandardController(new Mock<IForm>().Object, storageMock.Object, new Mock<IDataConverter>().Object);
             var categoryMock = new Mock<ICategory>();
             categoryMock.Setup(x => x.Name).Returns(categoryName);
             categoryMock.Setup(x => x.Tasks).Returns(new List<ITask>());
@@ -118,7 +120,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Methods_LoadMethodSetsAllCategoriesFromSettings()
         {
             // Prepare:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Execute:
             obj.LoadApp();
             // Verify:
@@ -130,7 +132,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var category = new Mock<ICategory>();
             form.Setup(x => x.SetCurrentCategorySelected(category.Object));
             // Execute:
@@ -144,7 +146,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var category = new Mock<ITask>();
             form.Setup(x => x.SetCurrentTaskSelected(category.Object));
             // Execute:
@@ -160,7 +162,7 @@ namespace Binder.UnitTests.Controllers
             // Prepare:
             var name = "Completed";
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var category = new Mock<ICategory>();
             category.Setup(x => x.Name).Returns(name);
             category.Setup(x => x.Tasks).Returns(new List<ITask>());
@@ -178,7 +180,7 @@ namespace Binder.UnitTests.Controllers
             // Prepare:
             var name = "Completed";
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var category = new Mock<ICategory>();
             category.Setup(x => x.Name).Returns(name);
             category.Setup(x => x.Tasks).Returns(new List<ITask>());
@@ -194,7 +196,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Methods_SaveCurrentCategoryPerformed()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             obj.SaveCategory();
         }
 
@@ -203,7 +205,7 @@ namespace Binder.UnitTests.Controllers
         public void Controller_Methods_SaveAllCategoriesPerformed()
         {
             // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             obj.SaveAll();
         }
 
@@ -213,7 +215,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Execute:
             obj.ShowSettings();
             // Verify:
@@ -226,7 +228,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             // Execute:
             obj.ShowAboutWindow();
             // Verify:
@@ -239,7 +241,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var storage = new Mock<IStorage>();
-            var obj = new StandardController(new Mock<IForm>().Object, storage.Object);
+            var obj = new StandardController(new Mock<IForm>().Object, storage.Object, new Mock<IDataConverter>().Object);
             var newStorage = new Mock<IStorage>();
             // Execute:
             obj.LoadNewSettings(newStorage.Object);
@@ -253,7 +255,7 @@ namespace Binder.UnitTests.Controllers
         {
             // Prepare:
             var form = new Mock<IForm>();
-            var obj = new StandardController(form.Object, new Mock<IStorage>().Object);
+            var obj = new StandardController(form.Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
             var newForm = new Mock<IForm>();
             // Execute:
             obj.LoadNewSettings(newForm.Object);

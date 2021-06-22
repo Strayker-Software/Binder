@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Binder.Data;
 using Binder.Task;
+using Binder.Task.Factories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -93,7 +94,12 @@ namespace Binder.UnitTests.Data
             var obj = new XMLDataConverter();
             var data = "<task Name=\"TaskName\" Description=\"TaskDescription\" StartDate=\"01.01.2021 00:00:00\" EndDate=\"02.01.2021 00:00:05\" Complete=\"True\" Category=\"TaskCategory\" />";
             var taskMock = new Mock<ITask>();
-            taskMock.SetupAllProperties();
+            taskMock.Setup(x => x.Name).Returns("TaskName");
+            taskMock.Setup(x => x.Description).Returns("TaskDescription");
+            taskMock.Setup(x => x.StartDate).Returns(DateTime.Parse("2021-01-01 00:00:00"));
+            taskMock.Setup(x => x.EndDate).Returns(DateTime.Parse("2021-01-02 00:00:05"));
+            taskMock.Setup(x => x.Complete).Returns(true);
+            taskMock.Setup(x => x.Category).Returns("TaskCategory");
             var listString = new List<string>
             {
                 data,
@@ -106,8 +112,10 @@ namespace Binder.UnitTests.Data
                 taskMock.Object,
                 taskMock.Object
             };
+            var factoryMock = new Mock<ITaskFactory>();
+            factoryMock.Setup(x => x.GetTask(ETask.Standard)).Returns(taskMock.Object);
             // Execute:
-            var result = obj.ToObject(taskMock.Object, listString);
+            var result = obj.ToObject(factoryMock.Object, listString);
             // Verify:
             CollectionAssert.AreEqual(listTask, (List<ITask>)result);
         }
@@ -128,7 +136,7 @@ namespace Binder.UnitTests.Data
                 data
             };
             // Execute:
-            var result = obj.ToObject(taskMock.Object, listString);
+            var result = obj.ToObject(new Mock<ITaskFactory>().Object, listString);
             // Verify:
             CollectionAssert.Contains((List<ITask>)result, null);
         }
