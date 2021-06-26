@@ -4,6 +4,16 @@
         <name>Binder</name>
     </assembly>
     <members>
+        <member name="M:Binder.Controllers.StandardController.SaveCategory">
+            <summary>
+            Saves active category to storage.
+            </summary>
+        </member>
+        <member name="M:Binder.Controllers.StandardController.SaveAll">
+            <summary>
+            Saves all categories to storage.
+            </summary>
+        </member>
         <member name="T:Binder.Data.IDataConverter">
             <summary>
             Interface for data converting classes.
@@ -117,14 +127,15 @@
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
             <remarks>Warning: Can overload existing data at given index.</remarks>
         </member>
-        <member name="M:Binder.Data.Storage.Files.FileStorageManager.SaveToStorage(System.Collections.Generic.IList{System.String})">
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.SaveToStorage(Binder.Data.Storage.StorageSaveMode,System.Collections.Generic.IList{System.String})">
             <summary>
-            Saves all given data to storage memory.
+            Saves all given data to storage memory, depending on option specified.
             </summary>
+            <param name="mode"><see cref="T:Binder.Data.Storage.StorageSaveMode"/> option for specifing operation to perform.</param>
             <param name="data"><see cref="!:IList&lt;string&gt;"/> object filled with <see cref="T:System.String"/> objects.</param>
             <exception cref="T:System.ArgumentException"></exception>
         </member>
-        <member name="M:Binder.Data.Storage.Files.FileStorageManager.RefreshStorage(Binder.Data.Storage.StorageRefreshMode)">
+        <member name="M:Binder.Data.Storage.Files.FileStorageManager.FlushStorage(Binder.Data.Storage.StorageFlushMode)">
             <summary>
             Reload data from storage to memory and from memory to storage, depending on argument.
             </summary>
@@ -183,19 +194,34 @@
         <member name="M:Binder.Data.Storage.Files.StandardFileSystemAccess.GetFileStreamWriter(System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Binder.Data.Storage.StorageRefreshMode">
+        <member name="T:Binder.Data.Storage.StorageFlushMode">
             <summary>
-            Enumeration for setting refresh mode of storage.
+            Enumeration for setting flush mode of storage.
             </summary>
         </member>
-        <member name="F:Binder.Data.Storage.StorageRefreshMode.Save">
+        <member name="F:Binder.Data.Storage.StorageFlushMode.Save">
             <summary>
             Saving mode - memory to storage.
             </summary>
         </member>
-        <member name="F:Binder.Data.Storage.StorageRefreshMode.Load">
+        <member name="F:Binder.Data.Storage.StorageFlushMode.Load">
             <summary>
             Loading mode - storage to memory.
+            </summary>
+        </member>
+        <member name="T:Binder.Data.Storage.StorageSaveMode">
+            <summary>
+            Enumeration for setting saving mode for storage buffer interaction.
+            </summary>
+        </member>
+        <member name="F:Binder.Data.Storage.StorageSaveMode.Overwrite">
+            <summary>
+            Overwrite existing data in buffer.
+            </summary>
+        </member>
+        <member name="F:Binder.Data.Storage.StorageSaveMode.Append">
+            <summary>
+            Append new data after old ones in buffer.
             </summary>
         </member>
         <member name="T:Binder.Data.Storage.IStorage">
@@ -208,6 +234,11 @@
             Location property for storage access.
             </summary>
         </member>
+        <member name="P:Binder.Data.Storage.IStorage.Type">
+            <summary>
+            Type of storage manager.
+            </summary>
+        </member>
         <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.Int32,System.String)">
             <summary>
             Saves given string to storage, at given index.
@@ -215,7 +246,13 @@
             <param name="index">Integer for index of data array in storage.</param>
             <param name="data">String object with data to save.</param>
         </member>
-        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.Collections.Generic.IList{System.String})">
+        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(System.String)">
+            <summary>
+            Appends given data to the end of storage buffer.
+            </summary>
+            <param name="data"><see cref="T:System.String"/> object with data to append.</param>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.SaveToStorage(Binder.Data.Storage.StorageSaveMode,System.Collections.Generic.IList{System.String})">
             <summary>
             Method to perform save operation on many data strings.
             </summary>
@@ -233,11 +270,28 @@
             </summary>
             <returns><see cref="!:IList&lt;string&gt;"/>, containing all data from selected storage.</returns>
         </member>
-        <member name="M:Binder.Data.Storage.IStorage.RefreshStorage(Binder.Data.Storage.StorageRefreshMode)">
+        <member name="M:Binder.Data.Storage.IStorage.ClearStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.RemoveFromStorage(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.RemoveFromStorage(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Binder.Data.Storage.IStorage.FlushStorage(Binder.Data.Storage.StorageFlushMode)">
             <summary>
             Method to reload data from or to storage.
             </summary>
-            <param name="mode"><see cref="T:Binder.Data.Storage.StorageRefreshMode"/> option, specifying operation to perform.</param>
+            <param name="mode"><see cref="T:Binder.Data.Storage.StorageFlushMode"/> option, specifying operation to perform.</param>
         </member>
         <member name="T:Binder.Data.XMLDataConverter">
             <summary>
@@ -635,17 +689,17 @@
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmCategoryDeleteMessage">
             <summary>
-            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undo..
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undone..
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmProgramExit">
             <summary>
-            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to exit Binder?.
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to exit Binder? Unsaved data will be lost..
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmTaskDeleteMessage">
             <summary>
-            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undo..
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undone..
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.DebugBuildMessage">
@@ -666,6 +720,16 @@
         <member name="P:Binder.Properties.Resources.EditedTaskStillTheSameErrorMessage">
             <summary>
             Wyszukuje zlokalizowany ciąg podobny do ciągu Nothing was changed. Edition aborted..
+            </summary>
+        </member>
+        <member name="P:Binder.Properties.Resources.FileStorageNotSupportingSingleSaveMessage">
+            <summary>
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Saving to file storage in Binder is not supporting single category saving, to save computer&apos;s disks liveliness..
+            </summary>
+        </member>
+        <member name="P:Binder.Properties.Resources.NoCategoryFoundErrorMessage">
+            <summary>
+            Wyszukuje zlokalizowany ciąg podobny do ciągu There is no category in database named {0} for task {1}. This task will not be loaded by Binder. Please verify task&apos;s category name in storage or add new category via Binder..
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.NoDataProvidedErrorText">

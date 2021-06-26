@@ -81,12 +81,12 @@ namespace Binder.UI
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //controller.SaveCategory();
+            controller.SaveCategory();
         }
 
         private void SaveAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //controller.SaveAll();
+            controller.SaveAll();
         }
 
         private void TabController_DoubleClick(object sender, EventArgs e)

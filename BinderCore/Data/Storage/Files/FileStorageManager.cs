@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Binder.Properties;
 
 namespace Binder.Data.Storage.Files
 {
@@ -33,6 +34,11 @@ namespace Binder.Data.Storage.Files
             }
         }
 
+        public StorageType Type
+        {
+            get { return StorageType.File; }
+        }
+
         /// <summary>
         /// Constructor for making sure, that <see cref="FileStorageManager"/> always has location set.
         /// </summary>
@@ -47,7 +53,7 @@ namespace Binder.Data.Storage.Files
                 Location = path;
             else throw new ArgumentException("Error with path provided: empty or invalid.");
 
-            StorageData = new List<string>();
+            ClearStorage();
         }
 
         /// <summary>
@@ -99,20 +105,58 @@ namespace Binder.Data.Storage.Files
             }
         }
 
+        public void SaveToStorage(string data)
+        {
+            if (string.IsNullOrEmpty(data))
+                throw new ArgumentException("Value can't be null or empty.");
+
+            StorageData.Add(data);
+        }
+
         /// <summary>
-        /// Saves all given data to storage memory.
+        /// Saves all given data to storage memory, depending on option specified.
         /// </summary>
+        /// <param name="mode"><see cref="StorageSaveMode"/> option for specifing operation to perform.</param>
         /// <param name="data"><see cref="IList{string}"/> object filled with <see cref="string"/> objects.</param>
         /// <exception cref="ArgumentException"></exception>
-        public void SaveToStorage(IList<string> data)
+        public void SaveToStorage(StorageSaveMode mode, IList<string> data)
         {
-            StorageData = (List<string>)data ?? throw new ArgumentException("Value can't be null.");
+            if (data == null || data.Count == 0)
+                throw new ArgumentException("Data list can't be null or empty.");
 
-            if (data.Count == 0)
+            switch (mode)
             {
-                StorageData = new List<string>();
-                throw new ArgumentException("Data list can't be empty.");
+                case StorageSaveMode.Overwrite:
+                    ClearStorage();
+                    StorageData.AddRange(data);
+
+                    break;
+
+                case StorageSaveMode.Append:
+                    StorageData.AddRange(data);
+
+                    break;
+
+                case StorageSaveMode.None: break;
             }
+        }
+
+        public void ClearStorage()
+        {
+            StorageData = new List<string>
+            {
+                Settings.Default.DefaultStorageSetting
+            };
+        }
+
+        public void RemoveFromStorage(int index)
+        {
+
+        }
+
+        public void RemoveFromStorage(string data)
+        {
+
         }
 
         /// <summary>
@@ -122,11 +166,11 @@ namespace Binder.Data.Storage.Files
         /// <exception cref="FileNotFoundException"></exception>
         /// <exception cref="DirectoryNotFoundException"></exception>
         /// <exception cref="IOException"></exception>
-        public void RefreshStorage(StorageRefreshMode mode)
+        public void FlushStorage(StorageFlushMode mode)
         {
             switch (mode)
             {
-                case StorageRefreshMode.Save:
+                case StorageFlushMode.Save:
                     fileSystemAccess.Delete((string)Location);
 
                     using (var stream = fileSystemAccess.GetFileStreamWriter((string)Location))
@@ -137,8 +181,8 @@ namespace Binder.Data.Storage.Files
 
                     break;
 
-                case StorageRefreshMode.Load:
-                    StorageData = new List<string>();
+                case StorageFlushMode.Load:
+                    ClearStorage();
 
                     using (var stream = fileSystemAccess.GetFileStreamReader((string)Location))
                     {
@@ -152,7 +196,7 @@ namespace Binder.Data.Storage.Files
 
                     break;
 
-                case StorageRefreshMode.None: break;
+                case StorageFlushMode.None: break;
             }
         }
     }

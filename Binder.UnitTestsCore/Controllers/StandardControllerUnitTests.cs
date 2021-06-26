@@ -192,21 +192,58 @@ namespace Binder.UnitTests.Controllers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException), "Rise exception, this code is not ready yet.")]
+        [ExpectedException(typeof(NotImplementedException), "Rise exception, only file save is now available.")]
         public void Controller_Methods_SaveCurrentCategoryPerformed()
         {
-            // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
+            // Prepare:
+            var storageMock = new Mock<IStorage>();
+            storageMock.Setup(x => x.Type).Returns(StorageType.Undefined);
+            var obj = new StandardController(new Mock<IForm>().Object, storageMock.Object, new Mock<IDataConverter>().Object);
+            // Execute:
             obj.SaveCategory();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException), "Rise exception, this code is not ready yet.")]
         public void Controller_Methods_SaveAllCategoriesPerformed()
         {
-            // Prepare and Execute:
-            var obj = new StandardController(new Mock<IForm>().Object, new Mock<IStorage>().Object, new Mock<IDataConverter>().Object);
+            // Prepare:
+            // Fake categories:
+            var taskMock = new Mock<ITask>();
+            taskMock.SetupGet(x => x.Name).Returns("abc");
+            var taskMock1 = new Mock<ITask>();
+            taskMock1.SetupGet(x => x.Name).Returns("def");
+            var taskMock2 = new Mock<ITask>();
+            taskMock2.SetupGet(x => x.Name).Returns("ghi");
+
+            // Fake list with tasks:
+            var taskList = new List<ITask>
+            { 
+                taskMock.Object,
+                taskMock1.Object,
+                taskMock2.Object
+            };
+            // Fake list of converted categories:
+            var stringList = new List<string>
+            {
+                "<task Name=\"abc\" Description=\"\" StartDate=\"\" EndDate=\"\" Complete=\"\" Category=\"\" />",
+                "<task Name=\"def\" Description=\"\" StartDate=\"\" EndDate=\"\" Complete=\"\" Category=\"\" />",
+                "<task Name=\"ghi\" Description=\"\" StartDate=\"\" EndDate=\"\" Complete=\"\" Category=\"\" />"
+            };
+
+            var storageMock = new Mock<IStorage>();
+            var dataConverterMock = new Mock<IDataConverter>();
+            dataConverterMock.Setup(x => x.ToObject(taskList)).Returns(stringList);
+            var obj = new StandardController(new Mock<IForm>().Object, storageMock.Object, dataConverterMock.Object);
+            var categoryMock = new Mock<ICategory>();
+            categoryMock.SetupAllProperties();
+            obj.Categories.Add(categoryMock.Object);
+            obj.Categories[0].Tasks = taskList;
+            // Execute:
             obj.SaveAll();
+            // Verify:
+            storageMock.Verify(x => x.SaveToStorage(StorageSaveMode.Overwrite, stringList), Times.Once);
+            storageMock.Verify(x => x.FlushStorage(StorageFlushMode.Save), Times.Once);
+            dataConverterMock.Verify(x => x.ToObject(taskList), Times.Once);
         }
 
         [Ignore]

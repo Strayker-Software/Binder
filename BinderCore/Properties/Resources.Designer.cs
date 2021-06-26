@@ -88,7 +88,7 @@ namespace Binder.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undo..
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undone..
         /// </summary>
         internal static string ConfirmCategoryDeleteMessage {
             get {
@@ -97,7 +97,7 @@ namespace Binder.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to exit Binder?.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to exit Binder? Unsaved data will be lost..
         /// </summary>
         internal static string ConfirmProgramExit {
             get {
@@ -106,7 +106,7 @@ namespace Binder.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undo..
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undone..
         /// </summary>
         internal static string ConfirmTaskDeleteMessage {
             get {
@@ -147,6 +147,24 @@ namespace Binder.Properties {
         internal static string EditedTaskStillTheSameErrorMessage {
             get {
                 return ResourceManager.GetString("EditedTaskStillTheSameErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Saving to file storage in Binder is not supporting single category saving, to save computer&apos;s disks liveliness..
+        /// </summary>
+        internal static string FileStorageNotSupportingSingleSaveMessage {
+            get {
+                return ResourceManager.GetString("FileStorageNotSupportingSingleSaveMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu There is no category in database named {0} for task {1}. This task will not be loaded by Binder. Please verify task&apos;s category name in storage or add new category via Binder..
+        /// </summary>
+        internal static string NoCategoryFoundErrorMessage {
+            get {
+                return ResourceManager.GetString("NoCategoryFoundErrorMessage", resourceCulture);
             }
         }
         

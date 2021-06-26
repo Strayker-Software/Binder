@@ -406,7 +406,7 @@ namespace Binder.Controllers
             }
 
             // Load data from storage and convert it to ITask objects:
-            ActiveStorage.RefreshStorage(StorageRefreshMode.Load); // Load strings from storage,
+            ActiveStorage.FlushStorage(StorageFlushMode.Load); // Load strings from storage,
             var strings = (List<string>)ActiveStorage.LoadFromStorage();
             var data = (List<ITask>)dataConverter.ToObject(taskFactory, strings);
 
@@ -417,16 +417,36 @@ namespace Binder.Controllers
             // For each loaded task add correct tasks to categories:
             foreach (ITask task in data)
             {
-                if (task == null)
+                // XML header or error? Just skip it.
+                if (task == null || task.Name == Settings.Default.DefaultStorageSetting)
                     continue;
 
-                if (task.Name == Settings.Default.DefaultXMLStorageSetting)
-                    continue;
+                // Make sure completed tasks will land on Completed list:
+                if(task.Complete)
+                {
+                    var category = QueryCategory(Resources.CompletedTaskListText);
 
-                var category = QueryCategory(task.Category);
-
-                if (category.Name == task.Category)
                     category.Tasks.Add(task);
+                }
+                else
+                {
+                    var category = QueryCategory(task.Category);
+
+                    try
+                    {
+                        category.Tasks.Add(task);
+                    }
+                    catch (NullReferenceException)
+                    { // React if there is no category for loaded task:
+                        messageBoxFactory.ShowMessageBox(EMessageBox.Standard,
+                            string.Format(Resources.NoCategoryFoundErrorMessage, task.Category, task.Name),
+                            Settings.Default.AppName,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        continue;
+                    }
+                }
             }
 
             // Show categories to user:
@@ -515,14 +535,43 @@ namespace Binder.Controllers
                     MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Saves active category to storage.
+        /// </summary>
         public void SaveCategory()
         {
-            throw new NotImplementedException();
+            if(ActiveStorage.Type != StorageType.File)
+            {
+                // To be implemented, when other storage access options will be available.
+                throw new NotImplementedException();
+            }
+            else
+            {
+                messageBoxFactory.ShowMessageBox(
+                    EMessageBox.Standard,
+                    Resources.FileStorageNotSupportingSingleSaveMessage,
+                    Settings.Default.AppName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
+        /// <summary>
+        /// Saves all categories to storage.
+        /// </summary>
         public void SaveAll()
         {
-            throw new NotImplementedException();
+            // Prepare strings with data for storage class:
+            var list = new List<string>();
+            foreach (ICategory category in Categories)
+            {
+                var strings = dataConverter.ToObject(category.Tasks);
+                list.AddRange(strings);
+            }
+
+            // Perform save to file system:
+            ActiveStorage.SaveToStorage(StorageSaveMode.Overwrite, list);
+            ActiveStorage.FlushStorage(StorageFlushMode.Save);
         }
 
         public void LoadNewSettings(IStorage newStorage)

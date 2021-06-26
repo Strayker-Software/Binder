@@ -19,7 +19,7 @@
       <Value Profile="(Default)">StandardController</Value>
     </Setting>
     <Setting Name="Storage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">XMLStorageManager</Value>
+      <Value Profile="(Default)">FileStorageManager</Value>
     </Setting>
     <Setting Name="ShowExitConfirmation" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -30,7 +30,7 @@
     <Setting Name="DefaultCategoryFileDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">databases\database.xml</Value>
     </Setting>
-    <Setting Name="DefaultXMLStorageSetting" Type="System.String" Scope="User">
+    <Setting Name="DefaultStorageSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;</Value>
     </Setting>
     <Setting Name="XMLTaskFormat" Type="System.String" Scope="User">

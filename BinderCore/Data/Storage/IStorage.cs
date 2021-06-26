@@ -2,10 +2,17 @@
 
 namespace Binder.Data.Storage
 {
+    public enum StorageType
+    {
+        File,
+        DB,
+        Undefined
+    }
+
     /// <summary>
-    /// Enumeration for setting refresh mode of storage.
+    /// Enumeration for setting flush mode of storage.
     /// </summary>
-    public enum StorageRefreshMode
+    public enum StorageFlushMode
     {
         /// <summary>
         /// Saving mode - memory to storage.
@@ -15,6 +22,22 @@ namespace Binder.Data.Storage
         /// Loading mode - storage to memory.
         /// </summary>
         Load,
+        None
+    }
+
+    /// <summary>
+    /// Enumeration for setting saving mode for storage buffer interaction.
+    /// </summary>
+    public enum StorageSaveMode
+    {
+        /// <summary>
+        /// Overwrite existing data in buffer.
+        /// </summary>
+        Overwrite,
+        /// <summary>
+        /// Append new data after old ones in buffer.
+        /// </summary>
+        Append,
         None
     }
 
@@ -33,6 +56,14 @@ namespace Binder.Data.Storage
         }
 
         /// <summary>
+        /// Type of storage manager.
+        /// </summary>
+        StorageType Type
+        {
+            get;
+        }
+
+        /// <summary>
         /// Saves given string to storage, at given index.
         /// </summary>
         /// <param name="index">Integer for index of data array in storage.</param>
@@ -40,9 +71,15 @@ namespace Binder.Data.Storage
         void SaveToStorage(int index, string data);
 
         /// <summary>
+        /// Appends given data to the end of storage buffer.
+        /// </summary>
+        /// <param name="data"><see cref="string"/> object with data to append.</param>
+        void SaveToStorage(string data);
+
+        /// <summary>
         /// Method to perform save operation on many data strings.
         /// </summary>
-        void SaveToStorage(IList<string> data);
+        void SaveToStorage(StorageSaveMode mode, IList<string> data);
 
         /// <summary>
         /// Loads data from given index to string object.
@@ -58,9 +95,26 @@ namespace Binder.Data.Storage
         IList<string> LoadFromStorage();
 
         /// <summary>
+        /// 
+        /// </summary>
+        void ClearStorage();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        void RemoveFromStorage(int index);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        void RemoveFromStorage(string data);
+
+        /// <summary>
         /// Method to reload data from or to storage.
         /// </summary>
-        /// <param name="mode"><see cref="StorageRefreshMode"/> option, specifying operation to perform.</param>
-        void RefreshStorage(StorageRefreshMode mode);
+        /// <param name="mode"><see cref="StorageFlushMode"/> option, specifying operation to perform.</param>
+        void FlushStorage(StorageFlushMode mode);
     }
 }

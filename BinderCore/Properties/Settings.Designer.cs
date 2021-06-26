@@ -80,7 +80,7 @@ namespace Binder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("XMLStorageManager")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FileStorageManager")]
         public string Storage {
             get {
                 return ((string)(this["Storage"]));
@@ -129,12 +129,12 @@ namespace Binder.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>")]
-        public string DefaultXMLStorageSetting {
+        public string DefaultStorageSetting {
             get {
-                return ((string)(this["DefaultXMLStorageSetting"]));
+                return ((string)(this["DefaultStorageSetting"]));
             }
             set {
-                this["DefaultXMLStorageSetting"] = value;
+                this["DefaultStorageSetting"] = value;
             }
         }
         

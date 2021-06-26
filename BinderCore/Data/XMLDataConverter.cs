@@ -68,7 +68,7 @@ namespace Binder.Data
         {
             if(CheckIfXmlDeclaration(data))
             {
-                dest.Name = Settings.Default.DefaultXMLStorageSetting;
+                dest.Name = Settings.Default.DefaultStorageSetting;
                 return dest;
             }
 
