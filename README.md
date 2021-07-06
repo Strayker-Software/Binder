@@ -1,17 +1,17 @@
 # Binder
 
-.NET Core Windows Forms app for TODO task managment. To create task are needed only three parts of data: task description, deadline date with hour and if task should be done today. Simple interface can display many tabpages with tables.
+Cross-platform solution for task-oriented data management, supporting Windows, Linux, macOS, Android and iOS. Basic tasks are built up with name, start date and time and category, for organising your tasks. Every tab in UI represents single category. You can sync data via centralised server or between devices via LAN connection. Binder is great to manage your projects pages on GitHub Projects - notes, columns made easy.
 
 ![binder.png](binder.png)
 
 # Usage of Binder
 
-Make sure you have installed .NET Core at least 3.1.
-Than just download the newest version from [Release](https://github.com/StraykerPL/Binder/releases) page. For detailed info look into user's documentation.
+Make sure you have installed .NET Core Runtime at least version 3.1.
+Than just download the newest stable version from [Release](https://github.com/StraykerPL/Binder/releases) page. For detailed info look into user's documentation.
 
-# TODO
+# Disclaimer about Description
 
-[List](https://github.com/StraykerPL/Binder/blob/master/docs/TODO.md) of what I would like to be done in Binder and it's repository!
+For active state of development, there's only one, Windows-based version of Binder. All sync options are planned on future development. GitHub access is not yet available. Description is prepared for final project state - version 1.0.0 of all clients and server solution.
 
 # Contact
 
