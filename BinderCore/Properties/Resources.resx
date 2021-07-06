@@ -127,13 +127,13 @@
     <value>Completed</value>
   </data>
   <data name="ConfirmCategoryDeleteMessage" xml:space="preserve">
-    <value>Are you sure you want to delete selected category? This operation can't be undone.</value>
+    <value>Are you sure you want to delete selected category?</value>
   </data>
   <data name="ConfirmProgramExit" xml:space="preserve">
     <value>Are you sure you want to exit Binder? Unsaved data will be lost.</value>
   </data>
   <data name="ConfirmTaskDeleteMessage" xml:space="preserve">
-    <value>Are you sure you want to delete selected task on current category? This operation can't be undone.</value>
+    <value>Are you sure you want to delete selected task on current category?</value>
   </data>
   <data name="DebugBuildMessage" xml:space="preserve">
     <value>Binder v{0}  - Strayker Software Development Build - Use only for dev operations</value>

@@ -88,7 +88,7 @@ namespace Binder.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undone..
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category?.
         /// </summary>
         internal static string ConfirmCategoryDeleteMessage {
             get {
@@ -106,7 +106,7 @@ namespace Binder.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undone..
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category?.
         /// </summary>
         internal static string ConfirmTaskDeleteMessage {
             get {

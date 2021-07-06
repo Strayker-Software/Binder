@@ -689,7 +689,7 @@
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmCategoryDeleteMessage">
             <summary>
-            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category? This operation can&apos;t be undone..
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected category?.
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmProgramExit">
@@ -699,7 +699,7 @@
         </member>
         <member name="P:Binder.Properties.Resources.ConfirmTaskDeleteMessage">
             <summary>
-            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category? This operation can&apos;t be undone..
+            Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete selected task on current category?.
             </summary>
         </member>
         <member name="P:Binder.Properties.Resources.DebugBuildMessage">

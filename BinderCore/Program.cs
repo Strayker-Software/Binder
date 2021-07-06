@@ -29,6 +29,9 @@ namespace Binder
             var storage = new FileStorageManager(new StandardFileSystemAccess(), Settings.Default.DefaultCategoryFileDirectory);
             var converter = new XMLDataConverter();
             var controller = new StandardController(mainForm, storage, converter);
+            // TODO: There should be error box informing of error in loading tasks.
+            // TODO: Binder Debug Mode built into app?
+            // TODO: Damaged date and time info in loading process is being replaced by DateTime.Now values.
 
 #if !DEBUG
             try
