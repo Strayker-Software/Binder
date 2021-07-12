@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <task Name="TaskName2" Description="TaskDescription" StartDate="01.01.2021 00:00:00" EndDate="02.01.2021 00:00:05" Complete="False" Category="Default" />
 <task Name="TaskNameNoDescription" Description="" StartDate="01.01.2021 00:00:00" EndDate="02.01.2021 00:00:05" Complete="False" Category="Default" />
-<task Name="TaskNameCompleted" Description="TaskDescription" StartDate="01.01.2021 00:00:00" EndDate="02.01.2021 00:00:05" Complete="True" Category="Default" />
+<task Name="TaskNameWrongEndDate" Description="TaskDescription" StartDate="01.01.2021 00:00:00" EndDate="01.01.0001 00:00:00" Complete="False" Category="Default" />

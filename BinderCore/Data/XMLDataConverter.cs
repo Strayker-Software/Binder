@@ -84,7 +84,8 @@ namespace Binder.Data
                 dest.Name = xml.DocumentElement.GetAttribute(nameof(dest.Name));
                 dest.Description = xml.DocumentElement.GetAttribute(nameof(dest.Description));
                 dest.StartDate = DateTime.Parse(xml.DocumentElement.GetAttribute(nameof(dest.StartDate)));
-                dest.EndDate = DateTime.Parse(xml.DocumentElement.GetAttribute(nameof(dest.EndDate)));
+                if(xml.DocumentElement.GetAttribute(nameof(dest.EndDate)) != DateTime.MinValue.ToString())
+                    dest.EndDate = DateTime.Parse(xml.DocumentElement.GetAttribute(nameof(dest.EndDate)));
                 dest.Complete = bool.Parse(xml.DocumentElement.GetAttribute(nameof(dest.Complete)));
                 dest.Category = xml.DocumentElement.GetAttribute(nameof(dest.Category));
             }
@@ -125,7 +126,8 @@ namespace Binder.Data
         {
             var xml = CheckXMLFormat(Settings.Default.XMLTaskFormat);
 
-            if (string.IsNullOrEmpty(data.Name)) return null;
+            if (string.IsNullOrEmpty(data.Name))
+                return null;
 
             xml.DocumentElement.SetAttribute(nameof(data.Name), data.Name);
             xml.DocumentElement.SetAttribute(nameof(data.Description), data.Description);

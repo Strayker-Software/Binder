@@ -1,0 +1,5 @@
+C:\Users\Strayker\Desktop\Binder\Binder.exe
+C:\Users\Strayker\Desktop\Binder\Binder.dll
+C:\Users\Strayker\Desktop\Binder\Binder.deps.json
+C:\Users\Strayker\Desktop\Binder\Binder.runtimeconfig.json
+C:\Users\Strayker\Desktop\Binder\Binder.pdb

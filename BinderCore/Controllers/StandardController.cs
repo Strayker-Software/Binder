@@ -9,6 +9,7 @@ using Binder.UI;
 using Binder.UI.Dialog;
 using Binder.UI.MessageBoxes;
 using Binder.Data;
+using System.Text;
 
 namespace Binder.Controllers
 {
@@ -414,11 +415,19 @@ namespace Binder.Controllers
             if (data == null)
                 return;
 
+            var IsDamagedTask = false;
             // For each loaded task add correct tasks to categories:
             foreach (ITask task in data)
             {
-                // XML header or error? Just skip it.
-                if (task == null || task.Name == Settings.Default.DefaultStorageSetting)
+                // Is there error in loading task? Inform user.
+                if (task == null)
+                {
+                    IsDamagedTask = true;
+                    continue;
+                }
+
+                // XML header? Just skip it.
+                if (task.Name == Settings.Default.DefaultStorageSetting)
                     continue;
 
                 // Make sure completed tasks will land on Completed list:
@@ -447,6 +456,16 @@ namespace Binder.Controllers
                         continue;
                     }
                 }
+            }
+
+            if(IsDamagedTask)
+            {
+                // Inform user about all errors in loading process:
+                messageBoxFactory.ShowMessageBox(EMessageBox.Standard,
+                                string.Format("At least one task from storage is damaged and can't be loaded."),
+                                Settings.Default.AppName,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
 
             // Show categories to user:
