@@ -10,6 +10,3 @@ _Add more context to describe what changes did you do_
 
 _Links which provides to external materials_ <br/>
 [Example of link](www.google.com) 
-
-
-
