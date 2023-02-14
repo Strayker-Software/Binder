@@ -1,12 +1,22 @@
-﻿using Binder.Core.Models;
+﻿using Binder.Application.Models.Interfaces;
+using Binder.Infrastructure.Models.Interfaces;
 
 namespace Binder.Application.Services
 {
-    public class TestService
+    public class TestService : ITestService
     {
-        public string GetHelloMessage()
+        private readonly ITestRepository _repository;
+
+        public TestService(ITestRepository repository)
         {
-            return new TestData().HelloText;
+            _repository = repository;
+        }
+
+        public string GetFirstEntityName()
+        {
+            var data = _repository.GetBaseEntities().ToArray();
+
+            return data[0].Name;
         }
     }
 }

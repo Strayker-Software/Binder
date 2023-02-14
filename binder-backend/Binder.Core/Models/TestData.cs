@@ -1,12 +1,18 @@
 ﻿namespace Binder.Core.Models
 {
-    public class TestData
+    public class BaseEntity
     {
-        public string HelloText { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-        public TestData()
+        public BaseEntity()
         {
-            HelloText = "Hello! :)";
+            Name = "";
+        }
+
+        public BaseEntity(string name)
+        {
+            Name = name;
         }
     }
 }

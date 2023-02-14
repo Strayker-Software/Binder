@@ -1,15 +1,22 @@
-﻿using Binder.Application.Services;
+﻿using Binder.Application.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
     public class TestController
     {
+        private readonly ITestService _service;
+
+        public TestController(ITestService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
         [Route("hello")]
-        public string GetHelloText()
+        public ActionResult<string> GetHelloText()
         {
-            return new TestService().GetHelloMessage();
+            return _service.GetFirstEntityName();
         }
     }
 }
