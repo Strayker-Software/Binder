@@ -4,20 +4,30 @@
 
 ### Feature author
 
-## Author:
+Author:
+
+---
 
 ### Feature description
 
-## Feature description:
+Featureescription:
+
+---
 
 ### What should be the result
 
-## Result description:
+Result description:
+
+---
 
 ### Tips
 
-## Tips on what to pay more attention to when testing:
+Tips on what to pay more attention to when testing:
+
+---
 
 ### Requirements to run
 
-## Requirements:
+Requirements:
+
+---
