@@ -1,9 +1,9 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ""
-labels: ""
-assignees: ""
+name: Test Request
+about: Request to perform testing on dev/test environments.
+test: here describe shortly what is to be tested
+labels: testing
+assignees: StraykerPL https://github.com/StraykerPL
 ---
 
 # Test request
@@ -12,25 +12,28 @@ assignees: ""
 
 ### Feature author
 
-Author:
 
 ---
 
-### Feature description
+### Tickets involved
 
-Featureescription:
-
----
-
-### What should be the result
-
-Result description:
+  - ...
+  - ...
+  - ...
+  - ...
+  - ...
 
 ---
 
-### Tips
 
-Tips on what to pay more attention to when testing:
+### Reproduction steps (optional)
+
+How to reproduce eg. bug:    
+  1.     
+  2.    
+  3.    
+  4.    
+  5.    
 
 ---
 
