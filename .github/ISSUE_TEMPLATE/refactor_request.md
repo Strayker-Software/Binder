@@ -1,9 +1,10 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Refactor request
+about: Create a report to help us improve our code base
 title: ""
 labels: ""
-assignees: ""
+assignees: StraykerPL https://github.com/StraykerPL
+refactor: here describe request shortly
 ---
 
 # Refactor request
@@ -19,4 +20,4 @@ _File list to refactor_
 
 ### Reason of refactoring
 
-_improve the design, structure and implementation of software or improves code readability and reduces complexities or else_
+_improve the design, structure and implementation of software or improve code readability and reduces complexitiy etc._
