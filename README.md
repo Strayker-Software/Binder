@@ -1,11 +1,12 @@
 # Binder
 
 <p align="left">
-    <img src="https://img.shields.io/badge/Version%3A-1.0.0-brightgreen" alt="version_badge" width="120px" height="120px"/>
-    <img src="https://img.shields.io/badge/Coverage-0%25-lightgrey" alt="version_badge" width="120px" height="120px"/>
-    <img src="https://img.shields.io/badge/Platform-windows%20%7C%20macos%20%7C%20linux-lightgrey" alt="version_badge" width="120px" height="120px"/>
+    <img src="https://img.shields.io/badge/Version%3A-1.0.0-brightgreen" alt="version_badge" />
+    <img src="https://img.shields.io/badge/Coverage-0%25-lightgrey" alt="version_badge" />
+    <img src="https://img.shields.io/badge/Platform-windows%20%7C%20macos%20%7C%20linux-lightgrey" alt="version_badge" />
 </p>
-Cross-platform solution for **task-oriented data management**, supporting **Windows, Linux, macOS, Android and iOS**.  
+Cross-platform solution for <strong>task-oriented data management</strong>, supporting <strong>Windows, Linux, macOS, Android and iOS.</strong>     
+
 Basic tasks are built up with _name, start date, end time_ and _category_, for organising your tasks.
 Every tab in UI represents single category. You can sync data via centralised server or between devices via LAN connection.
 
