@@ -13,10 +13,9 @@ refactor: here describe request shortly
 
 _File list to refactor_
 
-1.
-2.
-3.
-4.
+ - ...
+ - ...
+ - ...
 
 ### Reason of refactoring
 
