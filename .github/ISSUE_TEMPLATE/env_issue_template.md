@@ -2,7 +2,6 @@
 name: Environment Issue
 about: Use this template to report problem with environment setting or installation
 title: "[DATE]: [FEATURE NAME]"
-labels: settings
 assignees: Strayker
 ---
 
