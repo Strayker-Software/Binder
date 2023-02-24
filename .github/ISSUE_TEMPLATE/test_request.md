@@ -1,9 +1,9 @@
 ---
 name: Test Request
 about: Request to perform testing on dev/test environments.
-test: here describe shortly what is to be tested
+title: Here describe shortly what is to be tested
 labels: testing
-assignees: StraykerPL https://github.com/StraykerPL
+assignees: StraykerPL
 ---
 
 # Test request
@@ -34,11 +34,5 @@ How to reproduce eg. bug:
   3.    
   4.    
   5.    
-
----
-
-### Requirements to run
-
-Requirements:
-
+  
 ---
