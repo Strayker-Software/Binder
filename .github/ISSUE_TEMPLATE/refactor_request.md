@@ -1,8 +1,8 @@
 ---
 name: Refactor request
 about: Create a report to help us improve our code base
-title: Here describe request shortly
-labels: "Refactor"
+title: Refactor: Here describe request shortly
+labels: refactor
 assignees: StraykerPL
 ---
 
