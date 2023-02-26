@@ -1,7 +1,7 @@
 ---
 name: Test Request
 about: Request to perform testing on dev/test environments.
-title: Here describe shortly what is to be tested
+title: Test: Here describe shortly what is to be tested
 labels: testing
 assignees: StraykerPL
 ---
