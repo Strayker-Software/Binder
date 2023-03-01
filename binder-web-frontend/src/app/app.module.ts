@@ -4,12 +4,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from 'src/pages/pages.module';
 import { SharedModule } from 'src/shared/shared.module';
 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        NavbarComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -18,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppRoutingModule,
         SharedModule,
         PagesModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatButtonToggleModule
     ]
 })
 export class AppModule { }
