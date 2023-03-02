@@ -10,6 +10,7 @@ namespace Binder.Application.Services.Middleware
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate next;
+        private const string problemJsonType = "application/problem+json";
 
         public ExceptionHandlingMiddleware(RequestDelegate next)
         {
@@ -45,7 +46,7 @@ namespace Binder.Application.Services.Middleware
                         Detail = e.Message
                     },
                 };
-                context.Response.ContentType = ExceptionConstants.ProblemJsonType;
+                context.Response.ContentType = problemJsonType;
 
                 var json = JsonSerializer.Serialize(problemDetails);
                 await context.Response.WriteAsync(json);
