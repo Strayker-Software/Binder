@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using Binder.Application.Services.Middleware.CustomExceptions;
+using Binder.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,19 +28,19 @@ namespace Binder.Application.Services.Middleware
                 {
                     InvalidOperationException invalidOperationException => new ProblemDetails
                     {
-                        Title = "Invalid operation!",
+                        Title = ExceptionConstants.InvalidOperationTitle,
                         Status = (int)HttpStatusCode.BadRequest,
                         Detail = invalidOperationException.Message
                     },
                     NotFoundException notFoundException => new ProblemDetails
                     {
-                        Title = "Resource not found!",
+                        Title = ExceptionConstants.NotFoundTitle,
                         Status = (int)HttpStatusCode.NotFound,
                         Detail = notFoundException.Message
                     },
                     _ => new ProblemDetails
                     {
-                        Title = "An unexpected error occurred!",
+                        Title = ExceptionConstants.UnexpectedTitle,
                         Status = (int)HttpStatusCode.InternalServerError,
                         Detail = e.Message
                     },
