@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+
+env:
+  DOTNET_VERSION: "6.0.x"
+  NODE_VERSION: "14.x"
+  BACKEND_PATH: "binder-backend"
+  FRONTEND_PATH: "binder-web-frontend"
+
+jobs:
+  backend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code 👀
+      uses: actions/checkout@v3
+    
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} 🔨
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore dependencies 🔧
+      run: dotnet restore ${{ env.BACKEND_PATH }}
+      
+    - name: Build app 🚀
+      run: dotnet build --no-restore ${{ env.BACKEND_PATH }}
+
+    - name: Test 🔥
+      run: dotnet test --no-build ${{ env.BACKEND_PATH }}
+      
+  frontend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code 👀
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ env.NODE_VERSION }} 🔨
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: binder-web-frontend/package-lock.json
+      
+    - name: Clean install of dependencies 🔧
+      run: npm ci --prefix ${{ env.FRONTEND_PATH }}
+    
+    - name: Build app 🚀
+      run: npm run build --prefix ${{ env.FRONTEND_PATH }} --if-present
