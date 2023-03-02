@@ -45,7 +45,7 @@ namespace Binder.Application.Services.Middleware
                         Detail = e.Message
                     },
                 };
-                context.Response.ContentType = "application/problem+json";
+                context.Response.ContentType = ExceptionConstants.ProblemJsonType;
 
                 var json = JsonSerializer.Serialize(problemDetails);
                 await context.Response.WriteAsync(json);
