@@ -44,7 +44,7 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
-        cache-dependency-path: binder-web-frontend/package-lock.json
+        cache-dependency-path: ${{ env.FRONTEND_PATH }}/package-lock.json
       
     - name: Clean install of dependencies 🔧
       run: npm ci --prefix ${{ env.FRONTEND_PATH }}
