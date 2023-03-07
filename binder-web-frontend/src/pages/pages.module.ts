@@ -9,7 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CommonModule,
     MatExpansionModule
   ],
-  declarations: [HomeComponent, TablesListComponent],
+  declarations: [HomeComponent,TablesListComponent],
   exports: [HomeComponent]
 })
 export class PagesModule { }
