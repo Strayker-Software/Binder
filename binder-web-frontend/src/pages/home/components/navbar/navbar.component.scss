@@ -1,1 +1,15 @@
-
+.app-navbar{
+    & button{
+        border: none;
+        padding: 0.25rem 4rem ;
+    }
+    & button:first-child{
+        border-right: 1px solid ;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
+    & button:last-child{
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+}
