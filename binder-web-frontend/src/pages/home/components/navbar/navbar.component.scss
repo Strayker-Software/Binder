@@ -1,20 +1,19 @@
-.app-navbar{
+.navbar{
+    &__button{
+        border: transparent;
+        padding: 0.25rem 4rem;
+        background-color: #fff;
 
-    & button{
-        border: none;
-        padding: 0.25rem 4rem ;
-        background-color: rgb(255,255,255);
-    }
+        &--first{
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            border-right: solid 2px #ACACAC;
+        }
 
-    & button:first-child{
-        border-right: 0.05rem solid rgb(128, 128, 128, 0.5);
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-    }
-
-    & button:last-child{
-        border-left: 0.05rem solid rgb(128, 128, 128, 0.5);
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
+        &--last{
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            border-left: solid 2px #ACACAC;
+        }
     }
 }
