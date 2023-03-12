@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+cd binder-web-frontend && npm run prettier && git add src/* && cd ..
