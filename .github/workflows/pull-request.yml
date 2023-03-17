@@ -6,7 +6,7 @@ on:
 
 env:
   DOTNET_VERSION: "6.0.x"
-  NODE_VERSION: "14.x"
+  NODE_VERSION: "18.x"
   BACKEND_PATH: "binder-backend"
   FRONTEND_PATH: "binder-web-frontend"
 
