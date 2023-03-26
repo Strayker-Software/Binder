@@ -1,9 +1,12 @@
 .tables{
-    &__title{
-        font-weight: 500;
-    }
-
-    &__item{
-        padding-left: 2rem;
+    &__accordion{
+        &-panel{
+            &-header{
+                font-weight: 500;
+            }
+            &-content{
+                margin-left: 2rem;
+            }
+        }
     }
 }
