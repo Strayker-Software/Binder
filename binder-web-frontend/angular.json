@@ -28,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/shared/styles/theme.scss"
+              "src/shared/styles.scss"
             ],
             "scripts": []
           },
