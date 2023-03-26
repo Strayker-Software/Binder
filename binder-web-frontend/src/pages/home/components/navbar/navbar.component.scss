@@ -1,19 +1,18 @@
 .navbar{
+    border-radius: 1rem;
+    overflow: auto;
+    box-shadow: 0px 0px 16px 0px #FFFFFF40;
+    display: flex;
+
     &__button{
         border: transparent;
         padding: 0.25rem 4rem;
-        background-color: #fff;
+        border-right: 1px solid #ACACAC;
+        background-color: #FFFFFF;
+        flex-grow: 1;
 
-        &--first{
-            border-top-left-radius: 1rem;
-            border-bottom-left-radius: 1rem;
-            border-right: solid 2px #ACACAC;
-        }
-
-        &--last{
-            border-top-right-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            border-left: solid 2px #ACACAC;
+        &:last-child{
+            border-right: none;
         }
     }
 }
