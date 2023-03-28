@@ -16,4 +16,4 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
   exports: [HomeComponent]
 })
-export class PagesModule { }
+export class PagesModule {}

@@ -1,5 +1,6 @@
 using Binder.Application.Models.Interfaces;
 using Binder.Application.Services;
+using Binder.Application.Services.Middleware;
 using Binder.Infrastructure.Configurations;
 using Binder.Infrastructure.Models.Interfaces;
 using Binder.Infrastructure.Repositories;
@@ -28,6 +29,8 @@ namespace Binder.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
