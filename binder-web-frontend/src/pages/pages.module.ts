@@ -12,4 +12,4 @@ import { MatExpansionModule } from '@angular/material/expansion';
   declarations: [HomeComponent,TablesListComponent],
   exports: [HomeComponent]
 })
-export class PagesModule { }
+export class PagesModule {}
