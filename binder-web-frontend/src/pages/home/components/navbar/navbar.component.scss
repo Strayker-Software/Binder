@@ -1,18 +1,14 @@
 .navbar{
-    border-radius: 1rem;
-    overflow: auto;
-    box-shadow: 0px 0px 16px 0px #FFFFFF40;
+    border-radius: 0.625rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px #00000025;
+    width: 567px;
+    height: 19px;
     display: flex;
+    justify-content: space-evenly;
 
     &__button{
         border: transparent;
-        padding: 0.25rem 4rem;
-        border-right: 1px solid #ACACAC;
         background-color: #FFFFFF;
-        flex-grow: 1;
-
-        &:last-child{
-            border-right: none;
-        }
     }
 }
