@@ -2,12 +2,12 @@
 
 $my-dark: mat.define-palette(mat.$grey-palette, 700, 800, 900);
 $my-light: mat.define-palette(mat.$grey-palette, 100, 200, 300);
-$my-accent:  mat.define-palette(mat.$grey-palette, 200, 400, 600);
+$my-accent: mat.define-palette(mat.$grey-palette, 200, 400, 600);
 $my-warn: mat.define-palette(mat.$red-palette);
 
-$dark-theme:  mat.define-dark-theme((
+$light-theme: mat.define-light-theme((
   color: (
-    primary: $my-dark,
+    primary: $my-light,
     accent: $my-accent,
     warn:   $my-warn,
   ),
@@ -15,9 +15,9 @@ $dark-theme:  mat.define-dark-theme((
   density: 0,
 ));
 
-$light-theme: mat.define-light-theme((
+$dark-theme:  mat.define-dark-theme((
   color: (
-    primary: $my-light,
+    primary: $my-dark,
     accent: $my-accent,
     warn:   $my-warn,
   ),
@@ -30,7 +30,7 @@ $light-theme: mat.define-light-theme((
 @include mat.expansion-theme($light-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include mat.core-color($dark-theme);
+  @include mat.core-theme($dark-theme);
   @include mat.button-theme($dark-theme);
   @include mat.expansion-theme($dark-theme);
 };
