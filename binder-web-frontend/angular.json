@@ -28,8 +28,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/shared/styles/styles.scss"
+              "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/shared/styles/"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
