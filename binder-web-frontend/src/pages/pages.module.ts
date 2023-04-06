@@ -7,16 +7,8 @@ import { TablesListComponent } from './home/components/tables-list/tables-list.c
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatDividerModule,
-    MatExpansionModule
-  ],
-  declarations: [
-    HomeComponent,
-    NavbarComponent,
-    TablesListComponent
-  ],
-  exports: [HomeComponent]
+  imports: [CommonModule, MatDividerModule, MatExpansionModule],
+  declarations: [HomeComponent, NavbarComponent, TablesListComponent],
+  exports: [HomeComponent],
 })
 export class PagesModule {}

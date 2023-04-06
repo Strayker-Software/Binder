@@ -1,1 +1,48 @@
-@use 'theme'
+@use "@angular/material" as mat;
+
+$my-dark: mat.define-palette(mat.$grey-palette, 700, 800, 900);
+$my-light: mat.define-palette(mat.$grey-palette, 100, 200, 300);
+$my-accent: mat.define-palette(mat.$grey-palette, 200, 400, 600);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-light,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $my-dark,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.core-theme($light-theme);
+@include mat.all-component-themes($light-theme);
+
+.dark-mode {
+  @include mat.all-component-colors($dark-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
