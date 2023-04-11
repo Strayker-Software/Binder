@@ -1,0 +1,21 @@
+﻿using Binder.Application.Models.Interfaces;
+using Binder.Core.Models;
+using Binder.Infrastructure.Models.Interfaces;
+
+namespace Binder.Application.Services
+{
+    public class DefaultTableService : IDefaultTableService
+    {
+        private readonly IDefaultTableRepository _repository;
+
+        public DefaultTableService(IDefaultTableRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public ToDoTask GetTask(int taskId)
+        {
+            return _repository.GetTaskById(taskId);
+        }
+    }
+}

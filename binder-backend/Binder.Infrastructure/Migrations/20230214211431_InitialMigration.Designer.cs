@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Binder.Infrastructure.Migrations
 {
-    [DbContext(typeof(TestDbContext))]
+    [DbContext(typeof(BinderDbContext))]
     [Migration("20230214211431_InitialMigration")]
     partial class InitialMigration
     {

@@ -19,8 +19,8 @@ namespace Binder.Api
 
             builder.Services.AddMySqlConfig();
 
-            builder.Services.AddScoped<ITestRepository, BaseEntitiesRepository>();
-            builder.Services.AddScoped<ITestService, TestService>();
+            builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
+            builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
 
             var app = builder.Build();
 

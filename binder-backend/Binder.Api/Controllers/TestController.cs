@@ -1,22 +1,23 @@
 ﻿using Binder.Application.Models.Interfaces;
+using Binder.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
     public class TestController
     {
-        private readonly ITestService _service;
+        private readonly IDefaultTableService _service;
 
-        public TestController(ITestService service)
+        public TestController(IDefaultTableService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        [Route("hello")]
-        public ActionResult<string> GetHelloText()
+        [Route("getTask")]
+        public ActionResult<ToDoTask> GetHelloText(int taskId)
         {
-            return _service.GetFirstEntityName();
+            return _service.GetTask(taskId);
         }
     }
 }
