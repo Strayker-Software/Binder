@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
-    public class TestController
+    public class DefaultTableController
     {
         private readonly IDefaultTableService _service;
 
-        public TestController(IDefaultTableService service)
+        public DefaultTableController(IDefaultTableService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        [Route("getTask")]
-        public ActionResult<ToDoTask> GetHelloText(int taskId)
+        [Route("GetToDoTask")]
+        public ActionResult<ToDoTask> Get(int taskId)
         {
             return _service.GetTask(taskId);
         }
