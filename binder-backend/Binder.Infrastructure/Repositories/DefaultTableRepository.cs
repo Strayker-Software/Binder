@@ -14,23 +14,18 @@ namespace Binder.Infrastructure.Repositories
             _context = context;
         }
 
-        public DefaultTable GetTableById(int tableId)
+        public DefaultTable? GetTableById(int tableId)
         {
             return _context.Tables.FirstOrDefault(searchTable => searchTable.Id == tableId);
         }
 
-        public ICollection<ToDoTask> GetTasksByTable(int tableId)
+        public ICollection<ToDoTask>? GetTasksByTable(int tableId)
         {
             var requestedTable = _context.Tables.FirstOrDefault(searchTable => searchTable.Id == tableId);
-
-            if (requestedTable != null)
-            {
-                return (ICollection<ToDoTask>)requestedTable.Tasks;
-            }
-            else return new List<ToDoTask>();
+            return requestedTable?.Tasks;
         }
 
-        public ToDoTask GetTaskById(int taskId)
+        public ToDoTask? GetTaskById(int taskId)
         {
             return _context.ToDoTasks.FirstOrDefault(searchTask => searchTask.Id == taskId);
         }

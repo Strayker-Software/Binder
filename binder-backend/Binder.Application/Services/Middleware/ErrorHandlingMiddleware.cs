@@ -1,9 +1,9 @@
-﻿using System.Net;
-using System.Text.Json;
-using Binder.Application.Services.Middleware.CustomExceptions;
+﻿using Binder.Application.Services.Middleware.CustomExceptions;
 using Binder.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Text.Json;
 
 namespace Binder.Application.Services.Middleware
 {

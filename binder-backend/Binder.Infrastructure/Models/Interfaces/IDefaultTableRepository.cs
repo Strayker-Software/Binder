@@ -4,10 +4,10 @@ namespace Binder.Infrastructure.Models.Interfaces
 {
     public interface IDefaultTableRepository : IDisposable
     {
-        DefaultTable GetTableById(int tableId);
+        DefaultTable? GetTableById(int tableId);
 
-        ICollection<ToDoTask> GetTasksByTable(int tableId);
+        ICollection<ToDoTask>? GetTasksByTable(int tableId);
 
-        ToDoTask GetTaskById(int taskId);
+        ToDoTask? GetTaskById(int taskId);
     }
 }
