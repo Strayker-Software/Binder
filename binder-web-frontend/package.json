@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "prepare-husky": "cd .. && husky install binder-web-frontend/.husky",
     "prettier": "npx prettier --write --ignore-unknown src/",
-    "gen": "openapi-generator-cli generate -g typescript-angular -i https://localhost:7183/swagger/v1/swagger.json -o ./src/api/code-gen"
+    "gen": "openapi-generator-cli generate -g typescript-angular -i https://localhost:7183/swagger/v1/swagger.json -o ./src/api"
   },  
   "private": true,
   "dependencies": {
