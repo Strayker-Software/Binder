@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'domain-buttons',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./domain-buttons.component.scss']
 })
 export class DomainButtonsComponent implements OnInit {
+  @Output() optionsClickedEvent: EventEmitter<HTMLParagraphElement> = new EventEmitter();
+  @Output() aboutClickedEvent: EventEmitter<HTMLParagraphElement> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  optionsClicked() {
+    this.optionsClickedEvent.emit();
   }
 
+  aboutClicked() {
+    this.aboutClickedEvent.emit();
+  }
 }
