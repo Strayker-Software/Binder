@@ -1,0 +1,17 @@
+.domain-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 0.5rem;
+    font-size: 0.75rem;
+
+    &__button {
+        height: 0.938rem;
+        width: fit-content;
+        margin: 0;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
