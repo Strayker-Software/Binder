@@ -7,8 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "prepare-husky": "cd .. && husky install binder-web-frontend/.husky",
-    "prettier": "npx prettier --write --ignore-unknown src/"
-  },
+    "prettier": "npx prettier --write --ignore-unknown src/",
+    "gen": "openapi-generator-cli generate -g typescript-angular -i https://localhost:7183/swagger/v1/swagger.json -o ./src/api"
+  },  
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.3",
@@ -29,6 +30,7 @@
     "@angular-devkit/build-angular": "^15.2.4",
     "@angular/cli": "~15.2.4",
     "@angular/compiler-cli": "^15.2.3",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
     "husky": "^8.0.3",
     "prettier": "2.8.4",
     "typescript": "~4.8"
