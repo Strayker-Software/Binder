@@ -7,10 +7,11 @@ import { TablesListComponent } from './home/components/tables-list/tables-list.c
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { TableViewComponent } from './home/components/table-view/table-view.component';
+import { DomainButtonsComponent } from './home/components/domain-buttons/domain-buttons.component';
 
 @NgModule({
   imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule],
-  declarations: [HomeComponent, NavbarComponent, TablesListComponent, TableViewComponent],
+  declarations: [HomeComponent, NavbarComponent, TablesListComponent, TableViewComponent, DomainButtonsComponent],
   exports: [HomeComponent],
 })
 export class PagesModule {}
