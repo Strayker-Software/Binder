@@ -6,7 +6,6 @@ import  packageInfo  from 'package.json';
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss']
 })
-export class AppHeaderComponent {
- 
+export class AppHeaderComponent { 
    version: any = packageInfo.version;
 }
