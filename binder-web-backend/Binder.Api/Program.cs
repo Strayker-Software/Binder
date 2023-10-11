@@ -4,11 +4,16 @@ using Binder.Application.Services.Middleware;
 using Binder.Infrastructure.Configurations;
 using Binder.Infrastructure.Models.Interfaces;
 using Binder.Infrastructure.Repositories;
+using Microsoft.Net.Http.Headers;
 
 namespace Binder.Api
 {
     public class Program
     {
+        protected Program()
+        {
+        }
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +27,17 @@ namespace Binder.Api
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
             builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
 
+            builder.Services.AddCors(setup =>
+            {
+                setup.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                            .WithHeaders(HeaderNames.AccessControlAllowOrigin);
+                });
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -33,6 +49,7 @@ namespace Binder.Api
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
+            app.UseCors();
             app.UseAuthorization();
             app.MapControllers();
 

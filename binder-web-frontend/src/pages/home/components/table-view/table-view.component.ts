@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToDoTask } from 'src/shared/models/ToDoTask';
+import { DefaultTableService, ToDoTask } from 'src/api';
 
 @Component({
   selector: 'table-view',
@@ -8,14 +8,15 @@ import { ToDoTask } from 'src/shared/models/ToDoTask';
 })
 export class TableViewComponent implements OnInit {
   columns: string[] = ["name", "description", "isCompleted"];
-  tasks: ToDoTask[] = [
-    { name: "Task 1", description: "Cool Description", isCompleted: false },
-    { name: "Task 2", description: "Nice Description", isCompleted: true },
-    { name: "Task 3", description: "OK Description", isCompleted: false }
-  ];
+  tasks: ToDoTask[] = [];
 
-  constructor() { }
+  constructor(private defaultTableService: DefaultTableService) { }
 
   ngOnInit() {
+    this.defaultTableService.getToDoTaskGet(1)
+      .pipe()
+      .subscribe((task: ToDoTask) => {
+        this.tasks.push(task);
+      });
   }
 }
