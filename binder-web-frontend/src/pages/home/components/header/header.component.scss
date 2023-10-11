@@ -1,0 +1,10 @@
+.header {
+  &__title {
+    font-size: 1.5rem;
+    border-bottom: solid 0.2rem #ffffff;
+    
+    &-version {
+      font-size: 1.0rem;
+    } 
+  } 
+}
