@@ -11,7 +11,13 @@ import { DomainButtonsComponent } from './home/components/domain-buttons/domain-
 
 @NgModule({
   imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule],
-  declarations: [HomeComponent, NavbarComponent, TablesListComponent, TableViewComponent, DomainButtonsComponent],
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    TablesListComponent,
+    TableViewComponent,
+    DomainButtonsComponent,
+  ],
   exports: [HomeComponent],
 })
 export class PagesModule {}

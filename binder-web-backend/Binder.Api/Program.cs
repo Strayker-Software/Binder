@@ -27,17 +27,6 @@ namespace Binder.Api
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
             builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
 
-            builder.Services.AddCors(setup =>
-            {
-                setup.AddDefaultPolicy(policy =>
-                {
-                    policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                            .WithHeaders(HeaderNames.AccessControlAllowOrigin);
-                });
-            });
-
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -48,8 +37,8 @@ namespace Binder.Api
 
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
-            app.UseCors();
             app.UseAuthorization();
             app.MapControllers();
 
