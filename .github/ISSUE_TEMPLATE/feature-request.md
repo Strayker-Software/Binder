@@ -2,7 +2,7 @@
 name: Feature Request
 about: Suggest an idea for this project!
 title: 'Feature: here describe feature shortly'
-labels: enhancement, question
+labels: feature
 assignees: StraykerPL
 
 ---
