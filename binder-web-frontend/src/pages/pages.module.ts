@@ -8,6 +8,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { TableViewComponent } from './home/components/table-view/table-view.component';
 import { DomainButtonsComponent } from './home/components/domain-buttons/domain-buttons.component';
+import { HeaderComponent } from './home/components/header/header.component';
 
 @NgModule({
   imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule],
@@ -17,6 +18,7 @@ import { DomainButtonsComponent } from './home/components/domain-buttons/domain-
     TablesListComponent,
     TableViewComponent,
     DomainButtonsComponent,
+    HeaderComponent
   ],
   exports: [HomeComponent],
 })
