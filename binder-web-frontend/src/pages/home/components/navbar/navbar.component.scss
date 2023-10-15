@@ -10,5 +10,9 @@
   &__button {
     border: transparent;
     background-color: #ffffff;
+
+    &:hover {
+      cursor: pointer;
+    }    
   }
 }
