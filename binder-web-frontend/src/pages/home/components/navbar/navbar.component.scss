@@ -1,6 +1,5 @@
 .navbar {
   border-radius: 0.625rem;
-  background: #ffffff;
   box-shadow: 0px 0px 16px #00000025;
   width: 35rem;
   height: 1.2rem;
@@ -9,10 +8,13 @@
 
   &__button {
     border: transparent;
-    background-color: #ffffff;
 
     &:hover {
       cursor: pointer;
     }    
+  }
+
+  &__divider {
+    background-color: #ffffff;
   }
 }
