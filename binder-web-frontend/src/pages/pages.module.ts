@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TableViewComponent } from './home/components/table-view/table-view.component';
 import { DomainButtonsComponent } from './home/components/domain-buttons/domain-buttons.component';
 import { HeaderComponent } from './home/components/header/header.component';
+import { SidePanelComponent } from './home/components/side-panel/side-panel.component';
 
 @NgModule({
   imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule],
@@ -18,7 +19,8 @@ import { HeaderComponent } from './home/components/header/header.component';
     TablesListComponent,
     TableViewComponent,
     DomainButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidePanelComponent
   ],
   exports: [HomeComponent],
 })
