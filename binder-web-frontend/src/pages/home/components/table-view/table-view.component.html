@@ -1,14 +1,14 @@
 <table mat-table class="table-view" [dataSource]="tasks">
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'tableView.name' | transloco }}</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
   <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'tableView.description' | transloco }}</th>
     <td mat-cell *matCellDef="let element">{{ element.description }}</td>
   </ng-container>
   <ng-container matColumnDef="isCompleted">
-    <th mat-header-cell *matHeaderCellDef>Completed</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'tableView.completed' | transloco }}</th>
     <td mat-cell *matCellDef="let element">{{ element.isCompleted }}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="columns"></tr>

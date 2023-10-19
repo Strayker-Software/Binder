@@ -9,7 +9,7 @@
     "prepare-husky": "cd .. && husky install binder-web-frontend/.husky",
     "prettier": "npx prettier --write --ignore-unknown src/",
     "gen": "openapi-generator-cli generate -g typescript-angular -i http://localhost:5246/swagger/v1/swagger.json -o ./src/api"
-  },  
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.3",
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^15.2.3",
     "@angular/platform-browser-dynamic": "^15.2.3",
     "@angular/router": "^15.2.3",
+    "@ngneat/transloco": "^4.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
