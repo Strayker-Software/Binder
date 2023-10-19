@@ -24,7 +24,38 @@ If you want to also work over your own idea, look into [Coding](#coding) section
 
 ### Bug/Error/Typo Report
 
+__Found some security issues? Instead of this instructions, please follow project's [Security Policy](https://github.com/Strayker-Software/Binder/security/policy)__
+
+Did you found some mistake in app or text? Let us know, we will fix that!
+
+Here is point list of what to do:
+
+- go to project's issue list and use searching and filtering to find out if something simmilar already was found,
+- if your report is new, than submit an issue on repo, using proper issue template and wait until someone from project management will check it out,
+- as soon as your idea is accepted, your issue will be proceeded with project's workflow,
+
+If you want to also work over your report, look into [Coding](#coding) section.
+
 ### Text Help (Documentation, Translation, etc.)
+
+Want to translate some docs, or help creating new descriptions?
+
+Here is point list of what to do:
+
+- go to project's issue list and use searching and filtering to find out if there are some issues marked with `documentation` label,
+- if there's any free issue, write comment on it to apply, someone from project management will check your application,
+- as soon as docs changes were approved by project management, you are free to go,
+
+Check out [Wiki](https://github.com/Strayker-Software/Binder/wiki) on how to work over documentation tasks.
 
 ### Coding
 
+So you want to code something up? Ok, let's go!
+
+Here is point list of what to do:
+
+- go to project's issue list and use searching and filtering to find out if there are some issues, that are not started yet, laying in "Ready for Development" state,
+- if there's any free issue, write comment on it to apply, someone from project management will check your application,
+- as soon as your work was added to work scope by project management, you can start coding,
+
+Find out how to write code in compliance with project's coding guidelines by looking into [Wiki](https://github.com/Strayker-Software/Binder/wiki).
