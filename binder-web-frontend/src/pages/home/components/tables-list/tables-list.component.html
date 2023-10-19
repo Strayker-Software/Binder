@@ -2,11 +2,11 @@
   <mat-accordion class="tables__accordion" [togglePosition]="'before'">
     <mat-expansion-panel class="tables__accordion-panel">
       <mat-expansion-panel-header class="tables__accordion-panel-header">
-        <mat-panel-title> Tables </mat-panel-title>
+        <mat-panel-title> {{ 'tablesList.tables' | transloco }} </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="tables__accordion-panel-content">
-        <p>ToDo List</p>
-        <p>Custom List</p>
+        <p>{{ 'tablesList.toDoList' | transloco }}</p>
+        <p>{{ 'tablesList.customList' | transloco }}</p>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
