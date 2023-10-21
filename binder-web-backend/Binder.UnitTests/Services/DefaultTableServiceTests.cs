@@ -1,6 +1,6 @@
 ﻿using Binder.Application.Services;
 using Binder.Core.Models;
-using Binder.Infrastructure.Models.Interfaces;
+using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.UnitTests.Services
 {

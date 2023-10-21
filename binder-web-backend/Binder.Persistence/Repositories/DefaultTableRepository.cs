@@ -1,8 +1,8 @@
 ﻿using Binder.Core.Models;
-using Binder.Infrastructure.Contexts;
-using Binder.Infrastructure.Models.Interfaces;
+using Binder.Persistence.Contexts;
+using Binder.Persistence.Models.Interfaces;
 
-namespace Binder.Infrastructure.Repositories
+namespace Binder.Persistence.Repositories
 {
     public class DefaultTableRepository : IDefaultTableRepository
     {

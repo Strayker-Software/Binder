@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.Core", "Binder.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.Application", "Binder.Application\Binder.Application.csproj", "{AA3EC938-EB97-446D-A8A6-93AC83CFAFBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.Infrastructure", "Binder.Infrastructure\Binder.Infrastructure.csproj", "{C0DE8535-CEA7-42F2-AF60-AF9E1B612E51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.Persistence", "Binder.Persistence\Binder.Persistence.csproj", "{C0DE8535-CEA7-42F2-AF60-AF9E1B612E51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binder.UnitTests", "Binder.UnitTests\Binder.UnitTests.csproj", "{199E9073-D798-4029-B75B-8FBB16F5A980}"
 	ProjectSection(ProjectDependencies) = postProject

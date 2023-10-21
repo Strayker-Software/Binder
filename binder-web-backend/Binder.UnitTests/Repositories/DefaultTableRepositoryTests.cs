@@ -1,6 +1,6 @@
 ﻿using Binder.Core.Models;
-using Binder.Infrastructure.Contexts;
-using Binder.Infrastructure.Repositories;
+using Binder.Persistence.Contexts;
+using Binder.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Moq.EntityFrameworkCore;
 

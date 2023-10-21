@@ -2,9 +2,9 @@ using Binder.Api.Constants;
 using Binder.Application.Models.Interfaces;
 using Binder.Application.Services;
 using Binder.Application.Services.Middleware;
-using Binder.Infrastructure.Configurations;
-using Binder.Infrastructure.Models.Interfaces;
-using Binder.Infrastructure.Repositories;
+using Binder.Persistence.Configurations;
+using Binder.Persistence.Models.Interfaces;
+using Binder.Persistence.Repositories;
 using Microsoft.OpenApi.Models;
 
 namespace Binder.Api

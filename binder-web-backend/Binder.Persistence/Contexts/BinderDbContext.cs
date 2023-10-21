@@ -1,7 +1,7 @@
 ﻿using Binder.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Binder.Infrastructure.Contexts
+namespace Binder.Persistence.Contexts
 {
     public class BinderDbContext : DbContext
     {

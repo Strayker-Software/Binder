@@ -2,7 +2,7 @@
 using Binder.Application.Services.Middleware.CustomExceptions;
 using Binder.Core;
 using Binder.Core.Models;
-using Binder.Infrastructure.Models.Interfaces;
+using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.Application.Services
 {
