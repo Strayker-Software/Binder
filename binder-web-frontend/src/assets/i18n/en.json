@@ -1,0 +1,21 @@
+{       
+    "navbar": {
+        "showCompleted": "Show Completed",
+        "showHideColumn": "Show/Hide Column",
+        "resetView": "Reset View"
+    }, 
+    "tableView": {
+        "name": "Name",
+        "description": "Description",
+        "completed": "Completed"
+    },
+    "tablesList": {
+        "tables": "Tables",
+        "toDoList": "ToDo List" ,
+        "customList": "Custom List"
+    },
+    "domainButtons": {
+        "options": "Options",
+        "about": "About"
+    }
+}

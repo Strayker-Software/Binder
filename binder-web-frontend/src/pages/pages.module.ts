@@ -10,9 +10,10 @@ import { TableViewComponent } from './home/components/table-view/table-view.comp
 import { DomainButtonsComponent } from './home/components/domain-buttons/domain-buttons.component';
 import { HeaderComponent } from './home/components/header/header.component';
 import { SidePanelComponent } from './home/components/side-panel/side-panel.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
-  imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule],
+  imports: [CommonModule, MatDividerModule, MatExpansionModule, MatTableModule, TranslocoModule],
   declarations: [
     HomeComponent,
     NavbarComponent,
