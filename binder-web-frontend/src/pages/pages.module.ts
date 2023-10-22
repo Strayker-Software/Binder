@@ -9,7 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TableViewComponent } from './home/components/table-view/table-view.component';
 import { DomainButtonsComponent } from './home/components/domain-buttons/domain-buttons.component';
 import { HeaderComponent } from './home/components/header/header.component';
-import { AppComponent } from 'src/app/app.component';
+import { SidePanelComponent } from './home/components/side-panel/side-panel.component';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
@@ -20,7 +20,8 @@ import { TranslocoModule } from '@ngneat/transloco';
     TablesListComponent,
     TableViewComponent,
     DomainButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidePanelComponent
   ],
   exports: [HomeComponent],
 })
