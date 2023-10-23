@@ -1,8 +1,8 @@
-﻿using Binder.Infrastructure.Contexts;
+﻿using Binder.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Binder.Infrastructure.Configurations
+namespace Binder.Persistence.Configurations
 {
     public static class AddMySqlConfiguration
     {

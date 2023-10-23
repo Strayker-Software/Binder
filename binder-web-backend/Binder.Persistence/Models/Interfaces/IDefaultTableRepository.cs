@@ -1,6 +1,6 @@
 ﻿using Binder.Core.Models;
 
-namespace Binder.Infrastructure.Models.Interfaces
+namespace Binder.Persistence.Models.Interfaces
 {
     public interface IDefaultTableRepository : IDisposable
     {

@@ -25,7 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Binder.Application\Binder.Application.csproj" />
     <ProjectReference Include="..\Binder.Core\Binder.Core.csproj" />
-    <ProjectReference Include="..\Binder.Infrastructure\Binder.Infrastructure.csproj" />
+    <ProjectReference Include="..\Binder.Persistence\Binder.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
