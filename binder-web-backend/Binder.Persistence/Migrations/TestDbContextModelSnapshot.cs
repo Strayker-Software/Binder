@@ -19,59 +19,83 @@ namespace Binder.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Binder.Core.Models.DefaultTable", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            modelBuilder.Entity("Binder.Core.Models.AppVersion", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                b.Property<uint>("Major")
+                    .HasColumnType("int unsigned");
 
-                    b.HasKey("Id");
+                b.Property<uint>("Minor")
+                    .HasColumnType("int unsigned");
 
-                    b.ToTable("Tables");
-                });
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("longtext");
 
-            modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                b.Property<uint>("Patch")
+                    .HasColumnType("int unsigned");
 
-                    b.Property<int?>("DefaultTableId")
-                        .HasColumnType("int");
+                b.HasKey("Id");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DefaultTableId");
-
-                    b.ToTable("ToDoTasks");
-                });
-
-            modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
-                {
-                    b.HasOne("Binder.Core.Models.DefaultTable", null)
-                        .WithMany("Tasks")
-                        .HasForeignKey("DefaultTableId");
-                });
+                b.ToTable("AppVersions");
+            });
 
             modelBuilder.Entity("Binder.Core.Models.DefaultTable", b =>
-                {
-                    b.Navigation("Tasks");
-                });
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("longtext");
+
+                b.HasKey("Id");
+
+                b.ToTable("Tables");
+            });
+
+            modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                b.Property<int?>("DefaultTableId")
+                    .HasColumnType("int");
+
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("longtext");
+
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("tinyint(1)");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("longtext");
+
+                b.HasKey("Id");
+
+                b.HasIndex("DefaultTableId");
+
+                b.ToTable("ToDoTasks");
+            });
+
+            modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
+            {
+                b.HasOne("Binder.Core.Models.DefaultTable", null)
+                    .WithMany("Tasks")
+                    .HasForeignKey("DefaultTableId");
+            });
+
+            modelBuilder.Entity("Binder.Core.Models.DefaultTable", b =>
+            {
+                b.Navigation("Tasks");
+            });
 #pragma warning restore 612, 618
         }
     }
