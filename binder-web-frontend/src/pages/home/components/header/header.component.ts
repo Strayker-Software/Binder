@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, take } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { AppVersionsService } from 'src/api';
 
 @Component({
@@ -9,8 +9,6 @@ import { AppVersionsService } from 'src/api';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
-  attributes: string[] = ['major', 'minor', 'patch', 'name'];
-  //version?: DisplayableVersion;
   version?: string;
 
   constructor(private appVersionsService: AppVersionsService) {}
@@ -18,12 +16,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.appVersionsService
       .getVersionGet()
-      .pipe(take(1))
+      .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (ver: string) => 
-
-          this.version = ver as string
-        ,
+          this.version = ver,
         error: (error: any) => {
           console.error(error);
         },
