@@ -23,8 +23,7 @@ namespace Binder.Api
 
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
             builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
-
-            builder.Services.AddScoped<IAppVersionRepository, AppVersionRepository>();
+            
             builder.Services.AddScoped<IAppVersionService, AppVersionService>();
 
             string backendUrl = builder.Configuration

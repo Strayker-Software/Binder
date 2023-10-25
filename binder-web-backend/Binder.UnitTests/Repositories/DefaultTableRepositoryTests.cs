@@ -12,7 +12,6 @@ namespace Binder.UnitTests.Repositories
         private readonly Mock<BinderDbContext> _mockTestDbContext;
         private readonly ToDoTask _testTaskData = new() { Name = "a" };
         private readonly DefaultTable _testTableData = new() { Tasks = new List<ToDoTask>() };
-        private readonly AppVersion _testVersionData = new() { Name = "Alpha", Major = 0, Minor = 0, Patch = 1 };
 
         public DefaultTableRepositoryTests()
         {
@@ -23,8 +22,6 @@ namespace Binder.UnitTests.Repositories
             _mockTestDbContext.SetupGet(x => x.Tables).ReturnsDbSet(new List<DefaultTable>() { _testTableData });
             _mockTestDbContext.SetupSet(x => x.ToDoTasks = It.IsAny<DbSet<ToDoTask>>()).CallBase();
             _mockTestDbContext.SetupGet(x => x.ToDoTasks).ReturnsDbSet(new List<ToDoTask>() { _testTaskData });
-            _mockTestDbContext.SetupSet(x => x.AppVersions = It.IsAny<DbSet<AppVersion>>()).CallBase();
-            _mockTestDbContext.SetupGet(x => x.AppVersions).ReturnsDbSet(new List<AppVersion>() { _testVersionData });
             _mockTestDbContext.Setup(x => x.Dispose()).Verifiable();
         }
 

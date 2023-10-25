@@ -7,7 +7,6 @@ namespace Binder.Persistence.Contexts
     {
         public virtual DbSet<DefaultTable> Tables { get; set; }
         public virtual DbSet<ToDoTask> ToDoTasks { get; set; }
-        public virtual DbSet<AppVersion> AppVersions { get; set; }
 
         public BinderDbContext()
         {
