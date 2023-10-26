@@ -9,6 +9,7 @@ Binder is a simple SaaS solution allowing you to create ToDo and custom lists of
 
 - User login to tasks board,
 - Add/edit/delete ToDo task,
+- Add/edit/delete tables,
 - Assign tasks to tables,
 - Show/hide completed tasks in display,
 - Show/hide selected columns,
