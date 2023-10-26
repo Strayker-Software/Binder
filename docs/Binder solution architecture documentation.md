@@ -1,37 +1,42 @@
-## <Project-Name> - Solution Architecture Documentation
+## Binder - Solution Architecture Documentation
 __Template Version: 0.1.0__
 
 ### Non-Functional Requirements:
 
-<List here all requirements of the product, which are purly technical, like browser support, resolution, etc.>
-- ...
-- ...
-- ...
+- Supported browsers - Chrome, Firefox, Opera,
+- Resolutions - minimum 800/600px, responsive to upper values,
+- REST API - stick to the REST specs,
+- Container Deployment - allow to deploy product using containers,
+- Minimal Dev Dependencies - use as much native technologies' features as possible,
 
 ### Technologies, to create the project:
 
-<List here all technologies, that will be used in development process.>
-- Frontend: [...],
-- Backend: [...],
-- Storage: [...],
+- Frontend: Angular 15,
+- Backend: ASP.NET Core Web API - .NET 6,
+- Storage: MySQL + Entity Framework Core,
 
 ### Devtools:
 
-<List here all tools, that developers will need in work.>
-- ...
-- ...
-- ...
+- Figma,
+- Postman,
+- GitHub,
+- DocFX,
+- CodeMaid,
+- xUnit,
+- Moq,
+- Fluent Validation,
+- Fluent Assertions,
+- AutoMapper,
+- Unit Test Boilerplate Generator,
 
 ### Project's Infrastructure:
 
-<Describe here, with what tool DevOps process will be implemented and provide info about given environments' machines providers.>
-- Test Env: [...],
-- Prod Env: [...],
-- DevOps: [...],
+- Test Env: Mikr.us VPS,
+- Prod Env: To Be Determined,
+- DevOps: GitHub Actions,
 
 ### Project's Risks:
 
-<Identify all risks, that can be faced before, during or after the project's development. Include both technical and business aspects.>
-- ...
-- ...
-- ...
+- Type of Project - it's R&D, so work area can change dynamically, also Dev Team can work with technologies, that given devs don't know,
+- Non-stable Dev Team - there is high rotation in Dev Team, if devs are needed in higher-rank projects, they're being taken,
+- Non-standard Workflow - Work over project is not controlled under any defined workflow system, like Agile, XP, etc.
