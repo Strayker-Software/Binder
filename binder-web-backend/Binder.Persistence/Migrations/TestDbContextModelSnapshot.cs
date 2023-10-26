@@ -31,7 +31,7 @@ namespace Binder.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tables", (string)null);
+                    b.ToTable("Tables");
                 });
 
             modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
@@ -58,7 +58,7 @@ namespace Binder.Infrastructure.Migrations
 
                     b.HasIndex("DefaultTableId");
 
-                    b.ToTable("ToDoTasks", (string)null);
+                    b.ToTable("ToDoTasks");
                 });
 
             modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
