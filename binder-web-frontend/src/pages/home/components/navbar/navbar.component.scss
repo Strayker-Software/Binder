@@ -5,6 +5,7 @@
   height: 1.2rem;
   display: flex;
   justify-content: space-evenly;
+  user-select: none;
 
   &__button {
     border: transparent;
