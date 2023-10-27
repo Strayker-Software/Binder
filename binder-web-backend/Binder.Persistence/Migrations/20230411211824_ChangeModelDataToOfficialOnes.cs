@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Binder.Infrastructure.Migrations
+namespace Binder.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class ChangeModelDataToOfficialOnes : Migration

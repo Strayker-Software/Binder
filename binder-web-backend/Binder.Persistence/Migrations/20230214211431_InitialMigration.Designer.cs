@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Binder.Infrastructure.Migrations
+namespace Binder.Persistence.Migrations
 {
     [DbContext(typeof(BinderDbContext))]
     [Migration("20230214211431_InitialMigration")]
