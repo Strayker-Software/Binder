@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Binder.Infrastructure.Migrations
+namespace Binder.Persistence.Migrations
 {
     [DbContext(typeof(BinderDbContext))]
     partial class TestDbContextModelSnapshot : ModelSnapshot
