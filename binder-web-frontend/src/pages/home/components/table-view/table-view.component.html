@@ -9,7 +9,9 @@
   </ng-container>
   <ng-container matColumnDef="isCompleted">
     <th mat-header-cell *matHeaderCellDef>{{ 'tableView.completed' | transloco }}</th>
-    <td mat-cell *matCellDef="let element">{{ element.isCompleted }}</td>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox [checked]="element.isCompleted" class="example-margin"></mat-checkbox>
+    </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="columns"></tr>
   <tr mat-row *matRowDef="let row; columns: columns"></tr>
