@@ -8,6 +8,10 @@
       }
       &-content {
         margin-left: 2rem;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
