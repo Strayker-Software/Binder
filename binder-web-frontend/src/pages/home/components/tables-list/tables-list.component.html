@@ -5,8 +5,8 @@
         <mat-panel-title> {{ 'tablesList.tables' | transloco }} </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="tables__accordion-panel-content">
-        <p>{{ 'tablesList.toDoList' | transloco }}</p>
-        <p>{{ 'tablesList.customList' | transloco }}</p>
+        <p (click)="onToDoListClicked()">{{ 'tablesList.toDoList' | transloco }}</p>
+        <p (click)="onCustomListClicked()">{{ 'tablesList.customList' | transloco }}</p>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
