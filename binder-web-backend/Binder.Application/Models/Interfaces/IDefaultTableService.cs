@@ -4,6 +4,6 @@ namespace Binder.Application.Models.Interfaces
 {
     public interface IDefaultTableService
     {
-        ToDoTask GetTask(int taskId);
+        DefaultTable GetTableWithTasks(int tableId);
     }
 }

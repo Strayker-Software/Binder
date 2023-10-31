@@ -15,9 +15,9 @@ namespace Binder.Api.Controllers
 
         [HttpGet]
         [Route("GetToDoTask")]
-        public ActionResult<ToDoTask> Get(int taskId)
+        public ActionResult<DefaultTable> Get(int tableId)
         {
-            return _service.GetTask(taskId);
+            return _service.GetTableWithTasks(tableId);
         }
     }
 }

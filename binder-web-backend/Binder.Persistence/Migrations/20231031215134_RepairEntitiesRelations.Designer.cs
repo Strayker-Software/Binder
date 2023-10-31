@@ -2,6 +2,7 @@
 using Binder.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Binder.Persistence.Migrations
 {
     [DbContext(typeof(BinderDbContext))]
-    partial class TestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231031215134_RepairEntitiesRelations")]
+    partial class RepairEntitiesRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace Binder.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tables", (string)null);
+                    b.ToTable("Tables");
                 });
 
             modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>
@@ -57,7 +60,7 @@ namespace Binder.Persistence.Migrations
 
                     b.HasIndex("TableId");
 
-                    b.ToTable("ToDoTasks", (string)null);
+                    b.ToTable("ToDoTasks");
                 });
 
             modelBuilder.Entity("Binder.Core.Models.ToDoTask", b =>

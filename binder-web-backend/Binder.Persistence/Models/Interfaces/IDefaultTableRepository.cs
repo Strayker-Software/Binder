@@ -7,7 +7,5 @@ namespace Binder.Persistence.Models.Interfaces
         DefaultTable? GetTableById(int tableId);
 
         ICollection<ToDoTask>? GetTasksByTable(int tableId);
-
-        ToDoTask? GetTaskById(int taskId);
     }
 }

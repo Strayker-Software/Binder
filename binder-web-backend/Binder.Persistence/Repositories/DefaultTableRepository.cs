@@ -1,6 +1,7 @@
 ﻿using Binder.Core.Models;
 using Binder.Persistence.Contexts;
 using Binder.Persistence.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Binder.Persistence.Repositories
 {
@@ -16,18 +17,20 @@ namespace Binder.Persistence.Repositories
 
         public DefaultTable? GetTableById(int tableId)
         {
-            return _context.Tables.FirstOrDefault(searchTable => searchTable.Id == tableId);
+            var tables = _context.Tables
+                .Include(table => table.Tasks);
+
+            var requestedTable = tables
+                .FirstOrDefault(searchTable => searchTable.Id == tableId);
+
+            return requestedTable;
         }
 
         public ICollection<ToDoTask>? GetTasksByTable(int tableId)
         {
             var requestedTable = _context.Tables.FirstOrDefault(searchTable => searchTable.Id == tableId);
-            return requestedTable?.Tasks;
-        }
 
-        public ToDoTask? GetTaskById(int taskId)
-        {
-            return _context.ToDoTasks.FirstOrDefault(searchTask => searchTask.Id == taskId);
+            return requestedTable?.Tasks;
         }
 
         protected virtual void Dispose(bool disposing)

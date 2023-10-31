@@ -15,9 +15,9 @@ namespace Binder.Application.Services
             _repository = repository;
         }
 
-        public ToDoTask GetTask(int taskId)
+        public DefaultTable GetTableWithTasks(int tableId)
         {
-            return _repository.GetTaskById(taskId) ??
+            return _repository.GetTableById(tableId) ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
     }
