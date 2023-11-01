@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { DefaultTableService, DefaultTable } from 'src/api';
+import { TablesService, DefaultTable } from 'src/api';
 
 @Component({
   selector: 'tables-list',
@@ -15,21 +15,15 @@ export class TablesListComponent implements OnInit, OnDestroy {
     new EventEmitter();
   tables: DefaultTable[] = [];
 
-  constructor(private defaultTableService: DefaultTableService) {}
+  constructor(private tableService: TablesService) {}
 
   ngOnInit() {
-    this.defaultTableService
-      .tableGet(1)
+    this.tableService
+      .tablesGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (table: DefaultTable) => {
-          if(table.tasks === null || table.tasks === undefined) {
-            console.error("Error");
-
-            return;
-          }
-
-          this.tables.push(table);
+        next: (tables: DefaultTable[]) => {
+          this.tables = tables;
         },
         error: (error: any) => {
           console.error(error);
