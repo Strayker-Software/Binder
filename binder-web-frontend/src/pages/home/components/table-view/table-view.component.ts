@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { DefaultTableService, ToDoTask } from 'src/api';
-import { DisplayableTask } from '../../../../shared/models/DisplayableTask';
+import { DefaultTable, DefaultTableService, ToDoTask } from 'src/api';
 
 @Component({
   selector: 'table-view',
@@ -11,23 +10,23 @@ import { DisplayableTask } from '../../../../shared/models/DisplayableTask';
 export class TableViewComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
   columns: string[] = ['name', 'description', 'isCompleted'];
-  tasks: DisplayableTask[] = [];
+  tasks: ToDoTask[] = [];
 
   constructor(private defaultTableService: DefaultTableService) {}
 
   ngOnInit() {
     this.defaultTableService
-      .getToDoTaskGet(1)
+      .tableGet(1)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (task: ToDoTask) => {
-          const displayableTask: DisplayableTask = {
-            name: task.name,
-            description: task.description,
-            isCompleted: task.isCompleted,
-          } as DisplayableTask;
+        next: (table: DefaultTable) => {
+          if(table.tasks === null || table.tasks === undefined) {
+            console.error("Error");
 
-          this.tasks.push(displayableTask);
+            return;
+          }
+
+          this.tasks = table.tasks as ToDoTask[];
           this.refreshTable();
         },
         error: (error: any) => {

@@ -19,7 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ToDoTask } from '../model/toDoTask';
+import { DefaultTable } from '../model/defaultTable';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -92,19 +92,19 @@ export class DefaultTableService {
     }
 
     /**
-     * @param taskId 
+     * @param tableId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getToDoTaskGet(taskId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<ToDoTask>;
-    public getToDoTaskGet(taskId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpResponse<ToDoTask>>;
-    public getToDoTaskGet(taskId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpEvent<ToDoTask>>;
-    public getToDoTaskGet(taskId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<any> {
+    public tableGet(tableId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<DefaultTable>;
+    public tableGet(tableId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpResponse<DefaultTable>>;
+    public tableGet(tableId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpEvent<DefaultTable>>;
+    public tableGet(tableId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (taskId !== undefined && taskId !== null) {
+        if (tableId !== undefined && tableId !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>taskId, 'taskId');
+            <any>tableId, 'tableId');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -140,8 +140,8 @@ export class DefaultTableService {
             }
         }
 
-        let localVarPath = `/GetToDoTask`;
-        return this.httpClient.request<ToDoTask>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/table`;
+        return this.httpClient.request<DefaultTable>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

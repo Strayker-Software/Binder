@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
+    [Route("table")]
     public class DefaultTableController
     {
         private readonly IDefaultTableService _service;
@@ -14,7 +15,6 @@ namespace Binder.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetToDoTask")]
         public ActionResult<DefaultTable> Get(int tableId)
         {
             return _service.GetTableWithTasks(tableId);
