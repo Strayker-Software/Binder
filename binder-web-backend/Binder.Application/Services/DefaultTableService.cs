@@ -15,9 +15,15 @@ namespace Binder.Application.Services
             _repository = repository;
         }
 
-        public DefaultTable GetTableWithTasks(int tableId)
+        public DefaultTable GetTable(int tableId)
         {
-            return _repository.GetTableById(tableId) ??
+            return _repository.GetById(tableId) ??
+                throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+        }
+
+        public ICollection<DefaultTable> GetAllTables()
+        {
+            return _repository.GetAll() ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
     }

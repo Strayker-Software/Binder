@@ -38,7 +38,7 @@ namespace Binder.UnitTests.Repositories
             var repo = this.CreateDefaultTableRepository();
 
             // Act
-            var result = repo.GetTableById(0);
+            var result = repo.GetById(0);
 
             // Assert
             result.Should().BeEquivalentTo(_testTableData);
