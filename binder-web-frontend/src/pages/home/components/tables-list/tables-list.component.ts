@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TablesService, DefaultTable } from 'src/api';
+import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
   selector: 'tables-list',
@@ -9,13 +10,9 @@ import { TablesService, DefaultTable } from 'src/api';
 })
 export class TablesListComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
-  @Output() toDoListClickedEvent: EventEmitter<HTMLParagraphElement> =
-    new EventEmitter();
-  @Output() customListClickedEvent: EventEmitter<HTMLParagraphElement> =
-    new EventEmitter();
   tables: DefaultTable[] = [];
 
-  constructor(private tableService: TablesService) {}
+  constructor(private tableService: TablesService, private activeTableService: ActiveTableService) {}
 
   ngOnInit() {
     this.tableService
@@ -31,12 +28,16 @@ export class TablesListComponent implements OnInit, OnDestroy {
       });
   }
 
-  onToDoListClicked() {
-    this.toDoListClickedEvent.emit();
-  }
+  tableElementClicked(event: MouseEvent) {
+    const htmlElement: HTMLParagraphElement = event.currentTarget as HTMLParagraphElement;
 
-  onCustomListClicked() {
-    this.customListClickedEvent.emit();
+    this.tables.forEach(table => {
+      if (table.name === htmlElement.textContent) {
+        this.activeTableService.activeTable.next(table);
+        
+        return;
+      }
+    });
   }
 
   ngOnDestroy() {
