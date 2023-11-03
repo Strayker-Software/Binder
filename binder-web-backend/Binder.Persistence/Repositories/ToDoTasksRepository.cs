@@ -4,25 +4,24 @@ using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.Persistence.Repositories
 {
-    public class DefaultTableRepository : IDefaultTableRepository
+    public class ToDoTasksRepository : IToDoTasksRepository
     {
         private bool disposed = false;
         private readonly BinderDbContext _context;
 
-        public DefaultTableRepository(BinderDbContext context)
+        public ToDoTasksRepository(BinderDbContext context)
         {
             _context = context;
         }
 
-        public DefaultTable? GetById(int tableId)
+        public ICollection<ToDoTask>? GetTasksByTable(int tableId)
         {
-            return _context.Tables
+            var requestedTable = _context.Tables
                 .FirstOrDefault(searchTable => searchTable.Id == tableId);
-        }
 
-        public ICollection<DefaultTable>? GetAll()
-        {
-            return _context.Tables.ToList();
+            var tasks = _context.ToDoTasks.Where(task => task.TableId == tableId);
+
+            return tasks.ToList();
         }
 
         protected virtual void Dispose(bool disposing)

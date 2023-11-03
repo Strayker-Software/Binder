@@ -1,6 +1,6 @@
 ﻿using Binder.Application.Models.Interfaces;
 using Binder.Application.Services.Middleware.CustomExceptions;
-using Binder.Core;
+using Binder.Core.Constants;
 using Binder.Core.Models;
 using Binder.Persistence.Models.Interfaces;
 
@@ -15,9 +15,16 @@ namespace Binder.Application.Services
             _repository = repository;
         }
 
-        public ToDoTask GetTask(int taskId)
+        public DefaultTable GetTable(int tableId)
         {
-            return _repository.GetTaskById(taskId) ?? throw new NotFoundException(ExceptionConstants.NotFoundTitle);
+            return _repository.GetById(tableId) ??
+                throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+        }
+
+        public ICollection<DefaultTable> GetAllTables()
+        {
+            return _repository.GetAll() ??
+                throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
     }
 }

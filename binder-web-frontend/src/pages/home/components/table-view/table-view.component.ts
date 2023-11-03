@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { DefaultTableService, ToDoTask } from 'src/api';
-import { DisplayableTask } from '../../../../shared/models/DisplayableTask';
+import { DefaultTable, ToDoTask, ToDoTasksService } from 'src/api';
+import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
   selector: 'table-view',
@@ -11,26 +11,30 @@ import { DisplayableTask } from '../../../../shared/models/DisplayableTask';
 export class TableViewComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
   columns: string[] = ['name', 'description', 'isCompleted'];
-  tasks: DisplayableTask[] = [];
+  tasks: ToDoTask[] = [];
+  currentlySelectedTable: DefaultTable = {};
 
-  constructor(private defaultTableService: DefaultTableService) {}
+  constructor(private toDoTasksService: ToDoTasksService, private activeTableService: ActiveTableService) {
+    this.activeTableService.activeTable.subscribe(selectedTable => {
+      this.currentlySelectedTable = selectedTable;
+      this.getTasks();
+      this.refreshTable();
+    });
+  }
 
-  ngOnInit() {
-    this.defaultTableService
-      .getToDoTaskGet(1)
+  ngOnInit() { }
+
+  getTasks() {
+    this.toDoTasksService
+      .tasksGet(this.currentlySelectedTable.id)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (task: ToDoTask) => {
-          const displayableTask: DisplayableTask = {
-            name: task.name,
-            description: task.description,
-            isCompleted: task.isCompleted,
-          } as DisplayableTask;
-
-          this.tasks.push(displayableTask);
+        next: (tasks: ToDoTask[]) => {
+          this.tasks = tasks;
           this.refreshTable();
         },
         error: (error: any) => {
+          alert("Error");
           console.error(error);
         },
       });

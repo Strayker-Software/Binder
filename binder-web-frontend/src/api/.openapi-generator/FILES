@@ -3,11 +3,14 @@
 README.md
 api.module.ts
 api/api.ts
-api/defaultTable.service.ts
+api/appVersions.service.ts
+api/tables.service.ts
+api/toDoTasks.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
 index.ts
+model/defaultTable.ts
 model/models.ts
 model/toDoTask.ts
 param.ts
