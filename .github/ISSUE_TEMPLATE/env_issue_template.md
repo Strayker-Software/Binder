@@ -1,7 +1,7 @@
 ---
 name: Environment Issue
 about: Use this template to report problem with environment setting or installation
-title: "Environment: here describe what's wrong shortly"
+title: 'Environment: here describe what's wrong shortly'
 assignees: Strayker
 ---
 
