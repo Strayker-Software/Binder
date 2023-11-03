@@ -21,9 +21,11 @@ namespace Binder.Api
 
             builder.Services.AddMySqlConfig();
 
+            builder.Services.AddScoped<IToDoTasksRepository, ToDoTasksRepository>();
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
             builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
-            
+            builder.Services.AddScoped<IToDoTasksService, ToDoTasksService>();
+
             builder.Services.AddScoped<IAppVersionService, AppVersionService>();
 
             string backendUrl = builder.Configuration

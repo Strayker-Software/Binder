@@ -4,10 +4,8 @@ namespace Binder.Persistence.Models.Interfaces
 {
     public interface IDefaultTableRepository : IDisposable
     {
-        DefaultTable? GetTableById(int tableId);
+        DefaultTable? GetById(int tableId);
 
-        ICollection<ToDoTask>? GetTasksByTable(int tableId);
-
-        ToDoTask? GetTaskById(int taskId);
+        ICollection<DefaultTable>? GetAll();
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Binder.Application.Services.Middleware.CustomExceptions;
-using Binder.Core;
+using Binder.Core.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -29,19 +29,19 @@ namespace Binder.Application.Services.Middleware
                 {
                     InvalidOperationException invalidOperationException => new ProblemDetails
                     {
-                        Title = ExceptionConstants.InvalidOperationTitle,
+                        Title = ExceptionConstants.InvalidOperationMessage,
                         Status = (int)HttpStatusCode.BadRequest,
                         Detail = invalidOperationException.Message
                     },
                     NotFoundException notFoundException => new ProblemDetails
                     {
-                        Title = ExceptionConstants.NotFoundTitle,
+                        Title = ExceptionConstants.ResourceNotFoundMessage,
                         Status = (int)HttpStatusCode.NotFound,
                         Detail = notFoundException.Message
                     },
                     _ => new ProblemDetails
                     {
-                        Title = ExceptionConstants.UnexpectedTitle,
+                        Title = ExceptionConstants.UnexpectedErrorMessage,
                         Status = (int)HttpStatusCode.InternalServerError,
                         Detail = e.Message
                     },

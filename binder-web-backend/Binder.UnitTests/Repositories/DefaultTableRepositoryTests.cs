@@ -11,7 +11,7 @@ namespace Binder.UnitTests.Repositories
         private readonly MockRepository _mockRepository;
         private readonly Mock<BinderDbContext> _mockTestDbContext;
         private readonly ToDoTask _testTaskData = new() { Name = "a" };
-        private readonly DefaultTable _testTableData = new() { Tasks = new List<ToDoTask>() };
+        private readonly DefaultTable _testTableData = new();
 
         public DefaultTableRepositoryTests()
         {
@@ -38,7 +38,7 @@ namespace Binder.UnitTests.Repositories
             var repo = this.CreateDefaultTableRepository();
 
             // Act
-            var result = repo.GetTableById(0);
+            var result = repo.GetById(0);
 
             // Assert
             result.Should().BeEquivalentTo(_testTableData);

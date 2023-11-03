@@ -2,16 +2,16 @@
 
 namespace Binder.Core.Models
 {
-    public class DefaultTable : IBaseEntity
+    public record DefaultTable : IBaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<ToDoTask> Tasks { get; set; }
+        public ICollection<ToDoTask> Tasks { get; }
 
         public DefaultTable()
         {
             Name = string.Empty;
-            Tasks = new List<ToDoTask>().ToArray();
+            Tasks = new List<ToDoTask>();
         }
     }
 }
