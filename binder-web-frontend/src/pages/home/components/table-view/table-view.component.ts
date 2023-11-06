@@ -34,7 +34,6 @@ export class TableViewComponent implements OnInit, OnDestroy {
           this.refreshTable();
         },
         error: (error: any) => {
-          alert("Error");
           console.error(error);
         },
       });
