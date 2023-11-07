@@ -1,16 +1,12 @@
-# Binder
-
-<p align="left">
-    <img src="https://img.shields.io/badge/Version%3A-1.0.0-brightgreen" alt="version_badge" />
-    <img src="https://img.shields.io/badge/Coverage-0%25-lightgrey" alt="version_badge" />
-    <img src="https://img.shields.io/badge/Platform-windows%20%7C%20macos%20%7C%20linux-lightgrey" alt="version_badge" />
-</p>
-Cross-platform solution for <strong>task-oriented data management</strong>, supporting <strong>Windows, Linux, macOS, Android and iOS.</strong>     
-
-Basic tasks are built up with _name, start date, end time_ and _category_, for organising your tasks.
-Every tab in UI represents single category. You can sync data via centralised server or between devices via LAN connection.
-
-Binder is great to manage your projects pages on GitHub Projects - notes, columns made easy.
+<div>
+    <div align="center">
+        <h3>Binder</h3>
+        <img src="https://img.shields.io/badge/Version%3A-1.0.0-brightgreen" alt="version_badge" />
+        <img src="https://img.shields.io/badge/Coverage-0%25-lightgrey" alt="version_badge" />
+        <img src="https://img.shields.io/badge/Platform-windows%20%7C%20macos%20%7C%20linux-lightgrey" alt="version_badge" />
+        <p>Software-as-a-Service for <strong>task-oriented data management</strong>.</p>
+    </div>
+</div>
 
 ## Usage of Binder
 
@@ -50,8 +46,5 @@ Also before submitting any code or issuing help, read project's code of conduct 
 
 [StraykerPL](https://github.com/StraykerPL)
 [Strayker Software website](https://straykersoftware.pl)
-
-
-
 
 If you have any suggestions or you want to ask me for something, go to official [Strayker Software Discord Server!](https://discord.gg/ytdkCVD)
