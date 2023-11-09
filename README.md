@@ -17,23 +17,54 @@
 
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
+- [Licensing](#licensing)
 - [Contact](#contact)
 
-## Tech stack
+## Tech Stack
 
-- Angular CLI version 14.2.7
-- .Net Core version 3.1
+Main Parts:
+
+- Angular v15.2.3
+- ASP.NET Core Web API with .NET 6
+- MySQL v10.4.27
+
+Libraries:
+
+- AutoMapper,
+- FluentAssertion,
+- FluentValidation,
+- Moq,
+- xUnit.net,
+- Entity Framework Core,
+- Transloco,
+- Angular Material,
+
+For current versions check:
+
+- for frontend libraries: `package.json` file,
+- for backend libraries: check out NuGet packages listing,
+
+Tools:
+
+- Husky + Prettier,
+- OpenAPI Generator,
+- CodeMaid (optional, per developer),
 
 ## Getting Started
 
-1.Make sure you have installed .NET Core Runtime at least version 3.1.
 
-2.Than just download the newest stable version from [Release](https://github.com/StraykerPL/Binder/releases) page.
-_For detailed info look into user's documentation._
 
-# Contributions
+## Contributions
 
-Feel free to contribute to project! Read [Contribution Guidelines](https://github.com/Strayker-Software/Binder/blob/develop/CONTRIBUTING.md) to know how to do it!
+Feel free to contribute to project! Read [Contribution Guidelines](https://github.com/Strayker-Software/Binder/blob/develop/CONTRIBUTING.md) to discover how to do it!
+
+## Licensing
+
+This repository is licensed under [MIT/X11 License](https://github.com/Strayker-Software/Binder/blob/master/LICENSE).
+
+Project's logo is not belonging to Strayker Software, here is copyrights addressing:
+
+<p class="attribution">"<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/61927333@N00/5315135954">Retro Corporate Logo Goodness_00056</a>" by <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/61927333@N00">jordan_lloyd</a> is licensed under <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">CC BY 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img></a>. </p>
 
 ## Contact
 
