@@ -9,7 +9,9 @@
         <img src="https://img.shields.io/github/issues-pr/Strayker-Software/Binder">
         <a href="https://discord.gg/ytdkCVD"><img src="https://img.shields.io/badge/chat-Discord-blue" alt="chat_badge" /></a>
         </br>
-        (frontend screen shot here)
+        Mockup:
+        </br>
+        <img src="docs/mockup.png" alt="frontend_mockup">
     </div>
 </div>
 
@@ -52,7 +54,22 @@ Tools:
 
 ## Getting Started
 
+If you would like to develop Binder with us, follow [project's setup instructions for development](https://github.com/Strayker-Software/Binder/wiki/Project-Setup).
 
+> [!WARNING]
+> This project is not ready for production deployment, license terms apply!
+
+For production deployment:
+
+- Download latest version of Binder from [Releases](https://github.com/Strayker-Software/Binder/releases) page,
+- Setup and start MySQL server with Root user, no password and database, called `binder_db` with structure defined in Entity Framework Core migrations,
+- (Optional) use `test-data.sql` file from `docs` folder to fill database with basic data,
+- Start backend with `dotnet run` command, wait until loading completes,
+- Push frontend's folder content to web server,
+- Setup HTTP proxy with your own domains over frontend and (optionaly) backend endpoints (like Apapche, Nginx, etc.),
+- Try to connect to frontend with web browser,
+
+That's it, app should work now!
 
 ## Contributions
 
