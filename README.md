@@ -1,57 +1,88 @@
-# Binder
+<div>
+    <div align="center">
+        <img src="https://github.com/Strayker-Software/Binder/blob/develop/docs/logo/320x295.jpg" alt="project_logo" />
+        <h1>Binder</h1>
+        <p>Software-as-a-Service solution for <strong>task-oriented data management</strong>.</p>
+        <a href="https://github.com/Strayker-Software/Binder/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT%2FX11-green" alt="license_badge"></a>
+        <img src="https://img.shields.io/github/downloads/Strayker-Software/Binder/total?color=green">
+        <img src="https://img.shields.io/github/issues/Strayker-Software/Binder">
+        <img src="https://img.shields.io/github/issues-pr/Strayker-Software/Binder">
+        <a href="https://discord.gg/ytdkCVD"><img src="https://img.shields.io/badge/chat-Discord-blue" alt="chat_badge" /></a>
+        </br>
+        Mockup:
+        </br>
+        <img src="docs/mockup.png" alt="frontend_mockup">
+    </div>
+</div>
 
-<p align="left">
-    <img src="https://img.shields.io/badge/Version%3A-1.0.0-brightgreen" alt="version_badge" />
-    <img src="https://img.shields.io/badge/Coverage-0%25-lightgrey" alt="version_badge" />
-    <img src="https://img.shields.io/badge/Platform-windows%20%7C%20macos%20%7C%20linux-lightgrey" alt="version_badge" />
-</p>
-Cross-platform solution for <strong>task-oriented data management</strong>, supporting <strong>Windows, Linux, macOS, Android and iOS.</strong>     
-
-Basic tasks are built up with _name, start date, end time_ and _category_, for organising your tasks.
-Every tab in UI represents single category. You can sync data via centralised server or between devices via LAN connection.
-
-Binder is great to manage your projects pages on GitHub Projects - notes, columns made easy.
-
-## Usage of Binder
-
-1.Make sure you have installed .NET Core Runtime at least version 3.1.
-
-2.Than just download the newest stable version from [Release](https://github.com/StraykerPL/Binder/releases) page.
-_For detailed info look into user's documentation._
-
-## Table of content
+## Table of Content
 
 - [Tech Stack](#tech-stack)
-- [Getting started](#getting-started)
-- [Contribution guidelines](https://github.com/Strayker-Software/Binder/blob/develop/CONTRIBUTING.md)
-- [Contact](https://github.com/StraykerPL)
+- [Getting Started](#getting-started)
+- [Licensing](#licensing)
+- [Contact](#contact)
 
-## Tech stack
+## Tech Stack
 
-- Angular CLI version 14.2.7
-- .Net Core version 3.1
+Main Parts:
 
-## Getting started
+- Angular v15.2.3
+- ASP.NET Core Web API with .NET 6
+- MySQL v10.4.27
 
-- [How to clone & fork repo from desktop](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop)
-- [How to clone repo from GitHub](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
+Libraries:
 
-## Contribution guidelines
+- AutoMapper,
+- FluentAssertion,
+- FluentValidation,
+- Moq,
+- xUnit.net,
+- Entity Framework Core,
+- Transloco,
+- Angular Material,
 
-There are some ways to contribute to project:
+For current versions check:
 
-- read issues labeled "help-wanted" and try to solve problem from it,   
-- access "master" branch code, look for TODO tags and create code for given point of development,   
-- try to imagine some feature and submit an issue about it, maybe your idea will be helpful.   
+- for frontend libraries: `package.json` file,
+- for backend libraries: check out NuGet packages listing,
 
-Also before submitting any code or issuing help, read project's code of conduct in repo's main folder!
+Tools:
+
+- Husky + Prettier,
+- OpenAPI Generator,
+- CodeMaid (optional, per developer),
+
+## Getting Started
+
+If you would like to develop Binder with us, follow [project's setup instructions for development](https://github.com/Strayker-Software/Binder/wiki/Project-Setup).
+
+> [!WARNING]
+> This project is not ready for production deployment, license terms apply!
+
+For production deployment:
+
+- Download latest version of Binder from [Releases](https://github.com/Strayker-Software/Binder/releases) page,
+- Setup and start MySQL server with Root user, no password and database, called `binder_db` with structure defined in Entity Framework Core migrations,
+- (Optional) use `test-data.sql` file from `docs` folder to fill database with basic data,
+- Start backend with `dotnet run` command, wait until loading completes,
+- Push frontend's folder content to web server,
+- Setup HTTP proxy with your own domains over frontend and (optionaly) backend endpoints (like Apapche, Nginx, etc.),
+- Try to connect to frontend with web browser,
+
+That's it, app should work now!
+
+## Contributions
+
+Feel free to contribute to project! Read [Contribution Guidelines](https://github.com/Strayker-Software/Binder/blob/develop/CONTRIBUTING.md) to discover how to do it!
+
+## Licensing
+
+This repository is licensed under [MIT/X11 License](https://github.com/Strayker-Software/Binder/blob/master/LICENSE).
+
+Project's logo is not belonging to Strayker Software, here is copyrights addressing:
+
+<p class="attribution">"<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/61927333@N00/5315135954">Retro Corporate Logo Goodness_00056</a>" by <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/61927333@N00">jordan_lloyd</a> is licensed under <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">CC BY 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img></a>. </p>
 
 ## Contact
-
-[StraykerPL](https://github.com/StraykerPL)
-[Strayker Software website](https://straykersoftware.pl)
-
-
-
 
 If you have any suggestions or you want to ask me for something, go to official [Strayker Software Discord Server!](https://discord.gg/ytdkCVD)
