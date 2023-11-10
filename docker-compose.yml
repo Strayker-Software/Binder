@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  database:
+    image: mysql:5.7
+    restart: 'always'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Root0++'
+      MYSQL_USER: 'newuser'
+      MYSQL_ROOT_HOST: 'localhost'
+      MYSQL_PASSWORD: 'pass@word1234'
+      MYSQL_DATABASE: 'binder_db'
+    ports:
+      - '3306:3306'
+
+  api:
+    build:
+      context: .
+      dockerfile: binder-web-backend/Dockerfile
+    depends_on: 
+      - database
+    ports:
+      - '5246:80'
+    restart: always
+    environment: 
+      DBHOST: database
+      ASPNETCORE_ENVIRONMENT: Docker 
+      ASPNETCORE_URLS: http://+:80
+      ConnectionStrings__DefaultConnection: 'Server=database;Port=3306;Database=binder_db;User Id=newuser;Pwd=pass@word1234;'    
+
+  angular-app:
+    build:
+      context: binder-web-frontend/.
+      dockerfile: Dockerfile
+    ports: 
+      - '4200:4200'
