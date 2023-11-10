@@ -1,0 +1,7 @@
+@use "variables";
+
+.table-view {
+    border-radius: 30px;
+    background-color: variables.$color-raisin-black;
+    padding: 2rem;
+}
