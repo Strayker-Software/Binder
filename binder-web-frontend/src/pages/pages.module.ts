@@ -12,6 +12,7 @@ import { HeaderComponent } from './home/components/header/header.component';
 import { SidePanelComponent } from './home/components/side-panel/side-panel.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslocoModule } from '@ngneat/transloco';
+import { MainSpaceComponent } from './home/components/main-space/main-space.component';
 
 @NgModule({
   imports: [CommonModule, MatCheckboxModule, MatDividerModule, MatExpansionModule, MatTableModule, TranslocoModule],
@@ -22,7 +23,8 @@ import { TranslocoModule } from '@ngneat/transloco';
     TableViewComponent,
     DomainButtonsComponent,
     HeaderComponent,
-    SidePanelComponent
+    SidePanelComponent,
+    MainSpaceComponent
   ],
   exports: [HomeComponent],
 })
