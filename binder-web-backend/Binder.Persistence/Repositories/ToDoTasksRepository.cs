@@ -19,6 +19,8 @@ namespace Binder.Persistence.Repositories
             var requestedTable = _context.Tables
                 .FirstOrDefault(searchTable => searchTable.Id == tableId);
 
+            if (requestedTable is null) return null;
+
             var tasks = _context.ToDoTasks.Where(task => task.TableId == tableId);
 
             return tasks.ToList();
