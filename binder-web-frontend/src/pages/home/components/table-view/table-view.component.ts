@@ -29,13 +29,9 @@ export class TableViewComponent implements OnInit, OnDestroy {
       .tasksGet(this.currentlySelectedTable.id)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (tasks: ToDoTask[] | any) => {
-          if (!Array.isArray(tasks)) {          
-            tasks as any;            
-            throw Error(tasks.title);
-          } else {
-            this.tasks = tasks;                    
-          }
+        next: (tasks: ToDoTask[]) => {
+          this.tasks = tasks;
+          this.refreshTable();
         },
         error: (error: any) => {
           console.error(error);

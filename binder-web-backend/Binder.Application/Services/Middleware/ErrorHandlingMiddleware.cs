@@ -25,27 +25,38 @@ namespace Binder.Application.Services.Middleware
             }
             catch (Exception e)
             {
-                ProblemDetails problemDetails = e switch
+                ProblemDetails problemDetails;
+                switch (e)
                 {
-                    InvalidOperationException invalidOperationException => new ProblemDetails
-                    {
-                        Title = ExceptionConstants.InvalidOperationMessage,
-                        Status = (int)HttpStatusCode.BadRequest,
-                        Detail = invalidOperationException.Message
-                    },
-                    NotFoundException notFoundException => new ProblemDetails
-                    {
-                        Title = ExceptionConstants.ResourceNotFoundMessage,
-                        Status = (int)HttpStatusCode.NotFound,
-                        Detail = notFoundException.Message
-                    },
-                    _ => new ProblemDetails
-                    {
-                        Title = ExceptionConstants.UnexpectedErrorMessage,
-                        Status = (int)HttpStatusCode.InternalServerError,
-                        Detail = e.Message
-                    },
-                };
+                    case InvalidOperationException invalidOperationException:
+                        problemDetails = new ProblemDetails
+                        {
+                            Title = ExceptionConstants.InvalidOperationMessage,
+                            Status = (int)HttpStatusCode.BadRequest,
+                            Detail = invalidOperationException.Message
+                        };
+                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
+                    case NotFoundException notFoundException:
+                        problemDetails = new ProblemDetails
+                        {
+                            Title = ExceptionConstants.ResourceNotFoundMessage,
+                            Status = (int)HttpStatusCode.NotFound,
+                            Detail = notFoundException.Message
+                        };
+                        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
+                    default:
+                        problemDetails = new ProblemDetails
+                        {
+                            Title = ExceptionConstants.UnexpectedErrorMessage,
+                            Status = (int)HttpStatusCode.InternalServerError,
+                            Detail = e.Message
+                        };
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        break;
+                }
+
                 context.Response.ContentType = problemJsonType;
 
                 var json = JsonSerializer.Serialize(problemDetails);
