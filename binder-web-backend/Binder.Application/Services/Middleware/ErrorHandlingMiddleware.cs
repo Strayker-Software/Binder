@@ -1,5 +1,4 @@
-﻿using Binder.Application.Services.Middleware.CustomExceptions;
-using Binder.Core.Constants;
+﻿using Binder.Core.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -25,24 +24,24 @@ namespace Binder.Application.Services.Middleware
             }
             catch (Exception e)
             {
-                ProblemDetails problemDetails;
-                switch (e)
+                ProblemDetails problemDetails = null;
+                switch (e.Message)
                 {
-                    case InvalidOperationException invalidOperationException:
+                    case ExceptionConstants.InvalidOperationMessage:
                         problemDetails = new ProblemDetails
                         {
                             Title = ExceptionConstants.InvalidOperationMessage,
                             Status = (int)HttpStatusCode.BadRequest,
-                            Detail = invalidOperationException.Message
+                            Detail = e.Message
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
-                    case NotFoundException notFoundException:
+                    case ExceptionConstants.ResourceNotFoundMessage:
                         problemDetails = new ProblemDetails
                         {
                             Title = ExceptionConstants.ResourceNotFoundMessage,
                             Status = (int)HttpStatusCode.NotFound,
-                            Detail = notFoundException.Message
+                            Detail = e.Message
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;

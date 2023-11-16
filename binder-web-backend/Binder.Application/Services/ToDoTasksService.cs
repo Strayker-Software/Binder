@@ -1,5 +1,4 @@
 ﻿using Binder.Application.Models.Interfaces;
-using Binder.Application.Services.Middleware.CustomExceptions;
 using Binder.Core.Constants;
 using Binder.Core.Models;
 using Binder.Persistence.Models.Interfaces;
@@ -17,7 +16,8 @@ namespace Binder.Application.Services
 
         public ICollection<ToDoTask> GetTasksForTable(int tableId)
         {
-            return _repository.GetTasksByTable(tableId) ?? throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+            return _repository.GetTasksByTable(tableId) ??
+                   throw new ArgumentException(ExceptionConstants.ResourceNotFoundMessage);
         }
     }
 }
