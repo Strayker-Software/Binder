@@ -1,4 +1,5 @@
-﻿using Binder.Core.Constants;
+﻿using Binder.Application.Services.Middleware.CustomExceptions;
+using Binder.Core.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -25,32 +26,32 @@ namespace Binder.Application.Services.Middleware
             catch (Exception e)
             {
                 ProblemDetails problemDetails = null;
-                switch (e.Message)
+                switch (e)
                 {
-                    case ExceptionConstants.InvalidOperationMessage:
+                    case InvalidOperationException:
                         problemDetails = new ProblemDetails
                         {
-                            Title = ExceptionConstants.InvalidOperationMessage,
+                            Title = nameof(HttpStatusCode.BadRequest),
                             Status = (int)HttpStatusCode.BadRequest,
-                            Detail = e.Message
+                            Detail = ExceptionConstants.InvalidOperationMessage,
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
-                    case ExceptionConstants.ResourceNotFoundMessage:
+                    case NotFoundException:
                         problemDetails = new ProblemDetails
                         {
-                            Title = ExceptionConstants.ResourceNotFoundMessage,
+                            Title = nameof(HttpStatusCode.NotFound),
                             Status = (int)HttpStatusCode.NotFound,
-                            Detail = e.Message
+                            Detail = ExceptionConstants.ResourceNotFoundMessage
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
                     default:
                         problemDetails = new ProblemDetails
                         {
-                            Title = ExceptionConstants.UnexpectedErrorMessage,
+                            Title = nameof(HttpStatusCode.InternalServerError),
                             Status = (int)HttpStatusCode.InternalServerError,
-                            Detail = e.Message
+                            Detail = ExceptionConstants.UnexpectedErrorMessage,
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
