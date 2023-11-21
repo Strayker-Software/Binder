@@ -3,7 +3,7 @@ using Binder.Application.Models.Interfaces;
 
 namespace Binder.Application.Services
 {
-    public class AppVersionService : IAppVersionService
+    public sealed class AppVersionService : IAppVersionService
     {
         public string GetAppVersion()
         {
