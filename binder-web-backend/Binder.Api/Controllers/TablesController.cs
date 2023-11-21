@@ -6,7 +6,7 @@ namespace Binder.Api.Controllers
 {
     [Route("tables")]
     [ApiController]
-    public class TablesController : ControllerBase
+    public sealed class TablesController : ControllerBase
     {
         private readonly IDefaultTableService _service;
 

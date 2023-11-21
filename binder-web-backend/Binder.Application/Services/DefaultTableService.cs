@@ -6,7 +6,7 @@ using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.Application.Services
 {
-    public class DefaultTableService : IDefaultTableService
+    public sealed class DefaultTableService : IDefaultTableService
     {
         private readonly IDefaultTableRepository _repository;
 

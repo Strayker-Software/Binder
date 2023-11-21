@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
-    public class AppVersionsController
+    public sealed class AppVersionsController
     {
         private readonly IAppVersionService _service;
 

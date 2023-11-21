@@ -6,7 +6,7 @@ namespace Binder.Api.Controllers
 {
     [Route("tasks")]
     [ApiController]
-    public class ToDoTasksController : ControllerBase
+    public sealed class ToDoTasksController : ControllerBase
     {
         private readonly IToDoTasksService _service;
 

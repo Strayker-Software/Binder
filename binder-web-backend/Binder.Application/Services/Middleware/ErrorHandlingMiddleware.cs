@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace Binder.Application.Services.Middleware
 {
-    public class ExceptionHandlingMiddleware
+    public sealed class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate next;
         private const string problemJsonType = "application/problem+json";
