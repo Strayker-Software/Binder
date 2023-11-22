@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
-    [Route("tasks")]
+    [Route("api/tasks")]
     [ApiController]
     public sealed class ToDoTasksController : ControllerBase
     {
