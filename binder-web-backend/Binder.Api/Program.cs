@@ -1,11 +1,11 @@
 using Binder.Api.Constants;
+using Binder.Api.Extensions;
 using Binder.Application.Models.Interfaces;
 using Binder.Application.Services;
 using Binder.Application.Services.Middleware;
 using Binder.Persistence.Configurations;
 using Binder.Persistence.Models.Interfaces;
 using Binder.Persistence.Repositories;
-using Microsoft.OpenApi.Models;
 
 namespace Binder.Api
 {
@@ -25,34 +25,14 @@ namespace Binder.Api
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
             builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
             builder.Services.AddScoped<IToDoTasksService, ToDoTasksService>();
-
             builder.Services.AddScoped<IAppVersionService, AppVersionService>();
 
-            string backendUrl = builder.Configuration
-                .GetSection(WebApiIocConfigValues.BackendUrlSectionKey).Value!;
-
-            builder.Services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc(WebApiIocConfigValues.ApiDocsVersion, new OpenApiInfo
-                {
-                    Version = WebApiIocConfigValues.ApiDocsVersion,
-                    Title = WebApiIocConfigValues.ApiDocsTitle,
-                    Description = WebApiIocConfigValues.ApiDocsDescription,
-                });
-
-                options.AddServer(new OpenApiServer
-                {
-                    Url = backendUrl
-                });
-            });
+            builder.Services.AddSwaggerDocumentation(args);
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            var env = app.Environment;
+            app.UseSwaggerDocumentation(env);
 
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
