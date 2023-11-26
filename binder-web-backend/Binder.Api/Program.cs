@@ -1,11 +1,7 @@
 using Binder.Api.Constants;
 using Binder.Api.Extensions;
-using Binder.Application.Models.Interfaces;
-using Binder.Application.Services;
 using Binder.Application.Services.Middleware;
 using Binder.Persistence.Configurations;
-using Binder.Persistence.Models.Interfaces;
-using Binder.Persistence.Repositories;
 
 namespace Binder.Api
 {
@@ -17,16 +13,9 @@ namespace Binder.Api
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
             builder.Services.AddMySqlConfig();
-
-            builder.Services.AddScoped<IToDoTasksRepository, ToDoTasksRepository>();
-            builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
-            builder.Services.AddScoped<IDefaultTableService, DefaultTableService>();
-            builder.Services.AddScoped<IToDoTasksService, ToDoTasksService>();
-            builder.Services.AddScoped<IAppVersionService, AppVersionService>();
-
+            builder.Services.AddServices();
+            builder.Services.AddRepositories();
             builder.Services.AddSwaggerDocumentation(args);
 
             var app = builder.Build();
