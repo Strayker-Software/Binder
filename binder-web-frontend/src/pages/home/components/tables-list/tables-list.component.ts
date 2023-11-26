@@ -16,7 +16,7 @@ export class TablesListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.tableService
-      .tablesGet()
+      .apiTablesGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (tables: DefaultTable[]) => {
