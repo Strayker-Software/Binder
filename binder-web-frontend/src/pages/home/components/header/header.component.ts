@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.appVersionsService
-      .getVersionGet()
+      .apiVersionsGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (ver: string) => 
