@@ -1,7 +1,9 @@
 using Binder.Api.Constants;
 using Binder.Api.Extensions;
+using Binder.Application.Extensions;
 using Binder.Application.Services.Middleware;
 using Binder.Persistence.Configurations;
+using Binder.Persistence.Extensions;
 
 namespace Binder.Api
 {
@@ -20,9 +22,7 @@ namespace Binder.Api
 
             var app = builder.Build();
 
-            var env = app.Environment;
-            app.UseSwaggerDocumentation(env);
-
+            app.UseSwaggerDocumentation();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             string frontendUrl = builder.Configuration

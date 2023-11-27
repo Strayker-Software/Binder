@@ -27,11 +27,11 @@ namespace Binder.Api.Extensions
             });
 
             return services;
-        }
+        }        
 
-        public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app, IWebHostEnvironment env)
+        public static IApplicationBuilder UseSwaggerDocumentation(this WebApplication app)
         {
-            if (env.IsDevelopment())
+            if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
