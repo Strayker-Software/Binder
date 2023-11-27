@@ -29,7 +29,7 @@ namespace Binder.Api.Extensions
             return services;
         }        
 
-        public static IApplicationBuilder UseSwaggerDocumentation(this WebApplication app)
+        public static WebApplication UseSwaggerDocumentation(this WebApplication app)
         {
             if (app.Environment.IsDevelopment())
             {
