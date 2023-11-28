@@ -74,7 +74,7 @@ jobs:
         source: ${{ env.FRONTEND_PATH }}/${{ env.FRONTEND_PATH }}/dist/${{ env.FRONTEND_PATH }}
         target: ${{ env.WEB_SERVER_PATH }}/${{ env.FRONTEND_PUBLISH_PATH }}
   
-  run:
+  run-services:
     steps:
       - name: Start Services via SSH
       uses: appleboy/ssh-action@master
