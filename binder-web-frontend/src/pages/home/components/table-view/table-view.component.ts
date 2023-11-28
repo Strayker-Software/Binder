@@ -26,7 +26,7 @@ export class TableViewComponent implements OnInit, OnDestroy {
 
   getTasks() {
     this.toDoTasksService
-      .tasksGet(this.currentlySelectedTable.id)
+      .apiTasksGet(this.currentlySelectedTable.id)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (tasks: ToDoTask[]) => {
