@@ -19,7 +19,7 @@ namespace Binder.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddMySqlConfig();
+            builder.Services.AddMySqlConfig(builder.Configuration);
 
             builder.Services.AddScoped<IToDoTasksRepository, ToDoTasksRepository>();
             builder.Services.AddScoped<IDefaultTableRepository, DefaultTableRepository>();
