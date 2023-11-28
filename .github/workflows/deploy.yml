@@ -76,7 +76,7 @@ jobs:
   
   run-services:
     steps:
-      - name: Start Services via SSH
+    - name: Start Services via SSH
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
