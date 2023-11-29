@@ -1,12 +1,12 @@
+- [ ] Code formatting checked,
+- [ ] Coding Guidelines compliance checked,
+- [ ] Documentation updated (if necessary),
+- [ ] Automated tests updated (if necessary),
+
 ## Summary
 
 _Provide an overview_
 
-## Details
+## Screenshots
 
-_Add more context to describe what changes did you do_
-
-## References
-
-_Links which provides to external materials_ <br/>
-[Example of link](www.google.com) 
+_If your work is visual, upload screenshots here_
