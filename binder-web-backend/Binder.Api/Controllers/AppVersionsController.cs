@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
-    public sealed class AppVersionsController
+    [Route("api/versions")]
+    [ApiController]
+    public sealed class AppVersionsController : ControllerBase
     {
         private readonly IAppVersionService _service;
 
@@ -13,7 +15,6 @@ namespace Binder.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetVersion")]
         public ActionResult<string> Get()
         {
             return _service.GetAppVersion();
