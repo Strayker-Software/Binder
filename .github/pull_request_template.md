@@ -1,12 +1,18 @@
 ## Summary
 
-_Provide an overview_
+_Provide an Overview of performed work..._
 
-## Details
+## Control List
 
-_Add more context to describe what changes did you do_
+- [ ] Code formatting checked,
+- [ ] Coding Guidelines compliance checked,
+- [ ] Documentation updated (if necessary),
+- [ ] Automated tests updated (if necessary),
 
-## References
+## Screenshots
 
-_Links which provides to external materials_ <br/>
-[Example of link](www.google.com) 
+_If your work is visual, upload screenshots here and delete this placeholder and the rest of file._
+
+_If not, leave the following text only:_
+
+Work under this PR is not visual, no screenshots available.

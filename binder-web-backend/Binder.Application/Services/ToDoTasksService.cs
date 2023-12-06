@@ -6,7 +6,7 @@ using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.Application.Services
 {
-    public class ToDoTasksService : IToDoTasksService
+    public sealed class ToDoTasksService : IToDoTasksService
     {
         private readonly IToDoTasksRepository _repository;
 

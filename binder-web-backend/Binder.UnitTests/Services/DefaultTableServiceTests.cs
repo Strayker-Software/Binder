@@ -3,7 +3,7 @@ using Binder.Persistence.Models.Interfaces;
 
 namespace Binder.UnitTests.Services
 {
-    public class DefaultTableServiceTests
+    public sealed class DefaultTableServiceTests
     {
         private readonly MockRepository mockRepository;
 

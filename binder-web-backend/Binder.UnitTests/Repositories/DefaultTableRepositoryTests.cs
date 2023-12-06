@@ -6,7 +6,7 @@ using Moq.EntityFrameworkCore;
 
 namespace Binder.UnitTests.Repositories
 {
-    public class DefaultTableRepositoryTests
+    public sealed class DefaultTableRepositoryTests
     {
         private readonly MockRepository _mockRepository;
         private readonly Mock<BinderDbContext> _mockTestDbContext;
