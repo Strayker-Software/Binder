@@ -13,9 +13,20 @@ import { SidePanelComponent } from './home/components/side-panel/side-panel.comp
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MainSpaceComponent } from './home/components/main-space/main-space.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  imports: [CommonModule, MatCheckboxModule, MatDividerModule, MatExpansionModule, MatTableModule, TranslocoModule],
+  imports: [
+    CommonModule, 
+    MatCheckboxModule, 
+    MatDividerModule, 
+    MatExpansionModule, 
+    MatTableModule, 
+    TranslocoModule, 
+    MatTreeModule, 
+    MatIconModule
+  ],
   declarations: [
     HomeComponent,
     NavbarComponent,
@@ -24,7 +35,7 @@ import { MainSpaceComponent } from './home/components/main-space/main-space.comp
     DomainButtonsComponent,
     HeaderComponent,
     SidePanelComponent,
-    MainSpaceComponent
+    MainSpaceComponent    
   ],
   exports: [HomeComponent],
 })

@@ -1,12 +1,19 @@
-<div class="tables">
-  <mat-accordion class="tables__accordion" [togglePosition]="'before'">
-    <mat-expansion-panel class="tables__accordion-panel">
-      <mat-expansion-panel-header class="tables__accordion-panel-header">
-        <mat-panel-title> {{ 'tablesList.tables' | transloco }} </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="tables__accordion-panel-content">
-        <p *ngFor="let table of tables" (click)="tableElementClicked($event)">{{ table.name }}</p>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>
+<mat-tree class="tables" [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node class="tables__mat-tree-node" *matTreeNodeDef="let table" matTreeNodeToggle>
+    <p class="tables__mat-tree-node-content" (click)="tableElementClicked(table.id)">{{ table.name }}</p>
+  </mat-tree-node>
+  <mat-nested-tree-node class="tables__mat-nested-tree-node" *matTreeNodeDef="let table; when: hasChild">
+    <div class="tables__mat-nested-tree-node-header">
+      <button class="tables__mat-nested-tree-node-header-btn" mat-icon-button matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + table.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(table) ? 'expand_more' : 'chevron_right' }}
+        </mat-icon>
+      </button>
+      <p class="tables__mat-nested-tree-node-header-btn-title">{{ 'tablesList.tables' | transloco }}</p>
+    </div>
+    <div class="tables__tables-tree-invisible" *ngIf="!treeControl.isExpanded(table)">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+</mat-tree>

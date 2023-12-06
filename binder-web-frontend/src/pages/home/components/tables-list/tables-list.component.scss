@@ -1,18 +1,41 @@
 .tables {
   user-select: none;
 
-  &__accordion {
-    &-panel {
-      &-header {
-        font-weight: 500;
+  &__mat-tree-node {
+    &-content {
+      display: flex;
+      align-items: center;
+      padding-left: 3.5rem;
+
+      &:hover {
+        cursor: pointer;
       }
-      
-      &-content {
-        margin-left: 2rem;
+    }
+  }
+
+  &__mat-nested-tree-node {
+    padding-left: 0.5rem;
+
+    &-header {
+      display: inline-flex;
+
+      &-btn {
+        color: white;
+        padding-top: 0.5rem;
+        border: none;
+        background: none;
 
         &:hover {
           cursor: pointer;
         }
+
+        &-title {
+          font-weight: 500;
+        }
+      }
+
+      &-tables-tree-invisible {
+        display: none;
       }
     }
   }
