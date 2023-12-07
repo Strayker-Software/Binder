@@ -11,7 +11,7 @@ namespace Binder.Api
     {
         public static void Main(string[] args)
         {
-           var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -19,6 +19,7 @@ namespace Binder.Api
             builder.Services.AddServices();
             builder.Services.AddRepositories();
             builder.Services.AddSwaggerDocumentation(args);
+            builder.Services.AddGitHubAuth();
 
             var app = builder.Build();
 
@@ -36,6 +37,7 @@ namespace Binder.Api
             });
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 
