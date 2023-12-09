@@ -1,44 +1,51 @@
 ﻿using Binder.Api.Authentication.Interfaces;
-using Binder.Api.Models;
 using Octokit;
 
 namespace Binder.Api.Authentication.Providers
 {
     public sealed class GitHubAuthProvider : IGitHubAuthProvider
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
+        private readonly GitHubClient _client;
 
         public GitHubAuthProvider(IConfiguration config)
         {
             _configuration = config;
+            _client = new GitHubClient(new ProductHeaderValue("strayker-software-binder"));
         }
 
-        public GitHubUser GetCurrentUser()
-        {
-            var currentUser = new GitHubUser();
+        public bool IsAuthenticated() => _client.Credentials.GetToken() is not null;
 
-            var client = new GitHubClient(new ProductHeaderValue("strayker-software-binder"));
+        public string GetLoginUrl()
+        {
+            if (IsAuthenticated())
+                return string.Empty;
 
             var request = new OauthLoginRequest(_configuration["clientId"])
             {
                 Scopes = { "user" }
             };
+            var oauthLoginUrl = _client.Oauth.GetGitHubLoginUrl(request);
 
-            var oauthLoginUrl = client.Oauth.GetGitHubLoginUrl(request);
+            return oauthLoginUrl.OriginalString;
+        }
 
-            // Send login url to user here.
+        public string GetAuthToken(string gitHubCode)
+        {
+            if (!IsAuthenticated())
+            {
+                var tokenRequest = new OauthTokenRequest(
+                    _configuration["clientId"],
+                    _configuration["clientSecret"],
+                    gitHubCode);
+                var oauthToken = _client.Oauth.CreateAccessToken(tokenRequest).Result;
+                var tokenValue = oauthToken.AccessToken;
+                _client.Credentials = new Credentials(tokenValue);
 
-            var tokenRequest = new OauthTokenRequest(
-                _configuration["clientId"],
-                _configuration["clientSecret"],
-                "returnedCode");
-            var token = client.Oauth.CreateAccessToken(tokenRequest).Result;
-            var ok = token.AccessToken;
-            client.Credentials = new Credentials(ok);
-
-            currentUser.Id = client.User.Current().Result.Id;
-
-            return currentUser;
+                return tokenValue;
+            }
+            else
+                return _client.Credentials.GetToken();
         }
     }
 }

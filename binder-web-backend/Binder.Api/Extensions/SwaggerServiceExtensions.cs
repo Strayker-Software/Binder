@@ -24,10 +24,25 @@ namespace Binder.Api.Extensions
                 {
                     Url = backendUrl
                 });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
             });
 
             return services;
-        }        
+        }
 
         public static WebApplication UseSwaggerDocumentation(this WebApplication app)
         {

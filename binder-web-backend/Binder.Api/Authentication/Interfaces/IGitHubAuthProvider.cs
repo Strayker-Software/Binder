@@ -1,9 +1,11 @@
-﻿using Binder.Api.Models;
-
-namespace Binder.Api.Authentication.Interfaces
+﻿namespace Binder.Api.Authentication.Interfaces
 {
     public interface IGitHubAuthProvider
     {
-        GitHubUser GetCurrentUser();
+        string GetLoginUrl();
+
+        string GetAuthToken(string gitHubCode);
+
+        bool IsAuthenticated();
     }
 }

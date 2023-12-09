@@ -9,7 +9,7 @@ namespace Binder.Api.Extensions
     {
         public static IServiceCollection AddGitHubAuth(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IGitHubAuthProvider, GitHubAuthProvider>();
+            serviceCollection.AddSingleton<IGitHubAuthProvider, GitHubAuthProvider>();
             serviceCollection.AddAuthentication("GitHubAuth")
                 .AddScheme<AuthenticationSchemeOptions, GitHubAuthHandler>("GitHubAuth", null);
 

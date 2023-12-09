@@ -1,6 +1,7 @@
 ﻿using Binder.Api.Authentication.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 
 namespace Binder.Api.Authentication
@@ -22,9 +23,17 @@ namespace Binder.Api.Authentication
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            _provider.GetCurrentUser();
+            if (_provider.IsAuthenticated())
+            {
+                ClaimsIdentity identity = new ClaimsIdentity("github");
+                identity.AddClaim(new Claim(ClaimTypes.Name, "ok"));
+                var principal = new ClaimsPrincipal();
+                AuthenticationTicket ticket = new(principal, "github");
 
-            return Task.FromResult(AuthenticateResult.NoResult());
+                return Task.FromResult(AuthenticateResult.Success(ticket));
+            }
+            else
+                return Task.FromResult(AuthenticateResult.Fail("unauth"));
         }
     }
 }

@@ -1,8 +1,10 @@
 using Binder.Application.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = "GitHubAuth")]
     [Route("api/versions")]
     [ApiController]
     public sealed class AppVersionsController : ControllerBase
