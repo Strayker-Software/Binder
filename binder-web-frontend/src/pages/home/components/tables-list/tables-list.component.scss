@@ -1,42 +1,31 @@
 .tables {
   user-select: none;
 
-  &__mat-tree-node {
+  &__tree {    
+    display: flex;
+
     &-content {
-      display: flex;
-      align-items: center;
-      padding-left: 3.5rem;
+      padding-left: 0.5rem;
 
       &:hover {
         cursor: pointer;
       }
     }
-  }
-
-  &__mat-nested-tree-node {
-    padding-left: 0.5rem;
 
     &-header {
-      display: inline-flex;
+      display: inline-flex;     
+      align-items: center; 
+      background: none;
+      color: white;
+      border: none;
 
-      &-btn {
-        color: white;
-        padding-top: 0.5rem;
-        border: none;
-        background: none;
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        &-title {
-          font-weight: 500;
-        }
+      &-title {
+        font-weight: 500;
       }
 
-      &-tables-tree-invisible {
-        display: none;
-      }
+      &:hover {
+        cursor: pointer;
+      }  
     }
   }
 }
