@@ -1,38 +1,35 @@
 ---
-name: Test Request
-about: Request to perform testing on dev/test environments.
-title: 'Test: Here describe shortly what is to be tested'
+name: 'Test Request'
+about: 'Request to perform testing on Dev/Test/Prod environments.'
+title: 'Testing: Here describe shortly what should be tested'
 labels: 'testing'
-assignees: StraykerPL
 ---
 
-# Test request
+**Reason for Request**
 
----
+_Describe, why this testing should be performed..._
 
-### Feature author
+**Testing Scope**
 
+_List namespaces, classes, UI features, etc. that should be tested..._
 
----
+**Testing Types**
 
-### Tickets involved
+- [ ] Manual Testing,
+- [ ] Automated Testing,
+- [ ] End2End Testing,
+- [ ] Acceptance Testing,
+- [ ] Environment Testing:
+  - [ ] Dev Env Testing,
+  - [ ] Test Env Testing,
+  - [ ] Prod Env Testing,
 
-  - ...
-  - ...
-  - ...
-  - ...
-  - ...
+**Reproduction Steps (Optional)**
 
----
+_How to reproduce eg. bug._
 
-
-### Reproduction steps (optional)
-
-How to reproduce eg. bug:    
-  1.     
-  2.    
-  3.    
-  4.    
-  5.    
-  
----
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
