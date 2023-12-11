@@ -1,19 +1,27 @@
 .tables {
   user-select: none;
 
-  &__accordion {
-    &-panel {
-      &-header {
-        font-weight: 500;
-      }
-      
-      &-content {
-        margin-left: 2rem;
+  &__tree {    
+    display: flex;
 
-        &:hover {
-          cursor: pointer;
-        }
+    &-content {
+      padding-left: 0.5rem;
+
+      &:hover {
+        cursor: pointer;
       }
+    }
+
+    &-header {
+      display: flex;     
+      align-items: center; 
+      background: none;
+      color: white;
+      border: none;
+      
+      &:hover {
+        cursor: pointer;
+      }  
     }
   }
 }
