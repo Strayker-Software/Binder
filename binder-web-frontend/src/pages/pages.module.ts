@@ -35,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     DomainButtonsComponent,
     HeaderComponent,
     SidePanelComponent,
-    MainSpaceComponent    
+    MainSpaceComponent
   ],
   exports: [HomeComponent],
 })

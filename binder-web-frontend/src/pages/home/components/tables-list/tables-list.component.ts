@@ -4,8 +4,8 @@ import { TablesService, DefaultTable } from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { TableNode } from 'src/api/model/tableNode';
-import { TableFlatNode } from 'src/api/model/tableFlatNode';
+import { TableNode } from 'src/shared/models/tableNode';
+import { TableFlatNode } from 'src/shared/models/tableFlatNode';
 
 @Component({
   selector: 'tables-list',

@@ -13,16 +13,12 @@
     }
 
     &-header {
-      display: inline-flex;     
+      display: flex;     
       align-items: center; 
       background: none;
       color: white;
       border: none;
-
-      &-title {
-        font-weight: 500;
-      }
-
+      
       &:hover {
         cursor: pointer;
       }  
