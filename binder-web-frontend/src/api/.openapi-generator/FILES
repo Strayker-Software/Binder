@@ -4,6 +4,7 @@ README.md
 api.module.ts
 api/api.ts
 api/appVersions.service.ts
+api/auth.service.ts
 api/tables.service.ts
 api/toDoTasks.service.ts
 configuration.ts
