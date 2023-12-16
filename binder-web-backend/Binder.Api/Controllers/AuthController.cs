@@ -25,9 +25,9 @@ namespace Binder.Api.Controllers
 
         [Route("callback")]
         [HttpPost]
-        public void Callback([FromQuery] string code)
+        public ActionResult<string> Callback([FromQuery] string code)
         {
-            _provider.GetAuthToken(code);
+            return Ok(_provider.GetAuthToken(code));
         }
     }
 }

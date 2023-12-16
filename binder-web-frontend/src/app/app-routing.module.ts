@@ -1,5 +1,6 @@
 import { NgModule, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { CallbackComponent } from 'src/pages/callback/callback.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { UnauthorizedComponent } from 'src/pages/unauthorized/unauthorized.component';
@@ -12,7 +13,7 @@ const canActivateTeam: CanActivateFn =
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
-  { path: "callback", redirectTo: "home" },
+  { path: "callback", component: CallbackComponent },
   { path: "unauthorized", component: UnauthorizedComponent },
   { path: "home", component: HomeComponent, canActivate: [canActivateTeam] }
 ];
