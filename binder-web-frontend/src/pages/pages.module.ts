@@ -15,6 +15,9 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MainSpaceComponent } from './home/components/main-space/main-space.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { CallbackComponent } from './callback/callback.component';
+import { LoginComponent } from './login/login.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   imports: [
@@ -35,8 +38,15 @@ import { MatIconModule } from '@angular/material/icon';
     DomainButtonsComponent,
     HeaderComponent,
     SidePanelComponent,
-    MainSpaceComponent
+    MainSpaceComponent,
+    CallbackComponent,
+    LoginComponent,
+    UnauthorizedComponent
   ],
-  exports: [HomeComponent],
+  exports: [
+    HomeComponent,
+    CallbackComponent,
+    LoginComponent,
+    UnauthorizedComponent],
 })
 export class PagesModule {}

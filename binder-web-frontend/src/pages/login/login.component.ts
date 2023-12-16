@@ -3,7 +3,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/api';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

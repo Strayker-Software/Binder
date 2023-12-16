@@ -10,8 +10,4 @@ export class PermissionService {
   canActivate (currentUser: number, userId: string): boolean {
     return true;
   }
-
-  canMatch (currentUser: number): boolean {
-    return true;
-  }
 }

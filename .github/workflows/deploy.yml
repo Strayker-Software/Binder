@@ -76,6 +76,7 @@ jobs:
         target: ${{ env.WEB_SERVER_PATH }}/${{ env.FRONTEND_PUBLISH_PATH }}
   
   run-services:
+    runs-on: ubuntu-latest 
     steps:
     - name: Start Services via SSH
       uses: appleboy/ssh-action@master
