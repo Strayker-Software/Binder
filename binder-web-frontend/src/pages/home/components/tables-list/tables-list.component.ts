@@ -2,6 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TablesService, DefaultTable } from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { TableNode } from 'src/shared/models/tableNode';
+import { TableFlatNode } from 'src/shared/models/tableFlatNode';
 
 @Component({
   selector: 'tables-list',
@@ -11,6 +15,25 @@ import { ActiveTableService } from 'src/shared/services/activeTable.service';
 export class TablesListComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
   tables: DefaultTable[] = [];
+  private _transformer = (node: TableNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      id: node.id as number,
+      name: node.name as string,
+      level: level,
+    };
+  };
+  treeControl = new FlatTreeControl<TableFlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor(private tableService: TablesService, private activeTableService: ActiveTableService) {}
 
@@ -21,20 +44,25 @@ export class TablesListComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (tables: DefaultTable[]) => {
           this.tables = tables;
+          this.dataSource.data = [
+            {
+              children: tables as TableNode[]
+            }
+          ];
         },
-        error: (error: any) => {
+        error: (error) => {
           console.error(error);
         },
       });
   }
 
-  tableElementClicked(event: MouseEvent) {
-    const htmlElement: HTMLParagraphElement = event.currentTarget as HTMLParagraphElement;
-
-    this.tables.forEach(table => {
-      if (table.name === htmlElement.textContent) {
+  hasChild = (_: number, node: TableFlatNode) => node.expandable;
+  
+  tableElementClicked(id: number) {
+    this.tables.forEach((table) => {
+      if (table.id === id) {
         this.activeTableService.activeTable.next(table);
-        
+
         return;
       }
     });

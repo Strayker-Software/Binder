@@ -1,12 +1,14 @@
-<div class="tables">
-  <mat-accordion class="tables__accordion" [togglePosition]="'before'">
-    <mat-expansion-panel class="tables__accordion-panel">
-      <mat-expansion-panel-header class="tables__accordion-panel-header">
-        <mat-panel-title> {{ 'tablesList.tables' | transloco }} </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="tables__accordion-panel-content">
-        <p *ngFor="let table of tables" (click)="tableElementClicked($event)">{{ table.name }}</p>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>
+<mat-tree class="tables" [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node class="tables__tree" *matTreeNodeDef="let table" matTreeNodePadding>
+    <p class="tables__tree-content" (click)="tableElementClicked(table.id)">{{ table.name }}</p>
+  </mat-tree-node>
+  <mat-tree-node class="tables__tree" *matTreeNodeDef="let table;when: hasChild" matTreeNodePadding>
+    <button class="tables__tree-header" mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle'">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(table) ? 'expand_more' : 'chevron_right' }}
+      </mat-icon> 
+      <p>{{ 'tablesList.tables' | transloco }}</p>
+    </button>
+  </mat-tree-node>
+</mat-tree>
