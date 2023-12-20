@@ -15,7 +15,6 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MainSpaceComponent } from './home/components/main-space/main-space.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
-import { CallbackComponent } from './callback/callback.component';
 import { LoginComponent } from './login/login.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
@@ -39,13 +38,11 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     HeaderComponent,
     SidePanelComponent,
     MainSpaceComponent,
-    CallbackComponent,
     LoginComponent,
     UnauthorizedComponent
   ],
   exports: [
     HomeComponent,
-    CallbackComponent,
     LoginComponent,
     UnauthorizedComponent],
 })
