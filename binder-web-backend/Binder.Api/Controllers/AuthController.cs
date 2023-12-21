@@ -10,10 +10,12 @@ namespace Binder.Api.Controllers
     public sealed class AuthController : ControllerBase
     {
         private readonly IGitHubAuthProvider _provider;
+        private readonly IConfiguration _config;
 
-        public AuthController(IGitHubAuthProvider provider)
+        public AuthController(IGitHubAuthProvider provider, IConfiguration config)
         {
             _provider = provider;
+            _config = config;
         }
 
         [Route("login")]

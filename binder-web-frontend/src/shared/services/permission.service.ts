@@ -7,7 +7,7 @@ export class PermissionService {
 
   constructor() { }
 
-  canActivate (currentUser: number, userId: string): boolean {
-    return true;
+  canActivate (token: string): boolean {
+    return token !== null || token !== "" ? true : false;
   }
 }

@@ -1,0 +1,9 @@
+﻿using Binder.Core.Models;
+
+namespace Binder.Application.Models.Interfaces
+{
+    public interface IAppUsersService
+    {
+        AppUser GetByToken(string token);
+    }
+}
