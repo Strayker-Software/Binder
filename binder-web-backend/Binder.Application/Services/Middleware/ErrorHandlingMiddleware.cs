@@ -25,7 +25,7 @@ namespace Binder.Application.Services.Middleware
             }
             catch (Exception e)
             {
-                ProblemDetails problemDetails = null;
+                ProblemDetails? problemDetails = null;
                 switch (e)
                 {
                     case InvalidOperationException:
@@ -37,6 +37,7 @@ namespace Binder.Application.Services.Middleware
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+
                     case NotFoundException:
                         problemDetails = new ProblemDetails
                         {
@@ -46,6 +47,7 @@ namespace Binder.Application.Services.Middleware
                         };
                         context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+
                     default:
                         problemDetails = new ProblemDetails
                         {

@@ -11,14 +11,15 @@ namespace Binder.Api
     {
         public static void Main(string[] args)
         {
-           var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddMySqlConfig(builder.Configuration);
+            builder.Services.AddAutoMapperProfiles();
             builder.Services.AddServices();
             builder.Services.AddRepositories();
-            builder.Services.AddSwaggerDocumentation(args);
+            builder.Services.AddSwaggerDocumentation(builder.Configuration);
 
             var app = builder.Build();
 
@@ -26,7 +27,7 @@ namespace Binder.Api
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             string frontendUrl = builder.Configuration
-                .GetSection(WebApiIocConfigValues.FrontendUrlSectionKey).Value!;
+                .GetSection(WebApiIocConfigValues.FrontendUrlSectionKey).Value ?? throw new ArgumentNullException();
 
             app.UseCors(policy =>
             {
