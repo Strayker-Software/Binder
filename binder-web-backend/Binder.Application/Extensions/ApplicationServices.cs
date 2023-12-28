@@ -12,7 +12,6 @@ namespace Binder.Application.Extensions
             services.AddScoped<IDefaultTableService, DefaultTableService>();
             services.AddScoped<IToDoTasksService, ToDoTasksService>();
             services.AddScoped<IAppVersionService, AppVersionService>();
-            services.AddScoped<IExceptionHandlerFactory, ExceptionHandlerFactory>();
 
             return services;
         }

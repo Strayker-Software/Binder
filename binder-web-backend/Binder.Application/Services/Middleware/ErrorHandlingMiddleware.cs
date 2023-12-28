@@ -7,13 +7,11 @@ namespace Binder.Application.Services.Middleware
     public sealed class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IExceptionHandlerFactory _factory;
         private const string problemJsonType = "application/problem+json";
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, IExceptionHandlerFactory factory)
+        public ExceptionHandlingMiddleware(RequestDelegate next)
         {
             _next = next;
-            _factory = factory;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -24,8 +22,8 @@ namespace Binder.Application.Services.Middleware
             }
             catch (Exception e)
             {
-                ProblemDetails? problemDetails = null;
-                _factory.HandleException(e, out problemDetails, context);
+                ProblemDetails? problemDetails = GetProblemDetailsByExceptionFactory.HandleException(e);
+                context.Response.StatusCode = (int)problemDetails.Status;
 
                 context.Response.ContentType = problemJsonType;
 
