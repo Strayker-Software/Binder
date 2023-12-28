@@ -1,5 +1,6 @@
 using Binder.Application.Models.Interfaces;
 using Binder.Application.Services;
+using Binder.Application.Services.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Binder.Application.Extensions
@@ -11,6 +12,7 @@ namespace Binder.Application.Extensions
             services.AddScoped<IDefaultTableService, DefaultTableService>();
             services.AddScoped<IToDoTasksService, ToDoTasksService>();
             services.AddScoped<IAppVersionService, AppVersionService>();
+            services.AddScoped<IExceptionHandlerFactory, ExceptionHandlerFactory>();
 
             return services;
         }
