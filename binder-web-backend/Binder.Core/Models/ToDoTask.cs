@@ -18,6 +18,7 @@ namespace Binder.Core.Models
         {
             Name = string.Empty;
             Description = string.Empty;
+            Table = new DefaultTable();
         }
     }
 }

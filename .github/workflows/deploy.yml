@@ -1,0 +1,88 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "develop" ]
+
+env:
+  DOTNET_VERSION: "6.0.x"
+  NODE_VERSION: "18.x"
+  BACKEND_PATH: "binder-web-backend"
+  FRONTEND_PATH: "binder-web-frontend"
+  WEB_SERVER_PATH: "/var/www"
+  BACKEND_PUBLISH_PATH: "backend"
+  FRONTEND_PUBLISH_PATH: "frontend"
+
+jobs:
+  backend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code 👀
+      uses: actions/checkout@v3
+    
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} 🔨
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore dependencies 🔧
+      run: dotnet restore ${{ env.BACKEND_PATH }}
+      
+    - name: Build app 🚀
+      run: dotnet publish --no-restore -o ${{ env.BACKEND_PUBLISH_PATH }}
+
+    - name: Copy Web Backend via SCP
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.SSHKEY }}
+      with:
+        source: ${{ env.BACKEND_PATH }}/${{ env.BACKEND_PUBLISH_PATH }}
+        target: ${{ env.WEB_SERVER_PATH }}/${{ env.BACKEND_PUBLISH_PATH }}
+      
+  frontend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code 👀
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ env.NODE_VERSION }} 🔨
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: ${{ env.FRONTEND_PATH }}/package-lock.json
+      
+    - name: Clean install of dependencies 🔧
+      run: npm ci --prefix ${{ env.FRONTEND_PATH }}
+    
+    - name: Build app 🚀
+      run: npm run build --prefix ${{ env.FRONTEND_PATH }} --if-present
+
+    - name: Copy Web Frontend via SCP
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.SSHKEY }}
+      with:
+        source: ${{ env.FRONTEND_PATH }}/${{ env.FRONTEND_PATH }}/dist/${{ env.FRONTEND_PATH }}
+        target: ${{ env.WEB_SERVER_PATH }}/${{ env.FRONTEND_PUBLISH_PATH }}
+  
+  run-services:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start Services via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.SSHKEY }}
+        script: ls
