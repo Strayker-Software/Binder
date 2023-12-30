@@ -7,5 +7,7 @@ namespace Binder.Application.Models.Interfaces
         DefaultTable GetTable(int tableId);
 
         ICollection<DefaultTable> GetAllTables();
+
+        DefaultTable CreateTable(string tableName);
     }
 }

@@ -27,5 +27,11 @@ namespace Binder.Api.Controllers
         {
             return Ok(_service.GetAllTables());
         }
+
+        [HttpPost]
+        public ActionResult<DefaultTable> Create(string tableName)
+        {
+            return _service.CreateTable(tableName);
+        }
     }
 }
