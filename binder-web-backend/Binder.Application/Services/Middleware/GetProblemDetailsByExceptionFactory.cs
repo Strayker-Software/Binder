@@ -7,38 +7,29 @@ namespace Binder.Application.Services.Middleware
 {
     public static class GetProblemDetailsByExceptionFactory
     {
-        public static ProblemDetails HandleException(Exception exception)
+        public static ProblemDetails GetProblemDetails(Exception exception)
         {
-            ProblemDetails problemDetails;
-            switch (exception)
+            return exception switch
             {
-                case InvalidOperationException:
-                    problemDetails = new ProblemDetails
-                    {
-                        Title = nameof(HttpStatusCode.BadRequest),
-                        Status = (int)HttpStatusCode.BadRequest,
-                        Detail = ExceptionConstants.InvalidOperationMessage,
-                    };
-                    break;
-                case NotFoundException:
-                    problemDetails = new ProblemDetails
-                    {
-                        Title = nameof(HttpStatusCode.NotFound),
-                        Status = (int)HttpStatusCode.NotFound,
-                        Detail = ExceptionConstants.ResourceNotFoundMessage
-                    };
-                    break;
-                default:
-                    problemDetails = new ProblemDetails
-                    {
-                        Title = nameof(HttpStatusCode.InternalServerError),
-                        Status = (int)HttpStatusCode.InternalServerError,
-                        Detail = ExceptionConstants.UnexpectedErrorMessage,
-                    };
-                    break;
-            };
-
-            return problemDetails;
+                InvalidOperationException => new ProblemDetails
+                {
+                    Title = nameof(HttpStatusCode.BadRequest),
+                    Status = (int)HttpStatusCode.BadRequest,
+                    Detail = ExceptionConstants.InvalidOperationMessage,
+                },
+                NotFoundException => new ProblemDetails
+                {
+                    Title = nameof(HttpStatusCode.NotFound),
+                    Status = (int)HttpStatusCode.NotFound,
+                    Detail = ExceptionConstants.ResourceNotFoundMessage
+                },
+                _ => new ProblemDetails
+                {
+                    Title = nameof(HttpStatusCode.InternalServerError),
+                    Status = (int)HttpStatusCode.InternalServerError,
+                    Detail = ExceptionConstants.UnexpectedErrorMessage,
+                },
+            };            
         }
     }
 }

@@ -1,6 +1,5 @@
 using Binder.Application.Models.Interfaces;
 using Binder.Application.Services;
-using Binder.Application.Services.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Binder.Application.Extensions
