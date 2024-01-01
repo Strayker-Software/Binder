@@ -8,6 +8,6 @@ namespace Binder.Application.Models.Interfaces
 
         ICollection<DefaultTable> GetAllTables();
 
-        DefaultTable CreateTable(string tableName);
+        DefaultTable Create(string tableName);
     }
 }

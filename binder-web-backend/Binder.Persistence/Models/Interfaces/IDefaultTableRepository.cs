@@ -8,6 +8,6 @@ namespace Binder.Persistence.Models.Interfaces
 
         ICollection<DefaultTable>? GetAll();
 
-        DefaultTable CreateTable(string tableName);
+        DefaultTable Add(DefaultTable table);
     }
 }

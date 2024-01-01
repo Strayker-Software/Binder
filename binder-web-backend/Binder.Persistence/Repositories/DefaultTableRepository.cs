@@ -25,13 +25,8 @@ namespace Binder.Persistence.Repositories
             return _context.Tables.ToList();
         }
 
-        public DefaultTable CreateTable(string tableName)
+        public DefaultTable Add(DefaultTable table)
         {
-            var table = new DefaultTable
-            {
-                Name = tableName
-            };
-
             _context.Tables.Add(table);
             _context.SaveChanges();
 

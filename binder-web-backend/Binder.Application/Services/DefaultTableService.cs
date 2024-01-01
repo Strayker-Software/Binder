@@ -27,9 +27,14 @@ namespace Binder.Application.Services
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
 
-        public DefaultTable CreateTable(string tableName)
-        {
-            return _repository.CreateTable(tableName) ??
+        public DefaultTable Create(string tableName)
+        {            
+            var table = new DefaultTable
+            {
+                Name = tableName
+            };
+            
+            return _repository.Add(table) ??
                 throw new InvalidOperationException(ExceptionConstants.InvalidOperationMessage);
         }
     }

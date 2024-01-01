@@ -31,7 +31,7 @@ namespace Binder.Api.Controllers
         [HttpPost]
         public ActionResult<DefaultTable> Create(string tableName)
         {
-            return _service.CreateTable(tableName);
+            return _service.Create(tableName);
         }
     }
 }
