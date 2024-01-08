@@ -2,7 +2,7 @@
 
 namespace Binder.Core.Models
 {
-    public record DefaultTable : IBaseEntity
+    public class DefaultTable : IBaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
