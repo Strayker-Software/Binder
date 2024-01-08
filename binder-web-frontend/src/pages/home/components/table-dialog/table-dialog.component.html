@@ -6,8 +6,8 @@
             <input matInput [(ngModel)]="data.tableName">
         </mat-form-field>
     </div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="onCancel()">{{ 'general.cancel' | transloco }}</button>
-        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{ 'addTableDialog.add' | transloco }}</button>
+    <div class="dialog__buttons" mat-dialog-actions>
+        <button class="dialog__buttons-btn" mat-button [mat-dialog-close]="data" cdkFocusInitial>{{ 'addTableDialog.add' | transloco }}</button>
+        <button class="dialog__buttons-btn" mat-button (click)="onCancel()">{{ 'general.cancel' | transloco }}</button>
     </div>
 </div>

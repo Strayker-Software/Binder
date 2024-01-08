@@ -20,7 +20,7 @@ export class NavbarComponent {
       width: '18rem',
       height: '16rem',
       data: { name: this.tableName },
-      position: { top: '0px', left:'0px' }
+      position: { top: '30vh', left:'50vw' }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
