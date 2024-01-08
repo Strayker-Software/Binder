@@ -15,17 +15,28 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MainSpaceComponent } from './home/components/main-space/main-space.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { TableDialogComponent } from './home/components/table-dialog/table-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCommonModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule, 
-    MatCheckboxModule, 
-    MatDividerModule, 
-    MatExpansionModule, 
-    MatTableModule, 
-    TranslocoModule, 
-    MatTreeModule, 
-    MatIconModule
+    CommonModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatTableModule,
+    TranslocoModule,
+    MatTreeModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatCommonModule,
+    MatInputModule,
+    FormsModule,
   ],
   declarations: [
     HomeComponent,
@@ -35,8 +46,10 @@ import { MatIconModule } from '@angular/material/icon';
     DomainButtonsComponent,
     HeaderComponent,
     SidePanelComponent,
-    MainSpaceComponent
+    MainSpaceComponent,
+    TableDialogComponent,
   ],
+  entryComponents: [TableDialogComponent],
   exports: [HomeComponent],
 })
 export class PagesModule {}
