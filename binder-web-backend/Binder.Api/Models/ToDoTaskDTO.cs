@@ -9,8 +9,6 @@
 
         public int TableId { get; set; }
 
-        public DefaultTableDTO? Table { get; set; }
-
         public ToDoTaskDTO()
         {
             Name = string.Empty;

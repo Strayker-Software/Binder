@@ -10,8 +10,8 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
-model/defaultTable.ts
+model/defaultTableDTO.ts
 model/models.ts
-model/toDoTask.ts
+model/toDoTaskDTO.ts
 param.ts
 variables.ts

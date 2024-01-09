@@ -11,7 +11,7 @@
  */
 
 
-export interface ToDoTask { 
+export interface ToDoTaskDTO { 
     readonly id?: number;
     name?: string | null;
     description?: string | null;
