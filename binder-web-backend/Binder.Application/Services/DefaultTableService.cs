@@ -8,23 +8,39 @@ namespace Binder.Application.Services
 {
     public sealed class DefaultTableService : IDefaultTableService
     {
-        private readonly IDefaultTableRepository _repository;
+        private readonly IDefaultTableRepository _defaultTableRepository;
+        private readonly IToDoTasksRepository _toDoTasksRepository;
 
-        public DefaultTableService(IDefaultTableRepository repository)
+        public DefaultTableService(
+            IDefaultTableRepository defaultTableRepository,
+            IToDoTasksRepository toDoTasksRepository)
         {
-            _repository = repository;
+            _defaultTableRepository = defaultTableRepository;
+            _toDoTasksRepository = toDoTasksRepository;
         }
 
         public DefaultTable GetTable(int tableId)
         {
-            return _repository.GetById(tableId) ??
+            var table = _defaultTableRepository.GetById(tableId) ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+            table.Tasks = _toDoTasksRepository.GetTasksByTable(tableId) ??
+                throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+
+            return table;
         }
 
         public ICollection<DefaultTable> GetAllTables()
         {
-            return _repository.GetAll() ??
+            var tables = _defaultTableRepository.GetAll() ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+
+            foreach (var table in tables)
+            {
+                table.Tasks = _toDoTasksRepository.GetTasksByTable(table.Id) ??
+                    throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
+            }
+
+            return tables;
         }
     }
 }

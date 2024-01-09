@@ -6,7 +6,7 @@ namespace Binder.Core.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<ToDoTask> Tasks { get; }
+        public ICollection<ToDoTask> Tasks { get; set; }
 
         public DefaultTable()
         {
