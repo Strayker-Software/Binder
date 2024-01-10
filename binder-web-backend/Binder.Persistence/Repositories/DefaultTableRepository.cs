@@ -22,7 +22,7 @@ namespace Binder.Persistence.Repositories
 
         public ICollection<DefaultTable>? GetAll()
         {
-            return _context.Tables.ToList();
+            return _context.Tables.ToList().Count != 0 ? _context.Tables.ToList() : null;
         }
 
         protected virtual void Dispose(bool disposing)

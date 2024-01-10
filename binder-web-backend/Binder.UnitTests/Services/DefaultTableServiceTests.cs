@@ -1,25 +1,24 @@
-﻿using Binder.Application.Services;
-using Binder.Persistence.Models.Interfaces;
-
-namespace Binder.UnitTests.Services
+﻿namespace Binder.UnitTests.Services
 {
     public sealed class DefaultTableServiceTests
     {
-        private readonly MockRepository mockRepository;
-
-        private readonly Mock<IDefaultTableRepository> mockTestRepository;
+        //private readonly MockRepository _mockRepository;
+        //private readonly Mock<IDefaultTableRepository> _mockDefaultTableTestRepository;
+        //private readonly Mock<IToDoTasksRepository> _mockToDoTasksTestRepository;
 
         public DefaultTableServiceTests()
         {
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            //_mockRepository = new MockRepository(MockBehavior.Strict);
 
-            this.mockTestRepository = this.mockRepository.Create<IDefaultTableRepository>();
+            //_mockDefaultTableTestRepository = _mockRepository.Create<IDefaultTableRepository>();
+            //_mockToDoTasksTestRepository = _mockRepository.Create<IToDoTasksRepository>();
         }
 
-        private DefaultTableService CreateService()
-        {
-            return new DefaultTableService(
-                this.mockTestRepository.Object);
-        }
+        //private DefaultTableService CreateService()
+        //{
+        //    return new DefaultTableService(
+        //        _mockDefaultTableTestRepository.Object,
+        //        _mockToDoTasksTestRepository.Object);
+        //}
     }
 }
