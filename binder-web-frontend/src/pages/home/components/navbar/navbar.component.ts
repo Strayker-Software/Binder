@@ -13,6 +13,8 @@ import { dialogConfig } from 'src/shared/consts/appConsts';
 export class NavbarComponent {
   private subscribe$: Subject<void> = new Subject<void>();
   tableName: string = '';
+  showHideColumnButtonVisibility: boolean = false;
+  resetViewButtonVisibility: boolean = false;
 
   constructor(private dialog: MatDialog, private tableService: TablesService) { }
 

@@ -6,6 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./domain-buttons.component.scss'],
 })
 export class DomainButtonsComponent implements OnInit {
+  optionsButtonVisibility: boolean = false;
   @Output() optionsClickedEvent: EventEmitter<HTMLParagraphElement> =
     new EventEmitter();
   @Output() aboutClickedEvent: EventEmitter<HTMLParagraphElement> =
