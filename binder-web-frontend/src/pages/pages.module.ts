@@ -49,7 +49,6 @@ import { FormsModule } from '@angular/forms';
     MainSpaceComponent,
     TableDialogComponent,
   ],
-  entryComponents: [TableDialogComponent],
   exports: [HomeComponent],
 })
 export class PagesModule {}

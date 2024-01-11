@@ -1,3 +1,5 @@
+@use "variables";
+
 .tables {
   background-color: transparent;
 
@@ -14,7 +16,7 @@
       display: flex;
       align-items: center;
       background: none;
-      color: white;
+      color: variables.$color-white;
       border: none;
 
       &:hover {

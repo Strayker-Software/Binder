@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from '../table-dialog/table-dialog.component';
 import { DefaultTable, TablesService } from 'src/api';
+import { dialogConfig } from 'src/shared/consts/appConsts';
 
 @Component({
   selector: 'navbar',
@@ -16,22 +17,23 @@ export class NavbarComponent {
   constructor(private dialog: MatDialog, private tableService: TablesService) { }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(TableDialogComponent, {
-      width: '18rem',
-      height: '16rem',
-      data: { name: this.tableName },
-      position: { top: '30vh', left:'50vw' }
-    });
+    dialogConfig.data.name = this.tableName;
+    const dialogRef = this.dialog.open(TableDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.tableName = result?.tableName;
-    
-      if (this.tableName !== undefined)
-      {
-        this.addTable(this.tableName);
-        window.location.reload()
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          this.tableName = result?.tableName;    
+          if (this.tableName !== undefined) {
+            this.addTable(this.tableName);
+            window.location.reload()
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
   }
 
   addTable(name: string) {

@@ -1,5 +1,8 @@
 {    
     "general": {
+        "title": "Add Table",
+        "content": "Enter name of new table:",
+        "add": "Add",
         "cancel": "Cancel"
     },    
     "navbar": {
@@ -21,10 +24,5 @@
     "domainButtons": {
         "options": "Options",
         "about": "About"
-    },
-    "addTableDialog": {
-        "title": "Add Table",
-        "content": "Enter name of new table:",
-        "add": "Add"
     }
 }

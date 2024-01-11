@@ -29,9 +29,9 @@ namespace Binder.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<DefaultTable> Create(string tableName)
+        public ActionResult<DefaultTable> Post(string tableName)
         {
-            return _service.Create(tableName);
+            return _service.CreateTable(tableName);
         }
     }
 }

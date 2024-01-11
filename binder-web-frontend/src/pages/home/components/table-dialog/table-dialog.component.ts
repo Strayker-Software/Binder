@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog';
 export class TableDialogComponent {
 
   constructor( 
-    public dialogRef: MatDialogRef<TableDialogComponent>, 
+    private dialogRef: MatDialogRef<TableDialogComponent>, 
       @Inject(MAT_DIALOG_DATA) public data: any) { } 
   
   onCancel(): void { 

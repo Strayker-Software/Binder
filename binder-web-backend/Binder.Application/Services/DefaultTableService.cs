@@ -27,7 +27,7 @@ namespace Binder.Application.Services
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
 
-        public DefaultTable Create(string tableName)
+        public DefaultTable CreateTable(string tableName)
         {            
             var table = new DefaultTable
             {
