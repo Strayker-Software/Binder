@@ -5,14 +5,13 @@
     box-shadow: 0px 0px 16px variables.$color-grey;
 
     &__buttons {
-        padding-left: 0px;
         justify-content: space-evenly;
 
         &-btn {
             user-select: none;
-            width: 100px;
-            height: 25px;
-            border-radius: 12.5px;
+            width: 6rem;
+            height: 1.6rem;
+            border-radius: 12px;
             background-color: variables.$color-raisin-black;
             color: variables.$color-white;
             border-color: variables.$color-white;

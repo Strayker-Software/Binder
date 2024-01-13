@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { TableDialogComponent } from '../table-dialog/table-dialog.component';
+import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
 import { DefaultTable, TablesService } from 'src/api';
 import { dialogConfig } from 'src/shared/consts/appConsts';
 
@@ -24,6 +24,7 @@ export class NavbarComponent {
 
     dialogRef
       .afterClosed()
+      .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (result) => {
           this.tableName = result?.tableName;    

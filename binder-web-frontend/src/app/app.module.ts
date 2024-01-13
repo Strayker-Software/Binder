@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiModule } from 'src/api';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,8 +21,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ApiModule,
     HttpClientModule,
-    TranslocoRootModule,
-    FormsModule,
+    TranslocoRootModule
   ],
 })
 export class AppModule {}
