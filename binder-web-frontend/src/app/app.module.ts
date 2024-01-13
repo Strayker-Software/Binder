@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from 'src/pages/pages.module';
 import { SharedModule } from 'src/shared/shared.module';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiModule } from 'src/api';
@@ -22,7 +21,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     BrowserAnimationsModule,
     ApiModule,
     HttpClientModule,
-    TranslocoRootModule,
+    TranslocoRootModule
   ],
 })
 export class AppModule {}

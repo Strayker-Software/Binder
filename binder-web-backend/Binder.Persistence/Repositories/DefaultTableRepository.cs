@@ -25,6 +25,14 @@ namespace Binder.Persistence.Repositories
             return _context.Tables.ToList();
         }
 
+        public DefaultTable Add(DefaultTable table)
+        {
+            _context.Tables.Add(table);
+            _context.SaveChanges();
+
+            return table;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

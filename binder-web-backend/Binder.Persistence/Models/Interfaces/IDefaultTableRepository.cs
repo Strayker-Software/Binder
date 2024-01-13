@@ -7,5 +7,7 @@ namespace Binder.Persistence.Models.Interfaces
         DefaultTable? GetById(int tableId);
 
         ICollection<DefaultTable>? GetAll();
+
+        DefaultTable Add(DefaultTable table);
     }
 }

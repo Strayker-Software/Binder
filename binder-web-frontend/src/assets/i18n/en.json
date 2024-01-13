@@ -1,5 +1,10 @@
-{       
+{    
+    "general": {
+        "add": "Add",
+        "cancel": "Cancel"
+    },    
     "navbar": {
+        "addTable": "Add Table",
         "showCompleted": "Show Completed",
         "showHideColumn": "Show/Hide Column",
         "resetView": "Reset View"
@@ -17,5 +22,9 @@
     "domainButtons": {
         "options": "Options",
         "about": "About"
+    },
+    "addTableDialog": {
+        "title": "Add Table",
+        "content": "Enter name of new table:"
     }
 }
