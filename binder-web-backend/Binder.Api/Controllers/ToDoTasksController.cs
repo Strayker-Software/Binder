@@ -20,5 +20,11 @@ namespace Binder.Api.Controllers
         {
             return Ok(_service.GetTasksForTable(tableId));
         }
+
+        [HttpPost]
+        public ActionResult<ToDoTask> Post(ToDoTask task)
+        {
+            return _service.AddTaskToTable(task);
+        }
     }
 }

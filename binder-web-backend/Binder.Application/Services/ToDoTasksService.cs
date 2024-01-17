@@ -20,5 +20,13 @@ namespace Binder.Application.Services
             return _repository.GetTasksByTable(tableId) ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
+
+        public ToDoTask AddTaskToTable(ToDoTask task)
+        {
+            var newTask = new ToDoTask(task.Name, task.Description, task.IsCompleted, task.TableId);
+
+            return _repository.InsertTaskIntoTable(newTask) ??
+                throw new InvalidOperationException(ExceptionConstants.InvalidOperationMessage);
+        }
     }
 }
