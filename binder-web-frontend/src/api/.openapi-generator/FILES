@@ -12,6 +12,7 @@ git_push.sh
 index.ts
 model/defaultTable.ts
 model/models.ts
+model/taskShow.ts
 model/toDoTask.ts
 param.ts
 variables.ts

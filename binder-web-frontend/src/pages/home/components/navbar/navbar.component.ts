@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
-import { DefaultTable, TablesService } from 'src/api';
+import { DefaultTable, TablesService, TaskShow } from 'src/api';
 import { dialogConfig } from 'src/shared/consts/appConsts';
+import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
   selector: 'navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent {
   showHideColumnButtonVisibility: boolean = false;
   resetViewButtonVisibility: boolean = false;
 
-  constructor(private dialog: MatDialog, private tableService: TablesService) { }
+  constructor(private dialog: MatDialog, private tableService: TablesService, private activeTableService: ActiveTableService) { }
 
   openDialog(): void {
     dialogConfig.data.name = this.tableName;
@@ -51,6 +52,25 @@ export class NavbarComponent {
           console.error(error);
         },
       });
+  }
+
+  showHideCompleted() {
+    switch (this.activeTableService.showHideCompletedTasksIndicator.getValue()) {
+      case TaskShow.NUMBER_1:
+        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_2);
+        break;
+
+      case TaskShow.NUMBER_2:
+        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_3);
+        break;
+
+      case TaskShow.NUMBER_3:
+        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_1);
+        break;
+    
+      default:
+        break;
+    }
   }
 
   ngOnDestroy() {

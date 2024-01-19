@@ -19,6 +19,8 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
+import { TaskShow } from '../model/taskShow';
+// @ts-ignore
 import { ToDoTask } from '../model/toDoTask';
 
 // @ts-ignore
@@ -93,18 +95,23 @@ export class ToDoTasksService {
 
     /**
      * @param tableId 
+     * @param showFiltering 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTasksGet(tableId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<Array<ToDoTask>>;
-    public apiTasksGet(tableId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpResponse<Array<ToDoTask>>>;
-    public apiTasksGet(tableId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpEvent<Array<ToDoTask>>>;
-    public apiTasksGet(tableId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<any> {
+    public apiTasksGet(tableId?: number, showFiltering?: TaskShow, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<Array<ToDoTask>>;
+    public apiTasksGet(tableId?: number, showFiltering?: TaskShow, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpResponse<Array<ToDoTask>>>;
+    public apiTasksGet(tableId?: number, showFiltering?: TaskShow, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<HttpEvent<Array<ToDoTask>>>;
+    public apiTasksGet(tableId?: number, showFiltering?: TaskShow, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (tableId !== undefined && tableId !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>tableId, 'tableId');
+        }
+        if (showFiltering !== undefined && showFiltering !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>showFiltering, 'showFiltering');
         }
 
         let localVarHeaders = this.defaultHeaders;
