@@ -5,6 +5,7 @@ import { TableDialogComponent } from 'src/pages/home/components/table-dialog/tab
 import { DefaultTable, TablesService, TaskShow } from 'src/api';
 import { dialogConfig } from 'src/shared/consts/appConsts';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
+import { ShowHideCompletedButtonLabels } from 'src/shared/consts/showHideCompletedButtonLabels.enum';
 
 @Component({
   selector: 'navbar',
@@ -14,6 +15,7 @@ import { ActiveTableService } from 'src/shared/services/activeTable.service';
 export class NavbarComponent {
   private subscribe$: Subject<void> = new Subject<void>();
   tableName: string = '';
+  showHideCompletedButtonLabel: string = ShowHideCompletedButtonLabels.ShowAll;
   showHideColumnButtonVisibility: boolean = false;
   resetViewButtonVisibility: boolean = false;
 
@@ -57,14 +59,17 @@ export class NavbarComponent {
   showHideCompleted() {
     switch (this.activeTableService.showHideCompletedTasksIndicator.getValue()) {
       case TaskShow.NUMBER_1:
+        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.HideCompleted;
         this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_2);
         break;
 
       case TaskShow.NUMBER_2:
+        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.ShowAll;
         this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_3);
         break;
 
       case TaskShow.NUMBER_3:
+        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.ShowCompleted;
         this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_1);
         break;
     

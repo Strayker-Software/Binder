@@ -5,7 +5,9 @@
     },    
     "navbar": {
         "addTable": "Add Table",
+        "showAllTasks": "Show All",
         "showCompleted": "Show Completed",
+        "hideCompleted": "Hide Completed",
         "showHideColumn": "Show/Hide Column",
         "resetView": "Reset View"
     }, 

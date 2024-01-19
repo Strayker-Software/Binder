@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, concatMap, mergeMap, switchMap, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { DefaultTable, TaskShow, ToDoTask, ToDoTasksService } from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
