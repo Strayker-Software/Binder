@@ -19,7 +19,11 @@ export class NavbarComponent {
   showHideColumnButtonVisibility: boolean = false;
   resetViewButtonVisibility: boolean = false;
 
-  constructor(private dialog: MatDialog, private tableService: TablesService, private activeTableService: ActiveTableService) { }
+  constructor(
+    private dialog: MatDialog,
+    private tableService: TablesService,
+    private activeTableService: ActiveTableService
+  ) {}
 
   openDialog(): void {
     dialogConfig.data.name = this.tableName;
@@ -30,15 +34,15 @@ export class NavbarComponent {
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (result) => {
-          this.tableName = result?.tableName;    
+          this.tableName = result?.tableName;
           if (this.tableName !== undefined) {
             this.addTable(this.tableName);
-            window.location.reload()
+            window.location.reload();
           }
         },
         error: (error) => {
           console.error(error);
-        }
+        },
       });
   }
 
@@ -57,22 +61,33 @@ export class NavbarComponent {
   }
 
   showHideCompleted() {
-    switch (this.activeTableService.showHideCompletedTasksIndicator.getValue()) {
+    switch (
+      this.activeTableService.showHideCompletedTasksIndicator.getValue()
+    ) {
       case TaskShow.NUMBER_1:
-        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.HideCompleted;
-        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_2);
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.HideCompleted;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_2
+        );
         break;
 
       case TaskShow.NUMBER_2:
-        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.ShowAll;
-        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_3);
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.ShowAll;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_3
+        );
         break;
 
       case TaskShow.NUMBER_3:
-        this.showHideCompletedButtonLabel = ShowHideCompletedButtonLabels.ShowCompleted;
-        this.activeTableService.showHideCompletedTasksIndicator.next(TaskShow.NUMBER_1);
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.ShowCompleted;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_1
+        );
         break;
-    
+
       default:
         break;
     }

@@ -14,24 +14,27 @@ export class TableViewComponent implements OnInit, OnDestroy {
   tasks: ToDoTask[] = [];
   currentlySelectedTable: DefaultTable = {};
 
-  constructor(private toDoTasksService: ToDoTasksService, private activeTableService: ActiveTableService) {
+  constructor(
+    private toDoTasksService: ToDoTasksService,
+    private activeTableService: ActiveTableService
+  ) {
     this.activeTableService.activeTable
-    .pipe(takeUntil(this.subscribe$))
-    .subscribe(selectedTable => {
-      this.currentlySelectedTable = selectedTable;
-      this.getTasks(TaskShow.NUMBER_3);
-      this.refreshTable();
-    });
+      .pipe(takeUntil(this.subscribe$))
+      .subscribe((selectedTable) => {
+        this.currentlySelectedTable = selectedTable;
+        this.getTasks(TaskShow.NUMBER_3);
+        this.refreshTable();
+      });
 
     this.activeTableService.showHideCompletedTasksIndicator
-    .pipe(takeUntil(this.subscribe$))
-    .subscribe(taskActiveFiltering => {
-      this.getTasks(taskActiveFiltering);
-      this.refreshTable();
-    });
+      .pipe(takeUntil(this.subscribe$))
+      .subscribe((taskActiveFiltering) => {
+        this.getTasks(taskActiveFiltering);
+        this.refreshTable();
+      });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   getTasks(filtering: TaskShow) {
     this.toDoTasksService
