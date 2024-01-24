@@ -15,13 +15,17 @@ export class TableViewComponent implements OnInit, OnDestroy {
   currentlySelectedTable: DefaultTable = {};
 
   constructor(private toDoTasksService: ToDoTasksService, private activeTableService: ActiveTableService) {
-    this.activeTableService.activeTable.subscribe(selectedTable => {
+    this.activeTableService.activeTable
+    .pipe(takeUntil(this.subscribe$))
+    .subscribe(selectedTable => {
       this.currentlySelectedTable = selectedTable;
       this.getTasks(TaskShow.NUMBER_3);
       this.refreshTable();
     });
 
-    this.activeTableService.showHideCompletedTasksIndicator.subscribe(taskActiveFiltering => {
+    this.activeTableService.showHideCompletedTasksIndicator
+    .pipe(takeUntil(this.subscribe$))
+    .subscribe(taskActiveFiltering => {
       this.getTasks(taskActiveFiltering);
       this.refreshTable();
     });
