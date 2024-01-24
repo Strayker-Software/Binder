@@ -23,8 +23,7 @@ namespace Binder.Application.Services.Middleware
             catch (Exception e)
             {
                 ProblemDetails problemDetails = GetProblemDetailsByExceptionFactory.GetProblemDetails(e);
-                context.Response.StatusCode = (int)problemDetails.Status;
-
+                context.Response.StatusCode = (int)problemDetails.Status!;
                 context.Response.ContentType = problemJsonType;
 
                 var json = JsonSerializer.Serialize(problemDetails);
