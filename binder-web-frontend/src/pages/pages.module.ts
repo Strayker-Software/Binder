@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCommonModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { TaskDialogComponent } from './home/components/task-dialog/task-dialog.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { FormsModule } from '@angular/forms';
     SidePanelComponent,
     MainSpaceComponent,
     TableDialogComponent,
+    TaskDialogComponent,
   ],
   exports: [HomeComponent],
 })

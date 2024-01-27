@@ -5,6 +5,7 @@
     },    
     "navbar": {
         "addTable": "Add Table",
+        "addTask": "Add Task",
         "showCompleted": "Show Completed",
         "showHideColumn": "Show/Hide Column",
         "resetView": "Reset View"
@@ -26,5 +27,11 @@
     "addTableDialog": {
         "title": "Add Table",
         "content": "Enter name of new table:"
+    },
+    "addTaskDialog": {
+        "title": "Add Task",
+        "name": "Name:",
+        "description": "Description:",
+        "isCompleted": "Is Completed?"
     }
 }
