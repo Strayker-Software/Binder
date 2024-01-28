@@ -21,7 +21,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     BrowserAnimationsModule,
     ApiModule,
     HttpClientModule,
-    TranslocoRootModule
+    TranslocoRootModule,
   ],
 })
 export class AppModule {}

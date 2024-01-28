@@ -1,30 +1,32 @@
-{    
-    "general": {
-        "add": "Add",
-        "cancel": "Cancel"
-    },    
-    "navbar": {
-        "addTable": "Add Table",
-        "showCompleted": "Show Completed",
-        "showHideColumn": "Show/Hide Column",
-        "resetView": "Reset View"
-    }, 
-    "tableView": {
-        "name": "Name",
-        "description": "Description",
-        "completed": "Completed"
-    },
-    "tablesList": {
-        "tables": "Tables",
-        "toDoList": "ToDo List" ,
-        "customList": "Custom List"
-    },
-    "domainButtons": {
-        "options": "Options",
-        "about": "About"
-    },
-    "addTableDialog": {
-        "title": "Add Table",
-        "content": "Enter name of new table:"
-    }
+{
+  "general": {
+    "add": "Add",
+    "cancel": "Cancel"
+  },
+  "navbar": {
+    "addTable": "Add Table",
+    "showAllTasks": "Show All",
+    "showCompleted": "Show Completed",
+    "hideCompleted": "Hide Completed",
+    "showHideColumn": "Show/Hide Column",
+    "resetView": "Reset View"
+  },
+  "tableView": {
+    "name": "Name",
+    "description": "Description",
+    "completed": "Completed"
+  },
+  "tablesList": {
+    "tables": "Tables",
+    "toDoList": "ToDo List",
+    "customList": "Custom List"
+  },
+  "domainButtons": {
+    "options": "Options",
+    "about": "About"
+  },
+  "addTableDialog": {
+    "title": "Add Table",
+    "content": "Enter name of new table:"
+  }
 }
