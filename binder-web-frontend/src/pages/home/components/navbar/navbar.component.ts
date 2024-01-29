@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
-import { DefaultTable, TablesService, ToDoTask, ToDoTasksService } from 'src/api';
+import { DefaultTable, TablesService, ToDoTask, ToDoTasksService, TaskShow } from 'src/api';
 import { tableDialogConfig, taskDialogConfig } from 'src/shared/consts/appConsts';
 import { TaskDialogComponent } from 'src/pages/home/components/task-dialog/task-dialog.component';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
@@ -20,7 +20,6 @@ export class NavbarComponent {
   currentlySelectedTableId: number = 0;
   showHideColumnButtonVisibility: boolean = false;
   showHideCompletedButtonLabel: string = ShowHideCompletedButtonLabels.ShowAll;
-  showHideColumnButtonVisibility: boolean = false;
   resetViewButtonVisibility: boolean = false;
 
   constructor(
@@ -103,7 +102,8 @@ export class NavbarComponent {
           console.error(error);
         },
       });
-
+  }
+  
   showHideCompleted() {
     switch (
       this.activeTableService.showHideCompletedTasksIndicator.getValue()
