@@ -1,7 +1,7 @@
 export const tableDialogConfig = {
   width: '17rem',
   height: '16rem',
-  data: { name: '' }
+  data: { name: '' },
 };
 
 export const taskDialogConfig = {
@@ -12,5 +12,5 @@ export const taskDialogConfig = {
     description: '',
     isCompleted: false,
     tableId: 1
-  }
+  },
 };

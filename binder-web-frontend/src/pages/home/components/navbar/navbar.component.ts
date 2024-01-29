@@ -6,6 +6,7 @@ import { DefaultTable, TablesService, ToDoTask, ToDoTasksService } from 'src/api
 import { tableDialogConfig, taskDialogConfig } from 'src/shared/consts/appConsts';
 import { TaskDialogComponent } from 'src/pages/home/components/task-dialog/task-dialog.component';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
+import { ShowHideCompletedButtonLabels } from 'src/shared/consts/showHideCompletedButtonLabels.enum';
 
 @Component({
   selector: 'navbar',
@@ -18,10 +19,16 @@ export class NavbarComponent {
   newTask: ToDoTask = {};
   currentlySelectedTableId: number = 0;
   showHideColumnButtonVisibility: boolean = false;
+  showHideCompletedButtonLabel: string = ShowHideCompletedButtonLabels.ShowAll;
+  showHideColumnButtonVisibility: boolean = false;
   resetViewButtonVisibility: boolean = false;
 
-  constructor(private dialog: MatDialog, private tablesService: TablesService, 
-    private tasksService: ToDoTasksService, private activeTableService: ActiveTableService) {
+  constructor(
+    private dialog: MatDialog, 
+    private tablesService: TablesService, 
+    private tasksService: ToDoTasksService, 
+    private activeTableService: ActiveTableService
+    ) {
       this.activeTableService.activeTable.subscribe(selectedTable => {
         this.currentlySelectedTableId = selectedTable.id as number;
       });
@@ -36,15 +43,15 @@ export class NavbarComponent {
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
         next: (result) => {
-          this.tableName = result?.tableName;    
+          this.tableName = result?.tableName;
           if (this.tableName !== undefined) {
             this.addTable(this.tableName);
-            window.location.reload()
+            window.location.reload();
           }
         },
         error: (error) => {
           console.error(error);
-        }
+        },
       });
   }
 
@@ -96,6 +103,38 @@ export class NavbarComponent {
           console.error(error);
         },
       });
+
+  showHideCompleted() {
+    switch (
+      this.activeTableService.showHideCompletedTasksIndicator.getValue()
+    ) {
+      case TaskShow.NUMBER_1:
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.HideCompleted;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_2
+        );
+        break;
+
+      case TaskShow.NUMBER_2:
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.ShowAll;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_3
+        );
+        break;
+
+      case TaskShow.NUMBER_3:
+        this.showHideCompletedButtonLabel =
+          ShowHideCompletedButtonLabels.ShowCompleted;
+        this.activeTableService.showHideCompletedTasksIndicator.next(
+          TaskShow.NUMBER_1
+        );
+        break;
+
+      default:
+        break;
+    }
   }
 
   ngOnDestroy() {

@@ -6,8 +6,10 @@
     "navbar": {
         "addTable": "Add Table",
         "addTask": "Add Task",
+        "showAllTasks": "Show All",
         "showCompleted": "Show Completed",
         "showHideColumn": "Show/Hide Column",
+        "hideCompleted": "Hide Completed",
         "resetView": "Reset View"
     }, 
     "tableView": {

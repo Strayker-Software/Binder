@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ToDoTask } from './toDoTask';
 
-export interface DefaultTable {
-  id?: number;
-  name?: string | null;
-  readonly tasks?: Array<ToDoTask> | null;
-}
+export type TaskShow = 0 | 1 | 2 | 3;
+
+export const TaskShow = {
+  NUMBER_0: 0 as TaskShow,
+  NUMBER_1: 1 as TaskShow,
+  NUMBER_2: 2 as TaskShow,
+  NUMBER_3: 3 as TaskShow,
+};

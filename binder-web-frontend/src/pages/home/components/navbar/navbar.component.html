@@ -3,9 +3,24 @@
   <mat-divider [vertical]="true" class="navbar__divider"></mat-divider>
   <button mat-button class="navbar__button" (click)="openTaskDialog()">{{ 'navbar.addTask' | transloco }}</button>
   <mat-divider [vertical]="true" class="navbar__divider"></mat-divider>
-  <button mat-button class="navbar__button">{{ 'navbar.showCompleted' | transloco }}</button>
-  <mat-divider [vertical]="true" class="navbar__divider" *ngIf="showHideColumnButtonVisibility"></mat-divider>
-  <button mat-button class="navbar__button" *ngIf="showHideColumnButtonVisibility">{{ 'navbar.showHideColumn' | transloco }}</button>
-  <mat-divider [vertical]="true" class="navbar__divider" *ngIf="resetViewButtonVisibility"></mat-divider>
-  <button mat-button class="navbar__button" *ngIf="resetViewButtonVisibility">{{ 'navbar.resetView' | transloco }}</button>
+  <button mat-button class="navbar__button" (click)="showHideCompleted()">
+    {{ showHideCompletedButtonLabel | transloco }}
+  </button>
+  <mat-divider
+    [vertical]="true"
+    class="navbar__divider"
+    *ngIf="showHideColumnButtonVisibility"></mat-divider>
+  <button
+    mat-button
+    class="navbar__button"
+    *ngIf="showHideColumnButtonVisibility">
+    {{ "navbar.showHideColumn" | transloco }}
+  </button>
+  <mat-divider
+    [vertical]="true"
+    class="navbar__divider"
+    *ngIf="resetViewButtonVisibility"></mat-divider>
+  <button mat-button class="navbar__button" *ngIf="resetViewButtonVisibility">
+    {{ "navbar.resetView" | transloco }}
+  </button>
 </div>
