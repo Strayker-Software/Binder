@@ -1,25 +1,43 @@
 <div class="dialog">
-    <div class="dialog__header">
-        <h1 class="dialog__header-title" mat-dialog-title>{{ 'addTaskDialog.title' | transloco }}</h1>
-        <button class="dialog__header-close" mat-icon-button [mat-dialog-close]="true">
-            <mat-icon class="dialog__header-close-icon">close</mat-icon>
-        </button>
-    </div>
-    <div class="dialog__content" mat-dialog-content>
-        <p class="dialog__content-label">{{ 'addTaskDialog.name' | transloco }}</p>
-        <mat-form-field class="dialog__content-field">
-            <input matInput [(ngModel)]="task.name">
-        </mat-form-field>
-        <p class="dialog__content-label">{{ 'addTaskDialog.description' | transloco }}</p>
-        <mat-form-field class="dialog__content-field">
-            <textarea matInput [(ngModel)]="task.description"></textarea>
-        </mat-form-field>
-        <mat-checkbox class="dialog__content-label" [(ngModel)]="task.isCompleted" labelPosition="before">
-            {{ 'addTaskDialog.isCompleted' | transloco }}
-        </mat-checkbox>
-    </div>
-    <div class="dialog__buttons" mat-dialog-actions>
-        <button class="dialog__buttons-btn" mat-button [mat-dialog-close]="task" cdkFocusInitial>{{ 'general.add' | transloco }}</button>
-        <button class="dialog__buttons-btn" mat-button (click)="onCancel()">{{ 'general.cancel' | transloco }}</button>
-    </div>
+  <div class="dialog__header">
+    <h1 class="dialog__header-title" mat-dialog-title>
+      {{ "addTaskDialog.title" | transloco }}
+    </h1>
+    <button
+      class="dialog__header-close"
+      mat-icon-button
+      [mat-dialog-close]="true">
+      <mat-icon class="dialog__header-close-icon">close</mat-icon>
+    </button>
+  </div>
+  <div class="dialog__content" mat-dialog-content>
+    <p class="dialog__content-label">{{ "addTaskDialog.name" | transloco }}</p>
+    <mat-form-field class="dialog__content-field">
+      <input matInput [(ngModel)]="task.name" />
+    </mat-form-field>
+    <p class="dialog__content-label">
+      {{ "addTaskDialog.description" | transloco }}
+    </p>
+    <mat-form-field class="dialog__content-field">
+      <textarea matInput [(ngModel)]="task.description"></textarea>
+    </mat-form-field>
+    <mat-checkbox
+      class="dialog__content-label"
+      [(ngModel)]="task.isCompleted"
+      labelPosition="before">
+      {{ "addTaskDialog.isCompleted" | transloco }}
+    </mat-checkbox>
+  </div>
+  <div class="dialog__buttons" mat-dialog-actions>
+    <button
+      class="dialog__buttons-btn"
+      mat-button
+      [mat-dialog-close]="task"
+      cdkFocusInitial>
+      {{ "general.add" | transloco }}
+    </button>
+    <button class="dialog__buttons-btn" mat-button (click)="onCancel()">
+      {{ "general.cancel" | transloco }}
+    </button>
+  </div>
 </div>

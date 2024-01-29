@@ -11,6 +11,6 @@ export const taskDialogConfig = {
     name: '',
     description: '',
     isCompleted: false,
-    tableId: 1
+    tableId: 1,
   },
 };

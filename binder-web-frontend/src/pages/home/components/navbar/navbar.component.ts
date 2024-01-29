@@ -2,8 +2,17 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
-import { DefaultTable, TablesService, ToDoTask, ToDoTasksService, TaskShow } from 'src/api';
-import { tableDialogConfig, taskDialogConfig } from 'src/shared/consts/appConsts';
+import {
+  DefaultTable,
+  TablesService,
+  ToDoTask,
+  ToDoTasksService,
+  TaskShow,
+} from 'src/api';
+import {
+  tableDialogConfig,
+  taskDialogConfig,
+} from 'src/shared/consts/appConsts';
 import { TaskDialogComponent } from 'src/pages/home/components/task-dialog/task-dialog.component';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 import { ShowHideCompletedButtonLabels } from 'src/shared/consts/showHideCompletedButtonLabels.enum';
@@ -23,14 +32,14 @@ export class NavbarComponent {
   resetViewButtonVisibility: boolean = false;
 
   constructor(
-    private dialog: MatDialog, 
-    private tablesService: TablesService, 
-    private tasksService: ToDoTasksService, 
+    private dialog: MatDialog,
+    private tablesService: TablesService,
+    private tasksService: ToDoTasksService,
     private activeTableService: ActiveTableService
-    ) {
-      this.activeTableService.activeTable.subscribe(selectedTable => {
-        this.currentlySelectedTableId = selectedTable.id as number;
-      });
+  ) {
+    this.activeTableService.activeTable.subscribe((selectedTable) => {
+      this.currentlySelectedTableId = selectedTable.id as number;
+    });
   }
 
   openTableDialog(): void {
@@ -81,12 +90,12 @@ export class NavbarComponent {
           this.newTask = result;
           if (this.newTask !== undefined) {
             this.addTask(this.newTask);
-            window.location.reload()
+            window.location.reload();
           }
         },
         error: (error) => {
           console.error(error);
-        }
+        },
       });
   }
 
@@ -103,7 +112,7 @@ export class NavbarComponent {
         },
       });
   }
-  
+
   showHideCompleted() {
     switch (
       this.activeTableService.showHideCompletedTasksIndicator.getValue()
