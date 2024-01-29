@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
 import { DefaultTable, TablesService, ToDoTask, ToDoTasksService } from 'src/api';
 import { tableDialogConfig, taskDialogConfig } from 'src/shared/consts/appConsts';
-import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import { TaskDialogComponent } from 'src/pages/home/components/task-dialog/task-dialog.component';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
@@ -72,8 +72,7 @@ export class NavbarComponent {
       .subscribe({
         next: (result) => {
           result.id = this.currentlySelectedTableId;
-          this.newTask = result;   
-          console.log(result); 
+          this.newTask = result;
           if (this.newTask !== undefined) {
             this.addTask(this.newTask);
             window.location.reload()
