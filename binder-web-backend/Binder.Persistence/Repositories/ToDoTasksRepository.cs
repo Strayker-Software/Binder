@@ -26,6 +26,14 @@ namespace Binder.Persistence.Repositories
             return tasks.ToList();
         }
 
+        public ToDoTask InsertTaskIntoTable(ToDoTask task)
+        {
+            _context.ToDoTasks.Add(task);
+            _context.SaveChanges();
+
+            return task;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

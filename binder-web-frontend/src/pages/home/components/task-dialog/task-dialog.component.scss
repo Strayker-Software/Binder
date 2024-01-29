@@ -1,0 +1,70 @@
+@use "variables";
+
+.dialog {
+  display: grid;
+  padding-left: 0.5rem;
+  background-color: variables.$color-raisin-black;
+  box-shadow: 0px 0px 16px variables.$color-grey;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 1.6rem;
+    }
+
+    &-close {
+      user-select: none;
+      border: transparent;
+      background-color: variables.$color-raisin-black;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &-icon {
+        width: max-content;
+        height: max-content;
+        user-select: none;
+        color: variables.$color-white;
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+    color: variables.$color-white;
+
+    &-label {
+      color: variables.$color-white;
+      margin: 0;
+    }
+
+    &-field {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10rem;
+
+    &-btn {
+      user-select: none;
+      width: 6rem;
+      height: 1.6rem;
+      border-radius: 12px;
+      background-color: variables.$color-raisin-black;
+      color: variables.$color-white;
+      border-color: variables.$color-white;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

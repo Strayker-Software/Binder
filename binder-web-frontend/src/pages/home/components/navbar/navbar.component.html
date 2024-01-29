@@ -1,6 +1,10 @@
 <div class="navbar">
-  <button mat-button class="navbar__button" (click)="openDialog()">
+  <button mat-button class="navbar__button" (click)="openTableDialog()">
     {{ "navbar.addTable" | transloco }}
+  </button>
+  <mat-divider [vertical]="true" class="navbar__divider"></mat-divider>
+  <button mat-button class="navbar__button" (click)="openTaskDialog()">
+    {{ "navbar.addTask" | transloco }}
   </button>
   <mat-divider [vertical]="true" class="navbar__divider"></mat-divider>
   <button mat-button class="navbar__button" (click)="showHideCompleted()">
