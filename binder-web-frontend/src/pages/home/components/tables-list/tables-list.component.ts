@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { TablesService, DefaultTable } from 'src/api';
+import { TablesService, DefaultTableDTO } from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
@@ -17,7 +17,7 @@ import { TableFlatNode } from 'src/shared/models/tableFlatNode';
 })
 export class TablesListComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
-  tables: DefaultTable[] = [];
+  tables: DefaultTableDTO[] = [];
   private _transformer = (node: TableNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -48,7 +48,7 @@ export class TablesListComponent implements OnInit, OnDestroy {
       .apiTablesGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (tables: DefaultTable[]) => {
+        next: (tables: DefaultTableDTO[]) => {
           this.tables = tables;
           this.dataSource.data = [
             {

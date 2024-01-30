@@ -8,24 +8,27 @@ namespace Binder.Application.Services
 {
     public sealed class ToDoTasksService : IToDoTasksService
     {
-        private readonly IToDoTasksRepository _repository;
+        private readonly IToDoTasksRepository _toDoTaskRepository;
+        private readonly IDefaultTableRepository _defaultTableRepository;
 
-        public ToDoTasksService(IToDoTasksRepository repository)
+        public ToDoTasksService(IToDoTasksRepository toDoTaskRepository, IDefaultTableRepository defaultTableRepository)
         {
-            _repository = repository;
+            _toDoTaskRepository = toDoTaskRepository;
+            _defaultTableRepository = defaultTableRepository;
         }
 
         public ICollection<ToDoTask> GetTasksForTable(int tableId)
         {
-            return _repository.GetTasksByTable(tableId) ??
+            return _toDoTaskRepository.GetTasksByTable(tableId) ??
                 throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
         }
 
         public ToDoTask AddTaskToTable(ToDoTask task)
         {
-            var newTask = new ToDoTask(task.Name, task.Description, task.IsCompleted, task.TableId);
+            task.Table = _defaultTableRepository.GetById(task.TableId) ??
+                throw new NotFoundException(ExceptionConstants.ResourceNotFoundMessage);
 
-            return _repository.InsertTaskIntoTable(newTask) ??
+            return _toDoTaskRepository.InsertTaskIntoTable(task) ??
                 throw new InvalidOperationException(ExceptionConstants.InvalidOperationMessage);
         }
     }

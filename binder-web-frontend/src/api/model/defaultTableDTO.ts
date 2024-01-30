@@ -10,10 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface ToDoTask {
-  readonly id?: number;
+export interface DefaultTableDTO {
+  id?: number;
   name?: string | null;
-  description?: string | null;
-  isCompleted?: boolean;
-  tableId?: number;
 }

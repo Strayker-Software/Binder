@@ -1,9 +1,6 @@
-﻿using Binder.Core.Models.Interfaces;
-using System.Text.Json.Serialization;
-
-namespace Binder.Core.Models
+﻿namespace Binder.Api.Models
 {
-    public class ToDoTask : IBaseEntity
+    public class ToDoTaskDTO
     {
         public int Id { get; private set; }
         public string Name { get; set; }
@@ -12,14 +9,10 @@ namespace Binder.Core.Models
 
         public int TableId { get; set; }
 
-        [JsonIgnore]
-        public DefaultTable Table { get; set; }
-
-        public ToDoTask()
+        public ToDoTaskDTO()
         {
             Name = string.Empty;
             Description = string.Empty;
-            Table = new DefaultTable();
         }
     }
 }

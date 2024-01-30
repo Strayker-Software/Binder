@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { TableDialogComponent } from 'src/pages/home/components/table-dialog/table-dialog.component';
 import {
-  DefaultTable,
+  DefaultTableDTO,
   TablesService,
-  ToDoTask,
+  ToDoTaskDTO,
   ToDoTasksService,
   TaskShow,
 } from 'src/api';
@@ -25,7 +25,7 @@ import { ShowHideCompletedButtonLabels } from 'src/shared/consts/showHideComplet
 export class NavbarComponent {
   private subscribe$: Subject<void> = new Subject<void>();
   tableName: string = '';
-  newTask: ToDoTask = {};
+  newTask: ToDoTaskDTO = {};
   currentlySelectedTableId: number = 0;
   showHideColumnButtonVisibility: boolean = false;
   showHideCompletedButtonLabel: string = ShowHideCompletedButtonLabels.ShowAll;
@@ -68,7 +68,7 @@ export class NavbarComponent {
       .apiTablesPost(name)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (table: DefaultTable) => {
+        next: (table: DefaultTableDTO) => {
           return table;
         },
         error: (error) => {
@@ -99,12 +99,12 @@ export class NavbarComponent {
       });
   }
 
-  addTask(task: ToDoTask) {
+  addTask(task: ToDoTaskDTO) {
     this.tasksService
       .apiTasksPost(task)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (task: ToDoTask) => {
+        next: (task: ToDoTaskDTO) => {
           return task;
         },
         error: (error) => {

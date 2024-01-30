@@ -24,6 +24,7 @@ namespace Binder.Application.Services.Middleware
             {
                 ProblemDetails problemDetails = GetProblemDetailsByExceptionFactory.GetProblemDetails(e);
                 context.Response.StatusCode = (int)problemDetails.Status!;
+
                 context.Response.ContentType = problemJsonType;
 
                 var json = JsonSerializer.Serialize(problemDetails);

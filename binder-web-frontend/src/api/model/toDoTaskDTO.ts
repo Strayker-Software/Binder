@@ -9,10 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ToDoTask } from './toDoTask';
 
-export interface DefaultTable {
-  id?: number;
+export interface ToDoTaskDTO {
+  readonly id?: number;
   name?: string | null;
-  readonly tasks?: Array<ToDoTask> | null;
+  description?: string | null;
+  isCompleted?: boolean;
+  tableId?: number;
 }

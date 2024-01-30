@@ -27,7 +27,7 @@ import { Observable } from 'rxjs';
 // @ts-ignore
 import { TaskShow } from '../model/taskShow';
 // @ts-ignore
-import { ToDoTask } from '../model/toDoTask';
+import { ToDoTaskDTO } from '../model/toDoTaskDTO';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -134,7 +134,7 @@ export class ToDoTasksService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<Array<ToDoTask>>;
+  ): Observable<Array<ToDoTaskDTO>>;
   public apiTasksGet(
     tableId?: number,
     showFiltering?: TaskShow,
@@ -144,7 +144,7 @@ export class ToDoTasksService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpResponse<Array<ToDoTask>>>;
+  ): Observable<HttpResponse<Array<ToDoTaskDTO>>>;
   public apiTasksGet(
     tableId?: number,
     showFiltering?: TaskShow,
@@ -154,7 +154,7 @@ export class ToDoTasksService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpEvent<Array<ToDoTask>>>;
+  ): Observable<HttpEvent<Array<ToDoTaskDTO>>>;
   public apiTasksGet(
     tableId?: number,
     showFiltering?: TaskShow,
@@ -222,7 +222,7 @@ export class ToDoTasksService {
     }
 
     let localVarPath = `/api/tasks`;
-    return this.httpClient.request<Array<ToDoTask>>(
+    return this.httpClient.request<Array<ToDoTaskDTO>>(
       'get',
       `${this.configuration.basePath}${localVarPath}`,
       {
@@ -238,45 +238,33 @@ export class ToDoTasksService {
   }
 
   /**
-   * @param toDoTask
+   * @param toDoTaskDTO
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public apiTasksPost(
-    toDoTask?: ToDoTask,
+    toDoTaskDTO?: ToDoTaskDTO,
     observe?: 'body',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<ToDoTask>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<any>;
   public apiTasksPost(
-    toDoTask?: ToDoTask,
+    toDoTaskDTO?: ToDoTaskDTO,
     observe?: 'response',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<HttpResponse<ToDoTask>>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<HttpResponse<any>>;
   public apiTasksPost(
-    toDoTask?: ToDoTask,
+    toDoTaskDTO?: ToDoTaskDTO,
     observe?: 'events',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<HttpEvent<ToDoTask>>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<HttpEvent<any>>;
   public apiTasksPost(
-    toDoTask?: ToDoTask,
+    toDoTaskDTO?: ToDoTaskDTO,
     observe: any = 'body',
     reportProgress: boolean = false,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
   ): Observable<any> {
     let localVarHeaders = this.defaultHeaders;
 
@@ -284,11 +272,7 @@ export class ToDoTasksService {
       options && options.httpHeaderAccept;
     if (localVarHttpHeaderAcceptSelected === undefined) {
       // to determine the Accept header
-      const httpHeaderAccepts: string[] = [
-        'text/plain',
-        'application/json',
-        'text/json',
-      ];
+      const httpHeaderAccepts: string[] = [];
       localVarHttpHeaderAcceptSelected =
         this.configuration.selectHeaderAccept(httpHeaderAccepts);
     }
@@ -334,12 +318,12 @@ export class ToDoTasksService {
     }
 
     let localVarPath = `/api/tasks`;
-    return this.httpClient.request<ToDoTask>(
+    return this.httpClient.request<any>(
       'post',
       `${this.configuration.basePath}${localVarPath}`,
       {
         context: localVarHttpContext,
-        body: toDoTask,
+        body: toDoTaskDTO,
         responseType: <any>responseType_,
         withCredentials: this.configuration.withCredentials,
         headers: localVarHeaders,

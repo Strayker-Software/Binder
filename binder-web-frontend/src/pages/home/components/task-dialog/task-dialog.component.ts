@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ToDoTask } from 'src/api';
+import { ToDoTaskDTO } from 'src/api';
 
 @Component({
   selector: 'task-dialog',
@@ -10,7 +10,7 @@ import { ToDoTask } from 'src/api';
 export class TaskDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<TaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) protected task: ToDoTask
+    @Inject(MAT_DIALOG_DATA) protected task: ToDoTaskDTO
   ) {}
 
   onCancel(): void {

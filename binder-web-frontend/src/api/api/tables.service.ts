@@ -25,7 +25,7 @@ import { CustomHttpParameterCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 // @ts-ignore
-import { DefaultTable } from '../model/defaultTable';
+import { DefaultTableDTO } from '../model/defaultTableDTO';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -128,7 +128,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<Array<DefaultTable>>;
+  ): Observable<Array<DefaultTableDTO>>;
   public apiTablesGet(
     observe?: 'response',
     reportProgress?: boolean,
@@ -136,7 +136,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpResponse<Array<DefaultTable>>>;
+  ): Observable<HttpResponse<Array<DefaultTableDTO>>>;
   public apiTablesGet(
     observe?: 'events',
     reportProgress?: boolean,
@@ -144,7 +144,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpEvent<Array<DefaultTable>>>;
+  ): Observable<HttpEvent<Array<DefaultTableDTO>>>;
   public apiTablesGet(
     observe: any = 'body',
     reportProgress: boolean = false,
@@ -194,7 +194,7 @@ export class TablesService {
     }
 
     let localVarPath = `/api/tables`;
-    return this.httpClient.request<Array<DefaultTable>>(
+    return this.httpClient.request<Array<DefaultTableDTO>>(
       'get',
       `${this.configuration.basePath}${localVarPath}`,
       {
@@ -217,37 +217,25 @@ export class TablesService {
     tableName?: string,
     observe?: 'body',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<DefaultTable>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<any>;
   public apiTablesPost(
     tableName?: string,
     observe?: 'response',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<HttpResponse<DefaultTable>>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<HttpResponse<any>>;
   public apiTablesPost(
     tableName?: string,
     observe?: 'events',
     reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
-  ): Observable<HttpEvent<DefaultTable>>;
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
+  ): Observable<HttpEvent<any>>;
   public apiTablesPost(
     tableName?: string,
     observe: any = 'body',
     reportProgress: boolean = false,
-    options?: {
-      httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
-      context?: HttpContext;
-    }
+    options?: { httpHeaderAccept?: undefined; context?: HttpContext }
   ): Observable<any> {
     let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
     if (tableName !== undefined && tableName !== null) {
@@ -264,11 +252,7 @@ export class TablesService {
       options && options.httpHeaderAccept;
     if (localVarHttpHeaderAcceptSelected === undefined) {
       // to determine the Accept header
-      const httpHeaderAccepts: string[] = [
-        'text/plain',
-        'application/json',
-        'text/json',
-      ];
+      const httpHeaderAccepts: string[] = [];
       localVarHttpHeaderAcceptSelected =
         this.configuration.selectHeaderAccept(httpHeaderAccepts);
     }
@@ -299,7 +283,7 @@ export class TablesService {
     }
 
     let localVarPath = `/api/tables`;
-    return this.httpClient.request<DefaultTable>(
+    return this.httpClient.request<any>(
       'post',
       `${this.configuration.basePath}${localVarPath}`,
       {
@@ -327,7 +311,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<DefaultTable>;
+  ): Observable<DefaultTableDTO>;
   public apiTablesTableIdGet(
     tableId: number,
     observe?: 'response',
@@ -336,7 +320,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpResponse<DefaultTable>>;
+  ): Observable<HttpResponse<DefaultTableDTO>>;
   public apiTablesTableIdGet(
     tableId: number,
     observe?: 'events',
@@ -345,7 +329,7 @@ export class TablesService {
       httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json';
       context?: HttpContext;
     }
-  ): Observable<HttpEvent<DefaultTable>>;
+  ): Observable<HttpEvent<DefaultTableDTO>>;
   public apiTablesTableIdGet(
     tableId: number,
     observe: any = 'body',
@@ -410,7 +394,7 @@ export class TablesService {
       dataType: 'number',
       dataFormat: 'int32',
     })}`;
-    return this.httpClient.request<DefaultTable>(
+    return this.httpClient.request<DefaultTableDTO>(
       'get',
       `${this.configuration.basePath}${localVarPath}`,
       {
