@@ -8,7 +8,8 @@ namespace Binder.Api.Mappings
     {
         public DtoToCoreModelsMappingsProfile()
         {
-            CreateMap<ToDoTask, ToDoTaskDTO>();
+            CreateMap<ToDoTask, ToDoTaskDTO>()
+                .ReverseMap();
             CreateMap<DefaultTable, DefaultTableDTO>();
         }
     }

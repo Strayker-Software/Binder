@@ -44,13 +44,13 @@ namespace Binder.Application.Services
         }
 
         public DefaultTable CreateTable(string tableName)
-        {            
+        {
             var table = new DefaultTable
             {
                 Name = tableName
             };
-            
-            return _repository.Add(table) ??
+
+            return _defaultTableRepository.Add(table) ??
                 throw new InvalidOperationException(ExceptionConstants.InvalidOperationMessage);
         }
     }
