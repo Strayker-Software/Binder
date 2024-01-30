@@ -1,27 +1,27 @@
 @use "variables";
 
 .side-panel {
-    height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: variables.$color-raisin-black;
+
+  &__top {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: variables.$color-raisin-black;
+    row-gap: 0.625rem;
 
-    &__top {
-        display: flex;
-        flex-direction: column;
-        row-gap: 0.625rem;
-
-        &-header {
-            padding: 0.625rem 1.25rem 0 1.25rem;
-        }
+    &-header {
+      padding: 0.625rem 1.25rem 0 1.25rem;
     }
+  }
 
-    &__divider {
-        background-color: variables.$color-white;
-    }
+  &__divider {
+    background-color: variables.$color-white;
+  }
 
-    &__bottom {
-        padding: 0 1.25rem 1.25rem 1.25rem;
-    }
+  &__bottom {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
 }

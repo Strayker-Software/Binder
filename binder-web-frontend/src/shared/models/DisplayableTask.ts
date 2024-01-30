@@ -1,4 +1,3 @@
-
 export interface DisplayableTask {
   name: string;
   description: string;

@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@include mat.core();
 
 $my-dark: mat.define-palette(mat.$grey-palette, 700, 800, 900);
 $my-accent: mat.define-palette(mat.$grey-palette, 200, 400, 600);

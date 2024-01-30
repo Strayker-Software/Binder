@@ -10,16 +10,15 @@ import { AppVersionsService } from 'src/api';
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
   version: string = '';
-  
+
   constructor(private appVersionsService: AppVersionsService) {}
-  
+
   ngOnInit(): void {
     this.appVersionsService
       .apiVersionsGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (ver: string) => 
-          this.version = ver,
+        next: (ver: string) => (this.version = ver),
         error: (error: any) => {
           console.error(error);
         },

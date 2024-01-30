@@ -30,5 +30,11 @@ namespace Binder.Api.Controllers
         {
             return Ok(_mapper.Map<DefaultTableDTO[]>(_service.GetAllTables()));
         }
+
+        [HttpPost]
+        public ActionResult<DefaultTable> Post(string tableName)
+        {
+            return _service.CreateTable(tableName);
+        }
     }
 }

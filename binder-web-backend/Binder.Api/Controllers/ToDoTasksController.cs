@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Binder.Api.Models;
+﻿using Binder.Api.Models;
 using Binder.Application.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +18,21 @@ namespace Binder.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ToDoTaskDTO[]> Get(int tableId)
+        public ActionResult<ToDoTask[]> Get(int tableId, TaskShow showFiltering)
         {
-            return Ok(_mapper.Map<ToDoTaskDTO[]>(_service.GetTasksForTable(tableId)));
+            return showFiltering switch
+            {
+                TaskShow.ShowCompleted => Ok(_service.GetTasksForTable(tableId).Where(x => x.IsCompleted == true)),
+                TaskShow.HideCompleted => Ok(_service.GetTasksForTable(tableId).Where(x => x.IsCompleted == false)),
+                TaskShow.ShowAll => Ok(_service.GetTasksForTable(tableId)),
+                _ => NotFound(),
+            };
+        }
+
+        [HttpPost]
+        public ActionResult<ToDoTask> Post(ToDoTask task)
+        {
+            return _service.AddTaskToTable(task);
         }
     }
 }

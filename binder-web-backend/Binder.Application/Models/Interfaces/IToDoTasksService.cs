@@ -5,5 +5,7 @@ namespace Binder.Application.Models.Interfaces
     public interface IToDoTasksService
     {
         ICollection<ToDoTask> GetTasksForTable(int tableId);
+
+        ToDoTask AddTaskToTable(ToDoTask task);
     }
 }

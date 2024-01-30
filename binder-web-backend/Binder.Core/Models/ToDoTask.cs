@@ -21,5 +21,13 @@ namespace Binder.Core.Models
             Description = string.Empty;
             Table = new DefaultTable();
         }
+
+        public ToDoTask(string name, string description, bool isCompleted, int tableId)
+        {
+            Name = name;
+            Description = description;
+            IsCompleted = isCompleted;
+            TableId = tableId;
+        }
     }
 }
