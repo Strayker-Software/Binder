@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { DefaultTableDTO, TaskShow, ToDoTaskDTO, ToDoTasksService } from 'src/api';
+import {
+  DefaultTableDTO,
+  TaskShow,
+  ToDoTaskDTO,
+  ToDoTasksService,
+} from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
