@@ -1,13 +1,13 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DefaultTable, TaskShow } from 'src/api';
+import { DefaultTableDTO, TaskShow } from 'src/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActiveTableService implements OnDestroy {
-  public activeTable: BehaviorSubject<DefaultTable> =
-    new BehaviorSubject<DefaultTable>({ id: 1 });
+  public activeTable: BehaviorSubject<DefaultTableDTO> =
+    new BehaviorSubject<DefaultTableDTO>({ id: 1 });
   public showHideCompletedTasksIndicator: BehaviorSubject<TaskShow> =
     new BehaviorSubject<TaskShow>(TaskShow.NUMBER_3);
 
