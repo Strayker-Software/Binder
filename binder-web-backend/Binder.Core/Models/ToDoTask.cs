@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Binder.Core.Models
 {
-    public record ToDoTask : IBaseEntity
+    public class ToDoTask : IBaseEntity
     {
         public int Id { get; private set; }
         public string Name { get; set; }
@@ -11,6 +11,7 @@ namespace Binder.Core.Models
         public bool IsCompleted { get; set; }
 
         public int TableId { get; set; }
+
         [JsonIgnore]
         public DefaultTable Table { get; set; }
 
@@ -18,6 +19,7 @@ namespace Binder.Core.Models
         {
             Name = string.Empty;
             Description = string.Empty;
+            Table = new DefaultTable();
         }
     }
 }

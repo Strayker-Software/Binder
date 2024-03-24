@@ -15,19 +15,31 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MainSpaceComponent } from './home/components/main-space/main-space.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { TableDialogComponent } from './home/components/table-dialog/table-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCommonModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { TaskDialogComponent } from './home/components/task-dialog/task-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   imports: [
-    CommonModule, 
-    MatCheckboxModule, 
-    MatDividerModule, 
-    MatExpansionModule, 
-    MatTableModule, 
-    TranslocoModule, 
-    MatTreeModule, 
-    MatIconModule
+    CommonModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatTableModule,
+    TranslocoModule,
+    MatTreeModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatCommonModule,
+    MatInputModule,
+    FormsModule,
   ],
   declarations: [
     HomeComponent,
@@ -38,6 +50,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     HeaderComponent,
     SidePanelComponent,
     MainSpaceComponent,
+    TableDialogComponent,
+    TaskDialogComponent,
     LoginComponent,
     UnauthorizedComponent
   ],

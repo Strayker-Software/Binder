@@ -1,4 +1,11 @@
 <div class="domain-buttons">
-  <p class="domain-buttons__button" (click)="optionsClicked()">{{ 'domainButtons.options' | transloco }}</p>
-  <p class="domain-buttons__button" (click)="aboutClicked()">{{ 'domainButtons.about' | transloco }}</p>
+  <p
+    class="domain-buttons__button"
+    (click)="optionsClicked()"
+    *ngIf="optionsButtonVisibility">
+    {{ "domainButtons.options" | transloco }}
+  </p>
+  <p class="domain-buttons__button" (click)="aboutClicked()">
+    {{ "domainButtons.about" | transloco }}
+  </p>
 </div>

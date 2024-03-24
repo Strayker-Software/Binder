@@ -5,11 +5,9 @@ namespace Binder.Api.Extensions
 {
     public static class SwaggerServiceExtensions
     {
-        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services, string[] args)
+        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services, IConfiguration config)
         {
-            var builder = WebApplication.CreateBuilder(args);
-            var backendUrl = builder.Configuration
-                .GetSection(WebApiIocConfigValues.BackendUrlSectionKey).Value!;
+            var backendUrl = config.GetSection(WebApiIocConfigValues.BackendUrlSectionKey).Value!;
 
             services.AddSwaggerGen(options =>
             {

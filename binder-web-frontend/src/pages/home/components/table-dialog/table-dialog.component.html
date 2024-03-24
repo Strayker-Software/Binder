@@ -1,0 +1,21 @@
+<div class="dialog">
+  <h1 mat-dialog-title>{{ "addTableDialog.title" | transloco }}</h1>
+  <div mat-dialog-content>
+    <p>{{ "addTableDialog.content" | transloco }}</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.tableName" />
+    </mat-form-field>
+  </div>
+  <div class="dialog__buttons" mat-dialog-actions>
+    <button
+      class="dialog__buttons-btn"
+      mat-button
+      [mat-dialog-close]="data"
+      cdkFocusInitial>
+      {{ "general.add" | transloco }}
+    </button>
+    <button class="dialog__buttons-btn" mat-button (click)="onCancel()">
+      {{ "general.cancel" | transloco }}
+    </button>
+  </div>
+</div>

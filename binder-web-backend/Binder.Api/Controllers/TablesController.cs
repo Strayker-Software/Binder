@@ -1,5 +1,6 @@
-﻿using Binder.Application.Models.Interfaces;
-using Binder.Core.Models;
+﻿using AutoMapper;
+using Binder.Api.Models;
+using Binder.Application.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Binder.Api.Controllers
@@ -9,23 +10,33 @@ namespace Binder.Api.Controllers
     public sealed class TablesController : ControllerBase
     {
         private readonly IDefaultTableService _service;
+        private readonly IMapper _mapper;
 
-        public TablesController(IDefaultTableService service)
+        public TablesController(IDefaultTableService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [Route("{tableId}")]
         [HttpGet]
-        public ActionResult<DefaultTable> Get(int tableId)
+        public ActionResult<DefaultTableDTO> Get(int tableId)
         {
-            return _service.GetTable(tableId);
+            return _mapper.Map<DefaultTableDTO>(_service.GetTable(tableId));
         }
 
         [HttpGet]
-        public ActionResult<DefaultTable[]> Get()
+        public ActionResult<DefaultTableDTO[]> Get()
         {
-            return Ok(_service.GetAllTables());
+            return Ok(_mapper.Map<DefaultTableDTO[]>(_service.GetAllTables()));
+        }
+
+        [HttpPost]
+        public ActionResult Post(string tableName)
+        {
+            _service.CreateTable(tableName);
+
+            return Ok();
         }
     }
 }

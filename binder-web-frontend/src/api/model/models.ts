@@ -1,2 +1,3 @@
-export * from './defaultTable';
-export * from './toDoTask';
+export * from './defaultTableDTO';
+export * from './taskShow';
+export * from './toDoTaskDTO';

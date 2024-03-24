@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { DefaultTable, ToDoTask, ToDoTasksService } from 'src/api';
+import {
+  DefaultTableDTO,
+  TaskShow,
+  ToDoTaskDTO,
+  ToDoTasksService,
+} from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 
 @Component({
@@ -11,25 +16,37 @@ import { ActiveTableService } from 'src/shared/services/activeTable.service';
 export class TableViewComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
   columns: string[] = ['name', 'description', 'isCompleted'];
-  tasks: ToDoTask[] = [];
-  currentlySelectedTable: DefaultTable = {};
+  tasks: ToDoTaskDTO[] = [];
+  currentlySelectedTable: DefaultTableDTO = {};
 
-  constructor(private toDoTasksService: ToDoTasksService, private activeTableService: ActiveTableService) {
-    this.activeTableService.activeTable.subscribe(selectedTable => {
-      this.currentlySelectedTable = selectedTable;
-      this.getTasks();
-      this.refreshTable();
-    });
+  constructor(
+    private toDoTasksService: ToDoTasksService,
+    private activeTableService: ActiveTableService
+  ) {
+    this.activeTableService.activeTable
+      .pipe(takeUntil(this.subscribe$))
+      .subscribe((selectedTable) => {
+        this.currentlySelectedTable = selectedTable;
+        this.getTasks(TaskShow.NUMBER_3);
+        this.refreshTable();
+      });
+
+    this.activeTableService.showHideCompletedTasksIndicator
+      .pipe(takeUntil(this.subscribe$))
+      .subscribe((taskActiveFiltering) => {
+        this.getTasks(taskActiveFiltering);
+        this.refreshTable();
+      });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  getTasks() {
+  getTasks(filtering: TaskShow) {
     this.toDoTasksService
-      .apiTasksGet(this.currentlySelectedTable.id)
+      .apiTasksGet(this.currentlySelectedTable.id, filtering)
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (tasks: ToDoTask[]) => {
+        next: (tasks: ToDoTaskDTO[]) => {
           this.tasks = tasks;
           this.refreshTable();
         },

@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { TablesService, DefaultTable } from 'src/api';
+import { TablesService, DefaultTableDTO } from 'src/api';
 import { ActiveTableService } from 'src/shared/services/activeTable.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import {
+  MatTreeFlatDataSource,
+  MatTreeFlattener,
+} from '@angular/material/tree';
 import { TableNode } from 'src/shared/models/tableNode';
 import { TableFlatNode } from 'src/shared/models/tableFlatNode';
 
@@ -14,7 +17,7 @@ import { TableFlatNode } from 'src/shared/models/tableFlatNode';
 })
 export class TablesListComponent implements OnInit, OnDestroy {
   private subscribe$: Subject<void> = new Subject<void>();
-  tables: DefaultTable[] = [];
+  tables: DefaultTableDTO[] = [];
   private _transformer = (node: TableNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -24,30 +27,33 @@ export class TablesListComponent implements OnInit, OnDestroy {
     };
   };
   treeControl = new FlatTreeControl<TableFlatNode>(
-    node => node.level,
-    node => node.expandable,
+    (node) => node.level,
+    (node) => node.expandable
   );
   treeFlattener = new MatTreeFlattener(
     this._transformer,
-    node => node.level,
-    node => node.expandable,
-    node => node.children,
+    (node) => node.level,
+    (node) => node.expandable,
+    (node) => node.children
   );
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private tableService: TablesService, private activeTableService: ActiveTableService) {}
+  constructor(
+    private tableService: TablesService,
+    private activeTableService: ActiveTableService
+  ) {}
 
   ngOnInit() {
     this.tableService
       .apiTablesGet()
       .pipe(takeUntil(this.subscribe$))
       .subscribe({
-        next: (tables: DefaultTable[]) => {
+        next: (tables: DefaultTableDTO[]) => {
           this.tables = tables;
           this.dataSource.data = [
             {
-              children: tables as TableNode[]
-            }
+              children: tables as TableNode[],
+            },
           ];
         },
         error: (error) => {
@@ -57,7 +63,7 @@ export class TablesListComponent implements OnInit, OnDestroy {
   }
 
   hasChild = (_: number, node: TableFlatNode) => node.expandable;
-  
+
   tableElementClicked(id: number) {
     this.tables.forEach((table) => {
       if (table.id === id) {

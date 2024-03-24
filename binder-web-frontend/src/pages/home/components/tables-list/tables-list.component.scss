@@ -1,10 +1,9 @@
+@use "variables";
+
 .tables {
-  user-select: none;
   background-color: transparent;
 
-  &__tree {    
-    display: flex;
-
+  &__tree {
     &-content {
       padding-left: 0.5rem;
 
@@ -14,15 +13,15 @@
     }
 
     &-header {
-      display: flex;     
-      align-items: center; 
+      display: flex;
+      align-items: center;
       background: none;
-      color: white;
+      color: variables.$color-white;
       border: none;
-      
+
       &:hover {
         cursor: pointer;
-      }  
+      }
     }
   }
 }
